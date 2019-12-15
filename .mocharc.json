@@ -1,0 +1,6 @@
+{
+  "require" : "./test/init.js",
+  "timeout" : 5000,
+  "ui"      : "bdd",
+  "colors"  : true
+}

@@ -1,0 +1,12 @@
+<label class='checkbox'>
+  {{label}}
+  <input
+    id='{{id}}_input'
+    {{#if required}} required        {{/if}}
+    {{#if checked}}  checked         {{/if}}
+    {{#if disabled}} disabled        {{/if}}
+    {{#if name}}     name='{{name}}' {{/if}}
+    {{#if value}}    checked         {{/if}}
+    class='checkbox__input' type='checkbox'>
+  <span class='checkbox__checkmark'></span>
+</label>

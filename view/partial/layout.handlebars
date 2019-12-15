@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="{{lang}}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/assets/css/app.bundle.css">
+  </head>
+
+  <body>
+    <main id="partial-wrapper">
+      <div id="partial"  class="grid-container">
+        {{> @partial-block }}
+      </div>
+    </main>
+
+    <script type="text/javascript" src="/assets/js/{{env}}/vendors.bundle.js"></script>
+    <script type="text/javascript" src="/assets/js/{{env}}/commons.bundle.js"></script>
+    <script type="text/javascript" src="/assets/js/{{env}}/polyfills.bundle.js"></script>
+    <script type="text/javascript" src="/assets/js/{{env}}/{{id}}.bundle.js"></script>
+  </body>
+
+</html>

@@ -1,0 +1,2183 @@
+<!doctype html>
+
+  <html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>API Documentation</title>
+    <meta name="description" content="API Documentation">
+    <meta name="author" content="Adamo">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/theme/eclipse.css"/>
+  </head>
+
+  <style>
+  html, body
+  {
+    font-size: 16px;
+    font-family: 'Arial'
+  }
+
+  .panel {
+    border: 1px solid #ccc;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+  }
+
+  .panel.open
+  {
+    padding: 0 1em 1em 1em;
+  }
+
+  .accordion:after {
+    content: "➕"; /* Unicode character for "plus" sign (+) */
+    color: #777;
+    position: absolute;
+    top: 50%;
+    right: 1em;
+    transform: translateY(-50%);
+  }
+
+  /* Style the buttons that are used to open and close the accordion panel */
+  .accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    font-weight: bold;
+    position: relative;
+  }
+
+  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+  .active, .accordion:hover {
+    background-color: #ccc;
+  }
+
+  .active:after {
+    content: "➖";
+  }
+
+  .html-method {
+    text-transform: uppercase;
+    border-radius: 0.5em;
+    padding: 1em;
+    color: white;
+    margin-right: 0.5em;
+    text-shadow: 0 1px 0 rgba(0,0,0,.1);
+    width: 55px;
+    display: inline-block;
+    text-align: center;
+  }
+
+  .html-method.get
+  {
+    background: LimeGreen;
+  }
+
+  .html-method.post
+  {
+    background: SteelBlue;
+  }
+
+  .html-method.put
+  {
+    background: DarkOrange;
+  }
+
+  .html-method.delete
+  {
+    background: FireBrick;
+  }
+
+  .html-method.delete:before
+  {
+    content: 'DELETE'
+  }
+
+  .html-method.get:before
+  {
+    content: 'GET'
+  }
+
+  .html-method.post:before
+  {
+    content: 'POST'
+  }
+
+  .html-method.put:before
+  {
+    content: 'PUT'
+  }
+
+  .parameters__header,
+  .parameter
+  {
+    width: 100%;
+  }
+
+  .parameters
+  {
+    padding: 1em;
+  }
+
+  .parameters__header
+  {
+    border-bottom: 1px solid Black;
+  }
+
+  .clearfix {
+    overflow: auto;
+  }
+
+  .parameter,
+  .parameter__header,
+  .parameter__name,
+  .parameter__description
+  {
+    float: left;
+  }
+
+  .parameter__name,
+  .parameter__header.name
+  {
+    width:40%;
+  }
+
+  .parameter__description,
+  .parameter__header.description
+  {
+    width:60%;
+  }
+
+  .parameter
+  {
+    padding: 1em;
+    box-sizing: border-box;
+  }
+
+  .parameter__header
+  {
+    font-weight: bold;
+    padding: 0.5em;
+    box-sizing: border-box;
+  }
+
+  .parameter__type
+  {
+    padding: 0.5em 0;
+    font-family: monospace;
+    text-transform: lowercase;
+    font-weight: 600;
+    color: #3b4151;
+  }
+
+  .parameter__validation__rule
+  {
+    font-weight: bold;
+  }
+
+  .parameter__validation__rule::after
+  {
+    content: ':'
+  }
+
+  .parameter__key.required::after
+  {
+    content: 'required';
+    font-size: 0.8em;
+    color: red
+  }
+
+  .CodeMirror {
+    border: 1px solid #eee;
+    height: auto;
+  }
+  </style>
+  <body><button class="accordion"><span class="html-method get"></span>/assets/.+</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">undefined</p>
+        
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+      </div><button class="accordion"><span class="html-method post"></span>/ui/session</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">core/http/server/view/json</p>
+        <h3>Parameters</h3>
+      <div class="parameters">
+        <div class="parameters__header clearfix">
+          <div class="parameter__header name">
+            Name
+          </div>
+          <div class="parameter__header description">
+            Description
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              code
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            undefined
+            <h4>Validation rules</h4>
+      <ul class="parameter__validation"><li><span class="parameter__validation__rule">not-empty</span> true</li></ul>
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              algorithm
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            undefined
+            <h4>Validation rules</h4>
+      <ul class="parameter__validation"><li><span class="parameter__validation__rule">enum</span> RSA-OAEP</li><li><span class="parameter__validation__rule">max</span> 10</li></ul>
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              publicKey
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            undefined
+            <h4>Validation rules</h4>
+      <ul class="parameter__validation"><li><span class="parameter__validation__rule">not-empty</span> true</li></ul>
+          </div>
+        </div></div>
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">{}</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+      </div><button class="accordion"><span class="html-method get"></span>/login</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">core/handlebars</p>
+        
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+      </div><button class="accordion"><span class="html-method get"></span>/ui/view-model/login</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">core/http/server/view/json</p>
+        
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+      </div><button class="accordion"><span class="html-method get"></span>/</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">core/handlebars</p>
+        
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+      </div><button class="accordion"><span class="html-method get"></span>/ui/view-model/</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">core/http/server/view/json</p>
+        
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+      </div><button class="accordion"><span class="html-method get"></span>/line</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">core/handlebars</p>
+        
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+      </div><button class="accordion"><span class="html-method get"></span>/ui/view-model/line</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">core/http/server/view/json</p>
+        
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+      </div><button class="accordion"><span class="html-method post"></span>/ui/line</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">undefined</p>
+        <h3>Parameters</h3>
+      <div class="parameters">
+        <div class="parameters__header clearfix">
+          <div class="parameter__header name">
+            Name
+          </div>
+          <div class="parameter__header description">
+            Description
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              deliveryAddress
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The address where to deliver the package/s
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              deliveryZipCode
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The ZIP code of the address where to deliver the package
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              deliveryTown
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The town where to deliver the package/s
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              iso2DeliveryCountry
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The country of the address where to deliver the package/s ("ES", "PT", ...)
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              orderId
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Adamo order id
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              clientFirstName
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            First name
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              clientFamilyName
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Family name
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              clientId
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Identity document value
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              clientIdType
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Document type
+            <h4>Validation rules</h4>
+      <ul class="parameter__validation"><li><span class="parameter__validation__rule">enum</span> 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15</li></ul>
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              contactEmail
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The contact email of the recipient
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              contactPhone
+            </div>
+            <div class="parameter__type">
+              integer
+            </div>
+          </div>
+          <div class="parameter__description">
+            A phone number
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              subscriberType
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Subscriber type
+            <h4>Validation rules</h4>
+      <ul class="parameter__validation"><li><span class="parameter__validation__rule">enum</span> 0,1,2,3,4,5,6,7</li></ul>
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              initialSubscriptionPkg
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Package identifier
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              icc
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            ICC to configure in the subscription
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              deliveryAddress
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The address where to deliver the package/s
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              deliveryZipCode
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The ZIP code of the address where to deliver the package
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              deliveryTown
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The town where to deliver the package/s
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              iso2DeliveryCountry
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The country of the address where to deliver the package/s ("ES", "PT", ...)
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              orderId
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Adamo order id
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              clientFirstName
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            First name
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              clientFamilyName
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Family name
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              clientId
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Identity document value
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              clientIdType
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Document type
+            <h4>Validation rules</h4>
+      <ul class="parameter__validation"><li><span class="parameter__validation__rule">enum</span> 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15</li></ul>
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              contactEmail
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The contact email of the recipient
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              contactPhone
+            </div>
+            <div class="parameter__type">
+              integer
+            </div>
+          </div>
+          <div class="parameter__description">
+            A phone number
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              subscriberType
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Subscriber type
+            <h4>Validation rules</h4>
+      <ul class="parameter__validation"><li><span class="parameter__validation__rule">enum</span> 0,1,2,3,4,5,6,7</li></ul>
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              warehouseCode
+            </div>
+            <div class="parameter__type">
+              integer
+            </div>
+          </div>
+          <div class="parameter__description">
+            The Warehouse Code
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              itemCodeType
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The type of item code
+            <h4>Validation rules</h4>
+      <ul class="parameter__validation"><li><span class="parameter__validation__rule">enum</span> ReferenciaCliente,ReferenciaEurologistica,EAN</li></ul>
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              amount
+            </div>
+            <div class="parameter__type">
+              integer
+            </div>
+          </div>
+          <div class="parameter__description">
+            The Amount
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              price
+            </div>
+            <div class="parameter__type">
+              decimal
+            </div>
+          </div>
+          <div class="parameter__description">
+            The Price
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              birthDate
+            </div>
+            <div class="parameter__type">
+              timestamp
+            </div>
+          </div>
+          <div class="parameter__description">
+            The birth date of the customer
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              nationality
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The nationality of the customer
+            
+          </div>
+        </div></div>
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">{
+  "deliveryAddress": "Av. Inmaculada, 2 2",
+  "deliveryZipCode": "11370",
+  "deliveryTown": "Barrios (Los)",
+  "iso2DeliveryCountry": "ES",
+  "orderId": "123",
+  "clientFirstName": "Test",
+  "clientFamilyName": "Testing",
+  "clientId": "76531763E",
+  "clientIdType": "0",
+  "contactEmail": "pablo.marmol@adamo.es",
+  "contactPhone": 658832759,
+  "subscriberType": "0",
+  "initialSubscriptionPkg": "Test_Initial",
+  "icc": "8934045119060048516",
+  "warehouseCode": 89,
+  "itemCodeType": "ReferenciaEurologistica",
+  "amount": 1,
+  "birthDate": "09/07/1978",
+  "nationality": "Spain"
+}</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">{
+  "pid": "k17ul1hl0.jl8l3nkoc8d"
+}</textarea>
+    </div>
+      </div><button class="accordion"><span class="html-method get"></span>/order/delivery-address</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">core/handlebars</p>
+        
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+      </div><button class="accordion"><span class="html-method get"></span>/ui/view-model/order/delivery-address</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">core/http/server/view/json</p>
+        
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+      </div><button class="accordion"><span class="html-method put"></span>/ui/order/delivery-address</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">undefined</p>
+        <h3>Parameters</h3>
+      <div class="parameters">
+        <div class="parameters__header clearfix">
+          <div class="parameter__header name">
+            Name
+          </div>
+          <div class="parameter__header description">
+            Description
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              deliveryAddress
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The address where to deliver the package/s
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              deliveryZipCode
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The ZIP code of the address where to deliver the package
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              deliveryTown
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The town where to deliver the package/s
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              iso2DeliveryCountry
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The country of the address where to deliver the package/s ("ES", "PT", ...)
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              pid
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The ID used to identify the sim delivery process
+            
+          </div>
+        </div></div>
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">{
+  "deliveryAddress": "Av. Inmaculada, 2 2",
+  "deliveryZipCode": "11370",
+  "deliveryTown": "Barrios (Los)",
+  "iso2DeliveryCountry": "ES",
+  "pid": "k17ul1hl0.jl8l3nkoc8d"
+}</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+      </div><button class="accordion"><span class="html-method get"></span>/order/status</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">core/handlebars</p>
+        
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+      </div><button class="accordion"><span class="html-method get"></span>/ui/view-model/order/status</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">core/http/server/view/json</p>
+        
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+      </div><button class="accordion"><span class="html-method put"></span>/ui/order/status</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">undefined</p>
+        <h3>Parameters</h3>
+      <div class="parameters">
+        <div class="parameters__header clearfix">
+          <div class="parameter__header name">
+            Name
+          </div>
+          <div class="parameter__header description">
+            Description
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              pid
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The ID used to identify the sim delivery process
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              status
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The status that indicates the current state of the order
+            <h4>Validation rules</h4>
+      <ul class="parameter__validation"><li><span class="parameter__validation__rule">enum</span> order is being prepared by eurologistica,order prepared by eurologistica and ready to be delivered to the courier,order being delivered to the courier,order delivered to final customer,contract signed copy sent from the courier to eurologistica,contract signed copy received back in eurologistica warehouse,an issue related with the eurologistica order,order in eurologistica will be returned from courier to the warehouse,order in eurologistica already returned to the warehouse</li></ul>
+          </div>
+        </div></div>
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">{
+  "pid": "k17ul1hl0.jl8l3nkoc8d",
+  "status": "Order is being prepared by Eurologistica"
+}</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+      </div><button class="accordion"><span class="html-method get"></span>/portability/prepaid</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">core/handlebars</p>
+        
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+      </div><button class="accordion"><span class="html-method get"></span>/ui/view-model/portability/prepaid</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">core/http/server/view/json</p>
+        
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+      </div><button class="accordion"><span class="html-method post"></span>/ui/portability/prepaid</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">undefined</p>
+        <h3>Parameters</h3>
+      <div class="parameters">
+        <div class="parameters__header clearfix">
+          <div class="parameter__header name">
+            Name
+          </div>
+          <div class="parameter__header description">
+            Description
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              deliveryAddress
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The address where to deliver the package/s
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              deliveryZipCode
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The ZIP code of the address where to deliver the package
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              deliveryTown
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The town where to deliver the package/s
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              iso2DeliveryCountry
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The country of the address where to deliver the package/s ("ES", "PT", ...)
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              orderId
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Adamo order id
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              clientFirstName
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            First name
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              clientFamilyName
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Family name
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              clientId
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Identity document value
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              clientIdType
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Document type
+            <h4>Validation rules</h4>
+      <ul class="parameter__validation"><li><span class="parameter__validation__rule">enum</span> 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15</li></ul>
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              contactEmail
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The contact email of the recipient
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              contactPhone
+            </div>
+            <div class="parameter__type">
+              integer
+            </div>
+          </div>
+          <div class="parameter__description">
+            A phone number
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              subscriberType
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Subscriber type
+            <h4>Validation rules</h4>
+      <ul class="parameter__validation"><li><span class="parameter__validation__rule">enum</span> 0,1,2,3,4,5,6,7</li></ul>
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              portingPhoneNumber
+            </div>
+            <div class="parameter__type">
+              integer
+            </div>
+          </div>
+          <div class="parameter__description">
+            The relevant phone number that will be ported
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              initialSubscriptionPkg
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Package identifier
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              icc_origin
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The ICC of the sim card that is being ported from
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              icc_destination
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The ICC of the sim card that is being ported to
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              deliveryAddress
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The address where to deliver the package/s
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              deliveryZipCode
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The ZIP code of the address where to deliver the package
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              deliveryTown
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The town where to deliver the package/s
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              iso2DeliveryCountry
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The country of the address where to deliver the package/s ("ES", "PT", ...)
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              orderId
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Adamo order id
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              clientFirstName
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            First name
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              clientFamilyName
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Family name
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              clientId
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Identity document value
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              clientIdType
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Document type
+            <h4>Validation rules</h4>
+      <ul class="parameter__validation"><li><span class="parameter__validation__rule">enum</span> 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15</li></ul>
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              contactEmail
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The contact email of the recipient
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              contactPhone
+            </div>
+            <div class="parameter__type">
+              integer
+            </div>
+          </div>
+          <div class="parameter__description">
+            A phone number
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              subscriberType
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Subscriber type
+            <h4>Validation rules</h4>
+      <ul class="parameter__validation"><li><span class="parameter__validation__rule">enum</span> 0,1,2,3,4,5,6,7</li></ul>
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              warehouseCode
+            </div>
+            <div class="parameter__type">
+              integer
+            </div>
+          </div>
+          <div class="parameter__description">
+            The Warehouse Code
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              itemCodeType
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The type of item code
+            <h4>Validation rules</h4>
+      <ul class="parameter__validation"><li><span class="parameter__validation__rule">enum</span> ReferenciaCliente,ReferenciaEurologistica,EAN</li></ul>
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              amount
+            </div>
+            <div class="parameter__type">
+              integer
+            </div>
+          </div>
+          <div class="parameter__description">
+            The Amount
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              price
+            </div>
+            <div class="parameter__type">
+              decimal
+            </div>
+          </div>
+          <div class="parameter__description">
+            The Price
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              birthDate
+            </div>
+            <div class="parameter__type">
+              timestamp
+            </div>
+          </div>
+          <div class="parameter__description">
+            The birth date of the customer
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              nationality
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The nationality of the customer
+            
+          </div>
+        </div></div>
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">{
+  "deliveryAddress": "Av. Inmaculada, 2 2",
+  "deliveryZipCode": "11370",
+  "deliveryTown": "Barrios (Los)",
+  "iso2DeliveryCountry": "ES",
+  "orderId": "123",
+  "clientFirstName": "Test",
+  "clientFamilyName": "Testing",
+  "clientId": "76531763E",
+  "clientIdType": "0",
+  "contactEmail": "pablo.marmol@adamo.es",
+  "contactPhone": 658832759,
+  "subscriberType": "0",
+  "portingPhoneNumber": 658832759,
+  "initialSubscriptionPkg": "Test_Initial",
+  "icc_origin": "8934045119060048516",
+  "icc_destination": "8934045119060048516",
+  "warehouseCode": 89,
+  "itemCodeType": "ReferenciaEurologistica",
+  "amount": 1,
+  "birthDate": "09/07/1978",
+  "nationality": "Spain"
+}</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">{
+  "pid": "k17ul1hl0.jl8l3nkoc8d"
+}</textarea>
+    </div>
+      </div><button class="accordion"><span class="html-method get"></span>/portability/postpaid</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">core/handlebars</p>
+        
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+      </div><button class="accordion"><span class="html-method get"></span>/ui/view-model/portability/postpaid</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">core/http/server/view/json</p>
+        
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+      </div><button class="accordion"><span class="html-method post"></span>/ui/portability/postpaid</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">undefined</p>
+        <h3>Parameters</h3>
+      <div class="parameters">
+        <div class="parameters__header clearfix">
+          <div class="parameter__header name">
+            Name
+          </div>
+          <div class="parameter__header description">
+            Description
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              deliveryAddress
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The address where to deliver the package/s
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              deliveryZipCode
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The ZIP code of the address where to deliver the package
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              deliveryTown
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The town where to deliver the package/s
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              iso2DeliveryCountry
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The country of the address where to deliver the package/s ("ES", "PT", ...)
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              orderId
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Adamo order id
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              clientFirstName
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            First name
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              clientFamilyName
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Family name
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              clientId
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Identity document value
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              clientIdType
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Document type
+            <h4>Validation rules</h4>
+      <ul class="parameter__validation"><li><span class="parameter__validation__rule">enum</span> 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15</li></ul>
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              contactEmail
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The contact email of the recipient
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              contactPhone
+            </div>
+            <div class="parameter__type">
+              integer
+            </div>
+          </div>
+          <div class="parameter__description">
+            A phone number
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              subscriberType
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Subscriber type
+            <h4>Validation rules</h4>
+      <ul class="parameter__validation"><li><span class="parameter__validation__rule">enum</span> 0,1,2,3,4,5,6,7</li></ul>
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              portingPhoneNumber
+            </div>
+            <div class="parameter__type">
+              integer
+            </div>
+          </div>
+          <div class="parameter__description">
+            The relevant phone number that will be ported
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              initialSubscriptionPkg
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Package identifier
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              icc_destination
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The ICC of the sim card that is being ported to
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              deliveryAddress
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The address where to deliver the package/s
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              deliveryZipCode
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The ZIP code of the address where to deliver the package
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              deliveryTown
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The town where to deliver the package/s
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              iso2DeliveryCountry
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The country of the address where to deliver the package/s ("ES", "PT", ...)
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              orderId
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Adamo order id
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              clientFirstName
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            First name
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              clientFamilyName
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Family name
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              clientId
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Identity document value
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              clientIdType
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Document type
+            <h4>Validation rules</h4>
+      <ul class="parameter__validation"><li><span class="parameter__validation__rule">enum</span> 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15</li></ul>
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              contactEmail
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The contact email of the recipient
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              contactPhone
+            </div>
+            <div class="parameter__type">
+              integer
+            </div>
+          </div>
+          <div class="parameter__description">
+            A phone number
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              subscriberType
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            Subscriber type
+            <h4>Validation rules</h4>
+      <ul class="parameter__validation"><li><span class="parameter__validation__rule">enum</span> 0,1,2,3,4,5,6,7</li></ul>
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              warehouseCode
+            </div>
+            <div class="parameter__type">
+              integer
+            </div>
+          </div>
+          <div class="parameter__description">
+            The Warehouse Code
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              itemCodeType
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The type of item code
+            <h4>Validation rules</h4>
+      <ul class="parameter__validation"><li><span class="parameter__validation__rule">enum</span> ReferenciaCliente,ReferenciaEurologistica,EAN</li></ul>
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              amount
+            </div>
+            <div class="parameter__type">
+              integer
+            </div>
+          </div>
+          <div class="parameter__description">
+            The Amount
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              price
+            </div>
+            <div class="parameter__type">
+              decimal
+            </div>
+          </div>
+          <div class="parameter__description">
+            The Price
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              birthDate
+            </div>
+            <div class="parameter__type">
+              timestamp
+            </div>
+          </div>
+          <div class="parameter__description">
+            The birth date of the customer
+            
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              nationality
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The nationality of the customer
+            
+          </div>
+        </div></div>
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">{
+  "deliveryAddress": "Av. Inmaculada, 2 2",
+  "deliveryZipCode": "11370",
+  "deliveryTown": "Barrios (Los)",
+  "iso2DeliveryCountry": "ES",
+  "orderId": "123",
+  "clientFirstName": "Test",
+  "clientFamilyName": "Testing",
+  "clientId": "76531763E",
+  "clientIdType": "0",
+  "contactEmail": "pablo.marmol@adamo.es",
+  "contactPhone": 658832759,
+  "subscriberType": "0",
+  "portingPhoneNumber": 658832759,
+  "initialSubscriptionPkg": "Test_Initial",
+  "icc_destination": "8934045119060048516",
+  "warehouseCode": 89,
+  "itemCodeType": "ReferenciaEurologistica",
+  "amount": 1,
+  "birthDate": "09/07/1978",
+  "nationality": "Spain"
+}</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">{
+  "pid": "k17ul1hl0.jl8l3nkoc8d"
+}</textarea>
+    </div>
+      </div><button class="accordion"><span class="html-method get"></span>/eventlog</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">core/handlebars</p>
+        
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+      </div><button class="accordion"><span class="html-method get"></span>/ui/view-model/eventlog</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">core/http/server/view/json</p>
+        
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+      </div><button class="accordion"><span class="html-method get"></span>/ui/eventlog/:pid</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">core/http/server/view/json</p>
+        <h3>Parameters</h3>
+      <div class="parameters">
+        <div class="parameters__header clearfix">
+          <div class="parameter__header name">
+            Name
+          </div>
+          <div class="parameter__header description">
+            Description
+          </div>
+        </div><div class="parameter">
+          <div class="parameter__name">
+            <div class="parameter__key required">
+              pid
+            </div>
+            <div class="parameter__type">
+              string
+            </div>
+          </div>
+          <div class="parameter__description">
+            The ID used to identify the sim delivery process
+            
+          </div>
+        </div></div>
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">{
+  "pid": "k17ul1hl0.jl8l3nkoc8d"
+}</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+      </div><button class="accordion"><span class="html-method delete"></span>/ui/logout</button>
+      <div class="panel">
+        
+        <h3>View</h3>
+        <p class="view">core/http/server/view/json</p>
+        
+        <h3>Input</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+        <h3>Output</h3>
+    <div class="input">
+      <textarea class="code-example">// none</textarea>
+    </div>
+      </div><script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/mode/javascript/javascript.min.js"></script>
+
+  <script>
+    const codeExamples = document.getElementsByClassName('code-example')
+
+    for(let i = 0; i < codeExamples.length; i++)
+    {
+      CodeMirror.fromTextArea(codeExamples[i], {
+        lineNumbers: true,
+        theme: 'eclipse',
+        readOnly: true,
+        mode: 'javascript'
+      })
+    }
+
+    const acc = document.getElementsByClassName('accordion')
+
+    for(let i = 0; i < acc.length; i++) {
+      acc[i].addEventListener('click', function() {
+        this.classList.toggle('active')
+
+        const panel = this.nextElementSibling
+        panel.classList.toggle('open')
+
+        if(panel.style.maxHeight)
+        {
+          panel.style.maxHeight = null
+        }
+        else
+        {
+          panel.style.maxHeight = panel.scrollHeight + 'px'
+        }
+      })
+    }
+  </script>
+</body>
+</html>

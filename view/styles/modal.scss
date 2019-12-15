@@ -1,0 +1,124 @@
+@import './_colors.scss';
+
+.modal{
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 9999; /* Sit on top */
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: hidden;
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  &.--visible{
+    display: block;
+  }
+
+  .section{
+    margin-bottom: 1rem;
+  }
+}
+
+/* Modal Content */
+.modal-content {
+  position: absolute;
+  background-color: $body-copy-light;
+  margin: auto;
+  padding: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.6s;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border: 3px solid map-get($palette, color-primary);
+  max-height: 100vh;
+  border-top: 0px;
+  overflow: auto;
+  /* Modal Header */
+  .modal-header {
+    position: relative;
+    background-color: map-get($palette, color-primary);
+    color: $body-copy-light;
+    font-weight: 400;
+    text-transform:  uppercase;
+    padding: .25rem;
+  }
+
+  /* Modal Body */
+  .modal-body {
+    padding: 1.5rem 1rem 1rem;
+    white-space: normal;
+  }
+
+  .modal-footer{
+    text-align: right;
+    padding: 0 1rem;
+  }
+}
+
+/* Add Animation */
+@keyframes animatetop {
+  from {
+    top: -100px;
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.close-modal{
+  transition: 0.5s;
+
+  &__button{
+    position: absolute;
+    top: 50%;
+    right: .25rem;
+    transform: translateY(-50%);
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+    overflow: hidden;
+    opacity: 1;
+    cursor: pointer;
+    outline: none;
+    &:hover {
+      &::before, &::after {
+        background: map-get($palette, color-grey_L3);
+      }
+    }
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      height: 2px;
+      border-radius: 2px;
+      width: 100%;
+      top: 50%;
+      background: $body-copy-light;
+    }
+    &::before {
+      transform: rotate(45deg);
+    }
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+@media only screen and (min-width: 480px) {
+  .modal-content {
+    overflow: visible;
+    width: 40%;
+    min-width: 448px;
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative;
+  }
+}

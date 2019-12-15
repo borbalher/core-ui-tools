@@ -1,0 +1,76 @@
+$font-family: 'Lato', sans-serif;
+$base-font: 16px;
+$column-gutter: 0.750em;
+$border-radius: 0.5em;
+
+$palette: (
+  color-primary: #ec6907,
+  color-secondary: #3f9fca,
+  color-accent: #9775A5,
+
+  color-success: #569F69,
+  color-error: #e42328,
+
+  color-grey: #6f6f6e
+);
+
+@function delta-shades(
+  $tokens,
+  $colors: color-primary color-secondary color-accent color-success color-error color-grey,
+  $dark_shades: (D1: 25%, D2: 50%, D3: 70%, D4: 90%),
+  $light_shades: (L1: 30%, L2: 45%, L3: 60%, L4: 75%, L5: 90%)
+) {
+  $temp: ();
+
+  @each $color in $colors {
+    
+    $temp: map-merge($temp, ('#{$color}': map-get($tokens, $color)));
+
+    @each $shade, $percentage in $dark_shades {
+      $temp: map-merge(
+        $temp,
+        ('#{$color}_#{$shade}': mix(black, map-get($tokens, $color), $percentage))
+      );
+    }
+
+    @each $shade, $percentage in $light_shades {
+      $temp: map-merge(
+        $temp,
+        ('#{$color}_#{$shade}': mix(white, map-get($tokens, $color), $percentage))
+      );
+    }
+  }
+
+  @return $temp;
+};
+
+$palette: delta-shades($palette);
+
+$body-copy: #333;
+$body-copy-light: #fff;
+
+//$body-copy: #333;
+//$body-copy-light: #fff;
+
+// $gray0: #f5f5f5;
+// $gray2: #c7c7c7;
+// $gray3: #AAA8A4;
+// $gray4: #6F6F6E;
+// $monochromatic: #FA9346;
+// $corporative: #ec6907;
+// $primary_lighter: #fde0c9;
+// $primary_darker: #c25606;
+// $secondary: #6f6f6e;
+// $secondary1B: #cccbcb;
+// $secondary1C: #E2E2E2;
+
+// $edit: #3f9fca;
+// $delete: #EC6907;
+
+// $offer: #e42328;
+// $error-bg : #f8d7da;
+// $error-border:#f5c6cb;
+// $error-color:#721c24;
+
+// $secondary1: #3f9fca;
+// $secondary1_dark: #1b4f5f;
