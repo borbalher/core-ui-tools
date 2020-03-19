@@ -1,15 +1,15 @@
 const
+path        = require('path'),
 CoreFactory = require('../factory'),
 coreFactory = new CoreFactory(),
 core        = coreFactory.create([
-  { name: 'core/common/bootstrap' },
-  { name: 'core/common/schema' },
-  { name: 'core/common/string' },
-  { name: 'core/common/object' },
-  { name: 'core/node/schema/bootstrap' },
-  { name: 'core/node/schema-to-form-body' },
-  { name: 'domain' },
-  { name: 'ui' }
+  { name: 'core/common/bootstrap',         path: path.resolve(__dirname, '../../common/bootstrap') },
+  { name: 'core/common/schema',            path: path.resolve(__dirname, '../../common/schema') },
+  { name: 'core/common/string',            path: path.resolve(__dirname, '../../common/string') },
+  { name: 'core/common/object',            path: path.resolve(__dirname, '../../common/object') },
+  { name: 'core/node/schema/bootstrap',    path: path.resolve(__dirname, '../../node/schema/bootstrap') },
+  { name: 'core/node/schema-to-form-body', path: path.resolve(__dirname, '../../node/schema-to-form-body') },
+  { name: 'domain',                        path: path.resolve(__dirname, '../../../../../src/domain') }
 ])
 
 core.load().then(() =>

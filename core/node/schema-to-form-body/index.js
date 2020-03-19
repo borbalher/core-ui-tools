@@ -1,9 +1,11 @@
 class SchemaToFormBody
 {
-  constructor(locator, fs)
+  constructor(locator, fs, schemas, path)
   {
     this.locator        = locator
     this.fs             = fs
+    this.schemas        = schemas
+    this.path           = path
     this.supportedTypes = ['schema', 'string', 'timestamp', 'decimal', 'integer'] // ['boolean', 'decimal', 'integer', 'schema', 'string', 'timestamp']
   }
 
@@ -189,7 +191,7 @@ class SchemaToFormBody
 
     return new Promise((resolve, reject) =>
     {
-      this.fs.writeFile(`../../../../../src/view/schema/${schemaName}-form-body.js`, template, (error) =>
+      this.fs.writeFile(this.schemas[schemaName], template, (error) =>
       {
         if(error)
           reject(error)
@@ -205,7 +207,7 @@ class SchemaToFormBody
 
     return new Promise((resolve, reject) =>
     {
-      this.fs.writeFile(`./src/view/template/${schemaName}-form-body.handlebars`, template, (error) =>
+      this.fs.writeFile(this.path.resolve(__dirname, `../../../../../src/view/template/${schemaName}-form-body.handlebars`), template, (error) =>
       {
         if(error)
           reject(error)

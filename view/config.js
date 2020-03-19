@@ -11,6 +11,7 @@ module.exports = {
         'logout'              : `${__dirname}/schema/entity/logout`,
         'number-input'        : `${__dirname}/schema/entity/number-input`,
         'text-input'          : `${__dirname}/schema/entity/text-input`,
+        'password-input'      : `${__dirname}/schema/entity/password-input`,
         'checkbox-input'      : `${__dirname}/schema/entity/checkbox-input`,
         'button-group-button' : `${__dirname}/schema/entity/button-group-button`,
         'button-group-input'  : `${__dirname}/schema/entity/button-group-input`,
