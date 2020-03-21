@@ -1,6 +1,6 @@
-const InputValueMapperMapper = require('.')
+const InputValueMapper = require('.')
 
-class InputValueMapperMapperLocator
+class InputValueMapperLocator
 {
   constructor(locator)
   {
@@ -9,8 +9,8 @@ class InputValueMapperMapperLocator
 
   locate()
   {
-    return new InputValueMapperMapper()
+    return new InputValueMapper()
   }
 }
 
-module.exports = InputValueMapperMapperLocator
+module.exports = InputValueMapperLocator

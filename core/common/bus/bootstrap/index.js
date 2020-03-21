@@ -13,7 +13,7 @@ class BusBootstrap
   {
     for(const channel in channels)
     {
-      bus.addChannel(channel)
+      bus.createChannel(channel)
 
       const listeners = channels[channel].listeners
 

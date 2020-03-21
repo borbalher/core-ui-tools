@@ -11,8 +11,7 @@ class Authorization
     this.code                   = this.url.searchParams.get('code')
     this.callback               = this.url.searchParams.get('callback')
 
-    this.keyGenerationAlgorithm =
-    {
+    this.keyGenerationAlgorithm = {
       name           : 'RSA-OAEP',
       modulusLength  : 2048,
       publicExponent : new Uint8Array([0x01, 0x00, 0x01]),
@@ -22,8 +21,7 @@ class Authorization
       }
     }
 
-    this.keyWrappingAlgorithm =
-    {
+    this.keyWrappingAlgorithm = {
       name      : 'AES-GCM',
       tagLength : 128,
       length    : 256
@@ -151,8 +149,6 @@ class Authorization
       {
         this.emit('authorization', 'session.created.error', { error })
       })
-
-    // this.emit('authorization', 'session.creation.submitted', requestedSession)
   }
 }
 

@@ -5,6 +5,25 @@ class CoreObject
     this.coreString = coreString
   }
 
+  sortKeys(o, order = 'ASC')
+  {
+    const
+    keys   = order === 'ASC' ? Object.keys(o).sort() : Object.keys(o).sort().reverse,
+    sorted = {}
+
+    for(const key of keys)
+    {
+      if(!object || typeof o[key] !== object)
+        sorted[key] = o[key]
+      else if(Object.keys(o[key]).length)
+        sorted[key] = sortKeys(o[key], order)
+      else
+        sorted[key] = o[key]
+    }
+
+    return sorted
+  }
+
   trimKeys(o)
   {
     return this.transformKeys(o, this.coreString.trim)

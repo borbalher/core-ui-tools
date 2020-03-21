@@ -1,8 +1,8 @@
 class Component
 {
-  constructor(dom, bus)
+  constructor(ui, bus)
   {
-    this.dom = dom
+    this.ui  = ui
     this.bus = bus
   }
 
@@ -11,14 +11,14 @@ class Component
     this.bus.emit(channelId, name, data)
   }
 
-  getComponentNode(componentId)
+  getComponent(componentId)
   {
-    return this.dom.getNode(componentId)
+    return this.ui.getComponent(componentId)
   }
 
-  setComponentNode(componentId, componentNode)
+  setComponent(componentId, state)
   {
-    this.dom.setDOMNode(componentId, componentNode)
+    this.ui.state(componentId, state)
   }
 }
 

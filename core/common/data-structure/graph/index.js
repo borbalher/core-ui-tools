@@ -6,12 +6,15 @@ AssociativeArray          = require('../associative-array')
 
 class Graph
 {
-  constructor(composer, isDirected)
+  constructor(composer, { nodes, edges, isDirected })
   {
     this.composer   = composer
     this.edges      = new MultipleAssociativeArray()
     this.nodes      = new AssociativeArray()
     this.isDirected = isDirected
+
+    this.addNodes(nodes)
+    this.addEdges(edges)
   }
 
   isNode(element)
@@ -113,9 +116,30 @@ class Graph
     return []
   }
 
-  addNode(node)
+  addNodes(nodes)
   {
-    this.nodes.setItem(node.id, node)
+    for(const node of nodes)
+    {
+      this.addNode(node)
+    }
+  }
+
+  addNode({ id, name })
+  {
+    const node = this.composer.compose('data-structure/node', {
+      id,
+      name
+    })
+
+    this.nodes.setItem(id, node)
+  }
+
+  addEdges(edges)
+  {
+    for(const edge of edges)
+    {
+      this.addEdge(edge)
+    }
   }
 
   addEdge({ source, target, payload })

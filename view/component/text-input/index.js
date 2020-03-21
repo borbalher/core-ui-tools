@@ -3,30 +3,30 @@ class TextInputComponent extends Component
 {
   validateInput(inputId)
   {
-    const inputNode = this.getComponentNode(inputId)
+    const textInput = this.getComponent(inputId)
 
-    if(inputNode.required && (!inputNode.value || inputNode.value.trim() === ''))
+    if(textInput.required && (!textInput.data || textInput.data.trim() === ''))
     {
-      inputNode.error        = true
-      inputNode.errorMessage = `${inputNode.label} is required`
+      textInput.error        = true
+      textInput.errorMessage = `${textInput.label} is required`
     }
     else
     {
-      inputNode.error        = false
-      inputNode.errorMessage = undefined
+      textInput.error        = false
+      textInput.errorMessage = undefined
     }
 
-    this.emit(inputId, 'input.validated', { id: inputId, hasError: inputNode.error })
-    this.setComponentNode(inputId, inputNode)
+    this.emit(inputId, 'input.validated', { id: inputId, hasError: textInput.error })
+    this.setComponent(inputId, textInput)
   }
 
   setInputValue(inputId, value)
   {
-    const inputNode = this.getComponentNode(inputId)
-    inputNode.value = value
+    const textInput = this.getComponent(inputId)
+    textInput.data  = value
 
     this.emit(inputId, 'input.value.setted', { id: inputId, value })
-    this.setComponentNode(inputId, inputNode)
+    this.setComponent(inputId, inputNode)
   }
 }
 

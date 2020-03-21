@@ -1,4 +1,4 @@
-class InputValueMapperMapper
+class InputValueMapper
 {
   map(domEvent)
   {
@@ -8,4 +8,4 @@ class InputValueMapperMapper
   }
 }
 
-module.exports = InputValueMapperMapper
+module.exports = InputValueMapper

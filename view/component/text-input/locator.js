@@ -1,4 +1,4 @@
-const TextInputComponent = require('.')
+const TextInputComponent = require('./reducer')
 
 class TextInputComponentLocator
 {
@@ -10,10 +10,10 @@ class TextInputComponentLocator
   locate()
   {
     const
-    dom = this.locator.locate('core/dom'),
+    ui  = this.locator.locate('core/ui'),
     bus = this.locator.locate('core/bus')
 
-    return new TextInputComponent(dom, bus)
+    return new TextInputComponent(ui, bus)
   }
 }
 

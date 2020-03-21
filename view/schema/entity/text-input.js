@@ -17,7 +17,14 @@ const dto = {
   {
     type     : 'string',
     optional : true
+  },
+  canBeEmpty :
+  {
+    type     : 'boolean',
+    optional : true,
+    default  : false
   }
+  // TODO add regexp support
 }
 
 module.exports = dto
