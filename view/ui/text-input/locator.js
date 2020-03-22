@@ -1,4 +1,4 @@
-const TextInputComponent = require('./reducer')
+const TextInputComponent = require('.')
 
 class TextInputComponentLocator
 {

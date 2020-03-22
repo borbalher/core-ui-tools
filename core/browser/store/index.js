@@ -8,7 +8,9 @@ class Store
     this.states     = []
     this.state      = undefined
     this.locator    = locator
-    this.applyMiddleware(middlewares)
+
+    if(middlewares)
+      this.applyMiddleware(middlewares)
   }
 
   setState(state)
@@ -25,16 +27,17 @@ class Store
 
   applyMiddleware(middlewares)
   {
-    const middlewares = middlewares.map((middleware) =>
+    const chain = middlewares.map((middleware) =>
     {
       return this.locator.locate(middleware)
     }).reverse()
 
     let dispatch = (action) => {
       const state = this.reducer.apply(action, this)
+      return state
     }
 
-    for(const middleware of middlewares)
+    for(const middleware of chain)
     {
       dispatch = middleware(this)(dispatch)
     }

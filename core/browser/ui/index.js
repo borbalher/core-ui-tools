@@ -39,7 +39,7 @@ class UI
   {
     const
     component                 = this.getComponentJSON(componentId),
-    renderedComponentTemplate = this.hbs.compileTemplate(componentTreeInJSON.template, component)
+    renderedComponentTemplate = this.hbs.compileTemplate(component.template, component)
 
     this.document.getElementById(componentId).innerHTML = renderedComponentTemplate
 
@@ -54,12 +54,16 @@ class UI
 
   setUI(ui)
   {
-    for(const componentId in this.tree.nodes)
+    if(this.tree)
     {
-      this.bus.deleteChannel(componentId)
+      for(const componentId in this.tree.nodes)
+      {
+        this.bus.deleteChannel(componentId)
+      }
     }
 
-    this.setGraphFromJSON(ui)
+    this.tree = this.treeFactory.create()
+    this.tree.setGraphFromJSON(ui)
 
     const
     componentId    = ui.id,

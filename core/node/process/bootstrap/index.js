@@ -18,7 +18,7 @@ class ProcessBootstrap
     else if(process.domain)
       process.domain.emit('error', error)
     else
-      this.bus.emit('events', 'core.error', error)
+      this.bus.emit('app', 'core.error', error)
   }
 }
 

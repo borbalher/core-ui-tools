@@ -11,9 +11,10 @@ class ViewModelLocator
   {
     const
     bus         = this.locator.locate('core/bus'),
-    repository  = this.locator.locate('infrastructure/ui/repository')
+    repository  = this.locator.locate('infrastructure/ui/repository'),
+    channel     = bus.createChannel('view-model')
 
-    return new ViewModel(deepclone, bus, repository)
+    return new ViewModel(channel, repository)
   }
 }
 

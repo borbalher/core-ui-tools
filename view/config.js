@@ -21,7 +21,7 @@ module.exports = {
         'component'           : `${__dirname}/schema/entity/component`,
         'form'                : `${__dirname}/schema/entity/form`,
         'input'               : `${__dirname}/schema/entity/input`,
-        'page'                : `${__dirname}/schema/entity/page`,
+        'ui'                  : `${__dirname}/schema/entity/ui`
       }
     }
   }

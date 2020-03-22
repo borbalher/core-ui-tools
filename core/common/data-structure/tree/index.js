@@ -4,11 +4,11 @@ NodeNotExist = require('../graph/error/node-not-exists')
 
 class Tree extends Graph
 {
-  constructor(composer, deepassign, root)
+  constructor(composer, deepassign, state)
   {
-    super(composer, true)
+    super(composer, state)
     this.deepassign = deepassign
-    this.root       = root
+    this.root       = state.root
   }
 
   setGraphFromJSON(json)

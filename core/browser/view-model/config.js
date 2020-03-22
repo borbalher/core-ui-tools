@@ -6,7 +6,7 @@ module.exports = {
       options  : {},
       channels :
       {
-        'events' : {
+        'app' : {
           listeners : {
             'app.initialized' :
             {

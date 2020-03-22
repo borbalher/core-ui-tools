@@ -1,7 +1,7 @@
 /**
  * @implements {superhero/core/eventbus/observer}
  */
-class AddComponentObserversObserver
+class AddComponentListenersObserver
 {
   constructor(bus, ui, configuration, locator)
   {
@@ -105,4 +105,4 @@ class AddComponentObserversObserver
   }
 }
 
-module.exports = AddComponentObserversObserver
+module.exports = AddComponentListenersObserver

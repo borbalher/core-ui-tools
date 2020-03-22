@@ -17,6 +17,10 @@ module.exports = {
         }
       }
     },
+    store :
+    {
+      middlewares : { }
+    },
     locator :
     {
       'core/store'                        : __dirname,

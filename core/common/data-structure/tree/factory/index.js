@@ -15,13 +15,13 @@ class TreeFactory
   create(nodes = [], edges = [], root)
   {
     const
-    treeDTO = this.composer.compose(this[Symbol.for('schema')], { nodes, edges, root }),
-    tree    = new Tree(this.composer, this.deepassign, treeDTO.root)
+    state = this.composer.compose(this[Symbol.for('schema')], { nodes, edges, root }),
+    tree  = new Tree(this.composer, this.deepassign, state)
 
-    for(const node of treeDTO.nodes)
+    for(const node of state.nodes)
       tree.addNode(node)
 
-    for(const edge of treeDTO.edges)
+    for(const edge of state.edges)
       tree.addEdge(edge)
 
     return tree

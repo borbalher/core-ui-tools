@@ -1,6 +1,6 @@
-const AddDOMNodeObservers = require('.')
+const AddComponentListeners = require('.')
 
-class AddDOMNodeObserversLocator
+class AddComponentListenersLocator
 {
   constructor(locator)
   {
@@ -14,8 +14,8 @@ class AddDOMNodeObserversLocator
     ui            = this.locator.locate('core/ui'),
     configuration = this.locator.locate('core/configuration')
 
-    return new AddDOMNodeObservers(bus, ui, configuration, this.locator)
+    return new AddComponentListeners(bus, ui, configuration, this.locator)
   }
 }
 
-module.exports = AddDOMNodeObserversLocator
+module.exports = AddComponentListenersLocator

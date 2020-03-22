@@ -88,7 +88,7 @@ class HttpServer
         `Timeouts: ${timeouts}`
       ].join('\n')
 
-      this.bus.emit('events', 'core.warning', msg)
+      this.bus.emit('app', 'core.warning', msg)
     }
 
     domain.exit()
@@ -121,7 +121,7 @@ class HttpServer
     }
     case 'E_NO_ENDPOINT_DEFINED_IN_ROUTE':
     {
-      this.bus.emit('events', 'core.error', error)
+      this.bus.emit('app', 'core.error', error)
 
       output.writeHead(404)
       output.end('Endpoint Not Found')
@@ -129,7 +129,7 @@ class HttpServer
     }
     default:
     {
-      this.bus.emit('events', 'core.error', error)
+      this.bus.emit('app', 'core.error', error)
 
       output.writeHead(500)
       output.end('Internal Server Error')

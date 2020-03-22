@@ -9,13 +9,13 @@ class LogoutComposer
     buttonText
   })
   {
-    const googleLogin = this.componentComposer.create({
+    const logout = this.componentComposer.create({
       id     : 'logout',
       schema : 'logout',
       buttonText
     })
 
-    return googleLogin
+    return logout
   }
 }
 

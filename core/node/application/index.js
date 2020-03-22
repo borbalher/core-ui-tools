@@ -54,7 +54,7 @@ class NodeApplication
               }
             }
 
-            bus.emit('events', 'app.initialized', { port, metrics })
+            bus.emit('app', 'app.initialized', { port, metrics })
 
             this.running = true
 

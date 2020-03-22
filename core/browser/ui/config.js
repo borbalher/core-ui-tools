@@ -14,11 +14,15 @@ module.exports = {
             {
               'ui/command/render-component' : true
             },
+            'ui.changed' :
+            {
+              'ui/command/render-component' : true
+            },
             'component.rendered' :
             {
               'ui/command/add-component-bindings'  : true,
               'ui/command/add-component-listeners' : true
-            }
+            },
           }
         },
         'store' :

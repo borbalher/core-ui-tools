@@ -8,7 +8,7 @@ module.exports = {
     bus :
     {
       channels : {
-        'events' :
+        'app' :
         {
           listeners : {
             'app.initialized' : { 'core/listener/metrics': true },
