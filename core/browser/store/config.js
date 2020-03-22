@@ -3,11 +3,12 @@ module.exports = {
   {
     bus :
     {
-      options  : {},
       channels :
       {
-        'view-model' : {
-          listeners : {
+        'view-model' :
+        {
+          listeners :
+          {
             'view.model.changed' :
             {
               'store/listener/change-store-state' : true

@@ -10,9 +10,11 @@ class Bus
     this.channels        = new AssociativeArray()
   }
 
-  addChannel(id)
+  createChannel(id)
   {
-    this.channels.setItem(id, this.channelFactory.create(id))
+    const channel = this.channelFactory.create(id)
+    this.channels.setItem(id, channel)
+    return channel
   }
 
   deleteChannel(id)

@@ -9,6 +9,7 @@ class TextInputComposer
     id,
     key,
     label,
+    data = value,
     value,
     required,
     disabled,
@@ -21,6 +22,7 @@ class TextInputComposer
   })
   {
     const textInput = this.componentComposer.create({
+      data,
       maxLength,
       value,
       key,

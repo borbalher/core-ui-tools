@@ -8,44 +8,6 @@ class HandlebarsHelperComponent
     this.locator = locator
   }
 
-  // readFile(path)
-  // {
-  //   try
-  //   {
-  //     const fileContent = this.fs.readFileSync(path, 'utf-8')
-  //     return fileContent
-  //   }
-  //   catch(error)
-  //   {
-  //     throw new ComponentHelperError(`Error reading component file: ${error.message}`)
-  //   }
-  // }
-
-  // getComponentPath(schema)
-  // {
-  //   return `${this.path.main.baseDir}/view/template/${schema}.hbs`
-  // }
-
-  // getTemplate(component)
-  // {
-  //   const
-  //   path      = component.template ? component.template : component.schema,
-  //   file      = this.getComponentPath(path),
-  //   template  = this.readFile(file)
-
-  //   return template
-  // }
-
-  // getPrecompiledView(component)
-  // {
-  //   const
-  //   template        = this.getTemplate(component),
-  //   html            = this.getHTML(component, template),
-  //   precompiledView = this.hbs.compile(html)
-
-  //   return precompiledView
-  // }
-
   getSafeString(html)
   {
     const hbs = this.locator.locate('core/handlebars').handlebars
@@ -54,9 +16,9 @@ class HandlebarsHelperComponent
 
   wrapComponent(component, template)
   {
-    const { wrapper, schema, id } = component
+    const { wrapper, schema, id, classList } = component
 
-    return `<${wrapper} id="${id}" data-component="${schema}"> ${template}</${wrapper}>`
+    return `<${wrapper} id="${id}" class="${classList.join(' ')}" data-component="${schema}">${template}</${wrapper}>`
   }
 
   create()

@@ -7,10 +7,11 @@ module.exports = {
     type    : 'boolean',
     default : false
   },
-  canUnselect :
+  size :
   {
-    type    : 'boolean',
-    default : true
+    type     : 'integer',
+    min      : 1,
+    optional : true
   },
   multiple :
   {

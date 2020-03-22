@@ -1,41 +1,25 @@
 class Authorization
 {
-  constructor(authDB, crypto, jwkToPEM, sessionCreator, bus)
+  constructor(authDB, crypto, jwkToPEM, repository, bus, keyGenerationAlgorithm, keyWrappingAlgorithm)
   {
     this.authDB                 = authDB
     this.crypto                 = crypto
     this.jwkToPEM               = jwkToPEM
-    this.sessionCreator         = sessionCreator
-    this.bus                    = bus
-    this.url                    = new URL(window.location.href)
+    this.repository             = repository
+    this.channel                = bus.createChannel('authorization')
+    this.keyGenerationAlgorithm = keyGenerationAlgorithm
+    this.keyWrappingAlgorithm   = keyWrappingAlgorithm
+    // this.url                    = new URL(window.location.href)
     this.code                   = this.url.searchParams.get('code')
-    this.callback               = this.url.searchParams.get('callback')
-
-    this.keyGenerationAlgorithm =
-    {
-      name           : 'RSA-OAEP',
-      modulusLength  : 2048,
-      publicExponent : new Uint8Array([0x01, 0x00, 0x01]),
-      hash           :
-      {
-        name : 'SHA-256'
-      }
-    }
-
-    this.keyWrappingAlgorithm =
-    {
-      name      : 'AES-GCM',
-      tagLength : 128,
-      length    : 256
-    }
+    // this.callback               = this.url.searchParams.get('callback')
 
     if(this.code)
       this.createSession()
   }
 
-  emit(channelId, name, data)
+  emit(name, data)
   {
-    this.bus.emit(channelId, name, data)
+    this.channel.emit(name, data)
   }
 
   async generateAuthKeys()
@@ -48,6 +32,8 @@ class Authorization
 
     await this.authDB.setItem('PUBLIC_KEY',  key.publicKey  ? key.publicKey  : key)
     await this.authDB.setItem('PRIVATE_KEY', key.privateKey ? key.privateKey : key)
+
+    this.emit('auth.keys.generated', { key })
   }
 
   async getAuthKeys()
@@ -81,17 +67,21 @@ class Authorization
     return this.jwkToPEM(publicKey)
   }
 
-  async getRequestedSession()
+  async getRequestedSession(type)
   {
-    const
-    code      = this.code,
-    algorithm = this.keyGenerationAlgorithm.name,
-    publicKey = await this.getPublicKeyPEM() // TODO we should work with jwk in server side, not PEM
+    switch(type)
+    {
+    case 'GOOGLE':
+      const
+      code      = this.code,
+      algorithm = this.keyGenerationAlgorithm.name,
+      publicKey = await this.getPublicKeyPEM() // TODO we should work with jwk in server side, not PEM
 
-    return {
-      code,
-      algorithm,
-      publicKey
+      return {
+        code,
+        algorithm,
+        publicKey
+      }
     }
   }
 
@@ -138,21 +128,19 @@ class Authorization
     })
   }
 
-  async createSession()
+  async createSession(type)
   {
-    const requestedSession = await this.getRequestedSession()
+    const requestedSession = await this.getRequestedSession(type)
 
     this.sessionCreator.createSession(requestedSession)
       .then((response) =>
       {
-        this.emit('authorization', 'session.created.successfully', { response })
+        this.emit('session.created.successfully', { response })
       })
       .catch((error) =>
       {
-        this.emit('authorization', 'session.created.error', { error })
+        this.emit('session.created.error', { error })
       })
-
-    // this.emit('authorization', 'session.creation.submitted', requestedSession)
   }
 }
 

@@ -66,7 +66,7 @@ class DOM
     for(const nodePathId of nodePath)
     {
       if(!this.bus.getChannel(nodePathId))
-        this.bus.addChannel(nodePathId)
+        this.bus.createChannel(nodePathId)
       else
         this.bus.reset(nodePathId)
     }

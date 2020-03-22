@@ -41,7 +41,7 @@ describe('core/common/bus', () =>
   {
     const channelId  = 'my-custom-channel'
 
-    bus.addChannel(channelId)
+    bus.createChannel(channelId)
 
     const channel = bus.getChannel(channelId)
 
@@ -52,7 +52,7 @@ describe('core/common/bus', () =>
   {
     const channelId = 'my-custom-channel'
 
-    bus.addChannel(channelId)
+    bus.createChannel(channelId)
 
     bus.deleteChannel(channelId)
 
@@ -65,7 +65,7 @@ describe('core/common/bus', () =>
   {
     const channelId   = 'my-custom-channel'
 
-    bus.addChannel(channelId)
+    bus.createChannel(channelId)
 
     let counter = 0
 
@@ -88,7 +88,7 @@ describe('core/common/bus', () =>
   {
     const channelId   = 'my-custom-channel'
 
-    bus.addChannel(channelId)
+    bus.createChannel(channelId)
 
     await bus.emit(channelId, { foo: 'bar' }, { increment: 1 })
       .catch((error) =>
@@ -107,7 +107,7 @@ describe('core/common/bus', () =>
   {
     const channelId   = 'my-custom-channel'
 
-    bus.addChannel(channelId)
+    bus.createChannel(channelId)
 
     const
     event     = 'EVENT_NAME',
@@ -126,7 +126,7 @@ describe('core/common/bus', () =>
   {
     const channelId   = 'my-custom-channel'
 
-    bus.addChannel(channelId)
+    bus.createChannel(channelId)
 
     const listener = () => {}
 
@@ -141,7 +141,7 @@ describe('core/common/bus', () =>
   {
     const channelId   = 'my-custom-channel'
 
-    bus.addChannel(channelId)
+    bus.createChannel(channelId)
 
     const
     event     = 'EVENT_NAME',
@@ -160,7 +160,7 @@ describe('core/common/bus', () =>
   {
     const channelId   = 'my-custom-channel'
 
-    bus.addChannel(channelId)
+    bus.createChannel(channelId)
 
     const
     event     = 'EVENT_NAME',
@@ -177,7 +177,7 @@ describe('core/common/bus', () =>
   {
     const channelId   = 'my-custom-channel'
 
-    bus.addChannel(channelId)
+    bus.createChannel(channelId)
 
     const
     event     = 'EVENT_NAME',

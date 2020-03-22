@@ -33,7 +33,7 @@ class EntityFactory
 
   createChannel(id)
   {
-    this.bus.addChannel(id)
+    this.bus.createChannel(id)
 
     return this.bus.getChannel(id)
   }

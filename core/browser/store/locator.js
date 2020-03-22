@@ -11,9 +11,10 @@ class StoreLocator
   {
     const
     deepclone = this.locator.locate('core/deepclone'),
-    bus       = this.locator.locate('core/bus')
+    bus       = this.locator.locate('core/bus'),
+    channel   = bus.createChannel('store')
 
-    return new Store(deepclone, bus)
+    return new Store(deepclone, channel, middlewares, reducer, locator)
   }
 }
 

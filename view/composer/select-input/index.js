@@ -1,22 +1,15 @@
 class SelectInputComposer
 {
-  constructor(deepclone, componentComposer)
+  constructor(componentComposer)
   {
-    this.deepclone          = deepclone
-    this.componentComposer  = componentComposer
+    this.componentComposer = componentComposer
   }
 
-  selectItems(items, value)
+  selectItems(items, data)
   {
     return items.map((item) =>
     {
-      if(typeof value === 'string')
-        item.selected = value === item.id
-      else if(Array.isArray(value))
-        item.selected = value.includes(item.id)
-      else
-        item.selected = false
-
+      item.selected = (item.id  === data || Array.isArray(data) && data.includes(item.id))
       return item
     })
   }
@@ -25,6 +18,7 @@ class SelectInputComposer
     id,
     label,
     value,
+    data = value,
     required,
     disabled,
     readOnly,
@@ -32,27 +26,24 @@ class SelectInputComposer
     errorMessage,
     autocomplete,
     placeholder,
-    canUnselect,
     multiple,
     items
   })
   {
     const
-    selectInputItems = this.deepclone.clone(items),
-    selectInput      = this.componentComposer.create({
+    selectInput = this.componentComposer.create({
       id,
-      label,
-      required,
-      disabled,
-      readOnly,
       error,
-      errorMessage,
-      autocomplete,
-      placeholder,
-      canUnselect,
+      label,
+      disabled,
       multiple,
+      readOnly,
+      required,
+      placeholder,
+      autocomplete,
+      errorMessage,
       schema : 'select-input',
-      items  : this.selectItems(selectInputItems, value)
+      items  : this.selectItems(items, data)
     })
 
     return selectInput

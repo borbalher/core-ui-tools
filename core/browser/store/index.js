@@ -1,20 +1,21 @@
 class Store
 {
-  constructor(deepclone, bus)
+  constructor(deepclone, channel, middlewares, reducer, locator)
   {
-    this.deepclone     = deepclone
-    this.bus           = bus
-
-    this.previousState = undefined
-    this.state         = undefined
+    this.deepclone  = deepclone
+    this.reducer    = reducer
+    this.channel    = channel
+    this.states     = []
+    this.state      = undefined
+    this.locator    = locator
+    this.applyMiddleware(middlewares)
   }
 
   setState(state)
   {
-    this.previousState = this.state
-    this.state         = state
-
-    this.emit('store.state.changed', { state })
+    this.states = [...this.states, state]
+    this.state  = state
+    this.channel.emit('store.state.changed', { state })
   }
 
   getState()
@@ -22,14 +23,23 @@ class Store
     return this.deepclone.clone(this.state)
   }
 
-  getPreviousState()
+  applyMiddleware(middlewares)
   {
-    return this.previousState
-  }
+    const middlewares = middlewares.map((middleware) =>
+    {
+      return this.locator.locate(middleware)
+    }).reverse()
 
-  emit(event, data)
-  {
-    this.bus.emit('store', event, data)
+    let dispatch = (action) => {
+      const state = this.reducer.apply(action, this)
+    }
+
+    for(const middleware of middlewares)
+    {
+      dispatch = middleware(this)(dispatch)
+    }
+
+    this.dispatch = dispatch
   }
 }
 
