@@ -38,8 +38,8 @@ module.exports = {
       'core/ui'                             : __dirname,
       'ui/command/set-ui'                   : `${__dirname}/listener/store-state-changed/set-ui`,
       'ui/command/render-component'         : `${__dirname}/listener/component-changed/render-component`,
-      'ui/command/add-component-listeners'  : `${__dirname}/listener/component-changed/add-component-listeners`,
-      'ui/command/add-component-bindings'   : `${__dirname}/listener/component-changed/add-component-bindings`
+      'ui/command/add-component-listeners'  : `${__dirname}/listener/component-rendered/add-component-listeners`,
+      'ui/command/add-component-bindings'   : `${__dirname}/listener/component-rendered/add-component-bindings`
     }
   }
 }

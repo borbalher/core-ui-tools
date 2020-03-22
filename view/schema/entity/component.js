@@ -24,7 +24,15 @@ const dto = {
     optional    : true,
     'not-empty' : false,
     default     : 'div'
-  }// TODO add wrapper classList
+  },
+  classList :
+  {
+    type        : 'string',
+    collection  : true,
+    optional    : true,
+    'not-empty' : false,
+    default     : []
+  }
 }
 
 module.exports = dto

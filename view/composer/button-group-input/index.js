@@ -25,6 +25,7 @@ class ButtonGroupInputComposer
     id,
     label,
     value,
+    data = value,
     required,
     disabled,
     readOnly,
@@ -33,18 +34,17 @@ class ButtonGroupInputComposer
     buttons
   })
   {
-    const
-    buttonGroupButtons = this.deepclone.clone(buttons),
-    buttonGroupInput   = this.componentComposer.create({
+    const buttonGroupInput = this.componentComposer.create({
       id,
       label,
       required,
+      data,
       disabled,
       readOnly,
       error,
       errorMessage,
       schema  : 'button-group-input',
-      buttons : this.selectButton(buttonGroupButtons, value)
+      buttons : this.selectButton(buttons, value)
     })
 
     return buttonGroupInput

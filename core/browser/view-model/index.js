@@ -1,10 +1,9 @@
 class ViewModel
 {
-  constructor(deepclone, bus, viewModelFetcher)
+  constructor(bus, repository)
   {
-    this.deepclone        = deepclone
-    this.bus              = bus
-    this.viewModelFetcher = viewModelFetcher
+    this.channel    = bus.createChannel('view-model')
+    this.repository = repository
   }
 
   setViewModel(viewModel)
@@ -15,17 +14,17 @@ class ViewModel
 
   getViewModel()
   {
-    return this.deepclone.clone(this.viewModel)
+    return { ...this.viewModel }
   }
 
-  emit(channelId, name, data)
+  emit(name, data)
   {
-    this.bus.emit(channelId, name, data)
+    this.channel.emit(name, data)
   }
 
   fetchViewModel()
   {
-    this.viewModelFetcher.fetch()
+    this.repository.fetchViewModel()
       .then((viewModel) =>
       {
         this.emit('view-model', 'view.model.fetched', { viewModel })

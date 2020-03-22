@@ -1,6 +1,6 @@
-const PageBlockerComposer = require('.')
+const GoogleLoginComposer = require('.')
 
-class PageBlockerComposerLocator
+class GoogleLoginComposerLocator
 {
   constructor(locator)
   {
@@ -10,9 +10,8 @@ class PageBlockerComposerLocator
   locate()
   {
     const componentComposer = this.locator.locate('composer/component')
-
-    return new PageBlockerComposer(componentComposer)
+    return new GoogleLoginComposer(componentComposer)
   }
 }
 
-module.exports = PageBlockerComposerLocator
+module.exports = GoogleLoginComposerLocator

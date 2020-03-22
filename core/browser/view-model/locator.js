@@ -10,11 +10,10 @@ class ViewModelLocator
   locate()
   {
     const
-    deepclone         = this.locator.locate('core/deepclone'),
-    bus               = this.locator.locate('core/bus'),
-    viewModelFetcher  = this.locator.locate('infrastructure/ui/view-model/fetcher')
+    bus         = this.locator.locate('core/bus'),
+    repository  = this.locator.locate('infrastructure/ui/repository')
 
-    return new ViewModel(deepclone, bus, viewModelFetcher)
+    return new ViewModel(deepclone, bus, repository)
   }
 }
 

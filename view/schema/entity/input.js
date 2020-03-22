@@ -20,6 +20,11 @@ const dto = {
     type     : 'string',
     optional : true
   },
+  data :
+  {
+    type     : 'json',
+    optional : true
+  },
   required :
   {
     type    : 'boolean',

@@ -1,10 +1,7 @@
-const Tree = require('../../common/data-structure/tree')
-
-class UI extends Tree
+class UI
 {
   constructor(treeFactory, hbs, bus, channel)
   {
-    super(composer, deepassign, root)
     this.treeFactory = treeFactory
     this.hbs         = hbs
     this.bus         = bus
@@ -21,7 +18,7 @@ class UI extends Tree
     return this.tree.nodes.getItem(componentId)
   }
 
-  getComponentState(componentId)
+  getComponentJSON(componentId)
   {
     const
     component = this.getComponent(componentId),
@@ -41,31 +38,31 @@ class UI extends Tree
   renderComponent(componentId)
   {
     const
-    state                     = this.getComponentState(componentId),
-    renderedComponentTemplate = this.hbs.compileTemplate(state.template, state)
+    component                 = this.getComponentJSON(componentId),
+    renderedComponentTemplate = this.hbs.compileTemplate(componentTreeInJSON.template, component)
 
     this.document.getElementById(componentId).innerHTML = renderedComponentTemplate
 
-    this.emit('component.rendered', { id: componentId, state })
+    this.emit('component.rendered', { id: componentId, component })
   }
 
-  setComponentState(componentId, state)
+  setComponent(componentId, component)
   {
-    this.tree.nodes.setItem(componentId, state)
+    this.tree.nodes.setItem(componentId, component)
     this.emit('component.changed', { id: componentId })
   }
 
-  setUI(state)
+  setUI(ui)
   {
     for(const componentId in this.tree.nodes)
     {
       this.bus.deleteChannel(componentId)
     }
 
-    this.setGraphFromJSON(state)
+    this.setGraphFromJSON(ui)
 
     const
-    componentId    = state.id,
+    componentId    = ui.id,
     componentsPath = this.getSubtreePath(componentId)
 
     for(const componentPathId of componentsPath)

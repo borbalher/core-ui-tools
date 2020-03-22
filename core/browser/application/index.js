@@ -22,16 +22,6 @@ class BrowserApplication
     return this.running
   }
 
-  // set DOM(dom)
-  // {
-  //   this.dom = dom
-  // }
-
-  // get DOM()
-  // {
-  //   return this.dom
-  // }
-
   locate(service)
   {
     return this.core ? this.core.locator.locate(service) : undefined
@@ -83,7 +73,7 @@ class BrowserApplication
               }
             }
 
-            bus.emit('events', 'app.initialized', { metrics })
+            bus.emit('app', 'app.initialized', { metrics })
 
             this.running = true
 
