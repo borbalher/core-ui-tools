@@ -20,3 +20,8 @@
     </div>
   </div>
 </div>
+{{#unless displayMode}}
+  {{#if error}}
+    {{component error}}
+  {{/if}}
+{{/unless}}

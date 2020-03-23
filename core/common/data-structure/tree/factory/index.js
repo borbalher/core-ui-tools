@@ -2,9 +2,11 @@ const Tree = require('..')
 
 class TreeFactory
 {
-  constructor(composer, deepassign)
+  constructor(composer, nodeValidator, edgeValidator, deepassign)
   {
     this.composer               = composer
+    this.nodeValidator          = nodeValidator
+    this.edgeValidator          = edgeValidator
     this.deepassign             = deepassign
     this[Symbol.for('schema')]  = 'data-structure/tree'
   }
@@ -14,17 +16,11 @@ class TreeFactory
    */
   create(nodes = [], edges = [], root)
   {
-    const
-    state = this.composer.compose(this[Symbol.for('schema')], { nodes, edges, root }),
-    tree  = new Tree(this.composer, this.deepassign, state)
+    const tree = { nodes, edges, root, isDirected: true }
 
-    for(const node of state.nodes)
-      tree.addNode(node)
+    this.composer.compose(this[Symbol.for('schema')], tree)
 
-    for(const edge of state.edges)
-      tree.addEdge(edge)
-
-    return tree
+    return new Tree(this.nodeValidator, this.edgeValidator, tree, this.deepassign)
   }
 
   get [Symbol.toStringTag]()
@@ -34,3 +30,4 @@ class TreeFactory
 }
 
 module.exports = TreeFactory
+

@@ -5,18 +5,17 @@ class PasswordInputComponent extends Component
   {
     const passwordInput = this.getComponent(passwordInputId)
 
-    if(passwordInput.required && (!passwordInput.value || passwordInput.value.trim() === ''))
+    if(passwordInput.required && (!passwordInput.data || passwordInput.data.trim() === ''))
     {
-      passwordInput.error        = true
-      passwordInput.errorMessage = `${passwordInput.label} is required`
+      document.querySelector(`#${passwordInput.id} .input-group`).classList.add('--error')
+      this.emit(passwordInputId, 'input.data.validated', { id: passwordInputId, hasError: true, message: `${passwordInput.label} is required` })
     }
     else
     {
-      passwordInput.error        = false
-      passwordInput.errorMessage = undefined
+      document.querySelector(`#${passwordInput.id} .input-group`).classList.remove('--error')
+      this.emit(passwordInputId, 'input.data.validated', { id: passwordInputId, hasError: false })
     }
 
-    this.emit(passwordInputId, 'input.data.validated', { id: passwordInputId, hasError: passwordInput.error })
     this.setComponent(passwordInputId, passwordInput)
   }
 

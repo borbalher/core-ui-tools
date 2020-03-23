@@ -9,8 +9,11 @@ class PasswordInputComposerLocator
 
   locate()
   {
-    const componentComposer = this.locator.locate('composer/component')
-    return new PasswordInputComposer(componentComposer)
+    const
+    componentComposer = this.locator.locate('composer/component'),
+    errorComposer     = this.locator.locate('composer/error')
+
+    return new PasswordInputComposer(componentComposer, errorComposer)
   }
 }
 

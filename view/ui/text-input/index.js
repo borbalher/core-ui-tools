@@ -7,16 +7,15 @@ class TextInputComponent extends Component
 
     if(textInput.required && (!textInput.data || textInput.data.trim() === ''))
     {
-      textInput.error        = true
-      textInput.errorMessage = `${textInput.label} is required`
+      document.querySelector(`#${textInput.id} .input-group`).classList.add('--error')
+      this.emit(textInputId, 'input.data.validated', { id: textInputId, hasError: true, message: `${textInput.label} is required` })
     }
     else
     {
-      textInput.error        = false
-      textInput.errorMessage = undefined
+      document.querySelector(`#${textInput.id} .input-group`).classList.remove('--error')
+      this.emit(textInputId, 'input.data.validated', { id: textInputId, hasError: false })
     }
 
-    this.emit(textInputId, 'input.data.validated', { id: textInputId, hasError: textInput.error })
     this.setComponent(textInputId, textInput)
   }
 
@@ -25,8 +24,9 @@ class TextInputComponent extends Component
     const textInput = this.getComponent(textInputId)
     textInput.data  = data
 
+    document.querySelector(`#${textInput.id} .input-group__input`).value = data
     this.emit(textInputId, 'input.data.setted', { id: textInputId, data })
-    this.setComponent(textInputId, inputNode)
+    this.setComponent(textInputId, textInput)
   }
 }
 

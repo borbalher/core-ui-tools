@@ -1,11 +1,12 @@
 class UI
 {
-  constructor(treeFactory, hbs, bus, channel)
+  constructor(treeFactory, hbs, bus, channel, document)
   {
     this.treeFactory = treeFactory
     this.hbs         = hbs
     this.bus         = bus
     this.channel     = channel
+    this.document    = document
   }
 
   getSubtreePath(componentId)

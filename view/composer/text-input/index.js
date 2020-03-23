@@ -1,8 +1,9 @@
 class TextInputComposer
 {
-  constructor(componentComposer)
+  constructor(componentComposer, errorComposer)
   {
     this.componentComposer = componentComposer
+    this.errorComposer     = errorComposer
   }
 
   create({
@@ -14,8 +15,6 @@ class TextInputComposer
     required,
     disabled,
     readOnly,
-    error,
-    errorMessage,
     autocomplete,
     placeholder,
     maxLength
@@ -30,8 +29,10 @@ class TextInputComposer
       required,
       disabled,
       readOnly,
-      error,
-      errorMessage,
+      error  : this.errorComposer.create({
+        id   : `${id}_error`,
+        name : 'error'
+      }),
       autocomplete,
       placeholder,
       id,

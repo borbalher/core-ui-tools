@@ -5,6 +5,7 @@ module.exports = {
     {
       composer :
       {
+        'error'               : `${__dirname}/schema/entity/error`,
         'modal'               : `${__dirname}/schema/entity/modal`,
         'modal-action'        : `${__dirname}/schema/entity/modal-action`,
         'page-blocker'        : `${__dirname}/schema/entity/page-blocker`,

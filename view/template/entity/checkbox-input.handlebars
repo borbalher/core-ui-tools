@@ -10,3 +10,8 @@
     class='checkbox__input' type='checkbox'>
   <span class='checkbox__checkmark'></span>
 </label>
+{{#unless displayMode}}
+  {{#if error}}
+    {{component error}}
+  {{/if}}
+{{/unless}}

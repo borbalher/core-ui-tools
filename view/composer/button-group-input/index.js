@@ -30,7 +30,6 @@ class ButtonGroupInputComposer
     disabled,
     readOnly,
     error,
-    errorMessage,
     buttons
   })
   {
@@ -42,7 +41,6 @@ class ButtonGroupInputComposer
       disabled,
       readOnly,
       error,
-      errorMessage,
       schema  : 'button-group-input',
       buttons : this.selectButton(buttons, value)
     })

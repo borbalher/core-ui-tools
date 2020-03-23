@@ -23,7 +23,6 @@ class SelectInputComposer
     disabled,
     readOnly,
     error,
-    errorMessage,
     autocomplete,
     placeholder,
     multiple,
@@ -41,7 +40,6 @@ class SelectInputComposer
       required,
       placeholder,
       autocomplete,
-      errorMessage,
       schema : 'select-input',
       items  : this.selectItems(items, data)
     })

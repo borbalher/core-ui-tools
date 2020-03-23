@@ -42,13 +42,8 @@ const dto = {
   },
   error :
   {
-    type    : 'boolean',
-    default : false
-  },
-  errorMessage :
-  {
-    type     : 'string',
-    optional : true
+    type   : 'schema',
+    schema : 'error'
   }
 }
 

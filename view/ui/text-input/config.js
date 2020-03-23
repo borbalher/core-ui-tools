@@ -11,6 +11,11 @@ module.exports = {
             locator : 'text-input/command/validate-input-data'
           },
           {
+            event   : 'input.data.validated',
+            map     : 'set.error.message',
+            emitTo  : 'error'
+          },
+          {
             event   : 'validate.input.data',
             locator : 'text-input/command/validate-input-data'
           },

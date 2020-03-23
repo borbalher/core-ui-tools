@@ -27,8 +27,8 @@
     {{/if}}
   </div>
 </div>
-{{#if error}}
-  <div class='input-group__error'>
-    <i class="fas fa-info-circle"></i> {{ errorMessage }}
-  </div>
-{{/if}}
+{{#unless displayMode}}
+  {{#if error}}
+    {{component error}}
+  {{/if}}
+{{/unless}}

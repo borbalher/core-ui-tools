@@ -15,6 +15,11 @@ module.exports = {
             locator : 'password-input/command/validate-input-data'
           },
           {
+            event   : 'input.data.validated',
+            map     : 'set.error.message',
+            emitTo  : 'error'
+          },
+          {
             event   : 'set.input.data',
             locator : 'password-input/command/set-input-data'
           }

@@ -13,11 +13,12 @@ class TreeFactoryLocator
   locate()
   {
     const
-    composer                        = this.locator.locate('core/schema/composer'),
-    deepassign                      = this.locator.locate('core/deepassign')
+    deepassign    = this.locator.locate('core/deepassign'),
+    composer      = this.locator.locate('core/schema/composer'),
+    nodeValidator = this.locator.locate('core/schema/validator/node'),
+    edgeValidator = this.locator.locate('core/schema/validator/edge')
 
-
-    return new TreeFactory(composer, deepassign)
+    return new TreeFactory(composer, nodeValidator, edgeValidator, deepassign)
   }
 }
 

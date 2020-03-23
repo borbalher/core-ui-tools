@@ -21,7 +21,6 @@ class NumberInputComposer
     disabled,
     readOnly,
     error,
-    errorMessage,
     placeholder,
     id
   })
@@ -42,7 +41,6 @@ class NumberInputComposer
       disabled,
       readOnly,
       error,
-      errorMessage,
       placeholder,
       id,
       schema : 'number-input'

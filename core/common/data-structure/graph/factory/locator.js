@@ -12,8 +12,12 @@ class GraphLocator
    */
   locate()
   {
-    const composer = this.locator.locate('core/schema/composer')
-    return new GraphFactory(composer)
+    const
+    composer      = this.locator.locate('core/schema/composer'),
+    nodeValidator = this.locator.locate('core/schema/validator/node'),
+    edgeValidator = this.locator.locate('core/schema/validator/edge')
+
+    return new GraphFactory(composer, nodeValidator, edgeValidator)
   }
 }
 

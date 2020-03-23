@@ -16,7 +16,6 @@ class DateInputComposer
     disabled,
     readOnly,
     error,
-    errorMessage,
     autocomplete,
     maxLength
   })
@@ -33,7 +32,6 @@ class DateInputComposer
       disabled,
       readOnly,
       error,
-      errorMessage,
       autocomplete,
       placeholder,
       id,

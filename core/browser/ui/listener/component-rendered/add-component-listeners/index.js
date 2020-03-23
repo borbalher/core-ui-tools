@@ -39,12 +39,12 @@ class AddComponentListenersObserver
            element.hasOwnProperty('name')
   }
 
-  getComponentIdByName(compoonentId, name)
+  getComponentIdByName(componentId, name)
   {
-    const props = this.ui.getComponent(compoonentId)
+    const props = this.ui.getComponentJSON(componentId)
 
     if(this.isComponent(props[name]))
-      return [props[name].id]
+      return props[name].id
   }
 
   getChannels(emitTo, component)
@@ -62,7 +62,7 @@ class AddComponentListenersObserver
       switch(emitTo)
       {
       case 'self' : return [component.id]
-      default     : return this.getNodeIdByName(component.id, emitTo)
+      default     : return [this.getComponentIdByName(component.id, emitTo)]
       }
     }
 
@@ -84,7 +84,7 @@ class AddComponentListenersObserver
     for(const componentId of path)
     {
       const
-      component                 = this.ui.getNode(componentId),
+      component                 = this.ui.getComponent(componentId),
       { id, schema, template }  = component,
       schemaObservers           = this.getObservers(schema),
       templateObservers         = schema !== template ? this.getObservers(template)  : [],

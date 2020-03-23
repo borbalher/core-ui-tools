@@ -1,8 +1,9 @@
 class PasswordInputComposer
 {
-  constructor(componentComposer)
+  constructor(componentComposer, errorComposer)
   {
     this.componentComposer = componentComposer
+    this.errorComposer     = errorComposer
   }
 
   create({
@@ -14,8 +15,6 @@ class PasswordInputComposer
     required,
     disabled,
     readOnly,
-    error,
-    errorMessage,
     placeholder
   })
   {
@@ -26,12 +25,14 @@ class PasswordInputComposer
       required,
       disabled,
       readOnly,
-      error,
       data,
       value,
-      errorMessage,
       placeholder,
       id,
+      error  : this.errorComposer.create({
+        id   : `${id}_error`,
+        name : 'error'
+      }),
       schema : 'password-input'
     })
 

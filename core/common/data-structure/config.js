@@ -14,12 +14,17 @@ module.exports = {
       {
         'collection'                                : 'core/schema/validator/collection',
         'custom-json'                               : 'core/schema/validator/custom-json',
+        'node'                                      : 'core/schema/validator/node',
+        'edge'                                      : 'core/schema/validator/edge',
         'data-structure/associative-array'          : 'core/schema/validator/data-structure/associative-array',
         'data-structure/multiple-associative-array' : 'core/schema/validator/data-structure/multiple-associative-array'
       }
     },
     locator :
     {
+      'core/schema/validator/node'                                      : `${__dirname}/schema/validator/node`,
+      'core/schema/validator/edge'                                      : `${__dirname}/schema/validator/edge`,
+      'core/schema/validator/graph'                                     : `${__dirname}/schema/validator/graph`,
       'core/schema/validator/collection'                                : `${__dirname}/schema/validator/collection`,
       'core/schema/validator/custom-json'                               : `${__dirname}/schema/validator/custom-json`,
       'core/schema/validator/data-structure/associative-array'          : `${__dirname}/schema/validator/associative-array`,

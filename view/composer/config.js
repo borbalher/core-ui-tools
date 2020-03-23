@@ -3,6 +3,7 @@ module.exports = {
   {
     locator :
     {
+      'composer/error'              : `${__dirname}/error`,
       'composer/component'          : `${__dirname}/component`,
       'composer/modal'              : `${__dirname}/modal`,
       'composer/select-input'       : `${__dirname}/select-input`,

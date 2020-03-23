@@ -9,8 +9,11 @@ class TextInputComposerLocator
 
   locate()
   {
-    const componentComposer = this.locator.locate('composer/component')
-    return new TextInputComposer(componentComposer)
+    const
+    componentComposer = this.locator.locate('composer/component'),
+    errorComposer     = this.locator.locate('composer/error')
+
+    return new TextInputComposer(componentComposer, errorComposer)
   }
 }
 

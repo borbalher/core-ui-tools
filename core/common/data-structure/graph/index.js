@@ -6,12 +6,13 @@ AssociativeArray          = require('../associative-array')
 
 class Graph
 {
-  constructor(composer, { nodes, edges, isDirected })
+  constructor(nodeValidator, edgeValidator, { nodes, edges, isDirected })
   {
-    this.composer   = composer
-    this.edges      = new MultipleAssociativeArray()
-    this.nodes      = new AssociativeArray()
-    this.isDirected = isDirected
+    this.nodeValidator  = nodeValidator
+    this.edgeValidator  = edgeValidator
+    this.edges          = new MultipleAssociativeArray()
+    this.nodes          = new AssociativeArray()
+    this.isDirected     = isDirected
 
     this.addNodes(nodes)
     this.addEdges(edges)
@@ -124,13 +125,9 @@ class Graph
     }
   }
 
-  addNode({ id, name })
+  addNode(node)
   {
-    const node = this.composer.compose('data-structure/node', {
-      id,
-      name
-    })
-
+    const { id } = node
     this.nodes.setItem(id, node)
   }
 
@@ -144,21 +141,21 @@ class Graph
 
   addEdge({ source, target, payload })
   {
-    const sourceEdge = this.composer.compose('data-structure/edge', {
+    const sourceEdge = {
       source,
       target,
       payload
-    })
+    }
 
     this.edges.setItem(source, sourceEdge)
 
     if(!this.isDirected)
     {
-      const targetEdge = this.composer.compose('data-structure/edge', {
+      const targetEdge = {
         source : target,
         target : source,
         payload
-      })
+      }
 
       this.edges.setItem(target, targetEdge)
     }

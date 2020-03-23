@@ -38,17 +38,19 @@ class AddComponentBindingsObserver
     })
   }
 
-  getComponentFromKey(componentId, key)
+  isComponent(element)
   {
-    const state = this.ui.getComponentState(componentId)
+    return typeof element === 'object' &&
+           element.hasOwnProperty('id') &&
+           element.hasOwnProperty('name')
+  }
 
-    if(state[key] && state[key].id)
-    {
-      const  childNode = this.ui.getComponent(props[key].id)
-      return childNode ? [childNode.id] : []
-    }
+  getComponentIdByName(componentId, name)
+  {
+    const props = this.ui.getComponentJSON(componentId)
 
-    return []
+    if(this.isComponent(props[name]))
+      return props[name].id
   }
 
   getChannels(emitTo, component)
@@ -66,7 +68,7 @@ class AddComponentBindingsObserver
       switch(emitTo)
       {
       case 'self' : return [component.id]
-      default     : return this.getComponentFromKey(component.id, emitTo)
+      default     : return [this.getComponentIdByName(component.id, emitTo)]
       }
     }
 

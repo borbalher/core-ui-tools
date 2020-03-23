@@ -13,9 +13,10 @@ class UILocator
     treeFactory = this.locator.locate('data-structure/tree/factory'),
     bus         = this.locator.locate('core/bus'),
     hbs         = this.locator.locate('core/handlebars'),
-    channel     = bus.createChannel('ui')
+    channel     = bus.createChannel('ui'),
+    document    = window.document
 
-    return new UI(treeFactory, hbs, bus, channel)
+    return new UI(treeFactory, hbs, bus, channel, document)
   }
 }
 

@@ -15,7 +15,6 @@ class CheckboxInputComposer
     disabled,
     readOnly,
     error,
-    errorMessage,
     checked,
     template = 'checkbox-input'
   })
@@ -30,7 +29,6 @@ class CheckboxInputComposer
       disabled,
       readOnly,
       error,
-      errorMessage,
       checked,
       template,
       schema : 'checkbox-input'

@@ -2,9 +2,11 @@ const Graph = require('..')
 
 class GraphFactory
 {
-  constructor(composer)
+  constructor(composer, nodeValidator, edgeValidator)
   {
     this.composer               = composer
+    this.nodeValidator          = nodeValidator
+    this.edgeValidator          = edgeValidator
     this[Symbol.for('schema')]  = 'data-structure/graph'
   }
 
@@ -13,11 +15,11 @@ class GraphFactory
    */
   create(nodes = [], edges = [], isDirected = true)
   {
-    const
-    state  = this.composer.compose(this[Symbol.for('schema')], { nodes, edges, isDirected }),
-    graph  = new Graph(this.composer, state)
+    const graph = { nodes, edges, isDirected }
 
-    return graph
+    this.composer.compose(this[Symbol.for('schema')], { nodes, edges, isDirected })
+
+    return new Graph(this.nodeValidator, this.edgeValidator, graph)
   }
 
   get [Symbol.toStringTag]()

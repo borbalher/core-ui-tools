@@ -35,6 +35,7 @@ class Bus
   {
     return new Promise((resolve, reject) =>
     {
+      console.log(channelId, name, data)
       this.getChannel(channelId)
         .emit(name, data)
         .then(() =>

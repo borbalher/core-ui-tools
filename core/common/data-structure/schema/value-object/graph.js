@@ -6,15 +6,13 @@ module.exports = {
   },
   nodes :
   {
-    type       : 'schema',
-    schema     : 'data-structure/node',
+    type       : 'node',
     collection : true,
     default    : []
   },
   edges :
   {
-    type       : 'schema',
-    schema     : 'data-structure/edge',
+    type       : 'edge',
     collection : true,
     default    : []
   }

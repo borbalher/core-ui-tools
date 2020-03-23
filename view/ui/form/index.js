@@ -22,6 +22,17 @@ class FormComponent extends Component
     return data
   }
 
+  reset(formId)
+  {
+    const formNode = this.ui.getComponentJSON(formId)
+
+    for(const input in formNode.body)
+    {
+      if(formNode.body[input])
+        this.emit(formNode.body[input].id, 'set.input.data', { data: formNode.body[input].value })
+    }
+  }
+
   submit(formId)
   {
     const formData = this.getFormData(formId)
