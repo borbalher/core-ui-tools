@@ -45,6 +45,8 @@ class AddComponentListenersObserver
 
     if(this.isComponent(props[name]))
       return props[name].id
+
+    return name
   }
 
   getChannels(emitTo, component)

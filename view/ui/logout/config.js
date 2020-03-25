@@ -11,13 +11,12 @@ module.exports = {
             locator : 'logout/command/logout'
           },
           {
-            event   : 'session.closed.successfully',
+            event   : 'logout.successfully',
             locator : 'logout/command/redirect'
           }
         ],
         bindings : [
           {
-            selector       : '.logout-button',
             domEvent       : 'click',
             preventDefault : false,
             map            : 'logout'

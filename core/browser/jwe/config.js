@@ -5,11 +5,11 @@ module.exports = {
     {
       channels :
       {
-        'authorization' :
+        'jwe' :
         {
           listeners :
           {
-            'session.created.successfully' :
+            'set.jwe' :
             {
               'jwe/command/set-jwe' : true
             }

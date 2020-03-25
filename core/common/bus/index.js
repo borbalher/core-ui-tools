@@ -36,16 +36,25 @@ class Bus
     return new Promise((resolve, reject) =>
     {
       console.log(channelId, name, data)
-      this.getChannel(channelId)
-        .emit(name, data)
-        .then(() =>
-        {
-          resolve()
-        })
-        .catch((error) =>
-        {
-          reject(error)
-        })
+
+      const channel = this.getChannel(channelId)
+
+      if(channel)
+      {
+        channel.emit(name, data)
+          .then(() =>
+          {
+            resolve()
+          })
+          .catch((error) =>
+          {
+            reject(error)
+          })
+      }
+      else
+      {
+        console.warning(`Channel ${channelId} not defined`)
+      }
     })
   }
 

@@ -51,6 +51,8 @@ class AddComponentBindingsObserver
 
     if(this.isComponent(props[name]))
       return props[name].id
+
+    return name
   }
 
   getChannels(emitTo, component)
@@ -119,7 +121,7 @@ class AddComponentBindingsObserver
         for(const { selector, domEvent, map, emitTo, preventDefault, mapper } of bindings)
         {
           const channels = emitTo ? this.getChannels(emitTo, component) : [id]
-          this.addListeners(channels, `#${componentPathId} ${selector}`, domEvent, map, preventDefault, mapper)
+          this.addListeners(channels, `#${componentPathId}${selector ? ` ${selector}` : ''}`, domEvent, map, preventDefault, mapper)
         }
       }
     }

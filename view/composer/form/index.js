@@ -7,16 +7,19 @@ class FormComposer
 
   create({
     id,
-    schema,
+    name = id,
     body,
-    title
+    title,
+    schema
   })
   {
     const form = this.componentComposer.create({
       id,
+      body,
+      name,
       title,
       schema,
-      body,
+      wrapper  : 'form',
       template : 'form'
     })
 

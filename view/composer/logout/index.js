@@ -6,12 +6,14 @@ class LogoutComposer
   }
 
   create({
-    buttonText
+    buttonText = 'Logout'
   })
   {
     const logout = this.componentComposer.create({
-      id     : 'logout',
-      schema : 'logout',
+      id         : 'logout',
+      schema     : 'logout',
+      classList  : ['button', 'button--filled'],
+      wrapper    : 'button',
       buttonText
     })
 

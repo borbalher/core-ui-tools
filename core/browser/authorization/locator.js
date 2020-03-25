@@ -16,19 +16,17 @@ class AuthorizationLocator
   locate()
   {
     const
-    configuration          = this.locator.locate('core/configuration'),
-    dbName                 = configuration.find('core.authorization.dbName'),
-    dbVersion              = configuration.find('core.authorization.dbVersion'),
-    indexedDBFactory       = this.locator.locate('core/indexed-db/factory'),
-    indexedDB              = indexedDBFactory.create(dbName, dbVersion),
-    crypto                 = this.locator.locate('core/crypto'),
     jwkToPEM               = require('jwk-to-pem'),
-    repository             = this.locator.locate('infrastructure/ui/repository'),
+    configuration          = this.locator.locate('core/configuration'),
+    crypto                 = this.locator.locate('core/crypto'),
+    indexedDBFactory       = this.locator.locate('core/indexed-db/factory'),
     bus                    = this.locator.locate('core/bus'),
-    keyGenerationAlgorithm = configuration.find('core.authorization.keyGenerationAlgorithm'),
-    keyWrappingAlgorithm   = configuration.find('core.authorization.keyWrappingAlgorithm')
+    dbName                 = configuration.find('infrastructure.authorization.dbName'),
+    dbVersion              = configuration.find('infrastructure.authorization.dbVersion'),
+    indexedDB              = indexedDBFactory.create(dbName, dbVersion),
+    channel                = bus.createChannel('authorization')
 
-    return new Authorization(indexedDB, crypto, jwkToPEM, repository, bus, keyGenerationAlgorithm, keyWrappingAlgorithm)
+    return new Authorization(indexedDB, crypto, jwkToPEM, channel)
   }
 }
 

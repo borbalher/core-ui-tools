@@ -1,10 +1,12 @@
-{{#if title}}<h2><span>{{title}}</span></h2>{{/if}}
+  {{#if title}}
+    <h2>
+      <span>{{title}}</span>
+    </h2>
+  {{/if}}
 
-<form id='{{id}}_form' name='{{name}}'>
   {{component body 'Form body'}}
 
   <div class="form-actions">
-    <button class="button button--wired" type="reset"   value="Reset">Reset</button>
+    <button class="button button--wired"  type="reset"   value="Reset" >Reset</button>
     <button class="button button--filled" type="submit"  value="Submit">Submit</button>
   </div>
-</form>

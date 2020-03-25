@@ -1,25 +1,25 @@
 const Component = require('..')
 class LogoutComponent extends Component
 {
-  constructor(dom, bus, sessionInactivator)
+  constructor(dom, bus, repository)
   {
     super(dom, bus)
-    this.sessionInactivator = sessionInactivator
+    this.repository = repository
   }
 
-  inactivateSession(logoutButtonId)
+  logout(id)
   {
-    this.sessionInactivator.inactivateSession()
+    this.repository.logout()
       .then((success) =>
       {
-        this.emit(logoutButtonId, 'session.closed.successfully', {
-          success
-        })
+        this.emit(id, 'logout.successfully', { success })
       })
       .catch((error) =>
       {
-        this.emit(logoutButtonId, 'session.closed.error', { error })
+        this.emit(id, 'logout.error', { error })
       })
+
+    this.emit(id, 'logout.clicked', { id })
   }
 }
 

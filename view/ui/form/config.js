@@ -13,15 +13,15 @@ module.exports = {
         ],
         bindings : [
           {
-            selector       : 'form',
             domEvent       : 'submit',
             map            : 'submit.form',
+            mapper         : 'form/mapper/form-mapper',
             preventDefault : true
           },
           {
-            selector       : 'form',
             domEvent       : 'reset',
             map            : 'reset.form',
+            mapper         : 'form/mapper/form-mapper',
             preventDefault : false
           }
         ]
@@ -29,6 +29,7 @@ module.exports = {
     },
     locator :
     {
+      'form/mapper/form-mapper' : `${__dirname}/mapper/form-mapper`,
       'form/command/reset-form' : `${__dirname}/listener/reset-form`,
       'ui/form'                 : `${__dirname}`
     }

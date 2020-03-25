@@ -8,7 +8,7 @@ class PageBlockerComposer
   create({ isBlocked })
   {
     const pageBlocker = this.componentComposer.create({
-      id     : 'pageBlocker',
+      id     : 'page-blocker',
       schema : 'page-blocker',
       isBlocked
     })

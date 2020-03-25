@@ -10,11 +10,11 @@ class LogoutComponentLocator
   locate()
   {
     const
-    ui                 = this.locator.locate('core/ui'),
-    bus                = this.locator.locate('core/bus'),
-    sessionInactivator = this.locator.locate('infrastructure/ui/session/inactivator')
+    ui         = this.locator.locate('core/ui'),
+    bus        = this.locator.locate('core/bus'),
+    repository = this.locator.locate('infrastructure/ui/repository')
 
-    return new LogoutComponent(ui, bus, sessionInactivator)
+    return new LogoutComponent(ui, bus, repository)
   }
 }
 

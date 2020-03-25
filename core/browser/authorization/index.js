@@ -1,20 +1,25 @@
 class Authorization
 {
-  constructor(authDB, crypto, jwkToPEM, repository, bus, keyGenerationAlgorithm, keyWrappingAlgorithm)
+  constructor(authDB, crypto, jwkToPEM, channel)
   {
     this.authDB                 = authDB
     this.crypto                 = crypto
     this.jwkToPEM               = jwkToPEM
-    this.repository             = repository
-    this.channel                = bus.createChannel('authorization')
-    this.keyGenerationAlgorithm = keyGenerationAlgorithm
-    this.keyWrappingAlgorithm   = keyWrappingAlgorithm
-    // this.url                    = new URL(window.location.href)
-    this.code                   = this.url.searchParams.get('code')
-    // this.callback               = this.url.searchParams.get('callback')
-
-    if(this.code)
-      this.createSession()
+    this.channel                = channel
+    this.keyGenerationAlgorithm = {
+      name           : 'RSA-OAEP',
+      modulusLength  : 2048,
+      publicExponent : new Uint8Array([0x01, 0x00, 0x01]),
+      hash           :
+      {
+        name : 'SHA-256'
+      }
+    }
+    this.keyWrappingAlgorithm = {
+      name      : 'AES-GCM',
+      tagLength : 128,
+      length    : 256
+    }
   }
 
   emit(name, data)
@@ -67,21 +72,15 @@ class Authorization
     return this.jwkToPEM(publicKey)
   }
 
-  async getRequestedSession(type)
+  async getSessionInfo()
   {
-    switch(type)
-    {
-    case 'GOOGLE':
-      const
-      code      = this.code,
-      algorithm = this.keyGenerationAlgorithm.name,
-      publicKey = await this.getPublicKeyPEM() // TODO we should work with jwk in server side, not PEM
+    const
+    algorithm = this.keyGenerationAlgorithm.name,
+    publicKey = await this.getPublicKeyPEM() // TODO we should work with jwk in server side, not PEM
 
-      return {
-        code,
-        algorithm,
-        publicKey
-      }
+    return {
+      algorithm,
+      public_key : publicKey
     }
   }
 
@@ -126,21 +125,6 @@ class Authorization
           reject(err)
         })
     })
-  }
-
-  async createSession(type)
-  {
-    const requestedSession = await this.getRequestedSession(type)
-
-    this.sessionCreator.createSession(requestedSession)
-      .then((response) =>
-      {
-        this.emit('session.created.successfully', { response })
-      })
-      .catch((error) =>
-      {
-        this.emit('session.created.error', { error })
-      })
   }
 }
 

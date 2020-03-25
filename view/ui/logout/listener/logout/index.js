@@ -11,7 +11,7 @@ class LogoutObserver
   execute(event)
   {
     const id = event.meta.emitter
-    this.logout.inactivateSession(id)
+    this.logout.logout(id)
   }
 }
 

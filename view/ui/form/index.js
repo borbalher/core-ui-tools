@@ -1,12 +1,6 @@
 const Component = require('..')
 class FormComponent extends Component
 {
-  constructor(ui, bus, action)
-  {
-    super(ui, bus)
-    this.action = action
-  }
-
   getFormData(formId)
   {
     const
@@ -36,17 +30,6 @@ class FormComponent extends Component
   submit(formId)
   {
     const formData = this.getFormData(formId)
-
-    this.action(formData)
-      .then((response) =>
-      {
-        this.emit(formId, 'form.submitted.successfully', { response })
-      })
-      .catch((error) =>
-      {
-        this.emit(formId, 'form.submitted.error', { error })
-      })
-
     this.emit(formId, 'form.submitted', formData)
   }
 }

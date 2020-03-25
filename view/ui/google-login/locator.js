@@ -1,6 +1,6 @@
-const FormComponent = require('.')
+const GoogleLoginComponent = require('.')
 
-class FormComponentLocator
+class GoogleLoginComponentLocator
 {
   constructor(locator)
   {
@@ -13,8 +13,8 @@ class FormComponentLocator
     ui  = this.locator.locate('core/ui'),
     bus = this.locator.locate('core/bus')
 
-    return new FormComponent(ui, bus)
+    return new GoogleLoginComponent(ui, bus)
   }
 }
 
-module.exports = FormComponentLocator
+module.exports = GoogleLoginComponentLocator
