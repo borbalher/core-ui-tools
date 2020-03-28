@@ -38,8 +38,17 @@ class SchemaComposer
     if(Array.isArray(dto))
       dto = this.deepmerge.merge({}, ...dto)
 
-    for(const attribute in schema)
-      output[attribute] = this.attribute(schemaName, schema, attribute, dto[attribute])
+    try
+    {
+      for(const attribute in schema)
+      {
+        output[attribute] = this.attribute(schemaName, schema, attribute, dto[attribute])
+      }
+    }
+    catch(error)
+    {
+      console.log(error)
+    }
 
     if(Object.isFrozen(schema))
       this.deepfreeze.freeze(output)

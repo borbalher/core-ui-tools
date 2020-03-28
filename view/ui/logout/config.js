@@ -12,7 +12,7 @@ module.exports = {
           },
           {
             event   : 'logout.successfully',
-            locator : 'logout/command/redirect'
+            locator : 'jwt/command/remove-jwt'
           }
         ],
         bindings : [
@@ -26,9 +26,8 @@ module.exports = {
     },
     locator :
     {
-      'logout/command/logout'   : `${__dirname}/listener/logout`,
-      'logout/command/redirect' : `${__dirname}/listener/redirect`,
-      'ui/logout'               : __dirname
+      'logout/command/logout' : `${__dirname}/listener/logout`,
+      'ui/logout'             : __dirname
     }
   }
 }

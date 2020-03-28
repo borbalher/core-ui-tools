@@ -31,16 +31,25 @@ class CookieManager
     {
       const today = new Date()
       today.setTime(today.getTime() + expires)
-      cookie += `; expires=${today.toUTCString()}`
+      cookie += `;expires=${today.toUTCString()}`
     }
 
     if(domain)
-      cookie += `; domain=${domain}`
+      cookie += `;domain=${domain}`
 
     if(path)
-      cookie += `; path=${path}`
+      cookie += `;path=${path}`
 
     document.cookie = cookie
+  }
+
+  deleteCookie(name)
+  {
+    this.setCookie({
+      name,
+      value   : '',
+      expires : -1
+    })
   }
 }
 

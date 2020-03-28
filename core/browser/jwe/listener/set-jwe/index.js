@@ -10,7 +10,7 @@ class SetJWEObserver
 
   execute(event)
   {
-    this.jwe.setJWE(event.data.response)
+    this.jwe.setJWE(event.data.jwe)
   }
 }
 

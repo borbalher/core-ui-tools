@@ -11,9 +11,10 @@ class ButtonGroupInputComposerLocator
   {
     const
     componentComposer = this.locator.locate('composer/component'),
+    errorComposer     = this.locator.locate('composer/error'),
     deepclone         = this.locator.locate('core/deepclone')
 
-    return new ButtonGroupInputComposer(deepclone, componentComposer)
+    return new ButtonGroupInputComposer(deepclone, componentComposer, errorComposer)
   }
 }
 

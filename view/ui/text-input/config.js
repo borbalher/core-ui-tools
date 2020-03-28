@@ -27,7 +27,7 @@ module.exports = {
         bindings : [
           {
             selector : '.input-group__input',
-            domEvent : 'blur',
+            domEvent : 'change',
             map      : 'set.input.data',
             mapper   : 'input/mapper/input-data-mapper'
           }

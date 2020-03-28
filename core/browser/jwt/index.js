@@ -4,19 +4,19 @@ class JWT
     cookieManager,
     base64,
     options,
-    bus
+    channel
   })
   {
     this.cookieManager  = cookieManager
     this.base64         = base64
     this.options        = options
-    this.bus            = bus
+    this.channel        = channel
     this.jwt            = this.cookieManager.getCookie('JWT')
   }
 
-  emit(channelId, name, data)
+  emit(name, data)
   {
-    this.bus.emit(channelId, name, data)
+    this.channel.emit(name, data)
   }
 
   setToken(jwt)
@@ -30,7 +30,16 @@ class JWT
       path    : '/'
     })
 
-    this.emit('jwt', 'jwt.setted', { jwt })
+    this.emit('jwt.setted', { jwt })
+  }
+
+  removeToken(jwt)
+  {
+    this.cookieManager.deleteCookie({
+      name : 'JWT'
+    })
+
+    this.emit('jwt.removed', { })
   }
 
   getPayload()

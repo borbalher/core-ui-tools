@@ -1,9 +1,10 @@
 class ButtonGroupInputComposer
 {
-  constructor(deepclone, componentComposer)
+  constructor(deepclone, componentComposer, errorComposer)
   {
     this.deepclone          = deepclone
     this.componentComposer  = componentComposer
+    this.errorComposer      = errorComposer
   }
 
   selectButton(items, value)
@@ -29,7 +30,6 @@ class ButtonGroupInputComposer
     required,
     disabled,
     readOnly,
-    error,
     buttons
   })
   {
@@ -40,7 +40,10 @@ class ButtonGroupInputComposer
       data,
       disabled,
       readOnly,
-      error,
+      error  : this.errorComposer.create({
+        id   : `${id}_error`,
+        name : 'error'
+      }),
       schema  : 'button-group-input',
       buttons : this.selectButton(buttons, value)
     })

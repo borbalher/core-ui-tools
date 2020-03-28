@@ -22,6 +22,10 @@ module.exports = {
             'jwt.setted' :
             {
               'jwt/command/redirect' : true
+            },
+            'jwt.removed' :
+            {
+              'jwt/command/redirect' : true
             }
           }
         }
@@ -33,9 +37,10 @@ module.exports = {
     },
     locator :
     {
-      'jwt/command/set-jwt'  : `${__dirname}/listener/set-jwt`,
-      'jwt/command/redirect' : `${__dirname}/listener/redirect`,
-      'core/jwt'             : __dirname
+      'jwt/command/remove-jwt' : `${__dirname}/listener/remove-jwt`,
+      'jwt/command/set-jwt'    : `${__dirname}/listener/set-jwt`,
+      'jwt/command/redirect'   : `${__dirname}/listener/redirect`,
+      'core/jwt'               : __dirname
     }
   }
 }
