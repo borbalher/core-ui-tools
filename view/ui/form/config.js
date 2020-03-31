@@ -7,7 +7,7 @@ module.exports = {
       {
         listeners : [
           {
-            listener : 'reset.form',
+            event    : 'reset.form',
             locator  : 'form/command/reset-form'
           }
         ],

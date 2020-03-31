@@ -48,8 +48,10 @@ class HTTPGateway
   {
     if(!response.ok)
     {
-      console.log(`[${response.status}] ${response.statusText} at ${response.url}`)
-      throw new HTTPResponseError(await response.text())
+      const
+      error             = await response.json(),
+      { message, code } = error
+      throw new HTTPResponseError(message, code)
     }
 
     return response

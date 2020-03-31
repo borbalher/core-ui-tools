@@ -32,24 +32,24 @@ class ButtonGroupInputComponent extends Component
     return array.find(this.findById.bind(this, id))
   }
 
-  setInputValue(buttonGroupInputId, data)
+  setInputData(buttonGroupInputId, data)
   {
     const buttonGroupInput  = this.getComponent(buttonGroupInputId)
 
     buttonGroupInput.buttons = buttonGroupInput.buttons.map((button) =>
     {
       if(button.id === data)
-        item.selected = true
+        button.selected = true
       else
-        item.selected = false
+        button.selected = false
 
-      return item
+      return button
     })
 
     buttonGroupInput.data = data
 
     this.emit(buttonGroupInputId, 'input.data.setted', { id: buttonGroupInputId, data })
-    this.setComponent(buttonGroupInputId, selectInput)
+    this.setComponent(buttonGroupInputId, buttonGroupInput)
   }
 }
 

@@ -3,9 +3,9 @@
  */
 class ResetFormObserver
 {
-  constructor(input)
+  constructor(form)
   {
-    this.input = input
+    this.form = form
   }
 
   execute(event)

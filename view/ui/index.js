@@ -20,6 +20,11 @@ class UIComponent
   {
     this.ui.setComponent(componentId, component)
   }
+
+  getComponentJSON(componentId)
+  {
+    return this.ui.getComponentJSON(componentId)
+  }
 }
 
 module.exports = UIComponent

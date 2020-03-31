@@ -8,10 +8,10 @@ class HTTPResponseError extends Error
   /**
    * Creates a HTTPResponseError.
    */
-  constructor(...args)
+  constructor(message, code, ...args)
   {
-    super(...args)
-    this.code = 'HTTP_GATEWAY_ERROR'
+    super(message, ...args)
+    this.code = code ? code : 'HTTP_GATEWAY_ERROR'
   }
 }
 

@@ -8,6 +8,7 @@ module.exports = {
       'composer/modal'              : `${__dirname}/modal`,
       'composer/select-input'       : `${__dirname}/select-input`,
       'composer/text-input'         : `${__dirname}/text-input`,
+      'composer/hidden-input'       : `${__dirname}/hidden-input`,
       'composer/password-input'     : `${__dirname}/password-input`,
       'composer/checkbox-input'     : `${__dirname}/checkbox-input`,
       'composer/number-input'       : `${__dirname}/number-input`,

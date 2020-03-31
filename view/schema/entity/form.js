@@ -18,6 +18,18 @@ const dto = {
     type    : 'boolean',
     default : false
   },
+  submit :
+  {
+    type     : 'string',
+    optional : true,
+    default  : 'Submit'
+  },
+  reset :
+  {
+    type     : 'string',
+    optional : true,
+    default  : 'Reset'
+  },
   data :
   {
     type    : 'json',

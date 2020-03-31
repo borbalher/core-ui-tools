@@ -53,7 +53,7 @@ class Bus
       }
       else
       {
-        console.warning(`Channel ${channelId} not defined`)
+        console.warn(`Channel ${channelId} not defined`)
       }
     })
   }

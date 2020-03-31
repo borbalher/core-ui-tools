@@ -23,8 +23,10 @@ class FormComponent extends Component
     for(const input in formNode.body)
     {
       if(formNode.body[input])
-        this.emit(formNode.body[input].id, 'set.input.data', { data: formNode.body[input].value })
+        this.emit(formNode.body[input].id, 'set.input.data', { data: formNode.body[input].value ? formNode.body[input].value : '' })
     }
+
+    this.emit(formId, 'form.resetted', { id: formId })
   }
 
   submit(formId)

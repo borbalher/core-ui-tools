@@ -2,10 +2,10 @@ class ErrorToMessageMapper
 {
   map(data)
   {
-    const { error, code } = data
+    const { message, code } = data
 
     return {
-      message : code ? `${message} (Code: ${code})` : error.message
+      message : code ? `${message} (Code: ${code})` : message
     }
   }
 }
