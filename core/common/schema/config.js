@@ -23,6 +23,7 @@ module.exports = {
         'json'      : 'core/schema/validator/json',
         'schema'    : 'core/schema/validator/schema',
         'string'    : 'core/schema/validator/string',
+        'regexp'    : 'core/schema/validator/regexp',
         'timestamp' : 'core/schema/validator/timestamp'
       }
     },
