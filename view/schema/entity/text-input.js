@@ -17,8 +17,12 @@ const dto = {
   {
     type     : 'string',
     optional : true
+  },
+  regexp :
+  {
+    type     : 'regexp',
+    optional : true
   }
-  // TODO add regexp support
 }
 
 module.exports = dto

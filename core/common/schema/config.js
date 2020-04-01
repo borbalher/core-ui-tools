@@ -45,7 +45,8 @@ module.exports = {
       'core/schema/validator/json'      : `${__dirname}/validator/json`,
       'core/schema/validator/schema'    : `${__dirname}/validator/schema`,
       'core/schema/validator/string'    : `${__dirname}/validator/string`,
-      'core/schema/validator/timestamp' : `${__dirname}/validator/timestamp`
+      'core/schema/validator/timestamp' : `${__dirname}/validator/timestamp`,
+      'core/schema/validator/regexp'    : `${__dirname}/validator/regexp`
     }
   }
 }

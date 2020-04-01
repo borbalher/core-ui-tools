@@ -17,7 +17,8 @@ class TextInputComposer
     readOnly,
     autocomplete,
     placeholder,
-    maxLength
+    maxLength,
+    regexp
   })
   {
     const textInput = this.componentComposer.create({
@@ -36,6 +37,7 @@ class TextInputComposer
       autocomplete,
       placeholder,
       id,
+      regexp,
       schema : 'text-input'
     })
 
