@@ -27,12 +27,11 @@ class ViewModel
     this.repository.fetchViewModel()
       .then((viewModel) =>
       {
-        this.emit('view.model.fetched', { viewModel })
+        this.emit('view.model.fetched.successfully', { viewModel })
       })
       .catch((error) =>
       {
-        this.emit('view.model.not.fetched', { error })
-        this.emit('app', 'core.error', { error })
+        this.emit('view.model.fetched.error', { error })
       })
   }
 }

@@ -12,10 +12,14 @@ class StoreLocator
     const
     deepclone     = this.locator.locate('core/deepclone'),
     configuration = this.locator.locate('core/configuration'),
+    reducer       = this.locator.locate('core/reducer'),
+    middlewares   = configuration.find('core.store.middlewares'),
     bus           = this.locator.locate('core/bus'),
-    channel       = bus.createChannel('store')
+    repository    = this.locator.locate('infrastructure/ui/repository'),
+    channel       = bus.createChannel('store'),
+    composer      = this.locator.locate('core/schema/composer')
 
-    return new Store(deepclone, channel, undefined, undefined, this.locator)
+    return new Store(deepclone, channel, middlewares, reducer, this.locator, repository, composer)
   }
 }
 

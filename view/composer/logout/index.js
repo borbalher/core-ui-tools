@@ -5,13 +5,12 @@ class LogoutComposer
     this.componentComposer = componentComposer
   }
 
-  create({
-    buttonText = 'Logout'
-  })
+  create(state)
   {
-    const logout = this.componentComposer.create({
+    const
+    { buttonText = 'Logout' } = state || {},
+    logout = this.componentComposer.create({
       id         : 'logout',
-      schema     : 'logout',
       classList  : ['button', 'button--filled'],
       wrapper    : 'button',
       buttonText

@@ -25,8 +25,8 @@ class Bus
   getChannel(id)
   {
     const channel = this.channels.getItem(id)
-    // if(!channel)
-    //   throw new ChannelNotExistsError(`Channel "${id}" does not exist`)
+    if(!channel)
+      console.warn(`Channel "${id}" does not exist`)
 
     return channel
   }

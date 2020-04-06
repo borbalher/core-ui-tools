@@ -3,17 +3,15 @@
  */
 class ChangeStoreStateObserver
 {
-  constructor(locator)
+  constructor(store)
   {
-    this.locator = locator
+    this.store = store
   }
 
   execute(event)
   {
-    const
-    store = this.locator.locate('core/store'),
-    state = event.data.viewModel
-    store.setState(state)
+    const state = event.data.viewModel
+    this.store.setState(state)
   }
 }
 

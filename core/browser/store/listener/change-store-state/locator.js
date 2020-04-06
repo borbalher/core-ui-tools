@@ -9,8 +9,8 @@ class ChangeStoreStateObserverLocator
 
   locate()
   {
-    const locator = this.locator
-    return new ChangeStoreStateObserver(locator)
+    const store = this.locator.locate('core/store')
+    return new ChangeStoreStateObserver(store)
   }
 }
 

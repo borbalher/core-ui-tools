@@ -9,7 +9,7 @@ class ComponentComposer
     id,
     name     = id,
     key      = id,
-    schema,
+    schema   = id,
     template = schema,
     ...args
   })

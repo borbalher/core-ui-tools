@@ -26,11 +26,11 @@ module.exports = {
             },
           }
         },
-        'store' :
+        'view-model' :
         {
           listeners :
           {
-            'store.state.changed' :
+            'view.model.fetched.successfully' :
             {
               'ui/command/set-ui' : true
             }
@@ -41,10 +41,10 @@ module.exports = {
     locator :
     {
       'core/ui'                             : __dirname,
-      'ui/command/set-ui'                   : `${__dirname}/listener/store-state-changed/set-ui`,
-      'ui/command/render-component'         : `${__dirname}/listener/component-changed/render-component`,
-      'ui/command/add-component-listeners'  : `${__dirname}/listener/component-rendered/add-component-listeners`,
-      'ui/command/add-component-bindings'   : `${__dirname}/listener/component-rendered/add-component-bindings`
+      'ui/command/set-ui'                   : `${__dirname}/listener/set-ui`,
+      'ui/command/render-component'         : `${__dirname}/listener/render-component`,
+      'ui/command/add-component-listeners'  : `${__dirname}/listener/add-component-listeners`,
+      'ui/command/add-component-bindings'   : `${__dirname}/listener/add-component-bindings`
     }
   }
 }

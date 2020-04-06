@@ -5,26 +5,41 @@ module.exports = {
     {
       channels :
       {
-        'view-model' :
+        'app' :
         {
           listeners :
           {
-            'view.model.changed' :
+            'app.initialized' :
             {
-              'store/listener/change-store-state' : true
+              'store/listener/fetch-state' : true
             }
+          }
+        },
+        'store' :
+        {
+          listeners :
+          {
+            'store/listener/dispatch' : true,
+            'store/listener/state-fetched-successfully' : true
           }
         }
       }
     },
     store :
     {
-      middlewares : { }
+      middlewares : [
+        'store/middleware/logger'
+      ]
     },
     locator :
     {
       'core/store'                        : __dirname,
-      'store/listener/change-store-state' : `${__dirname}/listener/change-store-state`
+      'store/middleware/logger'           : `${__dirname}/middleware/logger`,
+      'store/middleware/delayer'          : `${__dirname}/middleware/delayer`,
+      'store/middleware/crash-report'     : `${__dirname}/middleware/crash-report`,
+      'store/listener/change-store-state' : `${__dirname}/listener/change-store-state`,
+      'store/listener/dispatch'           : `${__dirname}/listener/dispatch`,
+      'store/listener/fetch-state'        : `${__dirname}/listener/fetch-state`
     }
   }
 }

@@ -9,6 +9,10 @@ module.exports = {
           {
             event    : 'reset.form',
             locator  : 'form/command/reset-form'
+          },
+          {
+            event    : 'submit.form',
+            locator  : 'form/command/submit-form'
           }
         ],
         bindings : [
@@ -29,9 +33,10 @@ module.exports = {
     },
     locator :
     {
-      'form/mapper/form-mapper' : `${__dirname}/mapper/form-mapper`,
-      'form/command/reset-form' : `${__dirname}/listener/reset-form`,
-      'ui/form'                 : `${__dirname}`
+      'form/mapper/form-mapper'  : `${__dirname}/mapper/form-mapper`,
+      'form/command/reset-form'  : `${__dirname}/listener/reset-form`,
+      'form/command/submit-form' : `${__dirname}/listener/submit-form`,
+      'ui/form'                  : `${__dirname}`
     }
   }
 }

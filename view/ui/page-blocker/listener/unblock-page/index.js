@@ -10,13 +10,9 @@ class UnblockPageObserver
 
   execute(event)
   {
-    const
-    id   = event.meta.emitter,
-    data = {
-      isBlocked : false
-    }
+    const id = event.meta.emitter
 
-    this.pageBlocker.changeIsBlocked(id, data)
+    this.pageBlocker.changeIsBlocked(id, false)
   }
 }
 

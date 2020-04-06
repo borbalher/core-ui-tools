@@ -1,16 +1,34 @@
 class Store
 {
-  constructor(deepclone, channel, middlewares, reducer, locator)
+  constructor(deepclone, channel, middlewares, reducer, locator, repository, composer)
   {
     this.deepclone  = deepclone
     this.reducer    = reducer
     this.channel    = channel
     this.states     = []
-    this.state      = undefined
+    this.state      = {}
     this.locator    = locator
+    this.repository = repository
+    this.composer   = composer
 
     if(middlewares)
       this.applyMiddleware(middlewares)
+  }
+
+  composeAction(emitter, name, data)
+  {
+    const
+    timestamp = new Date().toISOString(),
+    event     = this.composer.compose('core/event-emitter/event', {
+      meta : {
+        name,
+        timestamp,
+        emitter
+      },
+      data
+    })
+
+    return event
   }
 
   setState(state)
@@ -33,7 +51,8 @@ class Store
     }).reverse()
 
     let dispatch = (action) => {
-      const state = this.reducer.apply(action, this)
+      const state = this.reducer.apply(action, this.getState())
+      this.setState(state)
       return state
     }
 
@@ -43,6 +62,24 @@ class Store
     }
 
     this.dispatch = dispatch
+  }
+
+  emit(name, data)
+  {
+    this.channel.emit(name, data)
+  }
+
+  fetchState()
+  {
+    this.repository.fetchState()
+      .then((state) =>
+      {
+        this.channel.emit('state.fetched.successfully', { state })
+      })
+      .catch((error) =>
+      {
+        this.channel.emit('state.fetched.error', { error })
+      })
   }
 }
 

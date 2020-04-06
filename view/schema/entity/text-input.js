@@ -20,7 +20,7 @@ const dto = {
   },
   regexp :
   {
-    type     : 'regexp',
+    type     : 'string',
     optional : true
   }
 }

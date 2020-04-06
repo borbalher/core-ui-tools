@@ -55,14 +55,6 @@ class UI
 
   setUI(ui)
   {
-    if(this.tree)
-    {
-      for(const componentId in this.tree.nodes)
-      {
-        this.bus.deleteChannel(componentId)
-      }
-    }
-
     this.tree = this.treeFactory.create()
     this.tree.setGraphFromJSON(ui)
 
@@ -75,7 +67,7 @@ class UI
       if(!this.bus.getChannel(componentPathId))
         this.bus.createChannel(componentPathId)
       else
-        this.bus.reset(componentPathId)
+        this.bus.clear(componentPathId)
     }
 
     this.emit('ui.changed', { id: componentId })

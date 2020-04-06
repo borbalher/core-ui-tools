@@ -5,11 +5,12 @@ class PageBlockerComposer
     this.componentComposer = componentComposer
   }
 
-  create({ isBlocked })
+  create(state)
   {
-    const pageBlocker = this.componentComposer.create({
-      id     : 'page-blocker',
-      schema : 'page-blocker',
+    const
+    { isBlocked = false } = state || {},
+    pageBlocker = this.componentComposer.create({
+      id : 'page-blocker',
       isBlocked
     })
 

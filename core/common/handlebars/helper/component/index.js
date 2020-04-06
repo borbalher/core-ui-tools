@@ -23,7 +23,7 @@ class HandlebarsHelperComponent
 
   create()
   {
-    return (component) =>
+    return (component, desc) =>
     {
       try
       {
@@ -37,6 +37,7 @@ class HandlebarsHelperComponent
       }
       catch(error)
       {
+        console.log(desc)
         throw new ComponentHelperError(`Error while mounting the component: ${error.message}`)
       }
     }

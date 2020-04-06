@@ -15,14 +15,14 @@ class ModalComposer
   })
   {
     const modal = this.componentComposer.create({
-      isOpen,
-      headerText,
-      body,
-      confirmButton,
-      actions,
       id,
+      body,
+      isOpen,
+      actions,
+      headerText,
+      confirmButton,
       template : 'modal',
-      schema   : 'requested-to-change-order-status-modal'
+      schema   : 'modal'
     })
 
     return modal
