@@ -6,37 +6,13 @@ module.exports = {
       options  : {},
       channels :
       {
-        'ui' :
-        {
-          listeners :
-          {
-            'render.component' :
-            {
-              'ui/command/render-component' : true
-            },
-            'ui.changed' :
-            {
-              'ui/command/add-component-bindings'  : true,
-              'ui/command/add-component-listeners' : true
-            },
-            'component.rendered' :
-            {
-              'ui/command/add-component-bindings' : true
-              // 'ui/command/add-component-listeners' : true
-            },
-            'component.changed' :
-            {
-              'ui/command/render-component' : true
-            }
-          }
-        },
         'view-model' :
         {
           listeners :
           {
             'view.model.changed' :
             {
-              'ui/command/set-ui' : true
+              'ui/listener/view-model-changed' : true
             }
           }
         }
@@ -44,11 +20,8 @@ module.exports = {
     },
     locator :
     {
-      'core/ui'                            : __dirname,
-      'ui/command/set-ui'                  : `${__dirname}/listener/set-ui`,
-      'ui/command/render-component'        : `${__dirname}/listener/render-component`,
-      'ui/command/add-component-listeners' : `${__dirname}/listener/add-component-listeners`,
-      'ui/command/add-component-bindings'  : `${__dirname}/listener/add-component-bindings`
+      'core/ui'                        : __dirname,
+      'ui/listener/view-model-changed' : `${__dirname}/listener/view-model-changed`
     }
   }
 }

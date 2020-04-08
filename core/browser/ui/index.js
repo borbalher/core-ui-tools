@@ -31,51 +31,43 @@ class UI
     return json[component.name]
   }
 
-  emit(event, data)
-  {
-    this.channel.emit(event, data)
-  }
-
   renderComponent(componentId)
   {
     const
     component                 = this.getComponentJSON(componentId),
     renderedComponentTemplate = this.hbs.compilePartial(component.template, component),
-    div                       = document.createElement('div')
+    wrapper                   = document.createElement('div')
 
-    div.innerHTML = renderedComponentTemplate.trim()
+    wrapper.innerHTML = renderedComponentTemplate.trim()
 
-    const domNode = div.firstChild
+    this.document.getElementById(componentId).replaceWith(wrapper.firstChild)
 
-    this.document.getElementById(componentId).replaceWith(domNode)
-
-    this.emit('component.rendered', { id: componentId, component })
+    this.channel.emit('component.rendered', { id: componentId, component })
   }
 
-  setComponent(componentId, component)
+  getTreeFromContext(context)
   {
-    this.tree.nodes.setItem(componentId, component)
-    this.emit('component.changed', { id: componentId })
+    const tree = this.treeFactory.create()
+    tree.setGraphFromJSON(context)
+
+    return tree.serialize()
   }
 
-  setUI(ui)
+  setComponent(componentId, context)
   {
-    this.tree = this.treeFactory.create()
-    this.tree.setGraphFromJSON(ui)
+    const { nodes, links } = this.getTreeFromContext(context)
 
-    const
-    componentId    = ui.id,
-    componentsPath = this.getSubtreePath(componentId)
+    for(const node of nodes)
+      this.tree.addNode(node)
 
-    for(const componentPathId of componentsPath)
+    for(const link of links)
     {
-      if(!this.bus.getChannel(componentPathId))
-        this.bus.createChannel(componentPathId)
-      else
-        this.bus.clear(componentPathId)
+      const index = this.tree.edges.getElementIndex(link.source, link)
+      if(index === -1)
+        this.tree.addEdge(link)
     }
 
-    this.emit('ui.changed', { id: componentId })
+    this.channel.emit('component.changed', { id: componentId })
   }
 }
 

@@ -1,8 +1,20 @@
-<div id="{{id}}" class='input-group {{#if error.hasError}}--error{{/if}}'>
+<div id="{{id}}" class='input-group {{#if error.message}}--error{{/if}}'>
   {{> @partial-block }}
-  {{> label label=label for=input.id required=input.required}}
-</div>
 
-{{#if error}}
-  {{> error error}}
-{{/if}}
+  <label class='input-group__label' for='{{input.id}}'>
+    {{label}}
+  </label>
+  {{#unless input.required}}
+    <span class='input-group__optional-label'>
+      (optional)
+    </span>
+  {{/unless}}
+
+  <div class='input-group__error'>
+    {{#if error.hasError}}
+      <p>
+        {{error.message}}
+      </p>
+    {{/if}}
+  </div>
+</div>

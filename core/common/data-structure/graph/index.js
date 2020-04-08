@@ -6,11 +6,11 @@ AssociativeArray          = require('../associative-array')
 
 class Graph
 {
-  constructor(nodeValidator, edgeValidator, { nodes, edges, isDirected })
+  constructor(nodeValidator, edgeValidator, object, { nodes, edges, isDirected })
   {
     this.nodeValidator  = nodeValidator
     this.edgeValidator  = edgeValidator
-    this.edges          = new MultipleAssociativeArray()
+    this.edges          = new MultipleAssociativeArray(object)
     this.nodes          = new AssociativeArray()
     this.isDirected     = isDirected
 
@@ -120,9 +120,7 @@ class Graph
   addNodes(nodes)
   {
     for(const node of nodes)
-    {
       this.addNode(node)
-    }
   }
 
   addNode(node)
@@ -134,9 +132,7 @@ class Graph
   addEdges(edges)
   {
     for(const edge of edges)
-    {
       this.addEdge(edge)
-    }
   }
 
   addEdge({ source, target, payload })

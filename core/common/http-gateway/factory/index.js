@@ -1,15 +1,20 @@
-const HTTPGateway = require('..')
+const HTTPGateway = require('core-ui-tools/core/common/http-gateway')
 
 class HTTPGatewayFactory
 {
+  constructor(fetch)
+  {
+    this.fetch = fetch
+  }
   create({
-    options,
-    baseHeaders
+    url,
+    headers
   })
   {
     return new HTTPGateway({
-      options,
-      baseHeaders
+      fetch,
+      url,
+      headers
     })
   }
 }

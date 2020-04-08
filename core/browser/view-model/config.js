@@ -3,14 +3,13 @@ module.exports = {
   {
     bus :
     {
-      options  : {},
       channels :
       {
-        'app' : {
+        'store' : {
           listeners : {
-            'app.initialized' :
+            'state.changed' :
             {
-              'view-model/listener/fetch-view-model' : true
+              'view-model/listener/state-changed' : true
             }
           }
         }
@@ -18,8 +17,8 @@ module.exports = {
     },
     locator :
     {
-      'core/view-model'                      : __dirname,
-      'view-model/listener/fetch-view-model' : `${__dirname}/listener/fetch-view-model`
+      'core/view-model'                   : __dirname,
+      'view-model/listener/state-changed' : `${__dirname}/listener/state-changed`
     }
   }
 }

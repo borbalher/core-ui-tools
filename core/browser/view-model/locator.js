@@ -10,11 +10,11 @@ class ViewModelLocator
   locate()
   {
     const
-    bus         = this.locator.locate('core/bus'),
-    repository  = this.locator.locate('infrastructure/ui/repository'),
-    channel     = bus.createChannel('view-model')
+    bus               = this.locator.locate('core/bus'),
+    viewModelComposer = this.locator.locate('aggregate/view-model'),
+    channel           = bus.createChannel('view-model')
 
-    return new ViewModel(channel, repository)
+    return new ViewModel(channel, viewModelComposer)
   }
 }
 

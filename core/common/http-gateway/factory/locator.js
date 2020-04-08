@@ -1,4 +1,4 @@
-const HTTPGatewayFactory  = require('.')
+const HTTPGatewayFactory  = require('core-ui-tools/core/common/http-gateway/factory')
 /**
  * @implements {superhero/core/locator/constituent}
  */
@@ -14,7 +14,8 @@ class HTTPGatewayFactoryLocator
    */
   locate()
   {
-    return new HTTPGatewayFactory()
+    const fetch = window.fetch
+    return new HTTPGatewayFactory(fetch)
   }
 }
 

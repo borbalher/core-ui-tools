@@ -5,6 +5,48 @@ class CoreObject
     this.coreString = coreString
   }
 
+  isEqual(objectA, objectB)
+  {
+    if(typeof objectA === 'object' && typeof objectB === 'object')
+    {
+      const
+      objectAKeys = Object.keys(objectA),
+      objectBKeys = Object.keys(objectB)
+
+      if(objectAKeys.length !== objectBKeys.length)
+        return false
+
+      for(const attribute in objectA)
+      {
+        if(typeof objectA[attribute] !== 'object' && objectA[attribute] !== objectB[attribute])
+        {
+          return false
+        }
+        else if(typeof objectA[attribute] === 'object')
+        {
+          const isNestedObjectEqual = this.isEqual(objectA[attribute], objectB[attribute])
+          if(!isNestedObjectEqual)
+            return false
+        }
+        else if(objectA[attribute] !== objectB[attribute])
+        {
+          return false
+        }
+      }
+
+      return true
+    }
+    else if(typeof objectA === typeof objectB)
+    {
+      return objectA === objectB
+    }
+    else
+    {
+      return false
+    }
+  }
+
+
   sortKeys(o, order = 'ASC')
   {
     const
@@ -13,10 +55,10 @@ class CoreObject
 
     for(const key of keys)
     {
-      if(!object || typeof o[key] !== object)
+      if(!o[key] || typeof o[key] !== 'object')
         sorted[key] = o[key]
       else if(Object.keys(o[key]).length)
-        sorted[key] = sortKeys(o[key], order)
+        sorted[key] = this.sortKeys(o[key], order)
       else
         sorted[key] = o[key]
     }

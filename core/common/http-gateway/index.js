@@ -1,153 +1,123 @@
-const
-HTTPResponseError = require('./error/http-response-error'),
-HTTPFetchError    = require('./error/http-fetch-error'),
-fetch             = require('node-fetch')
+const HTTPFetchError = require('./error/http-fetch-error')
 
 class HTTPGateway
 {
   constructor({
-    baseHeaders = {},
-    options     = {}
+    headers,
+    fetch,
+    url
   })
   {
-    this.baseHeaders  = baseHeaders
-    this.options      = options
+    this.baseHeaders  = headers
+    this.fetch        = fetch
+    this.baseURL      = url
   }
 
   composeURL({
-    endpoint,
-    query    = {}
+    query = {},
+    url
   })
   {
-    const url = new URL(`${this.options.protocol}://${this.options.host}${this.options.port ? `:${this.options.port}` : ''}${this.options.basePath ? `${this.options.basePath}` : ''}${endpoint}`)
+    const composedURL = new URL(`${this.baseURL}${url}`)
 
     for(let key in query)
-      url.searchParams.set(key, query[key])
+      composedURL.searchParams.set(key, query[key])
 
-    return url.href
+    return composedURL.href
   }
 
   getOptions({
+    headers,
     method,
-    body,
-    headers
+    data
   })
   {
-    const options = {
-      method,
-      headers : { ...this.baseHeaders, ...headers }
-    }
+    const options = { method, headers: { ...this.baseHeaders, ...headers } }
 
-    if(body)
-      options.body = body // this.formatBody({ body, headers })
+    if(data)
+      options.data = JSON.stringify(data)
 
     return options
   }
 
-  async checkResponse(response)
+  async request({
+    headers,
+    method,
+    query,
+    data,
+    url
+  })
   {
-    if(!response.ok)
+    const
+    requestOptions = this.getOptions({ data, method, headers }),
+    requestURL     = this.composeURL({ url, query }),
+    response       = await this.fetch(requestURL, requestOptions).catch((error) =>
     {
-      const
-      error             = await response.json(),
-      { message, code } = error
-      throw new HTTPResponseError(message, code)
-    }
+      throw new HTTPFetchError(`Error while trying to fetch: ${error.message}`)
+    })
 
     return response
   }
 
-  async fetch({
-    body,
-    query,
-    method,
-    headers,
-    endpoint
-  })
-  {
-    const
-    options = this.getOptions({
-      body,
-      method,
-      headers
-    }),
-    url       = this.composeURL({ endpoint, query }),
-    response  = await fetch(url, options)
-      .catch((error) =>
-      {
-        throw new HTTPFetchError(`Error while trying to fetch: ${error.message}`)
-      })
-
-    return this.checkResponse(response)
-  }
-
   async get({
-    query,
     headers,
-    endpoint,
-    type
+    query,
+    url
   })
   {
-    return this.fetch({
+    return this.request({
       method : 'get',
       query,
       headers,
-      endpoint,
-      type
+      url
     })
   }
 
   async post({
-    body,
-    query,
     headers,
-    endpoint,
-    type
+    query,
+    data,
+    url
   })
   {
-    return this.fetch({
+    return this.request({
       method : 'post',
-      body,
+      data,
       query,
       headers,
-      endpoint,
-      type
+      url
     })
   }
 
   async put({
-    body,
-    query,
     headers,
-    endpoint,
-    type
+    query,
+    data,
+    url
   })
   {
-    return this.fetch({
+    return this.request({
       method : 'put',
-      body,
-      query,
       headers,
-      endpoint,
-      type
+      query,
+      data,
+      url
     })
   }
 
   async delete({
-    body,
-    query,
     headers,
-    endpoint,
-    type
+    query,
+    data,
+    url
   })
   {
-    return this.fetch({
+    return this.request({
       method : 'delete',
-      body,
-      query,
       headers,
-      endpoint,
-      type
+      query,
+      data,
+      url
     })
   }
 }

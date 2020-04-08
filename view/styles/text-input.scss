@@ -72,24 +72,6 @@
     display: none;
   }
 
-  &.--display-mode {
-    .input-group{
-      &__input{
-        background: none;
-        border: 0;
-        padding-left: 0;
-      }
-      &__label{
-        margin-left: 0;
-        color: map-get($palette, color-primary);
-      }
-      &__optional-label{
-        margin-right: 0;
-        display: none;
-      }
-    }
-  }
-
   &.--error{
     margin-bottom: .25rem;
 

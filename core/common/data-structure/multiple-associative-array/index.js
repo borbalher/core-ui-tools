@@ -2,9 +2,10 @@ const AssociativeArray = require('../associative-array')
 
 class MultipleAssociativeArray extends AssociativeArray
 {
-  constructor()
+  constructor(object)
   {
     super()
+    this.object = object
     this[Symbol.for('schema')]  = 'data-structure/multiple-associative-array'
   }
 
@@ -32,8 +33,19 @@ class MultipleAssociativeArray extends AssociativeArray
   {
     const hasElements = this.hasElements(key)
 
-    if(hasElements)
+    if(hasElements && typeof value !== 'object')
+    {
       return super.getItem(key).indexOf(value)
+    }
+    else if(hasElements && typeof value === 'object')
+    {
+      const elements = this.getItem(key)
+      for(let i = 0; i < elements.length; i++)
+      {
+        if(this.object.isEqual(elements[i], value))
+          return i
+      }
+    }
 
     return -1
   }

@@ -13,16 +13,15 @@ class NodeConfigFetcher
   {
     return new Promise(async (resolve, reject) =>
     {
-      // TODO define order and preference
       const
-      path          = this.locator.locate('core/path'),
-      specifiedPath = `${pathname}/config`,
-      localPath     = `${path.main.dirname}/${component}/config`
+      path            = this.locator.locate('core/path'),
+      projectPath     = `${path.main.baseDir}/${pathname}/config`,
+      nodeModulesPath = `${pathname}/config`
 
-      if(path.isResolvable(specifiedPath))
-        resolve(require(specifiedPath))
-      else if(path.isResolvable(localPath))
-        resolve(require(localPath))
+      if(path.isResolvable(projectPath))
+        resolve(require(projectPath))
+      else if(path.isResolvable(nodeModulesPath))
+        resolve(require(nodeModulesPath))
       else
         reject(new ComponentNotResolvableError(`could not resolve path to component "${component}"`))
     })

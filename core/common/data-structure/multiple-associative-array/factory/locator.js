@@ -12,7 +12,8 @@ class MultipleAssociativeArrayFactoryLocator
    */
   locate()
   {
-    return new MultipleAssociativeArrayFactory()
+    const object = this.locator.locate('core/object')
+    return new MultipleAssociativeArrayFactory(object)
   }
 }
 

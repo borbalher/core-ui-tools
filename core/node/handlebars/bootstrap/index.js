@@ -1,16 +1,18 @@
 /* eslint-disable no-undef */
 class HandlebarsBootstrap
 {
-  constructor(locator)
+  constructor(path, handlebars)
   {
-    this.locator = locator
+    this.path       = path
+    this.handlebars = handlebars
   }
 
   bootstrap()
   {
     const
-    coreHbs    = this.locator.locate('core/handlebars'),
-    handlebars = coreHbs.handlebars
+    handlebars      = this.handlebars.handlebars,
+    partials        = `${this.path.main.dirname}/api/www/assets/handlebars/partials`,
+    templates       = `${this.path.main.dirname}/api/www/assets/handlebars/templates`
 
     global.Handlebars =
     {
@@ -19,14 +21,20 @@ class HandlebarsBootstrap
       partials  : {}
     }
 
-    require('../../../../../../src/api/www/assets/handlebars/partials')
-    // require('../../../../../../src/api/www/assets/handlebars/templates')
+    if(this.path.isResolvable(partials))
+    {
+      require(partials)
+      delete require.cache[require.resolve(partials)]
+    }
 
-    delete require.cache[require.resolve('../../../../../../src/api/www/assets/handlebars/partials')]
-    // delete require.cache[require.resolve('../../../../../../src/api/www/assets/handlebars/templates')]
+    if(this.path.isResolvable(templates))
+    {
+      require(templates)
+      delete require.cache[require.resolve(templates)]
+    }
 
-    coreHbs.addTemplates(Handlebars.templates)
-    coreHbs.addPartials(Handlebars.partials)
+    this.handlebars.addTemplates(Handlebars.templates)
+    this.handlebars.addPartials(Handlebars.partials)
 
     Handlebars = undefined
   }

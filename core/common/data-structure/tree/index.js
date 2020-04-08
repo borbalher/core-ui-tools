@@ -4,9 +4,9 @@ NodeNotExist = require('../graph/error/node-not-exists')
 
 class Tree extends Graph
 {
-  constructor(nodeValidator, edgeValidator, tree, deepassign)
+  constructor(nodeValidator, edgeValidator, object, tree, deepassign)
   {
-    super(nodeValidator, edgeValidator, tree)
+    super(nodeValidator, edgeValidator, object, tree)
     this.deepassign = deepassign
     this.root       = tree.root
   }

@@ -44,6 +44,15 @@ class AssociativeArray
     }
   }
 
+  toLinearArray()
+  {
+    let array = []
+    for(const [key, value] of this.items)
+      array = [...array, [key, value]]
+
+    return array
+  }
+
   setFromJSON(json)
   {
     this.items = new Map()

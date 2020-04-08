@@ -9,7 +9,11 @@ class HandlebarsBootstrapLocator
 
   locate()
   {
-    return new HandlebarsBootstrap(this.locator)
+    const
+    handlebars = this.locator.locate('core/handlebars'),
+    path       = this.locator.locate('core/path')
+
+    return new HandlebarsBootstrap(path, handlebars)
   }
 }
 
