@@ -25,6 +25,11 @@ class UIComponent
   {
     return this.ui.getComponentJSON(componentId)
   }
+
+  renderComponent(componentId)
+  {
+    return this.ui.getComponentJSON(componentId)
+  }
 }
 
 module.exports = UIComponent

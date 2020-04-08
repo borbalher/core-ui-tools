@@ -6,33 +6,32 @@
  *
  * For convenience, `dispatch` will return the promise so the caller can wait.
  */
-const readyStatePromise = store => next => action => {
-  if (!action.promise)
+const readyStatePromise = store => next => action =>
+{
+  if(!action.promise)
     return next(action)
 
   const composeAction = (ready, data) =>
   {
-    const action = {
+    return {
       ...action,
       promise : undefined,
       ready,
       data
     }
-
-    return action
   }
 
   next(composeAction(false))
 
   return action.promise
     .then(response =>
-      {
-        return next(composeAction(true, { response }))
-      })
+    {
+      return next(composeAction(true, { response }))
+    })
     .catch(error =>
-      {
-        return next(composeAction(true, { error }))
-      })
+    {
+      return next(composeAction(true, { error }))
+    })
 }
 
 module.exports = readyStatePromise

@@ -3,7 +3,7 @@ class Node
   constructor(id, name, channel)
   {
     this.id      = id
-    this.ui      = ui
+    this.name    = name
     this.channel = channel
   }
 

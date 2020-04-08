@@ -29,6 +29,15 @@ class CoreHandlebars
     return safeHtml.string
   }
 
+  compilePartial(partial, props)
+  {
+    const
+    html     = this.handlebars.partials[partial](props),
+    safeHtml = this.getSafeString(html)
+
+    return safeHtml.string
+  }
+
   write(output, viewModel, route)
   {
     const template = viewModel.template || route.template
@@ -36,7 +45,7 @@ class CoreHandlebars
     if(!template)
       throw new Error('view can not be rendered, no template defined')
 
-    const body = this.compileTemplate(template, viewModel.body)
+    const body = this.compilePartial(template, viewModel.body)
 
     viewModel.headers['Content-Length'] = Buffer.byteLength(body)
 

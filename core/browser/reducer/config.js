@@ -7,7 +7,7 @@ module.exports = {
     },
     locator :
     {
-      'core/reducer'  : __dirname
+      'core/reducer' : __dirname
     }
   }
 }

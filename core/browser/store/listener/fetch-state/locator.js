@@ -1,6 +1,6 @@
-const FetchStateObserverObserver = require('.')
+const FetchStateObserver = require('.')
 
-class FetchStateObserverObserverLocator
+class FetchStateObserverLocator
 {
   constructor(locator)
   {
@@ -9,9 +9,12 @@ class FetchStateObserverObserverLocator
 
   locate()
   {
-    const store = this.locator.locate('core/store')
-    return new FetchStateObserverObserver(store)
+    const
+    store      = this.locator.locate('core/store'),
+    repository = this.locator.locate('infrastructure/ui/repository')
+
+    return new FetchStateObserver(store, repository)
   }
 }
 
-module.exports = FetchStateObserverObserverLocator
+module.exports = FetchStateObserverLocator

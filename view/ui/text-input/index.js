@@ -5,28 +5,34 @@ class TextInputComponent extends Component
   {
     const textInput = this.getComponent(textInputId)
 
-    if(textInput.required && (!textInput.data || textInput.data.trim() === ''))
+    let errorMessage
+    if(textInput.required && (!textInput.value || textInput.value.trim() === ''))
     {
-      document.querySelector(`#${textInput.id} .input-group`).classList.add('--error')
-      this.emit(textInputId, 'input.data.validated', { id: textInputId, hasError: true, message: `${textInput.label} is required` })
+      errorMessage = `Input is required`
     }
-    else
+    else if(textInput.pattern)
     {
-      document.querySelector(`#${textInput.id} .input-group`).classList.remove('--error')
-      this.emit(textInputId, 'input.data.validated', { id: textInputId, hasError: false })
+      const
+      regexp = new RegExp(textInput.pattern),
+      match  = regexp.exec(textInput.value)
+
+      if(!match)
+        errorMessage = textInput.title ? `Format must be ${textInput.title}` : `Format must be ${textInput.pattern}`
     }
 
+
     this.setComponent(textInputId, textInput)
+    this.emit(textInputId, 'input.data.validated', { id: textInputId, errorMessage, isValid: !!errorMessage })
   }
 
   setInputData(textInputId, data)
   {
     const textInput = this.getComponent(textInputId)
-    textInput.data  = data
 
-    document.querySelector(`#${textInput.id} .input-group__input`).value = data
-    this.emit(textInputId, 'input.data.setted', { id: textInputId, data })
+    textInput.value  = data
+
     this.setComponent(textInputId, textInput)
+    this.emit(textInputId, 'input.data.setted', { id: textInputId, data })
   }
 }
 

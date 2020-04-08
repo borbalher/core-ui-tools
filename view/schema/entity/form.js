@@ -1,17 +1,12 @@
 const dto = {
   '@meta' :
   {
-    extends : 'component'
+    extends : 'ui'
   },
   title :
   {
     type     : 'string',
     optional : true
-  },
-  body :
-  {
-    type   : 'schema',
-    schema : 'component'
   },
   isValid :
   {

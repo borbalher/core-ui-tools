@@ -157,7 +157,7 @@ class SchemaToFormBody
     let template = `const dto = {\n`
 
     template     += `  '@meta' : {\n`
-    template     += `    extends : 'component'\n`
+    template     += `    extends : 'data-structure/node'\n`
     template     += `  },\n`
 
     for(const key in formBodySchema)

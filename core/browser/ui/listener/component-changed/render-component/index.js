@@ -10,7 +10,8 @@ class RenderComponentObserver
 
   execute(event)
   {
-    const id = event.data.id
+    const id  = event.data.id
+
     this.ui.renderComponent(id)
   }
 }

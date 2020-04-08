@@ -1,7 +1,7 @@
 const dto = {
   '@meta' :
   {
-    extends : 'component'
+    extends : 'ui'
   },
   isBlocked :
   {

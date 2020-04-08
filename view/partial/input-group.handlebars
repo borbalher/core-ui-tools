@@ -1,0 +1,8 @@
+<div id="{{id}}" class='input-group {{#if error.hasError}}--error{{/if}}'>
+  {{> @partial-block }}
+  {{> label label=label for=input.id required=input.required}}
+</div>
+
+{{#if error}}
+  {{> error error}}
+{{/if}}

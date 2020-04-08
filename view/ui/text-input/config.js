@@ -11,11 +11,6 @@ module.exports = {
             locator : 'text-input/command/validate-input-data'
           },
           {
-            event   : 'input.data.validated',
-            map     : 'set.error.message',
-            emitTo  : 'error'
-          },
-          {
             event   : 'validate.input.data',
             locator : 'text-input/command/validate-input-data'
           },
@@ -26,7 +21,6 @@ module.exports = {
         ],
         bindings : [
           {
-            selector : '.input-group__input',
             domEvent : 'change',
             map      : 'set.input.data',
             mapper   : 'input/mapper/input-data-mapper'

@@ -40,9 +40,14 @@ class UI
   {
     const
     component                 = this.getComponentJSON(componentId),
-    renderedComponentTemplate = this.hbs.compileTemplate(component.template, component)
+    renderedComponentTemplate = this.hbs.compilePartial(component.template, component),
+    div                       = document.createElement('div')
 
-    this.document.getElementById(componentId).innerHTML = renderedComponentTemplate
+    div.innerHTML = renderedComponentTemplate.trim()
+
+    const domNode = div.firstChild
+
+    this.document.getElementById(componentId).replaceWith(domNode)
 
     this.emit('component.rendered', { id: componentId, component })
   }

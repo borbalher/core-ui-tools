@@ -110,13 +110,13 @@ class AddComponentBindingsObserver
     for(const componentPathId of path)
     {
       const
-      component                       = this.ui.getComponent(componentPathId),
-      { id, schema, template, bind }  = component,
-      schemaBindings                  = this.getBindings(schema),
-      templateBindings                = schema !== template ? this.getBindings(template)  : [],
-      bindings                        = [...schemaBindings, ...templateBindings]
+      component                 = this.ui.getComponent(componentPathId),
+      { id, schema, template }  = component,
+      schemaBindings            = this.getBindings(schema),
+      templateBindings          = schema !== template ? this.getBindings(template)  : [],
+      bindings                  = [...schemaBindings, ...templateBindings]
 
-      if(bindings && bind)
+      if(bindings)
       {
         for(const { selector, domEvent, map, emitTo, preventDefault, mapper } of bindings)
         {

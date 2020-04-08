@@ -1,26 +1,14 @@
 const dto = {
   '@meta' :
   {
-    extends : 'component'
+    extends : 'ui'
   },
-  key :
+  attribute :
   {
     type        : 'string',
-    optional    : true,
-    'not-empty' : false
-  },
-  label :
-  {
-    type        : 'string',
-    optional    : true,
     'not-empty' : false
   },
   value :
-  {
-    type     : 'string',
-    optional : true
-  },
-  data :
   {
     type     : 'json',
     optional : true
@@ -39,11 +27,6 @@ const dto = {
   {
     type    : 'boolean',
     default : false
-  },
-  error :
-  {
-    type   : 'schema',
-    schema : 'error'
   }
 }
 

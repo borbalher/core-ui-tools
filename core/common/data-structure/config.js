@@ -5,10 +5,10 @@ module.exports = {
     {
       composer :
       {
-        'data-structure/edge'   : `${__dirname}/schema/value-object/edge`,
-        'data-structure/graph'  : `${__dirname}/schema/value-object/graph`,
-        'data-structure/node'   : `${__dirname}/schema/value-object/node`,
-        'data-structure/tree'   : `${__dirname}/schema/value-object/tree`
+        'data-structure/edge'  : `${__dirname}/schema/value-object/edge`,
+        'data-structure/graph' : `${__dirname}/schema/value-object/graph`,
+        'data-structure/node'  : `${__dirname}/schema/value-object/node`,
+        'data-structure/tree'  : `${__dirname}/schema/value-object/tree`
       },
       validator :
       {

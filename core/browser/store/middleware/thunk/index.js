@@ -1,7 +1,4 @@
 /**
- * Lets you dispatch special actions with a { promise } field.
- *
-/**
  * Lets you dispatch a function instead of an action.
  * This function will receive `dispatch` and `getState` as arguments.
  *
@@ -10,11 +7,12 @@
  *
  * `dispatch` will return the return value of the dispatched function.
  */
-const thunk = store => next => action => {
-  if (typeof action === 'function')
+const thunk = store => next => action =>
+{
+  if(typeof action === 'function')
     return action(store.dispatch, store.getState)
-  else
-    return next(action)
+
+  return next(action)
 }
 
 module.exports = thunk

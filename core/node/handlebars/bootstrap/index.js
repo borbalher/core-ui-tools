@@ -20,10 +20,10 @@ class HandlebarsBootstrap
     }
 
     require('../../../../../../src/api/www/assets/handlebars/partials')
-    require('../../../../../../src/api/www/assets/handlebars/templates')
+    // require('../../../../../../src/api/www/assets/handlebars/templates')
 
     delete require.cache[require.resolve('../../../../../../src/api/www/assets/handlebars/partials')]
-    delete require.cache[require.resolve('../../../../../../src/api/www/assets/handlebars/templates')]
+    // delete require.cache[require.resolve('../../../../../../src/api/www/assets/handlebars/templates')]
 
     coreHbs.addTemplates(Handlebars.templates)
     coreHbs.addPartials(Handlebars.partials)

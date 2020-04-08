@@ -1,16 +1,7 @@
 const dto = {
   '@meta' :
   {
-    inmutable : false,
-    extends   : 'component'
-  },
-  classList :
-  {
-    type        : 'string',
-    collection  : true,
-    optional    : true,
-    enum        : ['input-group__error'],
-    default     : ['input-group__error']
+    extends : 'ui'
   },
   hasError :
   {

@@ -1,7 +1,7 @@
 module.exports = {
   '@meta' :
   {
-    extends : 'component'
+    extends : 'data-structure/node'
   },
   lang :
   {

@@ -9,8 +9,11 @@ class ViewModelFetcherObserverLocator
 
   locate()
   {
-    const viewModel = this.locator.locate('core/view-model')
-    return new ViewModelFetcherObserver(viewModel)
+    const
+    viewModel  = this.locator.locate('core/view-model'),
+    repository = this.locator.locate('infrastructure/ui/repository')
+
+    return new ViewModelFetcherObserver(viewModel, repository)
   }
 }
 

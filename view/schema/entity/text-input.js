@@ -3,6 +3,11 @@ const dto = {
   {
     extends : 'input'
   },
+  value :
+  {
+    type     : 'string',
+    optional : true
+  },
   autocomplete :
   {
     type    : 'boolean',
@@ -18,7 +23,7 @@ const dto = {
     type     : 'string',
     optional : true
   },
-  regexp :
+  pattern :
   {
     type     : 'string',
     optional : true

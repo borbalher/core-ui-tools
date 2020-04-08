@@ -19,7 +19,7 @@ class HandlebarsBootstrap
     }
 
     require('../../../../../../src/api/www/assets/handlebars/partials')
-    require('../../../../../../src/api/www/assets/handlebars/templates')
+    // require('../../../../../../src/api/www/assets/handlebars/templates')
 
     coreHbs.addTemplates(window.Handlebars.templates)
     coreHbs.addPartials(window.Handlebars.partials)

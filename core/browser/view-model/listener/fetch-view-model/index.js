@@ -3,14 +3,23 @@
  */
 class ViewModelFetcherObserver
 {
-  constructor(viewModel)
+  constructor(viewModel, repository)
   {
-    this.viewModel = viewModel
+    this.viewModel  = viewModel
+    this.repository = repository
   }
 
   execute()
   {
-    this.viewModel.fetchViewModel()
+    this.repository.fetchViewModel()
+      .then((viewModel) =>
+      {
+        this.viewModel.setViewModel(viewModel)
+      })
+      .catch((error) =>
+      {
+        console.error(error)
+      })
   }
 }
 

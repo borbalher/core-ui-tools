@@ -47,7 +47,7 @@ class SchemaComposer
     }
     catch(error)
     {
-      console.log(error)
+      console.log(schemaName, error, schema)
     }
 
     if(Object.isFrozen(schema))

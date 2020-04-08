@@ -15,7 +15,7 @@ const crashReport = store => next => action =>
       state : store.getState()
     })
 
-    throw err
+    throw error
   }
 }
 

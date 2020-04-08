@@ -21,8 +21,7 @@ module.exports =
         'toLowerCase'    : 'core/handlebars/helper/to-lower-case',
         'toUpperCase'    : 'core/handlebars/helper/to-upper-case',
         'unless'         : 'core/handlebars/helper/unless',
-        'exists'         : 'core/handlebars/helper/exists',
-        'component'      : 'core/handlebars/helper/component'
+        'exists'         : 'core/handlebars/helper/exists'
       }
     },
     bootstrap :

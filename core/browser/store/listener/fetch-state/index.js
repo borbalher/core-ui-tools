@@ -3,14 +3,23 @@
  */
 class FetchStateObserver
 {
-  constructor(store)
+  constructor(store, repository)
   {
-    this.store = store
+    this.store      = store
+    this.repository = repository
   }
 
   execute()
   {
-    this.store.fetchState()
+    this.repository.fetchState()
+      .then((state) =>
+      {
+        this.store.setState(state)
+      })
+      .catch((error) =>
+      {
+        console.error(error)
+      })
   }
 }
 
