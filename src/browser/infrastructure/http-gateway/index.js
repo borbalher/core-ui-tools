@@ -33,7 +33,7 @@ class HTTPGateway
     {
       return {
         ...options,
-        data : typeof data !== 'string' ? JSON.stringify(data) : data
+        body : typeof data !== 'string' ? JSON.stringify(data) : data
       }
     }
     else

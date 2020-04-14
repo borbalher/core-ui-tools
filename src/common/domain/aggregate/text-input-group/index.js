@@ -1,42 +1,61 @@
 const Component = require('../component')
+
 class TextInputGroupComponent extends Component
 {
-  validateInputData(textInputGroupId)
+  validateInput(textInputGroupId, value)
   {
     const
-    textInputGroup   = this.getComponentContext(textInputGroupId),
-    { input, label } = textInputGroup
+    textInputGroup = this.getComponentContext(textInputGroupId),
+    { input: { required, pattern, title }, label } = textInputGroup
 
-    if(input.required && (!input.value || input.value.trim() === ''))
+    let
+    message = null,
+    code    = null
+
+    if(required && (!value || value.trim() === ''))
     {
-      textInputGroup.error = { message: `${label} is required`, code: 'E_INPUT_REQUIRED' }
+      message = `${label} is required`
+      code    = 'E_INPUT_REQUIRED'
     }
-    else if(input.pattern)
+    else if(pattern)
     {
       const
-      regexp = new RegExp(input.pattern),
-      match  = regexp.exec(input.value)
+      regexp = new RegExp(pattern),
+      match  = regexp.exec(value)
 
       if(!match)
-        textInputGroup.error = { message: input.title ? `Format must be ${input.title}` : 'Format invalid', code: 'E_INPUT_FORMAT_INVALID' }
+      {
+        message = title ? title : `Format invalid`
+        code    = 'E_INPUT_FORMAT_INVALID'
+      }
+    }
+
+    if(message)
+    {
+      document.getElementById(textInputGroupId).querySelector('.input-group__error').innerHTML = message
+      document.getElementById(textInputGroupId).classList.add('--error')
     }
     else
     {
-      textInputGroup.error  = { }
+      document.getElementById(textInputGroupId).querySelector('.input-group__error').innerHTML = ''
+      document.getElementById(textInputGroupId).classList.remove('--error')
     }
 
-    this.setComponent(textInputGroupId, textInputGroup)
-    this.emit(textInputGroupId, 'input.data.validated', { id: textInputGroupId, isValid: !!textInputGroup.error.message })
-  }
+    this.setComponent(textInputGroupId, {
+      ...textInputGroup,
+      input :
+      {
+        ...textInputGroup.input,
+        value
+      },
+      error :
+      {
+        message,
+        code
+      }
+    })
 
-  setInputData(textInputGroupId, data)
-  {
-    const textInputGroup = this.getComponentContext(textInputGroupId)
-
-    textInputGroup.input.value  = data
-
-    this.setComponent(textInputGroupId, textInputGroup)
-    this.emit(textInputGroupId, 'input.data.setted', { id: textInputGroupId, data })
+    this.emit(textInputGroupId, 'input.validated', { value, isValid: !message })
   }
 }
 

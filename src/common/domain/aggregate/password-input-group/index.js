@@ -1,29 +1,61 @@
 const Component = require('../component')
+
 class PasswordInputGroupComponent extends Component
 {
-  validateInputData(passwordInputGroupId)
+  validateInput(passwordInputGroupId, value)
   {
     const
-    passwordInputGroup      = this.getComponentContext(passwordInputGroupId),
-    { input, error, label } = passwordInputGroup
+    passwordInputGroup = this.getComponentContext(passwordInputGroupId),
+    { input: { required, pattern, title }, label } = passwordInputGroup
 
-    if(input.required && (!input.value || input.value.trim() === ''))
-      passwordInputGroup.error = { message: `${label} is required` }
+    let
+    message = null,
+    code    = null
+
+    if(required && (!value || value.trim() === ''))
+    {
+      message = `${label} is required`
+      code    = 'E_INPUT_REQUIRED'
+    }
+    else if(pattern)
+    {
+      const
+      regexp = new RegExp(pattern),
+      match  = regexp.exec(value)
+
+      if(!match)
+      {
+        message = title ? title : `Format invalid`
+        code    = 'E_INPUT_FORMAT_INVALID'
+      }
+    }
+
+    if(message)
+    {
+      document.getElementById(passwordInputGroupId).querySelector('.input-group__error').innerHTML = message
+      document.getElementById(passwordInputGroupId).classList.add('--error')
+    }
     else
-      passwordInputGroup.error  = undefined
+    {
+      document.getElementById(passwordInputGroupId).querySelector('.input-group__error').innerHTML = ''
+      document.getElementById(passwordInputGroupId).classList.remove('--error')
+    }
 
-    this.setComponent(passwordInputGroupId, passwordInputGroup)
-    this.emit(passwordInputGroupId, 'input.data.validated', { id: passwordInputGroupId, isValid: !!error.message })
-  }
+    this.setComponent(passwordInputGroupId, {
+      ...passwordInputGroup,
+      input :
+      {
+        ...passwordInputGroup.input,
+        value
+      },
+      error :
+      {
+        message,
+        code
+      }
+    })
 
-  setInputData(passwordInputGroupId, data)
-  {
-    const passwordInputGroup = this.getComponentContext(passwordInputGroupId)
-
-    passwordInputGroup.input.value  = data
-
-    this.setComponent(passwordInputGroupId, passwordInputGroup)
-    this.emit(passwordInputGroupId, 'input.data.setted', { id: passwordInputGroupId, data })
+    this.emit(passwordInputGroupId, 'input.validated', { value, isValid: !message })
   }
 }
 

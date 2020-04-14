@@ -5,7 +5,7 @@ class FormMapperMapper
     return {
       data :
       {
-        id : domEvent.target.id
+        form : domEvent.target
       }
     }
   }

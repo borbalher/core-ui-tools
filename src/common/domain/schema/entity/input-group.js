@@ -9,12 +9,6 @@ const dto = {
     optional    : true,
     'not-empty' : false
   },
-  input :
-  {
-    type   : 'schema',
-    schema : 'input'
-
-  },
   error :
   {
     type     : 'schema',

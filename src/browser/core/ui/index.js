@@ -24,15 +24,30 @@ class UI
 
     this.tree               = newTree
 
-    const path = newTree.bfs(newTree.root)
+    const
+    path    = newTree.bfs(newTree.root),
+    exclude = []
+
+    path.shift()
+
     for(const nodeId of path)
     {
       const
-      previousNode = previousTree.nodes.getItem(nodeId),
-      newNode      = newTree.nodes.getItem(nodeId)
+      previousNode        = previousTree.nodes.getItem(nodeId),
+      previousNodeContext = previousTree.getJSON(nodeId, false)[previousNode.name],
+      newNode             = newTree.nodes.getItem(nodeId),
+      newNodeContext      = newTree.getJSON(nodeId, false)[newNode.name]
 
-      if(!this.object.isEqual(previousNode, newNode))
-        this.setComponent(nodeId, newNode)
+      if(!this.object.isEqual(previousNodeContext, newNodeContext) && exclude.indexOf(nodeId) === -1)
+      {
+        const edges = this.tree.edges.getItem(nodeId) || []
+        for(const edge of edges)
+          exclude.push(edge.target)
+
+        this.setComponent(nodeId, newNodeContext)
+        this.renderComponent(nodeId)
+        this.bindComponent(nodeId)
+      }
     }
   }
 
@@ -79,7 +94,7 @@ class UI
     for(const edge of edges)
       this.tree.addEdge(edge)
 
-    this.channel.emit('component.changed', { id: componentId })
+    this.channel.emit('component.setted', { id: componentId })
   }
 
   isComponent(element)
@@ -209,7 +224,10 @@ class UI
         this.bus.createChannel(nodeId)
       else
         this.bus.clear(nodeId)
+    }
 
+    for(const nodeId of path)
+    {
       const
       component  = this.getComponent(nodeId),
       observers  = this.getObservers(component)
@@ -233,6 +251,7 @@ class UI
     for(const listenToChannel of listenToChannels)
       this.addComponentObserver(listenToChannel, emitToChannels, event, map, locator, mapper)
   }
+
   addComponentObserver(listenToChannel, emitToChannels, eventName, map, locator, mapper)
   {
     for(const emitToChannel of emitToChannels)

@@ -83,7 +83,7 @@
         border-color: map-get($palette, color-error);
       }
     }
-    & + .input-group__error {
+    & .input-group__error {
       display: block;
       color: map-get($palette, color-error);
       margin-bottom: 1rem;

@@ -2,7 +2,7 @@ class JSONToTree
 {
   isNode(element)
   {
-    return typeof element === 'object' &&
+    return element && typeof element === 'object' &&
            element.hasOwnProperty('id') &&
            element.hasOwnProperty('name')
   }

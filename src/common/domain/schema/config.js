@@ -23,6 +23,7 @@ module.exports = {
         'entity/form'                 : `${__dirname}/entity/form`,
         'entity/input'                : `${__dirname}/entity/input`,
         'entity/page'                 : `${__dirname}/entity/page`,
+        'entity/input-group'          : `${__dirname}/entity/input-group`,
         'entity/password-input-group' : `${__dirname}/entity/password-input-group`,
         'entity/text-input-group'     : `${__dirname}/entity/text-input-group`,
         'entity/component'            : `${__dirname}/entity/component`

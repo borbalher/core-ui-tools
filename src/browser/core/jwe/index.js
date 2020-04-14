@@ -63,13 +63,12 @@ class JWE
     encrypted               = this.getFullCipher(ciphertext, authTag),
     key                     = await this.unwrapKey(cke),
     decryptionAlgorithm     = { ...this.keyWrappingAlgorithm, iv, additionalData },
-    decryptedContent        = this.crypto.decrypt(decryptionAlgorithm, key, encrypted),
+    decryptedContent        = await this.crypto.decrypt(decryptionAlgorithm, key, encrypted),
     decryptedContentBuffer  = new Uint8Array(decryptedContent),
     decryptedContentDecoded = this.textDecoder.decode(decryptedContentBuffer)
 
     this.jwe = JSON.parse(decryptedContentDecoded)
-    const { jwt } = this.jwe
-    this.jwt.setJWT(jwt)
+    this.jwt.setJWT(this.jwe.jwt)
   }
 }
 

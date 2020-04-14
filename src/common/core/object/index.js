@@ -22,7 +22,7 @@ class CoreObject
         {
           return false
         }
-        else if(typeof objectA[attribute] === 'object')
+        else if(objectA[attribute] && typeof objectA[attribute] === 'object')
         {
           const isNestedObjectEqual = this.isEqual(objectA[attribute], objectB[attribute])
           if(!isNestedObjectEqual)

@@ -26,9 +26,9 @@ class AddDOMNodeObserversObserver
       eventMapper = mapper ? this.locator.locate(mapper) : undefined
 
       this.bus.on(listenToChannel, eventName, observer ? observer.execute.bind(observer) : (event) =>
-        {
-          this.bus.emit(emitToChannel, map  ? map : eventName, eventMapper ? eventMapper.map(event.data) : event.data)
-        })
+      {
+        this.bus.emit(emitToChannel, map  ? map : eventName, eventMapper ? eventMapper.map(event.data) : event.data)
+      })
     }
   }
 

@@ -5,31 +5,32 @@ module.exports = {
     {
       'password-input-group' :
       {
-        bindings : [
-          {
-            selector : 'input[type="password"]',
-            domEvent : 'change',
-            map      : 'set.input.data',
-            mapper   : 'input/mapper/input-data-mapper'
-          }
-        ],
         listeners : [
           {
-            event   : 'input.data.setted',
-            locator : 'password-input-group/listener/input-data-setted'
+            event   : 'validate.input',
+            locator : 'password-input-group/listener/validate-input'
           },
           {
-            event   : 'set.input.data',
-            locator : 'password-input-group/listener/set-input-data'
+            listenTo : 'input',
+            event    : 'validate.input'
+          }
+        ]
+      },
+      'password-input' :
+      {
+        bindings : [
+          {
+            domEvent : 'change',
+            map      : 'validate.input',
+            mapper   : 'input/mapper/input-data-mapper'
           }
         ]
       }
     },
     locator :
     {
-      'password-input-group/listener/input-data-setted' : `${__dirname}/listener/input-data-setted`,
-      'password-input-group/listener/set-input-data'    : `${__dirname}/listener/set-input-data`,
-      'ui/password-input-group'                         : __dirname
+      'password-input-group/listener/validate-input' : `${__dirname}/listener/validate-input`,
+      'ui/password-input-group'                      : __dirname
     }
   }
 }

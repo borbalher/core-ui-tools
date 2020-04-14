@@ -5,6 +5,7 @@
   <label class='input-group__label' for='{{input.id}}'>
     {{label}}
   </label>
+
   {{#unless input.required}}
     <span class='input-group__optional-label'>
       (optional)
@@ -12,10 +13,6 @@
   {{/unless}}
 
   <div class='input-group__error'>
-    {{#if error.hasError}}
-      <p>
-        {{error.message}}
-      </p>
-    {{/if}}
+    {{#if error.message}}{{error.message}}{{/if}}
   </div>
 </div>

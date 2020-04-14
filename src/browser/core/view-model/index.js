@@ -30,7 +30,7 @@ class ViewModel
 
   setViewModelFromState(state)
   {
-    const viewModel = JSON.parse(JSON.stringify(this.composeViewModel(state))) // TODO removing undefined
+    const viewModel = this.composeViewModel(state)
     this.setViewModel(viewModel)
   }
 

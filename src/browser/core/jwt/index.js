@@ -8,7 +8,7 @@ class JWT
     this.jwt      = this.cookies.getCookie('JWT')
   }
 
-  setToken(jwt)
+  setJWT(jwt)
   {
     this.jwt = jwt
 

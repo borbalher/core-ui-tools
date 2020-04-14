@@ -3,7 +3,7 @@ class InputValueMapper
   map(domEvent)
   {
     return {
-      data : domEvent.target.value
+      value : domEvent.target.value
     }
   }
 }

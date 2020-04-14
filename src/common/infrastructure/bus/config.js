@@ -21,10 +21,9 @@ module.exports = {
         {
           listeners :
           {
-            'app.initialized' : { 'core/listener/app-initialized': true },
-            'core.error'      : { 'core/listener/error': true },
-            'core.warning'    : { 'core/listener/warning': true },
-            'core.info'       : { 'core/listener/info': true }
+            'core.error'   : { 'core/listener/error': true },
+            'core.warning' : { 'core/listener/warning': true },
+            'core.info'    : { 'core/listener/info': true }
           }
         }
       }
