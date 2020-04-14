@@ -10,7 +10,7 @@ class ListenerLocator
   locate()
   {
     const
-    bus           = this.locator.locate('core/bus'),
+    bus           = this.locator.locate('infrastructure/bus'),
     ui            = this.locator.locate('core/ui'),
     configuration = this.locator.locate('core/configuration')
 

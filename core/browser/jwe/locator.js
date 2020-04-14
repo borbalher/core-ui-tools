@@ -19,7 +19,7 @@ class JWELocator
       base64        : this.locator.locate('core/base64'),
       authorization : this.locator.locate('core/authorization'),
       textDecoder   : this.locator.locate('core/text-decoder'),
-      bus           : this.locator.locate('core/bus')
+      bus           : this.locator.locate('infrastructure/bus')
     })
   }
 }

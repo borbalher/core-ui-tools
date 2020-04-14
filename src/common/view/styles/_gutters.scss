@@ -1,0 +1,38 @@
+%gutter-xs {
+  margin: 0 0 1rem;
+}
+
+%gutter-sm {
+  margin: 0 .25rem 1.5rem;
+}
+
+%gutter-md {
+  margin: 0 .5rem 2rem;  
+}
+
+%gutter-lg {
+  margin: 0 1rem 3rem;  
+}
+
+%gutter-xl {
+  margin: 0 1.5rem 4rem;  
+}
+
+[class*='--small'] {
+  @extend %gutter-xs;
+  font-size: .5em;
+}
+
+[class*='--large'] {
+  @extend %gutter-lg;
+  font-size: 2em;
+}
+
+[class*='--xlarge'] {
+  @extend %gutter-xl;
+  font-size: 3em;
+}
+
+[class*='--right'] {
+  text-align: right;
+}

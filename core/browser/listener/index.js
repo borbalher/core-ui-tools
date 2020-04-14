@@ -41,7 +41,7 @@ class Listener
 
   getComponentIdByName(componentId, name)
   {
-    const props = this.ui.getComponentJSON(componentId)
+    const props = this.ui.getComponentContext(componentId)
 
     if(this.isComponent(props[name]))
       return props[name].id

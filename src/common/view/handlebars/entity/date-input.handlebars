@@ -1,0 +1,27 @@
+<div  class='input-group {{#if error}} --error {{/if}} {{#if displayMode}} --display-mode {{/if}}'>
+  <input  class='input-group__input'
+          {{#if required}} required {{/if}}
+          {{#if disabled}} disabled {{/if}}
+          {{#if readOnly}} readonly {{/if}}
+          {{#if maxLength}} maxlength='{{maxLength}}' {{/if}}
+          {{#if placeholder}} placeholder='{{placeholder}}' {{/if}}
+          {{#if regexp}} pattern='{{regexp}}' {{/if}}
+          autocomplete='{{#if autocomplete}}on{{/if}}{{#unless autocomplete}}off{{/unless}}'
+          type='text'
+          id='{{id}}_date-input'
+          name='{{key}}'
+          value='{{value}}'>
+  <label class='input-group__label' for='{{id}}_date-input'>
+    {{label}}
+  </label>
+  {{#unless required}}
+    <span class='number-input__optional-label'>
+      {{!-- {{translate 'OPTIONAL'}} --}} (optional)
+    </span>
+  {{/unless}}
+</div>
+{{#unless displayMode}}
+  {{#if error}}
+    {{component error}}
+  {{/if}}
+{{/unless}}

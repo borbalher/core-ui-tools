@@ -39,18 +39,7 @@ class JWE
     return this.decryptedJWE ? this.decryptedJWE.serverKey : undefined
   }
 
-  strToUint8Array(str)
-  {
-    const
-    raw       = this.base64.decode(str),
-    rawLength = raw.length,
-    array     = new Uint8Array(new ArrayBuffer(rawLength))
 
-    for(let i = 0; i < rawLength; i++)
-      array[i] = raw.charCodeAt(i)
-
-    return array
-  }
 
   getFullCipher(cipher, tag)
   {

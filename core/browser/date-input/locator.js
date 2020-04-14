@@ -11,7 +11,7 @@ class DateInputComponentLocator
   {
     const
     ui     = this.locator.locate('core/ui'),
-    bus    = this.locator.locate('core/bus'),
+    bus    = this.locator.locate('infrastructure/bus'),
     moment = this.locator.locate('core/moment')
 
     return new DateInputComponent(ui, bus, moment)

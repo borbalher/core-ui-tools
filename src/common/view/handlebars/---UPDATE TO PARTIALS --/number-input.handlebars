@@ -1,0 +1,34 @@
+<div class='input-group {{#if error}} --error {{/if}}'>
+  <div class='number-input'>
+    <input  class='number-input__input'
+            {{#if required}} required {{/if}}
+            {{#if disabled}} disabled {{/if}}
+            {{#if readOnly}} readonly {{/if}}
+            {{#if placeholder}} placeholder='{{placeholder}}'{{/if}}
+            {{#if max}} max='{{max}}' {{/if}}
+            {{#if min}} min='{{min}}' {{/if}}
+            {{#if step}} step='{{step}}' {{/if}}
+            type='number'
+            {{#if name}} name='{{name}}' {{/if}}
+            id='{{id}}'
+            value='{{value}}'>
+    <label class='number-input__label' for='{{name}}'>
+      {{label}}
+    </label>
+    {{#unless required}}
+      <span class='number-input__optional-label'>
+        {{!-- {{translate 'OPTIONAL'}} --}} (optional)
+      </span>
+    {{/unless}}
+    {{#if unit}}
+      <span class='number-input__unit'>
+        {{!-- {{translate unit}} --}} {{unit}}
+      </span>
+    {{/if}}
+  </div>
+</div>
+{{#unless displayMode}}
+  {{#if error}}
+    {{component error}}
+  {{/if}}
+{{/unless}}

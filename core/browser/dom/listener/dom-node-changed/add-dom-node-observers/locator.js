@@ -10,7 +10,7 @@ class AddDOMNodeObserversLocator
   locate()
   {
     const
-    bus           = this.locator.locate('core/bus'),
+    bus           = this.locator.locate('infrastructure/bus'),
     dom           = this.locator.locate('core/dom'),
     configuration = this.locator.locate('core/configuration')
 

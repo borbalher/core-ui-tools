@@ -11,7 +11,7 @@ class CheckboxInputComponentLocator
   {
     const
     ui  = this.locator.locate('core/ui'),
-    bus = this.locator.locate('core/bus')
+    bus = this.locator.locate('infrastructure/bus')
 
     return new CheckboxInputComponent(ui, bus)
   }

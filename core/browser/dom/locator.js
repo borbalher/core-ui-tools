@@ -10,9 +10,9 @@ class DOMLocator
   locate()
   {
     const
-    treeFactory = this.locator.locate('data-structure/tree/factory'),
-    bus         = this.locator.locate('core/bus'),
-    hbs         = this.locator.locate('core/handlebars')
+    treeFactory = this.locator.locate('data-structure/tree'),
+    bus         = this.locator.locate('infrastructure/bus'),
+    hbs         = this.locator.locate('view/handlebars')
 
     return new DOM(treeFactory, hbs, bus)
   }
