@@ -8,6 +8,12 @@ const dto = {
     type        : 'string',
     'not-empty' : false
   },
+  title :
+  {
+    type        : 'string',
+    'not-empty' : false,
+    optional    : true
+  },
   value :
   {
     type     : 'json',

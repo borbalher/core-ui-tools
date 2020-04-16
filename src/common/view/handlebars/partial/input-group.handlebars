@@ -1,10 +1,12 @@
-<div id="{{id}}" class='input-group {{#if error.message}}--error{{/if}}'>
+<div id="{{id}}" class='input-group {{template}} {{#if error.message}}--error{{/if}}'>
 
   {{> @partial-block }}
 
-  <label class='input-group__label' for='{{input.id}}'>
-    {{label}}
-  </label>
+  {{#if label}}
+    <label class='input-group__label' for='{{input.id}}'>
+      {{label}}
+    </label>
+  {{/if}}
 
   {{#unless input.required}}
     <span class='input-group__optional-label'>

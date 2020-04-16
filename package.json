@@ -5,7 +5,6 @@
   "bugs": {
     "url": "https://github.com/borbalher/core-ui-tools/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "@superhero/request": "2.1.0",
     "cookies": "0.7.3",
@@ -54,5 +53,5 @@
     "linter-and-fix": "eslint core/**/**.js view/**/**.js --fix",
     "test": "mocha 'core/**/*.test.js' 'view/**/*.test.js' --config .mocharc.json"
   },
-  "version": "1.0.3"
+  "version": "1.0.4"
 }

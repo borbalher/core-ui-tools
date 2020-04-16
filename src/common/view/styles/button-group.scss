@@ -1,6 +1,6 @@
 @import '_colors.scss';
 
-.input-group__btn-group{
+.input-group {
   input[type="radio"]
   {
     display: none;
@@ -47,14 +47,17 @@
         }
       }
     }
-    &__label{
-      font-size: 14px;
-      color: map-get($palette, color-grey);
-      display: inline-block;
-      &:after{
-        content: ':';
-        margin-right: 10px;
-      }
+  }
+}
+
+.button-group-input-group {
+  .input-group__label{
+    font-size: 14px;
+    color: map-get($palette, color-grey);
+    display: inline-block;
+    &:after{
+      content: ':';
+      margin-right: 10px;
     }
   }
 }

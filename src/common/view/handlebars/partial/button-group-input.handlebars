@@ -1,23 +1,15 @@
-<div id="{{id}}" class='input-group'>
-  <div class='input-group__btn-group btn-group'>
-    <div class='btn-group__label'>
-      {{label}}
+<div id="{{id}}" class='btn-group__buttons'>
+  {{#each buttons as |button|}}
+    <div class='btn-group__button-container'>
+      <input
+        type='radio'
+        id='{{button.id}}_radio-button'
+        value='{{button.id}}'
+        {{#if button.selected}}checked{{/if}}
+        name='{{../name}}'>
+      <label class='btn-group__button' for='{{button.id}}_radio-button'>
+        {{button.name}}
+      </label>
     </div>
-    <div class='btn-group__buttons'>
-      {{#each buttons as |button|}}
-        <div class='btn-group__button-container'>
-          <input
-            type='radio'
-            id='{{button.id}}_radio-button'
-            value='{{button.id}}'
-            {{#if button.selected}}checked{{/if}}
-            name='{{../name}}'>
-          <label class='btn-group__button' for='{{button.id}}_radio-button'>
-            {{button.name}}
-          </label>
-        </div>
-      {{/each}}
-    </div>
-  </div>
+  {{/each}}
 </div>
-{{> error}}

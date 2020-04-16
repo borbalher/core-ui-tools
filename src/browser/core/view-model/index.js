@@ -17,8 +17,9 @@ class ViewModel
   getPage()
   {
     const
-    url  = new URL(window.location.href),
-    page = `${url.pathname.slice(1)}-page`
+    url      = new URL(window.location.href),
+    pathname = url.pathname.slice(1),
+    page     = `${pathname !== '' ? pathname : 'home'}-page`
 
     return page
   }
