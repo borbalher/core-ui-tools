@@ -215,22 +215,31 @@ class UI
     })
   }
 
-  listenComponent(id)
+  bootstrap()
   {
-    const path  = this.getSubtreePath(id)
+    const
+    root = this.tree.root,
+    path = this.tree.bfs(root).reverse()
     for(const nodeId of path)
     {
       if(!this.bus.getChannel(nodeId))
         this.bus.createChannel(nodeId)
       else
         this.bus.clear(nodeId)
-    }
 
-    for(const nodeId of path)
-    {
       const
-      component  = this.getComponent(nodeId),
-      observers  = this.getObservers(component)
+      component = this.getComponent(nodeId),
+      observers = this.getObservers(component),
+      bindings  = this.getBindings(component)
+
+      if(bindings.length)
+      {
+        for(const { selector, domEvent, map, emitTo, preventDefault, mapper } of bindings)
+        {
+          const channels = emitTo ? this.getChannels(emitTo, component) : [component.id]
+          this.addDOMBindings(channels, `#${nodeId}${selector ? ` ${selector}` : ''}`, domEvent, map, preventDefault, mapper)
+        }
+      }
 
       if(observers.length)
       {

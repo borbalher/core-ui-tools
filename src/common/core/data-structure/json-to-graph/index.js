@@ -1,19 +1,14 @@
+const isNode = require('../is-node')
+
 class JSONToGraph
 {
-  isNode(element)
-  {
-    return element && typeof element === 'object' &&
-           element.hasOwnProperty('id') &&
-           element.hasOwnProperty('name')
-  }
-
   jsonToGraph(json, isDirected = false)
   {
     const
     nodes = [],
     edges = []
 
-    if(this.isNode(json))
+    if(isNode(json))
     {
       const startNode = this.mapNode(json, nodes, edges, isDirected)
       nodes.push(startNode)
@@ -31,7 +26,7 @@ class JSONToGraph
 
     for(const key of keys)
     {
-      if(this.isNode(element[key]))
+      if(isNode(element[key]))
       {
         const
         child     = element[key],

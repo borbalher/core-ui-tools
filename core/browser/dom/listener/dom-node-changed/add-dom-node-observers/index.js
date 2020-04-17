@@ -40,8 +40,8 @@ class AddDOMNodeObserversObserver
   isNode(element)
   {
     return typeof element === 'object' &&
-           element.hasOwnProperty('id') &&
-           element.hasOwnProperty('name')
+           element.hasOwnProperty('id') && element.id &&
+           element.hasOwnProperty('name') && element.name
   }
 
   getNodeIdByName(nodeId, name)

@@ -92,7 +92,7 @@ class Graph
     queue   = new Queue()
 
     if(!this.nodes.getItem(startNodeId))
-      throw new NodeNotExist('Start node does not exists')
+      return path
 
     visited[startNodeId] = true
     queue.enqueue(startNodeId)
@@ -127,7 +127,7 @@ class Graph
     path    = []
 
     if(!this.nodes.getItem(startNodeId))
-      throw new NodeNotExist('Start node does not exists')
+      return path
 
     this.recursiveDFS(startNodeId, visited, path)
 

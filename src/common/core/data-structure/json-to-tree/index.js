@@ -1,12 +1,7 @@
+const isNode = require('../is-node')
+
 class JSONToTree
 {
-  isNode(element)
-  {
-    return element && typeof element === 'object' &&
-           element.hasOwnProperty('id') &&
-           element.hasOwnProperty('name')
-  }
-
   jsonToTree(json)
   {
     const
@@ -14,7 +9,7 @@ class JSONToTree
     edges = []
 
     let root
-    if(this.isNode(json))
+    if(isNode(json))
     {
       const rootNode = this.mapNode(json, nodes, edges)
       nodes.push(rootNode)
@@ -33,7 +28,7 @@ class JSONToTree
 
     for(const key of keys)
     {
-      if(this.isNode(element[key]))
+      if(isNode(element[key]))
       {
         const
         child     = element[key],

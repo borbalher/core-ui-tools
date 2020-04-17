@@ -1,7 +1,7 @@
 module.exports = (element) =>
 {
-  return typeof element === 'object' &&
-         (element.hasOwnProperty('source')  && typeof element.source  === 'string') &&
-         (element.hasOwnProperty('target')  && typeof element.target  === 'string') &&
-         (element.hasOwnProperty('payload') && typeof element.payload === 'object')
+  return (typeof element === 'object' && element) &&
+         (element.hasOwnProperty('source') && element.source) &&
+         (element.hasOwnProperty('target') && element.target) &&
+         element.hasOwnProperty('payload')
 }

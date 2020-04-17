@@ -7,10 +7,7 @@ class UIBootstrap
 
   bootstrap()
   {
-    const pageId = this.ui.tree.root
-
-    this.ui.listenComponent(pageId)
-    this.ui.bindComponent(pageId)
+    this.ui.bootstrap()
   }
 }
 
