@@ -10,14 +10,14 @@ class ViewModelToTree
 
     if(isNode(viewModel))
     {
-      const startNode = this.mapNode(viewModel, nodes, edges, isDirected)
+      const startNode = this.mapNode(viewModel, nodes, edges)
       nodes.push(startNode)
     }
 
     return { nodes, edges, isDirected: true }
   }
 
-  mapNode(element, nodes, edges, isDirected)
+  mapNode(element, nodes, edges)
   {
     const
     { id, name } = element,
@@ -30,7 +30,7 @@ class ViewModelToTree
       {
         const
         child     = element[key],
-        childNode = this.mapNode(child, nodes, edges, isDirected)
+        childNode = this.mapNode(child, nodes, edges)
 
         nodes.push(childNode)
         edges.push({ source: element.id, target: childNode.id, payload: {} })
