@@ -12,7 +12,7 @@
     "handlebars": "^4.5.2",
     "jwk-to-pem": "^2.0.1",
     "lodash.isequal": "4.5.0",
-    "moment": "^2.24.0",
+    "moment": "2.24.0",
     "node-fetch": "2.6.0",
     "requirejs": "2.3.6",
     "superhero": "2.0.0-beta.33",
@@ -53,5 +53,5 @@
     "linter-and-fix": "eslint core/**/**.js view/**/**.js --fix",
     "test": "mocha 'core/**/*.test.js' 'view/**/*.test.js' --config .mocharc.json"
   },
-  "version": "1.0.5"
+  "version": "1.0.6"
 }

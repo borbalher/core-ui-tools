@@ -1,16 +1,18 @@
+const isComponent = require('../is-component')
+
 class UI
 {
-  constructor(initialViewModel, treeFactory, hbs, channel, treeUtils, object, locator, bus, configuration)
+  constructor(initialViewModel, treeFactory, hbs, channel, viewModelToTree, object, locator, bus, configuration)
   {
-    this.treeFactory   = treeFactory
-    this.hbs           = hbs
-    this.channel       = channel
-    this.treeUtils     = treeUtils
-    this.object        = object
-    this.locator       = locator
-    this.bus           = bus
-    this.configuration = configuration
-    this.tree          = this.createTreeFromContext(initialViewModel)
+    this.treeFactory      = treeFactory
+    this.hbs              = hbs
+    this.channel          = channel
+    this.viewModelToTree  = viewModelToTree
+    this.object           = object
+    this.locator          = locator
+    this.bus              = bus
+    this.configuration    = configuration
+    this.tree             = this.createTreeFromContext(initialViewModel)
 
     this[Symbol.for('id')] = `${new URL(window.location.href).pathname.slice(1)}-page`
   }
@@ -18,7 +20,7 @@ class UI
   update(viewModel)
   {
     const
-    { nodes, edges, root }  = this.treeUtils.jsonToTree(viewModel),
+    { nodes, edges, root }  = this.viewModelToTree.map(viewModel),
     newTree                 = this.treeFactory.create(nodes, edges, root),
     previousTree            = this.tree
 
@@ -97,20 +99,11 @@ class UI
     this.channel.emit('component.setted', { id: componentId })
   }
 
-  isComponent(element)
-  {
-    return typeof element === 'object' &&
-           element.hasOwnProperty('id') &&
-           element.hasOwnProperty('name') &&
-           element.hasOwnProperty('template') &&
-           element.hasOwnProperty('schema')
-  }
-
   getComponentIdByName(componentId, name)
   {
     const context = this.getComponentContext(componentId)
 
-    if(this.isComponent(context[name]))
+    if(isComponent(context[name]))
       return context[name].id
 
     return name

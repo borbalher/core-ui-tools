@@ -22,12 +22,12 @@ class UILocator
     treeFactory       = this.locator.locate('data-structure/tree'),
     hbs               = this.locator.locate('view/handlebars'),
     channel           = this.locator.locate('infrastructure/bus').createChannel('ui'),
-    jsonToTree        = this.locator.locate('data-structure/json-to-tree'),
+    viewModelToTree   = this.locator.locate('core/mapper/view-model-to-tree'),
     object            = this.locator.locate('core/object'),
     bus               = this.locator.locate('infrastructure/bus'),
     configuration     = this.locator.locate('core/configuration')
 
-    return new UI(initialViewModel, treeFactory, hbs, channel, jsonToTree, object, this.locator, bus, configuration)
+    return new UI(initialViewModel, treeFactory, hbs, channel, viewModelToTree, object, this.locator, bus, configuration)
   }
 }
 
