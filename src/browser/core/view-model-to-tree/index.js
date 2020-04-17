@@ -10,11 +10,11 @@ class ViewModelToTree
 
     if(isNode(viewModel))
     {
-      const startNode = this.mapNode(viewModel, nodes, edges)
-      nodes.push(startNode)
+      const page = this.mapNode(viewModel, nodes, edges)
+      nodes.push(page)
     }
 
-    return { nodes, edges, isDirected: true }
+    return { nodes, edges, isDirected: true, root: page.id }
   }
 
   mapNode(element, nodes, edges)
