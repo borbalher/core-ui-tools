@@ -82,13 +82,13 @@ class UI
 
   createTreeFromContext(context)
   {
-    const { nodes, edges, root } = this.treeUtils.jsonToTree(context)
+    const { nodes, edges, root } = this.viewModelToTree.map(context)
     return this.treeFactory.create(nodes, edges, root)
   }
 
   setComponent(componentId, context)
   {
-    const { nodes, edges } = this.treeUtils.jsonToTree(context)
+    const { nodes, edges } = this.viewModelToTree.map(context)
 
     for(const node of nodes)
       this.tree.addNode(node)
