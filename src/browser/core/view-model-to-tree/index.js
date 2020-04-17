@@ -1,23 +1,37 @@
-const isNode = require('../is-component')
+const isComponent = require('../is-component')
 
 class ViewModelToTree
 {
   map(viewModel)
   {
-    const
-    nodes = [],
-    edges = []
-
-    if(isNode(viewModel))
+    if(isComponent(viewModel))
     {
-      const page = this.mapNode(viewModel, nodes, edges)
-      nodes.push(page)
-    }
+      const
+      nodes = [],
+      edges = [],
+      page  = this.mapComponent(viewModel, nodes, edges)
 
-    return { nodes, edges, isDirected: true, root: page.id }
+      nodes.push(page)
+
+      return {
+        nodes,
+        edges,
+        isDirected : true,
+        root       : page.id
+      }
+    }
+    else
+    {
+      return {
+        nodes      : [],
+        edges      : [],
+        isDirected : true,
+        root       : page.id
+       }
+    }
   }
 
-  mapNode(element, nodes, edges)
+  mapComponent(element, nodes, edges)
   {
     const
     { id, name } = element,
@@ -26,11 +40,11 @@ class ViewModelToTree
 
     for(const key of keys)
     {
-      if(isNode(element[key]))
+      if(isComponent(element[key]))
       {
         const
         child     = element[key],
-        childNode = this.mapNode(child, nodes, edges)
+        childNode = this.mapComponent(child, nodes, edges)
 
         nodes.push(childNode)
         edges.push({ source: element.id, target: childNode.id, payload: {} })
