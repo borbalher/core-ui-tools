@@ -8,7 +8,7 @@ class ViewModelToTree
     nodes = [],
     edges = []
 
-    if(isNode(json))
+    if(isNode(viewModel))
     {
       const startNode = this.mapNode(viewModel, nodes, edges, isDirected)
       nodes.push(startNode)
