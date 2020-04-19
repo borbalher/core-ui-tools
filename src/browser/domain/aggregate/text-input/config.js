@@ -3,7 +3,7 @@ module.exports = {
   {
     ui :
     {
-      'entity/text-input' :
+      'text-input' :
       {
         bindings : [
           {
@@ -16,7 +16,7 @@ module.exports = {
     },
     locator :
     {
-      'entity/text-input' : __dirname
+      'text-input' : __dirname
     }
   }
 }
