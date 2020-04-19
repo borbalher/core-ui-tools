@@ -33,7 +33,7 @@ class ComponentFactory
     channel          = this.createBusChannel(id),
     bindings         = this.getBindings(template),
     listeners        = this.getListeners(template)
-    Component        = this.locator.locate(schema)
+    Component        = this.locator.locate(template)
 
     return (ui) =>
     {
