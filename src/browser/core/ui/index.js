@@ -44,7 +44,7 @@ class UI
       previousComponentContext  = previousTree.getJSON(componentId, false)[previousComponentData.name],
       newComponentContext       = this.tree.getJSON(componentId, false)[newComponentData.name]
 
-      if(!this.object.isEqual(previousComponentContext, newComponentContext) && exclude.indexOf(componentId) !== -1)
+      if(!this.object.isEqual(previousComponentContext, newComponentContext) && exclude.indexOf(componentId) === -1)
       {
         this.onComponentChange(componentId)
         const edges = this.tree.edges.getItem(componentId) || []
