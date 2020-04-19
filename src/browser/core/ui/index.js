@@ -27,37 +27,38 @@ class UI
 
   update(viewModel)
   {
-    const
-    newTree       = this.createTreeFromContext(viewModel),
-    previousTree  = this.tree
+    const previousTree = this.tree
 
-    this.tree     = newTree
+    this.tree = this.createTreeFromContext(viewModel)
 
-    const
-    path    = newTree.bfs(newTree.root),
-    exclude = []
+    const path = this.tree.bfs(this.tree.root).reverse()
 
-    path.shift()
+    path.pop()
 
+    let exclude = []
     for(const componentId of path)
     {
       const
-      previousNode        = previousTree.nodes.getItem(componentId),
-      previousNodeContext = previousTree.getJSON(componentId, false)[previousNode.name],
-      newNode             = newTree.nodes.getItem(componentId),
-      newNodeContext      = newTree.getJSON(componentId, false)[newNode.name]
+      previousComponentData     = previousTree.nodes.getItem(componentId),
+      newComponentData          = this.tree.nodes.getItem(componentId),
+      previousComponentContext  = previousTree.getJSON(componentId, false)[previousComponentData.name],
+      newComponentContext       = this.tree.getJSON(componentId, false)[newComponentData.name]
 
-      if(!this.object.isEqual(previousNodeContext, newNodeContext) && exclude.indexOf(componentId) === -1)
+      if(!this.object.isEqual(previousComponentContext, newComponentContext) && exclude.indexOf(componentId) !== -1)
       {
+        const component = this.getComponent(componentId)
+
+        component.render()
+        component.bind()
+
         const edges = this.tree.edges.getItem(componentId) || []
         for(const edge of edges)
+        {
           exclude.push(edge.target)
 
-        this.setComponent(componentId, newNodeContext)
-        this.renderComponent(componentId)
-        this.bindComponent(componentId)
-
-        this.components.getItem(componentId)
+          const nestedComponent = this.getComponent(edge.target)
+          nestedComponent.bind()
+        }
       }
     }
   }
@@ -88,7 +89,7 @@ class UI
 
   getComponent(componentId)
   {
-    return this.components.setItem(componentId)
+    return this.components.getItem(componentId)
   }
 
   setComponentData(component)
