@@ -44,8 +44,9 @@ class UIComponent
     return isComponent(context[emitTo]) ? [context[emitTo].id] : [emitTo]
   }
 
-  getChannels(emitTo, context)
+  getChannels(emitTo)
   {
+    const context = this.getComponentContext(this[Symbol.for('id')])
     return Array.isArray(emitTo) ? this.mapEmitToArray(emitTo, context) : typeof emitTo === 'string' ? this.mapEmitToString(emitTo, context) : []
   }
 
@@ -75,8 +76,8 @@ class UIComponent
     for(const { listenTo, event, map, emitTo, locator, mapper } of this.listeners)
     {
       const
-      listenToChannels = listenTo ? this.getChannels(listenTo, component) : [this[Symbol.for('id')]],
-      emitToChannels   = emitTo   ? this.getChannels(emitTo, component)   : [this[Symbol.for('id')]]
+      listenToChannels = listenTo ? this.getChannels(listenTo) : [this[Symbol.for('id')]],
+      emitToChannels   = emitTo   ? this.getChannels(emitTo)   : [this[Symbol.for('id')]]
 
       this.addComponentListeners(listenToChannels, emitToChannels, event, map, locator, mapper)
     }
@@ -110,7 +111,7 @@ class UIComponent
   {
     for(const { selector, domEvent, map, emitTo, preventDefault, mapper } of this.bindings)
     {
-      const channels = emitTo ? this.getChannels(emitTo, component) : [component.id]
+      const channels = emitTo ? this.getChannels(emitTo) : [this[Symbol.for('id')]]
       this.addDOMBindings(channels, `#${this[Symbol.for('id')]}${selector ? ` ${selector}` : ''}`, domEvent, map, preventDefault, mapper)
     }
   }
