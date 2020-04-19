@@ -13,7 +13,8 @@ class ButtonGroupInputGroupGroupComponent extends Component
       input :
       {
         ...buttonGroupInputGroup.input,
-        buttons : buttons.map((button) =>
+        selectedButton : value,
+        buttons        : buttons.map((button) =>
         {
           return {
             ...button,
@@ -23,7 +24,7 @@ class ButtonGroupInputGroupGroupComponent extends Component
       }
     })
 
-    this.emit(buttonGroupInputGroupId, 'button.selected', { value })
+    this.emit('button.selected', { value })
   }
 }
 
