@@ -138,7 +138,7 @@ class UIComponent
 
   setComponentContext(context)
   {
-    return this.repository.setComponentContext(this[Symbol.for('id')], context)
+    return this.repository.setComponentContext(context)
   }
 }
 
