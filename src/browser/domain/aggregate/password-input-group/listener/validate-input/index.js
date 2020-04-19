@@ -11,7 +11,7 @@ class ValidateInputObserver
   execute(event)
   {
     const { meta: { emitter }, data: { value } } = event
-    this.passwordInputGroup.validateInput(emitter, value)
+    this.ui.getComponent(emitter).validateInput(value)
   }
 }
 

@@ -1,6 +1,6 @@
-const InputDataValidatedObserver = require('.')
+const ValidateInputDataObserver = require('.')
 
-class InputDataValidatedObserverLocator
+class ValidateInputDataObserverLocator
 {
   constructor(locator)
   {
@@ -9,9 +9,9 @@ class InputDataValidatedObserverLocator
 
   locate()
   {
-    const passwordInputGroup = this.locator.locate('ui/password-input-group')
-    return new InputDataValidatedObserver(passwordInputGroup)
+    const ui = this.locator.locate('core/ui')
+    return new ValidateInputDataObserver(ui)
   }
 }
 
-module.exports = InputDataValidatedObserverLocator
+module.exports = ValidateInputDataObserverLocator
