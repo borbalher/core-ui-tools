@@ -2,7 +2,7 @@ const isComponent = require('../../../core/is-component')
 
 class UIComponent
 {
-  constructor(id, bus, store, hbs, repository, channel, bindings, listeners)
+  constructor(id, bus, store, hbs, repository, channel, bindings, listeners, locator)
   {
     this[Symbol.for('id')] = id
     this.bus               = bus
@@ -12,6 +12,7 @@ class UIComponent
     this.channel           = channel
     this.bindings          = bindings
     this.listeners         = listeners
+    this.locator           = locator
 
     this.bind()
     this.listen()

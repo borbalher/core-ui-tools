@@ -36,7 +36,7 @@ class ComponentFactory
     listeners      = this.getListeners(schema)
     Component      = this.locator.locate(schema)
 
-    return new Component(id, this.bus, this.store, this.hbs, this.ui, channel, bindings, listeners)
+    return new Component(id, this.bus, this.store, this.hbs, this.ui, channel, bindings, listeners, this.locator)
   }
 }
 
