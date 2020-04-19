@@ -11,12 +11,13 @@ class Store
       this.applyMiddlewares(middlewares)
   }
 
-  composeAction(name, data)
+  composeAction(name, data, meta = {})
   {
     return  {
       meta : {
         timestamp : new Date().toISOString(),
-        name
+        name,
+        ...meta
       },
       data
     }
