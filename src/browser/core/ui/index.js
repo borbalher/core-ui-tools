@@ -72,7 +72,7 @@ class UI
   {
     const
     root = this.tree.root,
-    path = this.tree.bfs(root).reverse()
+    path = this.tree.bfs(root).shift().reverse()
     for(const componentId of path)
     {
       const
