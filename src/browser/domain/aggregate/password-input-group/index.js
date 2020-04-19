@@ -4,7 +4,9 @@ class PasswordInputGroupComponent extends Component
 {
   validateInput(value)
   {
-    const { input: { required, pattern, title }, label } = this.getComponentContext()
+    const
+    passwordInputGroup = this.getComponentContext(),
+    { input: { required, pattern, title }, label } = passwordInputGroup
 
     let
     message = null,

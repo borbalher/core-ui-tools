@@ -4,7 +4,9 @@ class TextInputGroupComponent extends Component
 {
   validateInput(value)
   {
-    const { input: { required, pattern, title }, label } = this.getComponentContext()
+    const
+    textInputGroup = this.getComponentContext(),
+    { input: { required, pattern, title }, label } = textInputGroup
 
     let
     message = null,
