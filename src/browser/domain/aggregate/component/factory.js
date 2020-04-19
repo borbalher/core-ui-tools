@@ -1,9 +1,8 @@
 class ComponentFactory
 {
-  constructor(configuration, ui, bus, locator, store, hbs)
+  constructor(configuration, bus, locator, store, hbs)
   {
     this.configuration = configuration
-    this.ui            = ui
     this.bus           = bus
     this.locator       = locator
     this.store         = store
@@ -36,7 +35,10 @@ class ComponentFactory
     listeners      = this.getListeners(schema)
     Component      = this.locator.locate(schema)
 
-    return new Component(id, this.bus, this.store, this.hbs, this.ui, channel, bindings, listeners, this.locator)
+    return (ui) =>
+    {
+      return new Component(id, this.bus, this.store, this.hbs, ui, channel, bindings, listeners, this.locator)
+    }
   }
 }
 

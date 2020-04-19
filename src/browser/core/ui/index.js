@@ -77,7 +77,7 @@ class UI
     {
       const
       componentData = this.getComponentData(componentId),
-      component     = this.componentFactory.create(componentData)
+      component     = this.componentFactory.create(componentData)(this)
 
       this.components.setItem(componentId, component)
     }
