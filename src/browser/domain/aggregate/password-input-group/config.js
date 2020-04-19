@@ -3,7 +3,7 @@ module.exports = {
   {
     ui :
     {
-      'entity/password-input-group' :
+      'password-input-group' :
       {
         listeners : [
           {
@@ -20,7 +20,7 @@ module.exports = {
     locator :
     {
       'password-input-group/listener/validate-input' : `${__dirname}/listener/validate-input`,
-      'entity/password-input-group'                  : __dirname
+      'password-input-group'                         : __dirname
     }
   }
 }

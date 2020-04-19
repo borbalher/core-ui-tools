@@ -3,7 +3,7 @@ module.exports = {
   {
     locator :
     {
-      'entity/page-blocker' : __dirname
+      'page-blocker' : __dirname
     }
   }
 }

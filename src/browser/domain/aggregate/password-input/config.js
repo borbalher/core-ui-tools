@@ -3,7 +3,7 @@ module.exports = {
   {
     ui :
     {
-      'entity/password-input' :
+      'password-input' :
       {
         bindings : [
           {
@@ -16,7 +16,7 @@ module.exports = {
     },
     locator :
     {
-      'entity/password-input' : __dirname
+      'password-input' : __dirname
     }
   }
 }

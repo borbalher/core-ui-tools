@@ -9,15 +9,15 @@ class ComponentFactory
     this.hbs           = hbs
   }
 
-  getBindings(schema)
+  getBindings(template)
   {
-    const bindings = this.configuration.find(`core.ui.${schema}.bindings`)
+    const bindings = this.configuration.find(`core.ui.${template}.bindings`)
     return Array.isArray(bindings) ? bindings : []
   }
 
-  getListeners(schema)
+  getListeners(template)
   {
-    const listeners = this.configuration.find(`core.ui.${schema}.listeners`)
+    const listeners = this.configuration.find(`core.ui.${template}.listeners`)
     return Array.isArray(listeners) ? listeners : []
   }
 
@@ -29,11 +29,11 @@ class ComponentFactory
   create(component)
   {
     const
-    { id, schema } = component,
-    channel        = this.createBusChannel(id),
-    bindings       = this.getBindings(schema),
-    listeners      = this.getListeners(schema)
-    Component      = this.locator.locate(schema)
+    { id, template } = component,
+    channel          = this.createBusChannel(id),
+    bindings         = this.getBindings(template),
+    listeners        = this.getListeners(template)
+    Component        = this.locator.locate(schema)
 
     return (ui) =>
     {

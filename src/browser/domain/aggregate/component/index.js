@@ -22,7 +22,7 @@ class UIComponent
   {
     const
     context                   = this.getComponentContext(this[Symbol.for('id')]),
-    renderedComponentTemplate = this.hbs.compilePartial(context.schema, context),
+    renderedComponentTemplate = this.hbs.compilePartial(context.template, context),
     wrapper                   = document.createElement('div')
 
     wrapper.innerHTML = renderedComponentTemplate.trim()
