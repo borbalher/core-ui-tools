@@ -46,22 +46,29 @@ class UI
 
       if(!this.object.isEqual(previousComponentContext, newComponentContext) && exclude.indexOf(componentId) !== -1)
       {
-        const component = this.getComponent(componentId)
-
-        component.render()
-        component.bind()
-
+        this.onComponentChange(componentId)
         const edges = this.tree.edges.getItem(componentId) || []
         for(const edge of edges)
-        {
           exclude.push(edge.target)
-
-          const nestedComponent = this.getComponent(edge.target)
-          nestedComponent.bind()
-        }
       }
     }
   }
+
+  onComponentChange(componentId)
+  {
+    const component = this.getComponent(componentId)
+
+    component.render()
+    component.bind()
+
+    const edges = this.tree.edges.getItem(componentId) || []
+    for(const edge of edges)
+    {
+      const nestedComponent = this.getComponent(edge.target)
+      nestedComponent.bind()
+    }
+  }
+
 
   createTreeFromContext(context)
   {
@@ -111,6 +118,8 @@ class UI
 
     for(const edge of edges)
       this.tree.addEdge(edge)
+
+    this.onComponentChange(context.id)
   }
 
   getComponentContext(componentId)
