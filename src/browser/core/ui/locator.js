@@ -24,10 +24,10 @@ class UILocator
     channel           = this.locator.locate('infrastructure/bus').createChannel('ui'),
     viewModelToTree   = this.locator.locate('core/mapper/view-model-to-tree'),
     object            = this.locator.locate('core/object'),
-    bus               = this.locator.locate('infrastructure/bus'),
-    configuration     = this.locator.locate('core/configuration')
+    configuration     = this.locator.locate('core/configuration'),
+    componentFactory  = this.locator.locate('core/component/factory')
 
-    return new UI(initialViewModel, treeFactory, hbs, channel, viewModelToTree, object, this.locator, bus, configuration)
+    return new UI(initialViewModel, treeFactory, hbs, channel, viewModelToTree, object, this.locator, configuration, componentFactory)
   }
 }
 

@@ -9,11 +9,6 @@ class UI
     this.document    = document
   }
 
-  getSubtreePath(componentId)
-  {
-    return this.tree.bfs(componentId)
-  }
-
   getComponent(componentId)
   {
     return this.tree.nodes.getItem(componentId)
@@ -31,20 +26,6 @@ class UI
     return json[component.name]
   }
 
-  renderComponent(componentId)
-  {
-    const
-    component                 = this.getComponentJSON(componentId),
-    renderedComponentTemplate = this.hbs.compilePartial(component.template, component),
-    wrapper                   = document.createElement('div')
-
-    wrapper.innerHTML = renderedComponentTemplate.trim()
-
-    this.document.getElementById(componentId).replaceWith(wrapper.firstChild)
-
-    this.channel.emit('component.rendered', { id: componentId, component })
-  }
-
   getTreeFromContext(context)
   {
     const tree = this.treeFactory.create()
@@ -53,7 +34,7 @@ class UI
     return tree.serialize()
   }
 
-  setComponent(componentId, context)
+  setComponentContext(componentId, context)
   {
     const { nodes, links } = this.getTreeFromContext(context)
 
