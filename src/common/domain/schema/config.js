@@ -13,6 +13,7 @@ module.exports = {
         'entity/number-input'             : `${__dirname}/entity/number-input`,
         'entity/hidden-input'             : `${__dirname}/entity/hidden-input`,
         'entity/date-input'               : `${__dirname}/entity/date-input`,
+        'entity/select-input-group'       : `${__dirname}/entity/select-input-group`,
         'entity/select-input'             : `${__dirname}/entity/select-input`,
         'entity/select-input-item'        : `${__dirname}/entity/select-input-item`,
         'entity/form'                     : `${__dirname}/entity/form`,
