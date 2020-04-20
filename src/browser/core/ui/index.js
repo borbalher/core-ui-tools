@@ -47,9 +47,11 @@ class UI
       if(!this.object.isEqual(previousComponentContext, newComponentContext) && exclude.indexOf(componentId) === -1)
       {
         this.onComponentChange(componentId)
-        const edges = this.tree.edges.getItem(componentId) || []
-        for(const edge of edges)
-          exclude.push(edge.target)
+        const subtreePath = this.tree.bfs(componentId)
+        for(const nodePath of subtreePath)
+        {
+          exclude.push(nodePath)
+        }
       }
     }
   }
@@ -64,7 +66,7 @@ class UI
     const edges = this.tree.edges.getItem(componentId) || []
     for(const edge of edges)
     {
-      this.onComponentChange(edge)
+      this.onComponentChange(edge.target)
     }
   }
 
