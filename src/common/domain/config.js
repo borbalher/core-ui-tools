@@ -25,6 +25,8 @@ module.exports = {
         'entity/page'                 : `${__dirname}/schema/entity/page`,
         'entity/password-input-group' : `${__dirname}/schema/entity/password-input-group`,
         'entity/text-input-group'     : `${__dirname}/schema/entity/text-input-group`,
+        'entity/textarea-input-group' : `${__dirname}/schema/entity/textarea-input-group`,
+        'entity/textarea-input'       : `${__dirname}/schema/entity/textarea-input`,
         'entity/component'            : `${__dirname}/schema/entity/component`
       }
     }

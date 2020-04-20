@@ -1,0 +1,12 @@
+<div id="{{id}}" class='input-group {{template}} {{#if error.message}}--error{{/if}}'>
+
+  <label class='checkbox'>
+    {{label}}
+    {{ > checkbox-input input}}
+    <span class='checkbox__checkmark'></span>
+  </label>
+
+  <div class='input-group__error'>
+    {{#if error.message}}{{error.message}}{{/if}}
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class='modal {{#if isOpen}}--visible{{/if}}'>
+  <div class='modal-content'>
+    <div class='modal-header'>
+      {{headerText}}
+      <div class='close-modal'>
+        <span class='close-modal__button'></span>
+      </div>
+    </div>
+    <div class='modal-body'>
+      {{> @partial-block }}
+    </div>
+    <div class='modal-footer'>
+      <button class='modal-actions__cancel button button--wired'>
+        Cancel
+      </button>
+      {{#each actions}}
+        <button class='modal-actions__action button button--filled' data-id="{{id}}">
+          {{name}}
+        </button>
+      {{/each}}
+      {{#if confirmButton}}
+        <button class='modal-actions__action button button--filled'  data-id="confirm">
+          {{ confirmButton }}
+        </button>
+      {{/if}}
+    </div>
+  </div>
+</div>
