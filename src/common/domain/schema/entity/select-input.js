@@ -25,6 +25,13 @@ module.exports = {
     collection : true,
     default    : []
   },
+  value :
+  {
+    type       : 'string',
+    optional   : true,
+    collection : true,
+    default    : []
+  },
   placeholder :
   {
     type     : 'string',

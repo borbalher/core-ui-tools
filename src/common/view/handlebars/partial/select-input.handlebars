@@ -1,0 +1,17 @@
+<select id="{{id}}" class='input-group__input select-input'
+        {{#if required}}    required {{/if}}
+        {{#if disabled}}    disabled {{/if}}
+        {{#if multiple}}    multiple {{/if}}
+        {{#if size}}        size='{{size}}' {{/if}}
+        {{#if placeholder}} placeholder='{{placeholder}}' {{/if}}
+        {{#if attribute}}   name='{{attribute}}' {{/if}}
+        autocomplete='{{#if autocomplete}}on{{/if}}{{#unless autocomplete}}off{{/unless}}'>
+  <option value="" selected disabled hidden>{{placeholder}}</option>
+  {{#each items as |item|}}
+    {{#with item}}
+      <option value="{{id}}" class='dropdown__list-item {{#if display}} --display {{/if}} {{#if selected}} --selected {{/if}} item' {{#if selected}}selected{{/if}}>
+        {{name}} {{#if desc}}({{desc}}){{/if}}
+      </option>
+    {{/with}}
+  {{/each}}
+</select>

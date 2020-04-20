@@ -11,5 +11,10 @@ module.exports = {
   {
     type    : 'boolean',
     default : false
+  },
+  display :
+  {
+    type    : 'boolean',
+    default : true
   }
 }
