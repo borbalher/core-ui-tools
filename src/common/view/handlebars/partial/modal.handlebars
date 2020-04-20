@@ -7,7 +7,9 @@
       </div>
     </div>
     <div class='modal-body'>
-      {{> @partial-block }}
+      {{#> form id=(concat id '_form')}}
+         {{> @partial-block }}
+      {{/form}}
     </div>
     <div class='modal-footer'>
       <button class='modal-actions__cancel button button--wired'>
@@ -19,7 +21,7 @@
         </button>
       {{/each}}
       {{#if confirmButton}}
-        <button class='modal-actions__action button button--filled'  data-id="confirm">
+        <button type="submit" form="{{concat id '_form'}}" class='modal-actions__action button button--filled'  data-id="confirm">
           {{ confirmButton }}
         </button>
       {{/if}}

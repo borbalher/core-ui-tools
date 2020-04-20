@@ -84,7 +84,7 @@ class UI
 
     path.shift()
 
-    for(const componentId of path.reverse())
+    for(const componentId of path)
     {
       const
       componentData = this.getComponentData(componentId),
