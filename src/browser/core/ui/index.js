@@ -46,21 +46,7 @@ class UI
 
       if(!this.object.isEqual(previousComponentContext, newComponentContext) && exclude.indexOf(componentId) === -1)
       {
-        this.onComponentChange(componentId)
-
-        exclude.push(componentId)
-
-        const subtreePath = this.tree.bfs(componentId)
-
-        subtreePath.shift()
-
-        for(const subtreePathId of subtreePath)
-        {
-          const subtreePathComponent = this.getComponent(subtreePathId)
-          subtreePathComponent.bind()
-
-          exclude.push(subtreePathId)
-        }
+        exclude = [...exclude,  this.onComponentChange(componentId)]
       }
     }
   }
@@ -70,7 +56,16 @@ class UI
     const component = this.getComponent(componentId)
 
     component.render()
-    component.bind()
+
+    const subtreePath = this.tree.bfs(componentId)
+    for(const subtreePathId of subtreePath)
+    {
+      const subtreePathComponent = this.getComponent(subtreePathId)
+      subtreePathComponent.bind()
+    }
+
+    return subtreePath
+
   }
 
 
