@@ -8,7 +8,7 @@ class ButtonGroupInputGroupGroupComponent extends Component
     buttonGroupInputGroup  = this.getComponentContext(),
     { input: { buttons } } = buttonGroupInputGroup
 
-    this.setComponent({
+    this.setComponentContext({
       ...buttonGroupInputGroup,
       input :
       {
