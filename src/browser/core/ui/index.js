@@ -64,8 +64,7 @@ class UI
     const edges = this.tree.edges.getItem(componentId) || []
     for(const edge of edges)
     {
-      const nestedComponent = this.getComponent(edge.target)
-      nestedComponent.bind()
+      this.onComponentChange(edge)
     }
   }
 
