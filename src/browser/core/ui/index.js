@@ -31,9 +31,9 @@ class UI
 
     this.tree = this.createTreeFromContext(viewModel)
 
-    const path = this.tree.bfs(this.tree.root).reverse()
+    const path = this.tree.bfs(this.tree.root)
 
-    path.pop()
+    path.shift()
 
     let exclude = []
     for(const componentId of path)
@@ -47,10 +47,19 @@ class UI
       if(!this.object.isEqual(previousComponentContext, newComponentContext) && exclude.indexOf(componentId) === -1)
       {
         this.onComponentChange(componentId)
+
+        exclude.push(componentId)
+
         const subtreePath = this.tree.bfs(componentId)
-        for(const nodePath of subtreePath)
+
+        subtreePath.shift()
+
+        for(const subtreePathId of subtreePath)
         {
-          exclude.push(nodePath)
+          const subtreePathComponent = this.getComponent(subtreePathId)
+          subtreePathComponent.bind()
+
+          exclude.push(subtreePathId)
         }
       }
     }
@@ -62,12 +71,6 @@ class UI
 
     component.render()
     component.bind()
-
-    const edges = this.tree.edges.getItem(componentId) || []
-    for(const edge of edges)
-    {
-      this.onComponentChange(edge.target)
-    }
   }
 
 

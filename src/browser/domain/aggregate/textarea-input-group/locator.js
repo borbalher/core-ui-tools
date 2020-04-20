@@ -1,6 +1,6 @@
-const TextInputGroupComponent = require('.')
+const TextAreaInputGroupComponent = require('.')
 
-class TextInputGroupComponentLocator
+class TextAreaInputGroupComponentLocator
 {
   constructor(locator)
   {
@@ -9,8 +9,8 @@ class TextInputGroupComponentLocator
 
   locate()
   {
-    return TextInputGroupComponent
+    return TextAreaInputGroupComponent
   }
 }
 
-module.exports = TextInputGroupComponentLocator
+module.exports = TextAreaInputGroupComponentLocator
