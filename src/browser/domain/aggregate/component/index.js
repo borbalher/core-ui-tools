@@ -28,6 +28,7 @@ class UIComponent
     wrapper.innerHTML = renderedComponentTemplate.trim()
 
     document.getElementById(this[Symbol.for('id')]).replaceWith(wrapper.firstChild)
+    this.emit('component.rendered', { id: this[Symbol.for('id'), context ]})
   }
 
   mapEmitToArray(emitTo, context)
@@ -81,6 +82,8 @@ class UIComponent
 
       this.addComponentListeners(listenToChannels, emitToChannels, event, map, locator, mapper)
     }
+
+    this.emit('component.listened', { id: this[Symbol.for('id')], listeners: this.listeners })
   }
 
   addDOMBinding(channels, domEvent, map, preventDefault, mapper, domNode)
@@ -114,6 +117,7 @@ class UIComponent
       const channels = emitTo ? this.getChannels(emitTo) : [this[Symbol.for('id')]]
       this.addDOMBindings(channels, `#${this[Symbol.for('id')]}${selector ? ` ${selector}` : ''}`, domEvent, map, preventDefault, mapper)
     }
+    this.emit('component.binded', { id: this[Symbol.for('id')], bindings: this.bindings })
   }
 
   emit(name, data)
