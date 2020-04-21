@@ -28,7 +28,7 @@ class UIComponent
     wrapper.innerHTML = renderedComponentTemplate.trim()
 
     document.getElementById(this[Symbol.for('id')]).replaceWith(wrapper.firstChild)
-    this.emit('component.rendered', { id: this[Symbol.for('id'), context ]})
+    this.emit('component.rendered', { id: this[Symbol.for('id')], context })
   }
 
   mapEmitToArray(emitTo, context)
