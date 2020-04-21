@@ -30,16 +30,17 @@ class PasswordInputGroupComponent extends Component
       }
     }
 
-    // if(message)
-    // {
-    //   document.getElementById(passwordInputGroupId).querySelector('.input-group__error').innerHTML = message
-    //   document.getElementById(passwordInputGroupId).classList.add('--error')
-    // }
-    // else
-    // {
-    //   document.getElementById(passwordInputGroupId).querySelector('.input-group__error').innerHTML = ''
-    //   document.getElementById(passwordInputGroupId).classList.remove('--error')
-    // }
+    const domInputGroup = document.getElementById(this[Symbol.for('id')])
+    if(message)
+    {
+      domInputGroup.querySelector('.input-group__error').innerHTML = message
+      domInputGroup.classList.add('--error')
+    }
+    else
+    {
+      domInputGroup.querySelector('.input-group__error').innerHTML = ''
+      domInputGroup.classList.remove('--error')
+    }
 
     this.setComponentContext({
       ...passwordInputGroup,

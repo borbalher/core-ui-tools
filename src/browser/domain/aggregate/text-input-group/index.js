@@ -30,16 +30,17 @@ class TextInputGroupComponent extends Component
       }
     }
 
-    // if(message)
-    // {
-    //   document.getElementById(textInputGroupId).querySelector('.input-group__error').innerHTML = message
-    //   document.getElementById(textInputGroupId).classList.add('--error')
-    // }
-    // else
-    // {
-    //   document.getElementById(textInputGroupId).querySelector('.input-group__error').innerHTML = ''
-    //   document.getElementById(textInputGroupId).classList.remove('--error')
-    // }
+    const domInputGroup = document.getElementById(this[Symbol.for('id')])
+    if(message)
+    {
+      domInputGroup.querySelector('.input-group__error').innerHTML = message
+      domInputGroup.classList.add('--error')
+    }
+    else
+    {
+      domInputGroup.querySelector('.input-group__error').innerHTML = ''
+      domInputGroup.classList.remove('--error')
+    }
 
     this.setComponentContext({
       ...textInputGroup,
