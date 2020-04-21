@@ -1,19 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,500,700');
 @import '_colors.scss';
-
 $font-family: 'Lato', sans-serif;
 $column-gutter: 0.750em;
 $border-radius: 0.5em;
-
-
 /***************RESET**************/
-
 *,
 *:after,
 *:before {
   box-sizing: border-box;
 }
-
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -35,13 +30,11 @@ time, mark, audio, video {
 	line-height: 1.5em;
 	vertical-align: baseline;
 }
-
 html,body{
   height: 100%;
   min-height: 100%;
   width: 100%;
 }
-
 body{
   color: $body-copy;
   font-family: $font-family;
@@ -51,23 +44,19 @@ body{
   position: relative;
   overflow-x: hidden;
 }
-
 #page-wrapper{
   white-space: nowrap;
   display:block;
 }
-
 .section{
   margin-bottom: 2.5rem;
   display: block;
   width: 100%;
   clear: both;
-
   &-buttons{
     text-align: right;
   }
 }
-
 button{
   -webkit-appearance: none;
   border: 0;
@@ -76,23 +65,19 @@ button{
   outline: 0;
   cursor: pointer;
 }
-
 .input-error{
   color: map-get($palette, color-primary);
   padding: 0  $border-radius;
   display: block;
 }
-
 ::selection {
   color: $body-copy-light;
   background: map-get($palette, color-primary);
 }
-
 .form-actions{
   padding: 1em 0;
   text-align: right;
 }
-
 .secondary-title{
   font-size: 1.125em;
   font-weight: 700;
@@ -100,28 +85,27 @@ button{
   margin-bottom: 1em;
   text-transform: uppercase;
 }
-
 .primary-title{
   font-size: 1.500em;
   font-weight: 700;
   color: $body-copy;
   margin-bottom: 2.500em;
 }
-
 .button{
   text-transform: uppercase;
   text-decoration: none;
-  padding: .5rem 1.5rem;
-  margin: 1.25rem .5rem;
+  padding: .75rem 2rem;
+  margin: 1rem 1.5rem;
   font-weight: 700;
   font-size: 1.125rem;
+  line-height: 1.5rem;
   box-sizing: border-box;
+  border-radius: 1.5rem;
   border: 0.125rem solid map-get($palette, color-primary);
   cursor: pointer;
   &--filled{
     color: $body-copy-light;
     background-color: map-get($palette, color-primary);
-
     &:hover{
       background-color: map-get($palette, color-primary_L2);
       border-color: map-get($palette, color-primary_L2);
@@ -130,20 +114,17 @@ button{
   &--wired{
     color: map-get($palette, color-primary);
     background-color: transparent;
-
     &:hover{
       color: map-get($palette, color-primary_L2);
       border-color: map-get($palette, color-primary_L2);
     }
   }
 }
-
 button > *{
   pointer-events: none;
 }
-
 .header{
-  padding: 1.5rem 0.5rem 2.5rem;
+  padding: 1.5rem;
   max-width: 1440px;
   margin: 0 auto;
   position: relative;
@@ -167,7 +148,7 @@ button > *{
       }
       &__caption{
         text-transform: uppercase;
-        color: map-get($palette, color-grey_L2);
+        color: map-get($palette, color-primary);
         font-weight: bold;
       }
     }
