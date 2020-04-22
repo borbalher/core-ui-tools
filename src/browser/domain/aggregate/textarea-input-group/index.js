@@ -18,17 +18,17 @@ class TextAreaInputGroupComponent extends Component
       code    = 'E_INPUT_REQUIRED'
     }
 
-    const domInputGroup = document.getElementById(this[Symbol.for('id')])
-    if(message)
-    {
-      domInputGroup.querySelector('.input-group__error').innerHTML = message
-      domInputGroup.classList.add('--error')
-    }
-    else
-    {
-      domInputGroup.querySelector('.input-group__error').innerHTML = ''
-      domInputGroup.classList.remove('--error')
-    }
+    // const domInputGroup = document.getElementById(this[Symbol.for('id')])
+    // if(message)
+    // {
+    //   domInputGroup.querySelector('.input-group__error').innerHTML = message
+    //   domInputGroup.classList.add('--error')
+    // }
+    // else
+    // {
+    //   domInputGroup.querySelector('.input-group__error').innerHTML = ''
+    //   domInputGroup.classList.remove('--error')
+    // }
 
     this.setComponentContext({
       ...textAreaInputGroup,
