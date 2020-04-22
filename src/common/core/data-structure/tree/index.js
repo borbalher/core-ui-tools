@@ -58,7 +58,7 @@ class Tree extends Graph
 
   getParent(nodeId)
   {
-    for(const edge of this.edges)
+    for(const edge of this.edgesToLinks())
     {
       const { source, target } = edge
       if(target === nodeId)
