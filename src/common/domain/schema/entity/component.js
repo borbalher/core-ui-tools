@@ -12,5 +12,10 @@ module.exports = {
   {
     type        : 'string',
     'not-empty' : false
+  },
+  renderOnChange :
+  {
+    type    : 'boolean',
+    default : true
   }
 }
