@@ -1,57 +1,56 @@
 @import './_colors.scss';
-@import './_gutters.scss';
+//@import './_gutters.scss';
 
 .input-group{
-  outline: none;
-  border: none;
-  display:block;
-  position: relative;
-  @extend %gutter-xs;
-  margin-top: .75rem;
+  margin-bottom: 1rem;
+  // outline: none;
+  // border: none;
+  // display:block;
+  // position: relative;
+  // @extend %gutter-xs;
 
   &__input {
+    font-size: 1.125rem;
+    line-height: 1.375rem;
     border: 1px solid map-get($palette, color-grey_L2);
     border-radius: .5rem;
-    padding: 2rem 1.5rem .5rem .75rem;
+    padding: .5rem 1rem;
     box-sizing: border-box;
     width: 100%;
     color: $body-copy;
   }
 
+  &__optional-label,
   &__label{
-    margin-left: .75rem;
-    color: map-get($palette, color-primary);
-    position: absolute;
-    top: 0;
+    font-size: .875rem;
+    line-height: 1rem;
+  }
+
+  &__label{
+    margin-bottom: .5rem;
+    padding-left: .125rem;
+    color: $body-copy;
   }
 
   &__optional-label{
-    margin-right: 1rem;
     color: map-get($palette, color-grey);
+    text-transform: uppercase;
     position: absolute;
     top: 0;
     right: 0;
   }
 
-  &__optional-label,
-  &__label{
-    display: block;
-    margin-top: .25rem;
-    font-size: .75rem;
-    text-transform: uppercase;
-    position: absolute;
-  }
-
   &[disabled], [disabled]{
-    background-color: map-get($palette, color-grey_L4);
+    background-color: $disabled-bg;
 
     &:hover:focus{
       border-color: map-get($palette, color-primary);
       box-shadow: 0 .25rem .5rem 0 rgba(0,0,0,0.15);
     }
 
-    & + .input-group__label{
+    & + .input-group__input{
       color: map-get($palette, color-grey);
+      font-style: italic;
     }
   }
 
@@ -61,6 +60,7 @@
 
   &::placeholder {
     color: map-get($palette, color-grey);
+    font-style: italic;
   }
 
   &__input:required + .input-group__label + .input-group__optional-label{
@@ -73,11 +73,10 @@
   }
 
   &.--error{
-    margin-bottom: .25rem;
+    margin: .25rem 0;
 
     .input-group{
       &__input,
-      &__label,
       &__optional-label{
         color: map-get($palette, color-error);
         border-color: map-get($palette, color-error);
@@ -89,5 +88,10 @@
       margin-bottom: 1rem;
       padding-left: 0.25rem;
     }
+  }
+
+  .textarea-input{
+    max-width: 100%;
+    min-width: 100%;
   }
 }

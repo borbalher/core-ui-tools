@@ -71,7 +71,7 @@ button{
   display: block;
 }
 ::selection {
-  color: $body-copy-light;
+  color: $body-light;
   background: map-get($palette, color-primary);
 }
 .form-actions{
@@ -90,38 +90,6 @@ button{
   font-weight: 700;
   color: $body-copy;
   margin-bottom: 2.500em;
-}
-.button{
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: .75rem 2rem;
-  margin: 1rem 1.5rem;
-  font-weight: 700;
-  font-size: 1.125rem;
-  line-height: 1.5rem;
-  box-sizing: border-box;
-  border-radius: 1.5rem;
-  border: 0.125rem solid map-get($palette, color-primary);
-  cursor: pointer;
-  &--filled{
-    color: $body-copy-light;
-    background-color: map-get($palette, color-primary);
-    &:hover{
-      background-color: map-get($palette, color-primary_L2);
-      border-color: map-get($palette, color-primary_L2);
-    }
-  }
-  &--wired{
-    color: map-get($palette, color-primary);
-    background-color: transparent;
-    &:hover{
-      color: map-get($palette, color-primary_L2);
-      border-color: map-get($palette, color-primary_L2);
-    }
-  }
-}
-button > *{
-  pointer-events: none;
 }
 .header{
   padding: 1.5rem;

@@ -17,7 +17,7 @@
   &:checked,
   &.--selected{
     font-weight: 700;
-    color: $body-copy-light;
+    color: $body-light;
   }
   &:not(.--selected){
     font-weight: 400;

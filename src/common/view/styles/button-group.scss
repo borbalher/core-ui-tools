@@ -5,7 +5,7 @@
   {
     display: none;
     &:checked + .btn-group__button{
-      color: $body-copy-light;
+      color: $body-light;
       background: map-get($palette, color-primary);
     }
   }
@@ -42,7 +42,7 @@
           border-right: 1px solid map-get($palette, color-grey_L3);
           &:hover{
             background: map-get($palette, color-primary_L1);
-            color: $body-copy-light;
+            color: $body-light;
           }
         }
       }
