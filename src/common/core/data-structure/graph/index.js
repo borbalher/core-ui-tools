@@ -87,7 +87,7 @@ class Graph
   bfs(startNodeId)
   {
     const
-    visited = { },
+    visited = {},
     path    = [],
     queue   = new Queue()
 

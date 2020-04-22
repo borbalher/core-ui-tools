@@ -56,6 +56,16 @@ class Tree extends Graph
     return json
   }
 
+  getParent(nodeId)
+  {
+    for(const edge of this.edges)
+    {
+      const { source, target } = edge
+      if(target === nodeId)
+        return source
+    }
+  }
+
   getJSONPath(nodeId, nodeIndex, path, jsonPath)
   {
     const previousIndex = nodeIndex - 1

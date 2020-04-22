@@ -125,6 +125,11 @@ class UIComponent
     this.channel.emit(name, data)
   }
 
+  getParentComponentData()
+  {
+    return this.repository.getParentComponentData(this[Symbol.for('id')])
+  }
+
   getComponentData()
   {
     return this.repository.getComponentData(this[Symbol.for('id')])

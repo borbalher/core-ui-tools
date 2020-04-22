@@ -114,6 +114,14 @@ class UI
     return this.tree.nodes.getItem(componentId)
   }
 
+  getParentComponentData(componentId)
+  {
+    const parent = this.tree.getParent(componentId)
+
+    if(parent)
+      return this.tree.nodes.getItem(parent)
+  }
+
   setComponentContext(context)
   {
     const { nodes, edges } = this.viewModelToTree.map(context)
