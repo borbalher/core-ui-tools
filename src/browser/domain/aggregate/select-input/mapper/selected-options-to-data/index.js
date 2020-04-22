@@ -5,7 +5,7 @@ class SelectedOptionsToDataMapper
 
     const
     selectedOptions = domEvent.target.selectedOptions,
-    selectedIds     = selectedOptions.map((option) =>
+    selectedIds     = Array.from(selectedOptions).map((option) =>
     {
       return option.value
     })
