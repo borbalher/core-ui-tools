@@ -53,15 +53,22 @@ class UI
 
   onComponentChange(componentId)
   {
-    const component = this.getComponent(componentId)
+    const componentData = this.getComponentData(componentId)
 
-    component.render()
+    let subtreePath = []
 
-    const subtreePath = this.tree.bfs(componentId)
-    for(const subtreePathId of subtreePath)
+    if(componentData.renderOnChange)
     {
-      const subtreePathComponent = this.getComponent(subtreePathId)
-      subtreePathComponent.bind()
+      const component = this.getComponent(componentId)
+
+      component.render()
+
+      subtreePath = this.tree.bfs(componentId)
+      for(const subtreePathId of subtreePath)
+      {
+        const subtreePathComponent = this.getComponent(subtreePathId)
+        subtreePathComponent.bind()
+      }
     }
 
     return subtreePath
