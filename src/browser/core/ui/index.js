@@ -132,7 +132,7 @@ class UI
     for(const edge of edges)
       this.tree.addEdge(edge)
 
-    // this.onComponentChange(context.id)
+    this.onComponentChange(context.id)
   }
 
   getComponentContext(componentId)
