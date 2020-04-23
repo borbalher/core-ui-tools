@@ -2,7 +2,7 @@
 //@import './_gutters.scss';
 
 .input-group{
-  margin-bottom: 1rem;
+  margin: 0 .5rem 1rem;
   // outline: none;
   // border: none;
   // display:block;
@@ -41,7 +41,7 @@
   }
 
   &[disabled], [disabled]{
-    background-color: $disabled-bg;
+    background-color: $secondary-bg;
 
     &:hover:focus{
       border-color: map-get($palette, color-primary);

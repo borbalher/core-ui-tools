@@ -48,7 +48,8 @@ $palette: delta-shades($palette);
 
 $body-copy: #333;
 $body-light: #fff;
-$disabled-bg: #e9ecef;
+$secondary-bg: #e9ecef;
+$secondary-gradient: linear-gradient(90deg, rgba(0,192,255,1) 0%, rgba(10,139,228,1) 35%, rgba(163,44,223,1) 100%);
 
 
 //$body-copy: #333;

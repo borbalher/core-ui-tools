@@ -3,16 +3,29 @@
 .button{
   text-transform: uppercase;
   text-decoration: none;
-  padding: .5rem 2rem;
-  margin: 0 1.5rem 1rem;
+  padding: .375rem 2rem;
+  margin: 0 .5rem 1rem;
   font-weight: 700;
   font-size: 1.125rem;
-  line-height: 1.375rem;
+  line-height: 1.5rem;
   box-sizing: border-box;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  white-space: normal;
   border-radius: 1.25rem;
-  border: 1px solid map-get($palette, color-primary);
+  border: 2px solid map-get($palette, color-primary);
   cursor: pointer;
 
+  //button sizes
+  &--xl{
+    padding: 1.125rem 2.5rem;
+    margin: 0 1rem 1.5rem;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    border-radius: 2rem;
+  }
+
+  //button styles
   &--filled{
     color: $body-light;
     background-color: map-get($palette, color-primary);
@@ -41,22 +54,29 @@
     }
   }
 
-  &--round{
-    border-radius: 50%;
-    padding: .5rem;
-    font-size: 1.75rem;
-    line-height: 1.75rem;
-    width: 2.75rem;
-    height: 2.75rem;
-  }
-
-  &[disabled], [disabled], &[disabled]:hover, [disabled]:hover{
-    background-color: $disabled-bg;
+  &[disabled], &[disabled]:hover{
+    background-color: $secondary-bg;
     border-color: map-get($palette, color-grey_L3);
     color: map-get($palette, color-grey_L3);
     cursor: default;
   }
 
+  &--round{
+    border-radius: 50%;
+    padding: .625rem;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    width: 1.5rem;
+
+    &.button--xl{
+      font-size: 1.75rem;
+      line-height: 2rem;
+      width: 3rem;
+      padding: .875rem 1.875rem;
+    }
+  }
+
+  //others
   &--in-form{
     margin-top: 1.5rem;
   }
