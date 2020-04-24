@@ -14,6 +14,11 @@ const dto = {
     type     : 'schema',
     schema   : 'error',
     optional : true
+  },
+  big :
+  {
+    type    : 'boolean',
+    default : false
   }
 }
 

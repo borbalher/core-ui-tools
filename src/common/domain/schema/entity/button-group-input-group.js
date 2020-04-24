@@ -1,25 +1,12 @@
 const dto = {
   '@meta' :
   {
-    extends : 'entity/component'
-  },
-  label :
-  {
-    type        : 'string',
-    optional    : true,
-    'not-empty' : true
+    extends : 'entity/input-group'
   },
   input :
   {
     type   : 'schema',
     schema : 'entity/button-group-input'
-
-  },
-  error :
-  {
-    type    : 'schema',
-    schema  : 'value-object/error',
-    default : {}
   }
 }
 

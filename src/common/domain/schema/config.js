@@ -19,6 +19,7 @@ module.exports = {
         'entity/select-input-item'        : `${__dirname}/entity/select-input-item`,
         'entity/form'                     : `${__dirname}/entity/form`,
         'entity/page'                     : `${__dirname}/entity/page`,
+        'entity/pagination'               : `${__dirname}/entity/pagination`,
         'entity/input'                    : `${__dirname}/entity/input`,
         'entity/input-group'              : `${__dirname}/entity/input-group`,
         'entity/password-input-group'     : `${__dirname}/entity/password-input-group`,
@@ -35,6 +36,10 @@ module.exports = {
         'entity/table'                    : `${__dirname}/entity/table`,
         'entity/component'                : `${__dirname}/entity/component`
       }
+    },
+    locator :
+    {
+      'composer/pagination' : `${__dirname}/composer/pagination`
     }
   }
 }

@@ -4,9 +4,9 @@
   </button>
   <span class='pagination__page pagination__page--first'>
     <button
-      class='pagination__page__number {{#if firstPage.selected}}pagination__page__number--selected{{/if}}'
-      data-page='{{{firstPage.pageNumber}}}'>
-      {{firstPage.pageNumber}}
+      class='pagination__page__number {{#if firstPage '==' selected}}pagination__page__number--selected{{/if}}'
+      data-page='{{{firstPage}}}'>
+      {{firstPage}}
     </button>
   </span>
   {{#if leftOverflow}}
@@ -16,12 +16,12 @@
       </button>
     </span>
   {{/if}}
-  {{#each pages}}
+  {{#each pages as |page|}}
     <span class='pagination__page'>
       <button
-        class='pagination__page__number {{#if this.selected}}pagination__page__number--selected{{/if}}'
-        data-page='{{{this.pageNumber}}}'>
-          {{this.pageNumber}}
+        class='pagination__page__number {{#if page '==' ../selected}}pagination__page__number--selected{{/if}}'
+        data-page='{{{page}}}'>
+          {{page}}
         </button>
     </span>
   {{/each}}
@@ -35,9 +35,9 @@
   {{#if lastPage}}
     <span class='pagination__page pagination__page--last'>
       <button
-      class='pagination__page__number {{#if lastPage.selected}}pagination__page__number--selected{{/if}}'
-      data-page='{{{lastPage.pageNumber}}}'>
-        {{lastPage.pageNumber}}
+      class='pagination__page__number {{#if lastPage '==' selected}}pagination__page__number--selected{{/if}}'
+      data-page='{{{lastPage}}}'>
+        {{lastPage}}
       </button>
     </span>
   {{/if}}
