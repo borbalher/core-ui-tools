@@ -1,0 +1,65 @@
+@import '_colors.scss';
+
+.pagination{
+  button{
+    -webkit-appearance: none;
+    border: 0;
+    background: none;
+    outline: 0;
+    cursor: pointer;
+  }
+  white-space: normal;
+  font-size: .875rem;
+  color: map-get($palette, color-secondary);
+  text-align: center;
+  margin: .75rem 0;
+  &__prev-page{
+    margin-right: .75rem;
+  }
+  &__next-page{
+    margin-left: .75rem;
+  }
+  &__prev-page,
+  &__next-page{
+    font-size: 18px;
+    color: map-get($palette, color-secondary_D2);
+  }
+  &__prev-pages,
+  &__next-pages{
+    color: map-get($palette, color-grey);
+  }
+  &__prev-page,
+  &__next-page,
+  &__prev-pages,
+  &__next-pages,
+  &__page{
+    vertical-align: middle;
+  }
+  &__page{
+    display: inline-block;
+  }
+  &__prev-pages,
+  &__next-pages,
+  &__page__number{
+    align-items: center;
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: flex;
+    height: 1.5rem;
+    justify-content: center;
+    margin: 0 auto;
+    width: 1.5rem;
+  }
+  &__page__number{
+    &--selected{
+      color: $body-copy-light;
+      background: map-get($palette, color-primary) !important;
+      font-weight: 700;
+    }
+    &:not(&--selected):hover{
+      background: map-get($palette, color-primary_L1);
+      font-weight: 700;
+      color: $body-copy-light
+    }
+  }
+}

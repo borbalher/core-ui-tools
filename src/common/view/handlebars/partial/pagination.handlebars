@@ -1,0 +1,47 @@
+<div id="{{id}}" class='pagination'>
+  <button class='pagination__prev-page'>
+    <i class='fas fa-angle-left'></i>
+  </button>
+  <span class='pagination__page pagination__page--first'>
+    <button
+      class='pagination__page__number {{#if firstPage.selected}}pagination__page__number--selected{{/if}}'
+      data-page='{{{firstPage.pageNumber}}}'>
+      {{firstPage.pageNumber}}
+    </button>
+  </span>
+  {{#if leftOverflow}}
+    <span class='pagination__page'>
+      <button class='pagination__prev-pages'>
+        ...
+      </button>
+    </span>
+  {{/if}}
+  {{#each pages}}
+    <span class='pagination__page'>
+      <button
+        class='pagination__page__number {{#if this.selected}}pagination__page__number--selected{{/if}}'
+        data-page='{{{this.pageNumber}}}'>
+          {{this.pageNumber}}
+        </button>
+    </span>
+  {{/each}}
+  {{#if rightOverflow}}
+    <span class='pagination__page'>
+      <button class='pagination__next-pages'>
+        ...
+      </button>
+    </span>
+  {{/if}}
+  {{#if lastPage}}
+    <span class='pagination__page pagination__page--last'>
+      <button
+      class='pagination__page__number {{#if lastPage.selected}}pagination__page__number--selected{{/if}}'
+      data-page='{{{lastPage.pageNumber}}}'>
+        {{lastPage.pageNumber}}
+      </button>
+    </span>
+  {{/if}}
+  <button class='pagination__next-page'>
+    <i class='fas fa-angle-right'></i>
+  </button>
+</div>

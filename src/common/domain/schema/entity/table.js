@@ -26,7 +26,7 @@ module.exports = {
   showHeaders :
   {
     type    : 'boolean',
-    default : false
+    default : true
   },
   panelColspan :
   {
@@ -42,9 +42,16 @@ module.exports = {
   },
   rows :
   {
-    type       : 'schema',
-    schema     : 'value-object/partial',
-    collection : true,
+    type                 : 'collection',
+    'collection-type'    : 'collection',
+    'collection-options' :
+    {
+      'collection-type'    : 'schema',
+      'collection-options' :
+      {
+        schema     : 'value-object/partial'
+      }
+    },
     default    : []
   },
   actions :

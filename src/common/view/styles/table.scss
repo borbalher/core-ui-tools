@@ -1,0 +1,263 @@
+@import '_colors.scss';
+@import '_gutters.scss';
+
+.table__wrapper{
+  padding: 0 .5rem;
+}
+
+.table{
+  overflow-x: auto;
+  width:100%;
+  color: $body-copy;
+  overflow: hidden;
+  margin-bottom: .25rem;
+
+  &__cell{
+    //border-left: 1px solid map-get($palette, color-grey_L2);
+    //border-right: 1px solid map-get($palette, color-grey_L2);
+
+    &:first-child{
+      border-top-left-radius: .5rem;
+      border-top-right-radius: .5rem;
+      //border-top: 1px solid map-get($palette, color-grey_L2);
+    }
+    &:last-child{
+      border-bottom-left-radius: .5rem;
+      border-bottom-right-radius: .5rem;
+      //border-bottom: 1px solid map-get($palette, color-grey_L2);
+    }
+    &-title{
+      color:  map-get($palette, color-primary);
+    }
+  }
+
+  .table{
+    &__panel-row{
+      display: none;
+      overflow: hidden;
+
+      &.--expanded{
+        display: block;
+      }
+    }
+    &__row{
+      z-index: 1;
+      display: block;
+      white-space: normal;
+      position: relative;
+      margin: 10px 0;
+    }
+
+    &__cell,
+    &__header{
+      text-align: left;
+      padding: 10px;
+    }
+    &__header{
+      display:none;
+    }
+    &__cell{
+      word-break: break-all;
+      display: block;
+      // &:first-child{
+      //   padding-top: 20px;
+      // }
+      // &:last-child:not(.table-row__cell-action){
+      //   padding-bottom: 10px;
+      // }
+
+      .exceptional-price {
+        font-weight: 900;
+        color: map-get($palette, color-primary);
+
+        // &:after{
+        //   content: "*";
+        //   color: $body-copy;
+        // }
+      }
+
+      &-title {
+        font-weight: bold;
+        display: inline-block;
+        margin-right: .5rem;
+      }
+      &-action{
+        text-align: center;
+        cursor: pointer;
+        box-sizing: border-box;
+        width: 100%;
+
+        &--edit,
+        &--delete,
+        &--expand,
+        &--view{
+          border: none;
+          outline: none;
+          transition: 0.1s;
+          font-size: 1.25rem;
+
+          &:hover{
+            background: map-get($palette, color-primary_L1);
+            color: $body-copy-light;
+            box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.15);
+          }
+        }
+        &--edit{
+          color: map-get($palette, color-secondary);
+        }
+        &--delete{
+          color: map-get($palette, color-primary);
+        }
+        &--expand,
+        &--view{
+          color: $body-copy;
+        }
+      }
+      [data-component]{
+        display: inline-block;
+      }
+    }
+  }
+
+  [data-component="bell-table-cell"]{
+    color: map-get($palette, color-primary_D1);
+  }
+}
+
+.table__footer{
+  margin-top: 1rem;
+  text-align: right;
+}
+
+.--expandable + .--expanded{
+  .table__cell-action--expand {
+    transform: rotateZ(180deg);
+  }
+}
+
+@media (min-width: 480px) {
+  .table__wrapper{
+    .table__cell-action{
+      button {
+        border-radius: 0;
+        margin: 0px;
+        padding: .5rem 1rem;
+      }
+    }
+
+    .table{
+      display: table;
+      border-spacing: 0;
+      box-sizing: border-box;
+      border-collapse: collapse;
+
+      &__panel{
+        &-row{
+          border-radius: 0;
+          border: 1px solid map-get($palette, color-grey_L2);
+
+          &.--expanded{
+            display: table-row;
+
+            h5 {
+              margin-bottom: 0;
+            }
+            .table{
+              &__wrapper {
+                padding: 0 .25rem;
+              }
+              &__row,
+              &__cell {
+                border-left: 0;
+                border-right: 0;
+                border-top: 0;
+                border-bottom: 0;
+              }
+              &__cell{
+                padding: .25rem .25rem .25rem 0;
+              }
+            }
+          }
+        }
+        &-cell{
+          display: table-cell;
+          border: none;
+          padding: 2rem 1rem;
+          background-color: map-get($palette, color-grey_L5);
+        }
+      }
+      &__row{
+          display:table-row;
+      }
+      &__cell,
+      &__header{
+        display: table-cell;
+        vertical-align: middle;
+        word-break: keep-all;
+        white-space: nowrap;
+      }
+      &__header{
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: .875rem;
+      }
+      &__cell{
+        border-radius: 0px;
+        padding: .25rem;
+        box-sizing: border-box;
+        font-size: .875rem;
+        &:not(.table__cell-action){
+          padding-right:.5rem;
+        }
+        &-title{
+          display: none;
+        }
+        &-action{
+          text-align: right;
+          font-size: 0px;
+          width: auto;
+
+          &--expand,
+          &--edit,
+          &--view,
+          &--delete{
+            display: inline-block;
+
+            &:hover{
+              box-shadow: none;
+            }
+          }
+        }
+      }
+      &__cell:first-child{
+        border-radius: 0px;
+      }
+      &__cell:last-child{
+        border-radius: 0px;
+      }
+    }
+
+    .--formatted{
+      .table{
+        &__row{
+          border: 1px solid map-get($palette, color-grey_L2);
+          border-top: none;
+
+          &.--expandable:nth-child(4n-1) {
+            background: map-get($palette, color-primary_L4);
+          }
+        }
+        &__header,
+        &__header-action{
+          color: $body-copy-light;
+          background: map-get($palette, color-primary_L1);
+          border: 0px;
+        }
+        &__cell{
+          border: 0px;
+          padding: 0 .5rem;
+        }
+      }
+    }
+  }
+}
