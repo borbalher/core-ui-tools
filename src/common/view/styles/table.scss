@@ -98,7 +98,7 @@
 
           &:hover{
             background: map-get($palette, color-primary_L1);
-            color: $body-copy-light;
+            color: $body-light;
             box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.15);
           }
         }
@@ -249,7 +249,7 @@
         }
         &__header,
         &__header-action{
-          color: $body-copy-light;
+          color: $body-light;
           background: map-get($palette, color-primary_L1);
           border: 0px;
         }

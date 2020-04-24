@@ -52,14 +52,14 @@
   }
   &__page__number{
     &--selected{
-      color: $body-copy-light;
+      color: $body-light;
       background: map-get($palette, color-primary) !important;
       font-weight: 700;
     }
     &:not(&--selected):hover{
       background: map-get($palette, color-primary_L1);
       font-weight: 700;
-      color: $body-copy-light
+      color: $body-light
     }
   }
 }
