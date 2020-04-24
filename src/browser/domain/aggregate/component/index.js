@@ -135,9 +135,9 @@ class UIComponent
     return this.repository.getComponentData(this[Symbol.for('id')])
   }
 
-  setComponentData(component)
+  setComponentData(componentData)
   {
-    this.repository.setComponentData(this[Symbol.for('id')], component)
+    this.repository.setComponentData(componentData)
   }
 
   getComponentContext()
