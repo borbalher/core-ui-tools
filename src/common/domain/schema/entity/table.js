@@ -23,7 +23,7 @@ module.exports = {
     type    : 'boolean',
     default : false
   },
-  showHeader :
+  showHeaders :
   {
     type    : 'boolean',
     default : false
@@ -36,21 +36,28 @@ module.exports = {
   headers :
   {
     type       : 'schema',
-    schema     : 'value-object/table-header',
+    schema     : 'value-object/partial',
     collection : true,
     default    : []
   },
   rows :
   {
     type       : 'schema',
-    schema     : 'value-object/table-data',
+    schema     : 'value-object/partial',
+    collection : true,
+    default    : []
+  },
+  actions :
+  {
+    type       : 'schema',
+    schema     : 'value-object/partial',
     collection : true,
     default    : []
   },
   panels :
   {
     type       : 'schema',
-    schema     : 'value-object/table-panel',
+    schema     : 'value-object/partial',
     collection : true,
     default    : []
   }

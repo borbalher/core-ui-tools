@@ -2,34 +2,37 @@
   <div class='table__wrapper'>
     <table class='table{{#if formatted}} --formatted{{/if}}{{#if condensed}} --condensed{{/if}}'>
       {{#if showHeaders}}
-          <thead>
-            <tr class='table__row'>
-              {{#each headers as |header|}}
-                <th class='table__header'>{{> (lookup header 'template')  header}}</th>
-              {{/each}}
-              {{#if hasActions}}
-                <th class='table__header-action'></th>
-              {{/if}}
-            </tr>
-          </thead>
+        <thead>
+          <tr class='table__row'>
+            {{#each headers as |header|}}
+              <th class='table__header'>{{> (lookup header 'template')  header.context}}</th>
+            {{/each}}
+            {{#if hasActions}}
+              <th class='table__header-action'></th>
+            {{/if}}
+          </tr>
+        </thead>
       {{/if}}
       <tbody>
         {{#each rows as |row|}}
           <tr class='table__row {{#if ../isExpandable}}--expandable{{/if}}'>
             {{#each row as |data|}}
-              <td class='table__cell'>{{> (lookup data 'template')  data}}</td>
+              <td class='table__cell'>{{> (lookup data 'template')  data.context}}</td>
             {{/each}}
             {{#if ../hasActions}}
               <td class='table__cell table__cell-action' data-index='{{@index}}'>
-                  {{#if ../isExpandable}}<button class='table__cell-action--expand'><i class='fas fa-angle-down'></i></button>{{/if}}
+                {{#each ../actions as |action|}}
+					        {{> (lookup action 'template')  action.context}}
+                {{/each}}
+                {{#if ../isExpandable}}<button class='table__cell-action--expand'><i class='fas fa-angle-down'></i></button>{{/if}}
               </td>
             {{/if}}
           </tr>
-			{{#if ../isExpandable}}
+			    {{#if ../isExpandable}}
             {{#with (lookup ../panels @index)}}
-            <tr class='table__panel-row {{#if isExpanded}}--expanded{{/if}}'>
-              <td class='table__panel-cell' colspan='{{../panelColspan}}'>{{> (lookup this 'template')  this}}</td>
-            </tr>
+              <tr class='table__panel-row {{#if isExpanded}}--expanded{{/if}}'>
+                <td class='table__panel-cell' colspan='{{../panelColspan}}'>{{> (lookup this 'template')  this}}</td>
+              </tr>
             {{/with}}
           {{/if}}
         {{/each}}
