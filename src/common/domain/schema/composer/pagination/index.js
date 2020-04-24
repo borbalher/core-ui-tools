@@ -4,11 +4,6 @@
  */
 class PaginationComposer
 {
-  constructor(composer)
-  {
-    this.composer = composer
-  }
-
   getTotalPages(totalItems, pageSize)
   {
     return Math.max(1, Math.ceil(totalItems / pageSize))
@@ -109,14 +104,14 @@ class PaginationComposer
     rightOverflow   = this.hasRightOverflow(pages, totalPages),
     lastPage        = totalPages > 1 ? totalPages : undefined
 
-    return this.composer.compose('entity/pagination', {
+    return {
       rightOverflow,
       leftOverflow,
       lastPage,
       selected,
       pages,
       total
-    })
+    }
   }
 }
 

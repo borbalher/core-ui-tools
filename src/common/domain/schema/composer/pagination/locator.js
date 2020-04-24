@@ -9,8 +9,7 @@ class PaginationComposerLocator
 
   locate()
   {
-    const composer = this.locator.locate('core/schema/composer')
-    return new PaginationComposer(composer)
+    return new PaginationComposer()
   }
 }
 
