@@ -16,25 +16,11 @@ class CoreObject
       if(objectAKeys.length !== objectBKeys.length)
         return false
 
-      for(const attribute in objectA)
-      {
-        if(typeof objectA[attribute] !== 'object' && objectA[attribute] !== objectB[attribute])
-        {
-          return false
-        }
-        else if(objectA[attribute] && typeof objectA[attribute] === 'object')
-        {
-          const isNestedObjectEqual = this.isEqual(objectA[attribute], objectB[attribute])
-          if(!isNestedObjectEqual)
-            return false
-        }
-        else if(objectA[attribute] !== objectB[attribute])
-        {
-          return false
-        }
-      }
+      const
+      sortedObjectA = this.sortKeys(objectA),
+      sortedObjectB = this.sortKeys(objectB)
 
-      return true
+      return JSON.stringify(sortedObjectA) === JSON.stringify(sortedObjectB)
     }
     else if(typeof objectA === typeof objectB)
     {
@@ -46,6 +32,20 @@ class CoreObject
     }
   }
 
+  sortKeysInArray(array, order)
+  {
+    return array.map((element) =>
+    {
+      if(!element || typeof element !== 'object')
+        return element
+      else if(!Array.isArray(element) && Object.keys(element).length)
+        return this.sortKeys(element, order)
+      else if(Array.isArray(element))
+        return this.sortKeysInArray(element, order)
+      else
+        return element
+    })
+  }
 
   sortKeys(o, order = 'ASC')
   {
@@ -57,8 +57,10 @@ class CoreObject
     {
       if(!o[key] || typeof o[key] !== 'object')
         sorted[key] = o[key]
-      else if(Object.keys(o[key]).length)
+      else if(!Array.isArray(o[key]) && Object.keys(o[key]).length)
         sorted[key] = this.sortKeys(o[key], order)
+      else if(Array.isArray(o[key]))
+        sorted[key] = this.sortKeysInArray(o[key], order)
       else
         sorted[key] = o[key]
     }
