@@ -3,10 +3,11 @@
 
 .input-group{
   margin: 0 .5rem 1rem;
-  // outline: none;
+  outline: none;
+  position: relative;
+  text-align: left;
   // border: none;
   // display:block;
-  // position: relative;
   // @extend %gutter-xs;
 
   &__input {
@@ -28,16 +29,14 @@
 
   &__label{
     margin-bottom: .5rem;
-    padding-left: .125rem;
     color: $body-copy;
   }
 
   &__optional-label{
-    color: map-get($palette, color-grey);
+    color: map-get($palette, color-primary);
     text-transform: uppercase;
-    position: absolute;
-    top: 0;
-    right: 0;
+    float: right;
+    padding-right: .125rem;
   }
 
   &[disabled], [disabled]{
@@ -93,5 +92,34 @@
   .textarea-input{
     max-width: 100%;
     min-width: 100%;
+  }
+
+  //SIZES
+  &--xl{
+    margin: 0 1rem 1.5rem;
+    
+    .input-group__input {
+      font-size: 1.75rem;
+      line-height: 2rem;
+      border-radius: .75rem;
+      padding: 1rem 1.5rem;
+    }
+  
+    .input-group__optional-label,
+    .input-group__label{
+      font-size: 1.375rem;
+      line-height: 1.5rem;
+    }
+  
+    .input-group__label{
+      margin-bottom: .75rem;
+    }
+  
+    .input-group__optional-label{
+      padding-right: .25rem;
+    }
+    .input-group__error{
+      font-size:1.25rem;
+    }
   }
 }

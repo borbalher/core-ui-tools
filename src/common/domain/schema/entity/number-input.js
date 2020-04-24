@@ -41,7 +41,7 @@ const dto = {
   unit :
   {
     type        : 'string',
-    'not-empty' : false,
+    'not-empty' : true,
     optional    : true
   }
 }

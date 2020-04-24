@@ -3,13 +3,13 @@ const dto = {
   {
     type        : 'string',
     optional    : true,
-    'not-empty' : false
+    'not-empty' : true
   },
   message :
   {
     type        : 'string',
     optional    : true,
-    'not-empty' : false
+    'not-empty' : true
   }
 }
 

@@ -7,7 +7,7 @@ const dto = {
   {
     type        : 'string',
     optional    : true,
-    'not-empty' : false
+    'not-empty' : true
   },
   error :
   {

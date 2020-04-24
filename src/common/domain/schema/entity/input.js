@@ -6,12 +6,12 @@ const dto = {
   attribute :
   {
     type        : 'string',
-    'not-empty' : false
+    'not-empty' : true
   },
   title :
   {
     type        : 'string',
-    'not-empty' : false,
+    'not-empty' : true,
     optional    : true
   },
   value :

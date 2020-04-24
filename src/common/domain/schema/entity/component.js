@@ -6,12 +6,12 @@ module.exports = {
   template :
   {
     type        : 'string',
-    'not-empty' : false
+    'not-empty' : true
   },
   schema :
   {
     type        : 'string',
-    'not-empty' : false
+    'not-empty' : true
   },
   renderOnChange :
   {

@@ -2,11 +2,11 @@ module.exports = {
   id :
   {
     type        : 'string',
-    'not-empty' : false
+    'not-empty' : true
   },
   name :
   {
     type        : 'string',
-    'not-empty' : false
+    'not-empty' : true
   }
 }

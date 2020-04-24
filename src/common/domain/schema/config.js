@@ -6,6 +6,7 @@ module.exports = {
       composer :
       {
         'value-object/error'              : `${__dirname}/value-object/error`,
+        'value-object/partial'            : `${__dirname}/value-object/partial`,
         'entity/modal'                    : `${__dirname}/entity/modal`,
         'entity/modal-action'             : `${__dirname}/entity/modal-action`,
         'entity/page-blocker'             : `${__dirname}/entity/page-blocker`,
@@ -31,6 +32,7 @@ module.exports = {
         'entity/button-group-button'      : `${__dirname}/entity/button-group-button`,
         'entity/checkbox-input'           : `${__dirname}/entity/checkbox-input`,
         'entity/checkbox-input-group'     : `${__dirname}/entity/checkbox-input-group`,
+        'entity/table'                    : `${__dirname}/entity/table`,
         'entity/component'                : `${__dirname}/entity/component`
       }
     }

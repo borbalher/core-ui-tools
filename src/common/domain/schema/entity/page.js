@@ -6,7 +6,7 @@ module.exports = {
   lang :
   {
     type        : 'string',
-    'not-empty' : false,
+    'not-empty' : true,
     default     : 'en'
   }
 }
