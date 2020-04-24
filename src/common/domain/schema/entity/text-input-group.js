@@ -1,7 +1,7 @@
 const dto = {
   '@meta' :
   {
-    extends : 'entity/component'
+    extends : 'entity/input-group',
   },
   label :
   {
