@@ -19,7 +19,7 @@ class PaginationComponent extends Component
       ...this.getComponentContext(),
       ...paginationContext
     })
-    this.emit('page.clicked', { page })
+    this.emit('page.changed', { page })
   }
 
   prevPageClick()
@@ -35,7 +35,7 @@ class PaginationComponent extends Component
         ...this.getComponentContext(),
         ...paginationContext
       })
-      this.emit('prev.page.clicked', { page: prevPage })
+      this.emit('page.changed', { page: prevPage })
     }
   }
 
@@ -52,7 +52,7 @@ class PaginationComponent extends Component
         ...this.getComponentContext(),
         ...paginationContext
       })
-      this.emit('next.page.clicked', { page: nextPage })
+      this.emit('page.changed', { page: nextPage })
     }
   }
 
@@ -70,7 +70,7 @@ class PaginationComponent extends Component
       ...this.getComponentContext(),
       ...paginationContext
     })
-    this.emit('next.pages.clicked', { page: newSelectedPage })
+    this.emit('page.changed', { page: newSelectedPage })
   }
 
   nextPagesClick()
@@ -87,7 +87,7 @@ class PaginationComponent extends Component
       ...this.getComponentContext(),
       ...paginationContext
     })
-    this.emit('prev.pages.clicked', { page: newSelectedPage })
+    this.emit('page.changed', { page: newSelectedPage })
   }
 }
 
