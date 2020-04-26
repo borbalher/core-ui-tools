@@ -3,13 +3,31 @@ const dto = {
   {
     extends : 'entity/component'
   },
-  total :
+  totalElements :
   {
     type   : 'integer',
     min     : 0,
     default : 0
   },
-  selected :
+  totalPages :
+  {
+    type   : 'integer',
+    min     : 0,
+    default : 0
+  },
+  limit :
+  {
+    type   : 'integer',
+    min     : 1,
+    default : 1
+  },
+  offset :
+  {
+    type   : 'integer',
+    min     : 2,
+    default : 2
+  },
+  selectedPage :
   {
     type    : 'integer',
     min     : 1,

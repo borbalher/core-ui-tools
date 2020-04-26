@@ -4,7 +4,7 @@
   </button>
   <span class='pagination__page pagination__page--first'>
     <button
-      class='pagination__page__number {{#if firstPage '==' selected}}pagination__page__number--selected{{/if}}'
+      class='pagination__page__number {{#if firstPage '==' selectedPage}}pagination__page__number--selected{{/if}}'
       data-page='{{{firstPage}}}'>
       {{firstPage}}
     </button>
@@ -19,7 +19,7 @@
   {{#each pages as |page|}}
     <span class='pagination__page'>
       <button
-        class='pagination__page__number {{#if page '==' ../selected}}pagination__page__number--selected{{/if}}'
+        class='pagination__page__number {{#if page '==' ../selectedPage}}pagination__page__number--selected{{/if}}'
         data-page='{{{page}}}'>
           {{page}}
         </button>
@@ -35,7 +35,7 @@
   {{#if lastPage}}
     <span class='pagination__page pagination__page--last'>
       <button
-      class='pagination__page__number {{#if lastPage '==' selected}}pagination__page__number--selected{{/if}}'
+      class='pagination__page__number {{#if lastPage '==' selectedPage}}pagination__page__number--selected{{/if}}'
       data-page='{{{lastPage}}}'>
         {{lastPage}}
       </button>

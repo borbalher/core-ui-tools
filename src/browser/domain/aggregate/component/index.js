@@ -107,7 +107,8 @@ class UIComponent
   addDOMBindings(emitTo, selector, domEvent, map, preventDefault, mapper)
   {
     const nodes = document.querySelectorAll(selector)
-    nodes.forEach(this.addDOMBinding.bind(this, emitTo, domEvent, map, preventDefault, mapper))
+    if(nodes)
+      nodes.forEach(this.addDOMBinding.bind(this, emitTo, domEvent, map, preventDefault, mapper))
   }
 
   bind()

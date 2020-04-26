@@ -1,6 +1,6 @@
-const SelectButtonDataObserver = require('.')
+const SelectButtonObserver = require('.')
 
-class SelectButtonDataObserverLocator
+class SelectButtonObserverLocator
 {
   constructor(locator)
   {
@@ -10,8 +10,8 @@ class SelectButtonDataObserverLocator
   locate()
   {
     const ui = this.locator.locate('core/ui')
-    return new SelectButtonDataObserver(ui)
+    return new SelectButtonObserver(ui)
   }
 }
 
-module.exports = SelectButtonDataObserverLocator
+module.exports = SelectButtonObserverLocator

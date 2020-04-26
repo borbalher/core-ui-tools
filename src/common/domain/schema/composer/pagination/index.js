@@ -95,7 +95,7 @@ class PaginationComposer
     return hasOverflow
   }
 
-  create(limit, total, selected, offset)
+  create(limit, totalElements, selectedPage, offset)
   {
     const
     totalPages      = this.getTotalPages(total, limit),
@@ -106,11 +106,14 @@ class PaginationComposer
 
     return {
       rightOverflow,
+      totalElements,
       leftOverflow,
+      selectedPage,
+      totalPages,
       lastPage,
-      selected,
-      pages,
-      total
+      offset,
+      limit,
+      pages
     }
   }
 }

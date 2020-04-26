@@ -54,7 +54,7 @@ class JWT
     return payload ? payload.roles : undefined
   }
 
-  getJWT()
+  getSession()
   {
     const  payload = this.getPayload()
     return payload ? payload.session : undefined
