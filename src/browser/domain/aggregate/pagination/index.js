@@ -15,7 +15,10 @@ class PaginationComponent extends Component
     { limit, totalElements, offset } = this.getComponentContext(),
     paginationContext = this.paginationComposer.create(limit, totalElements, page, offset)
 
-    this.setComponentContext(paginationContext)
+    this.setComponentContext({
+      ...this.getComponentContext(),
+      ...paginationContext
+    })
     this.emit('page.clicked', { page })
   }
 
@@ -28,7 +31,10 @@ class PaginationComponent extends Component
       const
       prevPage          = selectedPage - 1,
       paginationContext = this.paginationComposer.create(limit, totalElements, prevPage, offset)
-      this.setComponentContext(paginationContext)
+      this.setComponentContext({
+        ...this.getComponentContext(),
+        ...paginationContext
+      })
       this.emit('prev.page.clicked', { page: prevPage })
     }
   }
@@ -42,7 +48,10 @@ class PaginationComponent extends Component
       const
       nextPage          = selectedPage + 1,
       paginationContext = this.paginationComposer.create(limit, totalElements, nextPage, offset)
-      this.setComponentContext(paginationContext)
+      this.setComponentContext({
+        ...this.getComponentContext(),
+        ...paginationContext
+      })
       this.emit('next.page.clicked', { page: nextPage })
     }
   }
@@ -57,7 +66,10 @@ class PaginationComponent extends Component
 
 
     const paginationContext = this.paginationComposer.create(limit, totalElements, newSelectedPage, offset)
-    this.setComponentContext(paginationContext)
+    this.setComponentContext({
+      ...this.getComponentContext(),
+      ...paginationContext
+    })
     this.emit('next.pages.clicked', { page: newSelectedPage })
   }
 
@@ -71,7 +83,10 @@ class PaginationComponent extends Component
 
 
     const paginationContext = this.paginationComposer.create(limit, totalElements, newSelectedPage, offset)
-    this.setComponentContext(paginationContext)
+    this.setComponentContext({
+      ...this.getComponentContext(),
+      ...paginationContext
+    })
     this.emit('prev.pages.clicked', { page: newSelectedPage })
   }
 }

@@ -3,7 +3,7 @@ class PageNumberClickedMapper
   map(domEvent)
   {
     return {
-      page : domEvent.target.dataset.page
+      page : Number(domEvent.target.dataset.page)
     }
   }
 }
