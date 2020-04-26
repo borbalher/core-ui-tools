@@ -1,4 +1,4 @@
-class FormMapperMapper
+class FormMapper
 {
   map(domEvent)
   {
@@ -11,4 +11,4 @@ class FormMapperMapper
   }
 }
 
-module.exports = FormMapperMapper
+module.exports = FormMapper

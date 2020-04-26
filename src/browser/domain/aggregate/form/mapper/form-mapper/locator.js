@@ -1,6 +1,6 @@
-const FormMapperMapper = require('.')
+const FormMapper = require('.')
 
-class FormMapperMapperLocator
+class FormMapperksLocator
 {
   constructor(locator)
   {
@@ -9,8 +9,8 @@ class FormMapperMapperLocator
 
   locate()
   {
-    return new FormMapperMapper()
+    return new FormMapper()
   }
 }
 
-module.exports = FormMapperMapperLocator
+module.exports = FormMapperLocator
