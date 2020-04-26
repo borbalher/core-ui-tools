@@ -6,7 +6,7 @@ class ActionClickedMapper
       data :
       {
         action : domEvent.target.dataset.action,
-        index  : domEvent.target.parent.dataset.index
+        index  : domEvent.target.parentElement.dataset.index
       }
     }
   }
