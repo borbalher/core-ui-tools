@@ -3,10 +3,7 @@ class FormMapper
   map(domEvent)
   {
     return {
-      data :
-      {
-        form : domEvent.target
-      }
+      form : domEvent.target
     }
   }
 }
