@@ -4,7 +4,7 @@ class TableComponent extends Component
 {
   actionClicked(action, index)
   {
-    this.emit('action.clicked', { action, index })
+    this.emit('action', { action, index })
   }
 }
 

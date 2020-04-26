@@ -17,8 +17,8 @@ module.exports = {
         listeners :
         [
           {
-            event    : 'action.click',
-            listener : 'table/listener/action-click'
+            event    : 'action.clicked',
+            listener : 'table/listener/action-clicked'
           }
         ]
       }

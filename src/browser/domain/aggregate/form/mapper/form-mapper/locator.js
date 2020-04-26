@@ -1,6 +1,6 @@
 const FormMapper = require('.')
 
-class FormMapperksLocator
+class FormMapperLocator
 {
   constructor(locator)
   {
