@@ -24,7 +24,7 @@
                 {{#each ../actions as |action|}}
 					        {{> (lookup action 'template')  action.context}}
                 {{/each}}
-                {{#if ../isExpandable}}<button class='table__cell-action--expand'><i class='fas fa-angle-down'></i></button>{{/if}}
+                {{#if ../isExpandable}}{{> icon-table-ction action='expand' icon='fas fa-angle-down'}}{{/if}}
               </td>
             {{/if}}
           </tr>

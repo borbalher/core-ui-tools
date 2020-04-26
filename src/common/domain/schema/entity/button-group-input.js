@@ -2,13 +2,6 @@ module.exports = {
   '@meta' : {
     extends : 'entity/input'
   },
-  selectedButton :
-  {
-    type        : 'string',
-    'not-empty' : true,
-    optional    : true,
-    nullable    : true
-  },
   buttons :
   {
     type       : 'schema',
