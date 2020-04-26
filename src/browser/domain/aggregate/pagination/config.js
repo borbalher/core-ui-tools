@@ -48,7 +48,7 @@ module.exports = {
             locator : 'pagination/listener/next-pages-click'
           },
           {
-            event   : 'prev.page.clicked',
+            event   : 'prev.page.click',
             locator : 'pagination/listener/prev-page-click'
           },
           {
