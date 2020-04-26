@@ -11,7 +11,7 @@ module.exports = {
             domEvent : 'click',
             selector : '.pagination__page__number',
             map      : 'page.click',
-            mapper   : 'pagination/listener/page-number-clicked'
+            mapper   : 'pagination/mapper/page-number-clicked'
           },
           {
             domEvent : 'click',
@@ -60,7 +60,13 @@ module.exports = {
     },
     locator :
     {
-      'pagination' : __dirname
+      'pagination/mapper/page-number-clicked' : `${__dirname}/mapper/page-number-clicked`,
+      'pagination/listener/page-click'        : `${__dirname}/listener/page-click`,
+      'pagination/listener/prev-pages-click'  : `${__dirname}/listener/prev-pages-click`,
+      'pagination/listener/next-pages-click'  : `${__dirname}/listener/next-pages-click`,
+      'pagination/listener/prev-page-click'   : `${__dirname}/listener/prev-page-click`,
+      'pagination/listener/next-page-click'   : `${__dirname}/listener/next-page-click`,
+      'pagination'                            : __dirname
     }
   }
 }
