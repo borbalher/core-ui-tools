@@ -9,7 +9,7 @@ module.exports = {
         [
           {
             selector : '.table__cell-action',
-            event    : 'click',
+            domEvent : 'click',
             map      : 'action.clicked',
             mapper   : 'table/mapper/action-clicked'
           }
