@@ -20,7 +20,7 @@
               <td class='table__cell'>{{> (lookup data 'template')  data.context}}</td>
             {{/each}}
             {{#if ../hasActions}}
-              <td class='table__cell table__cell-action' data-index='{{@index}}'>
+              <td class='table__cell table__cell-actions' data-index='{{@index}}'>
                 {{#each ../actions as |action|}}
 					        {{> (lookup action 'template')  action.context}}
                 {{/each}}
