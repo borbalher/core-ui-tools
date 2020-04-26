@@ -98,8 +98,8 @@ class PaginationComposer
   create(limit, totalElements, selectedPage, offset)
   {
     const
-    totalPages      = this.getTotalPages(total, limit),
-    pages           = this.getPages(offset, selected, totalPages),
+    totalPages      = this.getTotalPages(totalElements, limit),
+    pages           = this.getPages(offset, selectedPage, totalPages),
     leftOverflow    = this.hasLeftOverflow(pages),
     rightOverflow   = this.hasRightOverflow(pages, totalPages),
     lastPage        = totalPages > 1 ? totalPages : undefined
