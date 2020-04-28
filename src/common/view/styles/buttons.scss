@@ -15,6 +15,7 @@
   border-radius: 1.25rem;
   border: 2px solid map-get($palette, color-primary);
   cursor: pointer;
+  display: inline-block;
 
   //button sizes
   &--xl{
@@ -33,6 +34,16 @@
       background-color: map-get($palette, color-primary_L2);
       border-color: map-get($palette, color-primary_L2);
     }
+   
+    &.button--negative{
+      color: map-get($palette, color-primary);
+      background-color: $body-light;
+      border-color: $body-light;
+      
+      &:hover{
+        background-color: map-get($palette, color-primary_L5);
+      }
+    }
   }
 
   &--wired{
@@ -42,16 +53,17 @@
       color: map-get($palette, color-primary_L2);
       border-color: map-get($palette, color-primary_L2);
     }
-  }
 
-  &--negative{
-    color: map-get($palette, color-primary);
-    background-color: $body-light;
-    border-color: $body-light;
-    
-    &:hover{
-      background-color: map-get($palette, color-primary_L5);
+    &.button--negative{
+      color: $body-light;
+      background-color: transparent;
+      border-color: $body-light;
+      
+      &:hover{
+        background-color: rgba(255, 255, 255, .1);
+      }
     }
+
   }
 
   &[disabled], &[disabled]:hover{

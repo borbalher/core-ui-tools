@@ -91,37 +91,6 @@ button{
   color: $body-copy;
   margin-bottom: 2.500em;
 }
-.header{
-  padding: 1.5rem;
-  max-width: 1440px;
-  margin: 0 auto;
-  position: relative;
-  box-sizing: border-box;
-  .header__title{
-    font-size:3em;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%)
-  }
-  .header__logo{
-    &.logo{
-      text-align: right;
-    }
-    .logo{
-      &__image{
-        height: 4rem;
-        img{
-          height: 100%;
-        }
-      }
-      &__caption{
-        text-transform: uppercase;
-        color: map-get($palette, color-primary);
-        font-weight: bold;
-      }
-    }
-  }
-}
 
 .--visible{
   display: block;

@@ -1,0 +1,41 @@
+@import '_colors.scss';
+
+.header{
+  padding: 1.5rem;
+  max-width: 1440px;
+  margin: 0 auto;
+  position: relative;
+
+  .header__title{
+    font-size:3em;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%)
+  }
+  .logo{
+    text-align: right;
+    text-decoration: none;
+    
+    &__svg svg{
+      fill: map-get($palette, color-primary);
+      width: 9rem;
+      height: 3.375rem;
+    }
+
+    &__caption{
+      text-transform: uppercase;
+      color: map-get($palette, color-primary);
+      font-weight: bold;
+    }
+  }
+
+  &.--negative .logo{
+    &__svg svg{
+      fill: $body-light;
+    }
+    
+    &__caption{
+      color: $body-light;
+    }
+  }
+}
