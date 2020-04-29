@@ -1,10 +1,6 @@
 module.exports = {
   core :
   {
-    bootstrap :
-    {
-      'core/store' : 'core/store/bootstrap'
-    },
     store :
     {
       middlewares : [
