@@ -45,7 +45,7 @@ class StoreLocator
     chain         = this.getMiddlewareChain(configuration),
     reducer       = this.locator.locate('core/reducer')
 
-    return new Store(channel, chain, reducer)
+    return new Store(state, channel, chain, reducer)
   }
 }
 
