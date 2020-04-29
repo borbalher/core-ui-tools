@@ -5,7 +5,7 @@ class SelectInputGroupComponent extends Component
   validateInput(value)
   {
     const
-    selectInputGroup = this.getComponentConselect(),
+    selectInputGroup = this.getComponentContext(),
     { input: { required, items }, label } = selectInputGroup
 
     let
