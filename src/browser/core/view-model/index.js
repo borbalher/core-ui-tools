@@ -26,7 +26,7 @@ class ViewModel
 
   composeViewModel(state)
   {
-    return this.viewModelAggregate.composeViewModel(this[Symbol.for('id')], state)
+    return this.viewModelAggregate.compose(this[Symbol.for('id')], state)
   }
 
   setViewModelFromState(state)
