@@ -30,7 +30,7 @@ class SelectInputGroupComponent extends Component
     //   domInputGroup.classList.remove('--error')
     // }
 
-    this.setComponentConselect({
+    this.setComponentContext({
       ...selectInputGroup,
       input :
       {
