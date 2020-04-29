@@ -27,9 +27,19 @@ class StoreLocator
     }
   }
 
+  getInitialState()
+  {
+    const
+    localStorage  = this.locator.locate('infrastructure/local-storage/gateway'),
+    initialState  = localStorage.getItem('initial-state')
+    return JSON.parse(initialState)
+  }
+
+
   locate()
   {
     const
+    state         = this.getInitialState(),
     configuration = this.locator.locate('core/configuration').find('core.store'),
     channel       = this.createBusChannel(),
     chain         = this.getMiddlewareChain(configuration),

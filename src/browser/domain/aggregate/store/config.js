@@ -21,16 +21,6 @@ module.exports = {
     {
       channels :
       {
-        'app' :
-        {
-          listeners :
-          {
-            'app.initialized' :
-            {
-              'store/listener/fetch-state' : true
-            }
-          }
-        },
         'store' :
         {
           listeners :

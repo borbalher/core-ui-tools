@@ -1,9 +1,10 @@
 class Store
 {
-  constructor(bus, middlewares, reducer, locator)
+  constructor(state, bus, middlewares, reducer, locator)
   {
     this.bus        = bus
-    this.states     = []
+    this.state      = state
+    this.states     = [state]
     this.reducer    = reducer
     this.locator    = locator
 
