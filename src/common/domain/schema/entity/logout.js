@@ -3,7 +3,7 @@ const dto = {
   {
     extends : 'entity/component'
   },
-  buttonText :
+  text :
   {
     type        : 'string',
     'not-empty' : true,
