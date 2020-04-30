@@ -6,8 +6,12 @@ const dto = {
   text :
   {
     type        : 'string',
-    'not-empty' : true,
-    default     : 'Logout'
+    'not-empty' : true
+  },
+  show :
+  {
+    type    : 'boolean',
+    default : false
   }
 }
 
