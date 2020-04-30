@@ -10,7 +10,6 @@ module.exports = {
         'entity/modal'                    : `${__dirname}/entity/modal`,
         'entity/modal-action'             : `${__dirname}/entity/modal-action`,
         'entity/page-blocker'             : `${__dirname}/entity/page-blocker`,
-        'entity/logout'                   : `${__dirname}/entity/logout`,
         'entity/number-input'             : `${__dirname}/entity/number-input`,
         'entity/hidden-input'             : `${__dirname}/entity/hidden-input`,
         'entity/date-input'               : `${__dirname}/entity/date-input`,

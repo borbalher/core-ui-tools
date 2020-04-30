@@ -9,7 +9,6 @@ module.exports = {
         'entity/modal'                : `${__dirname}/schema/entity/modal`,
         'entity/modal-action'         : `${__dirname}/schema/entity/modal-action`,
         'entity/page-blocker'         : `${__dirname}/schema/entity/page-blocker`,
-        'entity/logout'               : `${__dirname}/schema/entity/logout`,
         'entity/number-input'         : `${__dirname}/schema/entity/number-input`,
         'entity/text-input'           : `${__dirname}/schema/entity/text-input`,
         'entity/hidden-input'         : `${__dirname}/schema/entity/hidden-input`,
