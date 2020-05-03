@@ -33,7 +33,6 @@ class Metrics
       return end - start
   }
 
-
   getEllapsedTimeIn(metric, format)
   {
     const ellapsedTimeInMilliseconds = this.getEllapsedTime(metric)

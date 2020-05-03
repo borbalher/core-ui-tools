@@ -1,6 +1,6 @@
 class CoreMoment
 {
-  constructor(moment, locale)
+  constructor(moment, locale = 'es')
   {
     this.moment = moment
     this.setLocale(locale)

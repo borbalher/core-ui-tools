@@ -20,7 +20,9 @@ module.exports = {
         'toLowerCase'    : 'view/handlebars/helper/to-lower-case',
         'toUpperCase'    : 'view/handlebars/helper/to-upper-case',
         'unless'         : 'view/handlebars/helper/unless',
-        'exists'         : 'view/handlebars/helper/exists'
+        'exists'         : 'view/handlebars/helper/exists',
+        'translate'      : 'view/handlebars/helper/translate',
+        'date'           : 'view/handlebars/helper/date'
       }
     },
     bootstrap :
@@ -47,7 +49,9 @@ module.exports = {
       'view/handlebars/helper/to-fixed'         : `${__dirname}/helper/to-fixed`,
       'view/handlebars/helper/to-lower-case'    : `${__dirname}/helper/to-lower-case`,
       'view/handlebars/helper/to-upper-case'    : `${__dirname}/helper/to-upper-case`,
-      'view/handlebars/helper/unless'           : `${__dirname}/helper/unless`
+      'view/handlebars/helper/unless'           : `${__dirname}/helper/unless`,
+      'view/handlebars/helper/date'             : `${__dirname}/helper/date`,
+      'view/handlebars/helper/translate'        : `${__dirname}/helper/translate`
     }
   }
 }
