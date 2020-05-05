@@ -10,6 +10,7 @@
     "cookies": "0.7.3",
     "dateformat": "3.0.3",
     "handlebars": "^4.5.2",
+    "js-base64": "^2.5.2",
     "jwk-to-pem": "^2.0.1",
     "lodash.isequal": "4.5.0",
     "moment": "2.24.0",
@@ -53,5 +54,5 @@
     "linter-and-fix": "eslint core/**/**.js view/**/**.js --fix",
     "test": "mocha 'core/**/*.test.js' 'view/**/*.test.js' --config .mocharc.json"
   },
-  "version": "1.0.113"
+  "version": "1.0.114"
 }
