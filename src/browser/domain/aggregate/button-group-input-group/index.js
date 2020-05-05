@@ -14,7 +14,8 @@ class ButtonGroupInputGroupGroupComponent extends Component
       {
         ...buttonGroupInputGroup.input,
         value,
-        buttons : buttons.map((button) =>
+        selectedButton : value,
+        buttons        : buttons.map((button) =>
         {
           return {
             ...button,
