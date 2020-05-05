@@ -12,7 +12,7 @@ class CoreMomentLocator
     const
     moment          = require('moment'),
     configuration   = this.locator.locate('core/configuration'),
-    locale          = configuration.find('core.moment.locale'),
+    locale          = configuration.find('core.moment.locale')
 
     return new CoreMoment(moment, locale)
   }
