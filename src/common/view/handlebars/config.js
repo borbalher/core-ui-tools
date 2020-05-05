@@ -21,8 +21,8 @@ module.exports = {
         'toUpperCase'    : 'view/handlebars/helper/to-upper-case',
         'unless'         : 'view/handlebars/helper/unless',
         'exists'         : 'view/handlebars/helper/exists',
-        'translate'      : 'view/handlebars/helper/translate',
-        'date'           : 'view/handlebars/helper/date'
+        // 'translate'      : 'view/handlebars/helper/translate',
+        // 'date'           : 'view/handlebars/helper/date'
       }
     },
     bootstrap :

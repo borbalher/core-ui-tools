@@ -17,7 +17,7 @@ class Cookies
     }
   }
 
-  setCookie(name, value, expires, domain, path)
+  setCookie({ name, value, expires, domain, path })
   {
     let cookie = `${name}=${value}`
 
