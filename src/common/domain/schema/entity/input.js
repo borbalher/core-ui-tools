@@ -6,7 +6,8 @@ const dto = {
   attribute :
   {
     type        : 'string',
-    'not-empty' : true
+    'not-empty' : true,
+    optional    : true
   },
   title :
   {

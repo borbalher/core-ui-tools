@@ -3,7 +3,7 @@
   {{> checkbox-input-group showPanel}}
 
   {{#if showWhenFalse}}
-    <div class="{{#unless showPanel.input.value}}--visible{{else}}--hidden{{/if}}">
+    <div class="{{#unless showPanel.input.value}}--visible{{else}}--hidden{{/unless}}">
       {{> (lookup panel template) panel}}
     </div>
   {{else}}
