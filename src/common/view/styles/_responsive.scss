@@ -15,10 +15,9 @@
   [class*='rsp'] {
     float: left;
     padding: 0 .5rem;
+    width: 100%;
 
     &[class*='__centered']{
-      margin: 0 auto;
-      float: none;
       text-align: center;
     }
      
@@ -28,27 +27,47 @@
   }
   [class*='rsp'] {
     @media screen and (min-width: 480px) {
-        &[class*='__xs100'] {
-          width: 100%;
+      &[class*='__xs100'] {
+        width: 100%;
+      }
+      &[class*='__xs75'] {
+        width: 75%;
+
+          &[class*='__centered']{
+          margin-left: 12.5%;
         }
-        &[class*='__xs75'] {
-          width: 75%;
+      }
+      &[class*='__xs66'] {
+        width: 66.66666667%;
+ 
+        &[class*='__centered']{
+          margin-left: 16.666666665%;
         }
-        &[class*='__xs66'] {
-          width: 66.66666667%;
+      }
+      &[class*='__xs50'] {
+        width: 50%;
+        
+        &[class*='__centered']{
+          margin-left: 25%;
         }
-        &[class*='__xs50'] {
-          width: 50%;
+      }
+      &[class*='__xs33'] {
+        width: 33.33333333%;
+        
+        &[class*='__centered']{
+          margin-left: 33.33333333%;
         }
-        &[class*='__xs33'] {
-          width: 33.33333333%;
+      }
+      &[class*='__xs25'] {
+        width: 25%;
+        
+        &[class*='__centered']{
+          margin-left: 37.5%;
         }
-        &[class*='__xs25'] {
-          width: 25%;
-        }
-        &[class*='__xsauto'] {
-          width: auto;
-        }
+      }
+      &[class*='__xsauto'] {
+        width: auto;
+      }
     }
     @media screen and (min-width: 768px) {
       &[class*='__sm100'] {
@@ -56,18 +75,38 @@
       }
       &[class*='__sm75'] {
         width: 75%;
+
+        &[class*='__centered']{
+          margin-left: 12.5%;
+        }
       }
       &[class*='__sm66'] {
         width: 66.66666667%;
+
+        &[class*='__centered']{
+          margin-left: 16.666666665%;
+        }
       }
       &[class*='__sm50'] {
         width: 50%;
+        
+        &[class*='__centered']{
+          margin-left: 25%;
+        }
       }
       &[class*='__sm33'] {
         width: 33.33333333%;
+        
+        &[class*='__centered']{
+          margin-left: 33.33333333%;
+        }
       }
       &[class*='__sm25'] {
         width: 25%;
+        
+        &[class*='__centered']{
+          margin-left: 37.5%;
+        }
       }
       &[class*='__smauto'] {
         width: auto;
@@ -79,18 +118,38 @@
       }
       &[class*='__md75'] {
         width: 75%;
+
+        &[class*='__centered']{
+          margin-left: 12.5%;
+        }
       }
       &[class*='__md66'] {
         width: 66.66666667%;
+
+        &[class*='__centered']{
+          margin-left: 16.666666665%;
+        }
       }
       &[class*='__md50'] {
         width: 50%;
+        
+        &[class*='__centered']{
+          margin-left: 25%;
+        }
       }
       &[class*='__md33'] {
         width: 33.33333333%;
+        
+        &[class*='__centered']{
+          margin-left: 33.33333333%;
+        }
       }
       &[class*='__md25'] {
         width: 25%;
+        
+        &[class*='__centered']{
+          margin-left: 37.5%;
+        }
       }
       &[class*='__mdauto'] {
         width: auto;
@@ -102,18 +161,38 @@
       }
       &[class*='__lg75'] {
         width: 75%;
+
+        &[class*='__centered']{
+          margin-left: 12.5%;
+        }
       }
       &[class*='__lg66'] {
         width: 66.66666667%;
+
+        &[class*='__centered']{
+          margin-left: 16.666666665%;
+        }
       }
       &[class*='__lg50'] {
         width: 50%;
+        
+        &[class*='__centered']{
+          margin-left: 25%;
+        }
       }
       &[class*='__lg33'] {
         width: 33.33333333%;
+        
+        &[class*='__centered']{
+          margin-left: 33.33333333%;
+        }
       }
       &[class*='__lg25'] {
         width: 25%;
+        
+        &[class*='__centered']{
+          margin-left: 37.5%;
+        }
       }
       &[class*='__lgauto'] {
         width: auto;
@@ -125,18 +204,38 @@
       }
       &[class*='__xl75'] {
         width: 75%;
+
+        &[class*='__centered']{
+          margin-left: 12.5%;
+        }
       }
       &[class*='__xl66'] {
         width: 66.66666667%;
+
+        &[class*='__centered']{
+          margin-left: 16.666666665%;
+        }
       }
       &[class*='__xl50'] {
         width: 50%;
+        
+        &[class*='__centered']{
+          margin-left: 25%;
+        }
       }
       &[class*='__xl33'] {
         width: 33.33333333%;
+        
+        &[class*='__centered']{
+          margin-left: 33.33333333%;
+        }
       }
       &[class*='__xl25'] {
         width: 25%;
+        
+        &[class*='__centered']{
+          margin-left: 37.5%;
+        }
       }
       &[class*='__xlauto'] {
         width: auto;

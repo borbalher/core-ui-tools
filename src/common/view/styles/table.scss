@@ -242,6 +242,7 @@
           border: 1px solid map-get($palette, color-grey_L2);
           border-top: none;
 
+          &:nth-child(2n),
           &.--expandable:nth-child(4n-1) {
             background: map-get($palette, color-primary_L4);
           }
