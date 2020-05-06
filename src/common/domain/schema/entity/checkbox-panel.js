@@ -16,6 +16,6 @@ module.exports  = {
   panel :
   {
     type   : 'schema',
-    schema : 'value-object/partial'
+    schema : 'entity/component'
   }
 }
