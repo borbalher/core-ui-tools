@@ -12,7 +12,7 @@ class CheckboxInputGroupComponent extends Component
     message = null,
     code    = null
 
-    if(required && (!value || value.trim() === ''))
+    if(required && !value)
     {
       message = `${label} is required`
       code    = 'E_INPUT_REQUIRED'

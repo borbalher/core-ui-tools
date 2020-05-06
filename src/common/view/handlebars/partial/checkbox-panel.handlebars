@@ -1,8 +1,9 @@
 <div id="{{id}}">
-  {{> checkbox-input showPanel}}
+
+  {{> checkbox-input-group showPanel}}
 
   {{#if showWhenFalse}}
-    <div class="{{#unless showPanel.value}}--visible{{else}}--hidden{{/if}}">
+    <div class="{{#unless showPanel.input.value}}--visible{{else}}--hidden{{/if}}">
       {{> (lookup panel template) panel}}
     </div>
   {{else}}

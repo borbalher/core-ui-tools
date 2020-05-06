@@ -11,7 +11,7 @@ module.exports  = {
   showPanel :
   {
     type   : 'schema',
-    schema : 'entity/checkbox-input'
+    schema : 'entity/checkbox-input-group'
   },
   panel :
   {

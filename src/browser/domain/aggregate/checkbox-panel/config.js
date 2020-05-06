@@ -8,7 +8,7 @@ module.exports = {
         listeners : [
           {
             listenTo : 'showPanel',
-            event    : 'input.changed',
+            event    : 'input.validated',
             map      : 'toggle.panel'
           },
           {
