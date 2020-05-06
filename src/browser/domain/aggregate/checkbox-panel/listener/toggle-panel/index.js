@@ -12,7 +12,7 @@ class ValidateInputObserver
   {
     const { meta: { emitter }, data: { value } } = event
 
-    this.ui.getComponent(emitter).validateInput(value)
+    this.ui.getComponent(emitter).togglePanel(value)
   }
 }
 
