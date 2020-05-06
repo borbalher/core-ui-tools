@@ -4,11 +4,11 @@
 
   {{#if showWhenFalse}}
     <div class="{{#unless showPanel.input.value}}--visible{{else}}--hidden{{/unless}}">
-      {{> (lookup panel template) panel}}
+      {{> (lookup panel 'template') panel}}
     </div>
   {{else}}
     <div class="{{#if showPanel.value}}--visible{{else}}--hidden{{/if}}">
-      {{> (lookup panel template) panel}}
+      {{> (lookup panel 'template') panel}}
     </div>
   {{/if}}
 
