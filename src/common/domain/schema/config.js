@@ -31,6 +31,7 @@ module.exports = {
         'entity/button-group-input'       : `${__dirname}/entity/button-group-input`,
         'entity/button-group-button'      : `${__dirname}/entity/button-group-button`,
         'entity/checkbox-input'           : `${__dirname}/entity/checkbox-input`,
+        'entity/checkbox-panel'           : `${__dirname}/entity/checkbox-panel`,
         'entity/checkbox-input-group'     : `${__dirname}/entity/checkbox-input-group`,
         'entity/table'                    : `${__dirname}/entity/table`,
         'entity/component'                : `${__dirname}/entity/component`
