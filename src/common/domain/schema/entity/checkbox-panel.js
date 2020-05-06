@@ -3,6 +3,11 @@ module.exports  = {
   {
     extends : 'entity/form'
   },
+  showWhenFalse :
+  {
+    type    : 'boolean',
+    default : false
+  },
   showPanel :
   {
     type   : 'schema',
