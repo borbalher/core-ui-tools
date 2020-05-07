@@ -1,4 +1,4 @@
-<div id="{{id}}_modal" class='modal {{#if isOpen}}--visible{{else}}--hidden{{/if}}'>
+<div id="{{id}}" class='modal {{#if isOpen}}--visible{{else}}--hidden{{/if}}'>
   <div class='modal-content'>
     <div class='modal-header'>
       {{headerText}}
@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class='modal-body'>
-      {{> @partial-block }}
+      {{> (lookup body 'template') body}}
     </div>
     <div class='modal-footer'>
       <button class='modal-actions__cancel button button--wired' data-id="cancel">

@@ -6,7 +6,7 @@
         {{#if placeholder}} placeholder='{{placeholder}}' {{/if}}
         {{#if attribute}}   name='{{attribute}}' {{/if}}
         autocomplete='{{#if autocomplete}}on{{/if}}{{#unless autocomplete}}off{{/unless}}'>
-  <option value="" selected disabled hidden>{{placeholder}}</option>
+  {{#if placeholder}}<option value="" disabled hidden>{{placeholder}}</option>{{/if}}
   {{#each items as |item|}}
     {{#with item}}
       <option value="{{id}}" class='dropdown__list-item {{#if display}} --display {{/if}} {{#if selected}} --selected {{/if}} item' {{#if selected}}selected{{/if}}>

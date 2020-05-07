@@ -6,8 +6,8 @@ class SchemaFilterDecimal
   filter(options, data)
   {
     return options.collection
-    ? this.filterCollection(data)
-    : this.filterSingle(data)
+      ? this.filterCollection(data)
+      : this.filterSingle(data)
   }
 
   filterCollection(data)

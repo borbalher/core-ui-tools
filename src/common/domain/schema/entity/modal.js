@@ -25,6 +25,11 @@ const dto = {
     type        : 'string',
     'not-empty' : true,
     optional    : true
+  },
+  body :
+  {
+    type   : 'schema',
+    schema : 'entity/component'
   }
 }
 
