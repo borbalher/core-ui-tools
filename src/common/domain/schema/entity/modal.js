@@ -20,12 +20,6 @@ const dto = {
     collection : true,
     default    : []
   },
-  submitButton :
-  {
-    type        : 'string',
-    'not-empty' : true,
-    optional    : true
-  },
   body :
   {
     type   : 'schema',

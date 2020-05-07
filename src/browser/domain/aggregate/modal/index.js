@@ -3,14 +3,9 @@ const Component = require('../component')
 
 class Modal extends Component
 {
-  openModal()
+  dispatchAction(action)
   {
-    this.store.dispatch(this.store.composeAction('open.modal', { modal: this[Symbol.for('id')] }))
-  }
-
-  closeModal()
-  {
-    this.store.dispatch(this.store.composeAction('close.modal', { modal: this[Symbol.for('id')] }))
+    this.store.dispatch(this.store.composeAction(action, { modal: this[Symbol.for('id')] }))
   }
 }
 
