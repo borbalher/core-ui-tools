@@ -1,4 +1,4 @@
-<div id="{{id}}" class='modal {{#if isOpen}}--visible{{/if}}'>
+<div id="{{id}}_modal" class='modal {{#if isOpen}}--visible{{else}}--hidden{{/if}}'>
   <div class='modal-content'>
     <div class='modal-header'>
       {{headerText}}
@@ -7,12 +7,10 @@
       </div>
     </div>
     <div class='modal-body'>
-      {{#> form id=(concat id '_form')}}
-         {{> @partial-block }}
-      {{/form}}
+      {{> @partial-block }}
     </div>
     <div class='modal-footer'>
-      <button class='modal-actions__cancel button button--wired'>
+      <button class='modal-actions__cancel button button--wired' data-id="cancel">
         Cancel
       </button>
       {{#each actions}}
@@ -20,9 +18,9 @@
           {{name}}
         </button>
       {{/each}}
-      {{#if confirmButton}}
-        <button type="submit" form="{{concat id '_form'}}" class='modal-actions__action button button--filled'  data-id="confirm">
-          {{ confirmButton }}
+      {{#if submitButton}}
+        <button type="submit" form="{{id}}" class='modal-actions__action button button--filled'  data-id="submit">
+          {{ submitButton }}
         </button>
       {{/if}}
     </div>

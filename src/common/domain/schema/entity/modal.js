@@ -20,10 +20,11 @@ const dto = {
     collection : true,
     default    : []
   },
-  confirmButton :
+  submitButton :
   {
     type        : 'string',
-    'not-empty' : true
+    'not-empty' : true,
+    optional    : true
   }
 }
 

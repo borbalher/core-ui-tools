@@ -54,5 +54,5 @@
     "linter-and-fix": "eslint core/**/**.js view/**/**.js --fix",
     "test": "mocha 'core/**/*.test.js' 'view/**/*.test.js' --config .mocharc.json"
   },
-  "version": "1.0.124"
+  "version": "1.0.125"
 }

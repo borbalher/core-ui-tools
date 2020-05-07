@@ -146,6 +146,9 @@ class SchemaComposer
     if(options.nullable === true && data === null)
       return data
 
+    if(options.type === 'schema' && data === undefined)
+      data = this.compose(options.schema, {})
+
     // Filtering attributes if a filter has been defined for the type
     if(options.type in this.filters)
     {
