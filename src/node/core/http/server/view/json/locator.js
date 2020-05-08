@@ -4,7 +4,7 @@ class HttpViewJsonLocator
 {
   locate()
   {
-    return new HttpViewJson
+    return new HttpViewJson()
   }
 }
 

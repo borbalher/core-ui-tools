@@ -61,9 +61,12 @@ class UIComponent
       observer    = locator ? this.locator.locate(locator) : undefined,
       eventMapper = mapper  ? this.locator.locate(mapper) : undefined
 
-      this.bus.on(listenToChannel, eventName, observer ? observer.execute.bind(observer) : (event) =>
+      this.bus.on(listenToChannel, eventName, (event) =>
       {
-        this.bus.emit(emitToChannel, map  ? map : eventName, eventMapper ? eventMapper.map(event.data) : event.data)
+        if(observer)
+          observer.execute({ ...event, meta: { ...event.meta, emitter: emitToChannel } })
+        else
+          this.bus.emit(emitToChannel, map  ? map : eventName, eventMapper ? eventMapper.map(event.data) : event.data)
       })
     }
   }
@@ -133,9 +136,19 @@ class UIComponent
     return this.repository.getParentComponentData(this[Symbol.for('id')])
   }
 
-  getComponentData()
+  getComponentData(name)
   {
-    return this.repository.getComponentData(this[Symbol.for('id')])
+    if(!name)
+    {
+      return this.repository.getComponentData(this[Symbol.for('id')])
+    }
+    else
+    {
+      const child =  this.getComponentContext()[name]
+
+      if(child && child.id)
+        return this.repository.getComponentData(child.id)
+    }
   }
 
   setComponentData(componentData)

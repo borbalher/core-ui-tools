@@ -45,9 +45,7 @@ class UI
       // newComponentContext       = this.tree.getJSON(componentId, false)[newComponentData.name]
 
       if(!this.object.isEqual(previousComponentData, newComponentData) && exclude.indexOf(componentId) === -1)
-      {
         exclude = [...exclude,  this.onComponentChange(componentId)]
-      }
     }
   }
 
@@ -74,20 +72,11 @@ class UI
     return subtreePath
   }
 
-
-  createTreeFromContext(context)
-  {
-    const { nodes, edges, root } = this.viewModelToTree.map(context)
-    return this.treeFactory.create(nodes, edges, root)
-  }
-
   bootstrap()
   {
     const
     root = this.tree.root,
     path = this.tree.bfs(root)
-
-    path.shift()
 
     for(const componentId of path.reverse())
     {

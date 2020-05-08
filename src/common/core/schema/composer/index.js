@@ -72,7 +72,7 @@ class SchemaComposer
     if(Object.isFrozen(schema))
       this.deepfreeze.freeze(output)
 
-    return output
+    return JSON.parse(JSON.stringify(output)) // removing undefined
   }
 
   composeExampleValue(options, includeOptional)
