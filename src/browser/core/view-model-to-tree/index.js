@@ -9,7 +9,7 @@ class ViewModelToTree
       const
       nodes = [],
       edges = [],
-      page  = this.mapComponent(viewModel, nodes, edges)
+      page  = this.mapComponent({ ...viewModel, name: 'page' }, nodes, edges)
 
       nodes.push(page)
 
@@ -26,8 +26,8 @@ class ViewModelToTree
         nodes      : [],
         edges      : [],
         isDirected : true,
-        root       : page.id
-       }
+        root       : undefined
+      }
     }
   }
 
@@ -43,7 +43,7 @@ class ViewModelToTree
       if(isComponent(element[key]))
       {
         const
-        child     = element[key],
+        child     = { ...element[key], name: key },
         childNode = this.mapComponent(child, nodes, edges)
 
         nodes.push(childNode)
