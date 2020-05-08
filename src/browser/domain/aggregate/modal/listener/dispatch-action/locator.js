@@ -1,6 +1,6 @@
-const CloseModalObserver = require('.')
+const DispatchActionObserver = require('.')
 
-class CloseModalObserverLocator
+class DispatchActionObserverLocator
 {
   constructor(locator)
   {
@@ -10,8 +10,8 @@ class CloseModalObserverLocator
   locate()
   {
     const ui = this.locator.locate('core/ui')
-    return new CloseModalObserver(ui)
+    return new DispatchActionObserver(ui)
   }
 }
 
-module.exports = CloseModalObserverLocator
+module.exports = DispatchActionObserverLocator

@@ -1,7 +1,7 @@
 /**
  * @implements {superhero/core/eventbus/observer}
  */
-class CloseModalObserver
+class DispatchActionObserver
 {
   constructor(ui)
   {
@@ -10,9 +10,9 @@ class CloseModalObserver
 
   execute(event)
   {
-    const { meta: { emitter } } = event
-    this.ui.getComponent(emitter).closeModal()
+    const { meta: { emitter }, data: { action } } = event
+    this.ui.getComponent(emitter).dispatchAction(action)
   }
 }
 
-module.exports = CloseModalObserver
+module.exports = DispatchActionObserver
