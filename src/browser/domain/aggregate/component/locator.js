@@ -13,9 +13,10 @@ class ComponentFactoryLocator
     configuration = this.locator.locate('core/configuration'),
     bus           = this.locator.locate('infrastructure/bus'),
     store         = this.locator.locate('core/store'),
-    hbs           = this.locator.locate('view/handlebars')
+    hbs           = this.locator.locate('view/handlebars'),
+    deepfind      = this.locator.locate('core/deepfind')
 
-    return new ComponentFactory(configuration, bus, this.locator, store, hbs)
+    return new ComponentFactory(configuration, bus, this.locator, store, hbs, deepfind)
   }
 }
 

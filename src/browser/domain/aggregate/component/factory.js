@@ -1,12 +1,13 @@
 class ComponentFactory
 {
-  constructor(configuration, bus, locator, store, hbs)
+  constructor(configuration, bus, locator, store, hbs, deepfind)
   {
     this.configuration = configuration
     this.bus           = bus
     this.locator       = locator
     this.store         = store
     this.hbs           = hbs
+    this.deepfind      = deepfind
   }
 
   getBindings(template)
@@ -32,12 +33,12 @@ class ComponentFactory
     { id, template } = component,
     channel          = this.createBusChannel(id),
     bindings         = this.getBindings(template),
-    listeners        = this.getListeners(template)
+    listeners        = this.getListeners(template),
     Component        = this.locator.locate(template)
 
     return (ui) =>
     {
-      return new Component(id, this.bus, this.store, this.hbs, ui, channel, bindings, listeners, this.locator)
+      return new Component(id, this.bus, this.store, this.hbs, this.deepfind, ui, channel, bindings, listeners, this.locator)
     }
   }
 }

@@ -56,11 +56,25 @@ class HTTPGateway
     response  = await window.fetch(endpoint, options).catch((error) =>
     {
       throw new HTTPFetchError(`Error while trying to fetch: ${error.message}`)
-    })
+    }),
+    text      = await response.text()
 
-    return {
-      status : response.status,
-      data   : await response.json()
+    try
+    {
+      return {
+        status : response.status,
+        data   : JSON.parse(text)
+      }
+    }
+    catch(error)
+    {
+      return {
+        status : response.status,
+        data   : {
+          code    : 'E_NOT_JSON_RESPONSE',
+          message : error.message
+        }
+      }
     }
   }
 

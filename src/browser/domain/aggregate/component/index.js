@@ -2,12 +2,13 @@ const isComponent = require('../../../core/is-component')
 
 class UIComponent
 {
-  constructor(id, bus, store, hbs, repository, channel, bindings, listeners, locator)
+  constructor(id, bus, store, hbs, deepfind, repository, channel, bindings, listeners, locator)
   {
     this[Symbol.for('id')] = id
     this.bus               = bus
     this.store             = store
     this.hbs               = hbs
+    this.deepfind          = deepfind
     this.repository        = repository
     this.channel           = channel
     this.bindings          = bindings
@@ -42,7 +43,8 @@ class UIComponent
 
   mapEmitToString(emitTo, context)
   {
-    return isComponent(context[emitTo]) ? [context[emitTo].id] : [emitTo]
+    const component = this.deepfind.find(emitTo, context)
+    return isComponent(component) ? [component.id] : [emitTo]
   }
 
   getChannels(emitTo)
