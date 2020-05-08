@@ -39,7 +39,7 @@ module.exports = {
     },
     locator :
     {
-      'modal/listener/dispatch-action' : `${__dirname}/listener/close-modal`,
+      'modal/listener/dispatch-action' : `${__dirname}/listener/dispatch-action`,
       'modal/action/open-modal'        : `${__dirname}/action/open-modal`,
       'modal/action/close-modal'       : `${__dirname}/action/close-modal`,
       'modal'                          : __dirname
