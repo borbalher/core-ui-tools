@@ -35,7 +35,7 @@ class Bus
   {
     const channel = this.getChannel(channelId)
     if(channel)
-      channel.on(event, listener)
+      return channel.on(event, listener)
     else
       console.warn(`Channel ${channelId} error`)
   }

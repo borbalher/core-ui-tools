@@ -1,7 +1,12 @@
 module.exports = {
-  '@meta' :
+  // '@meta' :
+  // {
+  //   extends : 'node'
+  // },
+  id :
   {
-    extends : 'node'
+    type        : 'string',
+    'not-empty' : true
   },
   template :
   {

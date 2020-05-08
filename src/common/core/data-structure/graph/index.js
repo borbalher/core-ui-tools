@@ -1,5 +1,5 @@
 const
-NodeNotExist              = require('./error/node-not-exists'),
+// NodeNotExist              = require('./error/node-not-exists'),
 Queue                     = require('../queue'),
 MultipleAssociativeArray  = require('../multiple-associative-array'),
 AssociativeArray          = require('../associative-array')
