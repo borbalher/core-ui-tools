@@ -1,4 +1,7 @@
-<fieldset id="{{id}}" name="{{name}}" form="{{formId}}" {{#if disabled}}disabled{{/if}}>
+<fieldset id="{{id}}"
+  {{#if name}}name="{{name}}"{{/if}}
+  {{#if formId}}form="{{formId}}"{{/if}}
+  {{#if disabled}}disabled{{/if}}>
 
   {{#if legend}}
     <legend>{{legend}}</legend>

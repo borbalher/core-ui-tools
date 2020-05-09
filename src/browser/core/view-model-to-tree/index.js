@@ -9,7 +9,7 @@ class ViewModelToTree
       const
       nodes = [],
       edges = [],
-      page  = this.mapComponent({ ...viewModel, name: 'page' }, nodes, edges)
+      page  = this.mapComponent(viewModel, nodes, edges)
 
       nodes.push(page)
 
