@@ -61,20 +61,19 @@ class HTTPGateway
 
     try
     {
-      return {
-        status : response.status,
-        data   : JSON.parse(text)
-      }
+      const
+      { status } = response,
+      data       = JSON.parse(text)
+
+      return { status, data }
     }
     catch(error)
     {
-      return {
-        status : response.status,
-        data   : {
-          code    : 'E_NOT_JSON_RESPONSE',
-          message : error.message
-        }
-      }
+      const
+      { status } = response,
+      data       = { code: 'E_NOT_JSON_RESPONSE', message: `[${status}] ${text}` }
+
+      return { status, data }
     }
   }
 
