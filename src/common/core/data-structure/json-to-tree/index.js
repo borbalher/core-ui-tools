@@ -11,7 +11,7 @@ class JSONToTree
     let root
     if(hasId(json))
     {
-      const rootNode = this.mapNode({ ...json, name: 'root' }, nodes, edges)
+      const rootNode = this.mapNode(json, nodes, edges)
       nodes.push(rootNode)
       root = rootNode.id
     }

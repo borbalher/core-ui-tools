@@ -3,6 +3,16 @@ module.exports = {
   {
     extends : 'node'
   },
+  template :
+  {
+    type        : 'string',
+    'not-empty' : true
+  },
+  schema :
+  {
+    type        : 'string',
+    'not-empty' : true
+  },
   lang :
   {
     type        : 'string',
