@@ -17,6 +17,7 @@ module.exports = {
         'entity/select-input'             : `${__dirname}/entity/select-input`,
         'entity/select-input-item'        : `${__dirname}/entity/select-input-item`,
         'entity/form'                     : `${__dirname}/entity/form`,
+        'entity/fieldset'                 : `${__dirname}/entity/fieldset`,
         'entity/page'                     : `${__dirname}/entity/page`,
         'entity/pagination'               : `${__dirname}/entity/pagination`,
         'entity/input'                    : `${__dirname}/entity/input`,
