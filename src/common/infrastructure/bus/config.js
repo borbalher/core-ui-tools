@@ -7,8 +7,8 @@ module.exports = {
     },
     locator :
     {
-      'infrastructure/bus'           : __dirname,
-      'infrastructure/bus/bootstrap' : `${__dirname}/bootstrap`
+      'infrastructure/bus/bootstrap' : `${__dirname}/bootstrap`,
+      'infrastructure/bus'           : __dirname
     }
   },
   infrastructure :

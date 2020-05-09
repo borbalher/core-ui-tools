@@ -24,7 +24,7 @@ class PaginationComponent extends Component
 
   prevPageClick()
   {
-    const { limit, totalElements, selectedPage, offset, firstPage} = this.getComponentContext()
+    const { limit, totalElements, selectedPage, offset, firstPage } = this.getComponentContext()
 
     if(selectedPage !== firstPage)
     {
