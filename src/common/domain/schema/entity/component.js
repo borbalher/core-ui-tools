@@ -22,5 +22,11 @@ module.exports = {
   {
     type    : 'boolean',
     default : true
+  },
+  classes :
+  {
+    optional    : true,
+    type        : 'string',
+    'not-empty' : true
   }
 }

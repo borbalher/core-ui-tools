@@ -10,9 +10,9 @@ class EmitEventAction
 
   execute(action, state)
   {
-    const { event, payload, channel } = action
+    const { data: { event, payload, channel } } = action
 
-    this.bus.emit(channel, event, payload)
+    setTimeout(() => this.bus.emit(channel, event, payload), 0)
 
     return state
   }

@@ -4,15 +4,18 @@ module.exports = {
     store :
     {
       middlewares : [
+        'store/middleware/crash-report',
         'store/middleware/logger',
         'store/middleware/delayer'
       ]
     },
     locator :
     {
-      'core/store'               : __dirname,
-      'store/middleware/logger'  : `${__dirname}/middleware/logger`,
-      'store/middleware/delayer' : `${__dirname}/middleware/delayer`
+      'store/middleware/crash-report' : `${__dirname}/middleware/crash-report`,
+      'store/middleware/logger'       : `${__dirname}/middleware/logger`,
+      'store/middleware/delayer'      : `${__dirname}/middleware/delayer`,
+      'core/store'                    : __dirname
+
     }
   }
 }

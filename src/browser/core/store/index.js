@@ -24,6 +24,14 @@ class Store
     }
   }
 
+  dispatchAfter(action)
+  {
+    setTimeout(() =>
+    {
+      this.dispatch(action)
+    }, 0)
+  }
+
   setState(state)
   {
     this.states = [...this.states, state]

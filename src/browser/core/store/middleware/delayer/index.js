@@ -4,7 +4,7 @@
  */
 const timeoutScheduler = store => next => action =>
 {
-  if(!action.meta || !action.meta.delay)
+  if(!action.meta || action.meta.delay === undefined)
     return next(action)
 
   const timeoutId = setTimeout(() => next(action), action.meta.delay)

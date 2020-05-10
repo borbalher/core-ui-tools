@@ -1,24 +1,27 @@
 /**
  * @implements {superhero/core/eventbus/observer}
  */
-class OpenModalObserver
+class OpenModalAction
 {
-  constructor(coreString)
+  constructor(store)
   {
-    this.coreString = coreString
+    this.store = store
   }
 
   execute(action, state)
   {
-    const
-    { data: { modal } } = action,
-    key                 = this.coreString.camelCase(modal)
+    const { data: { modal } } = action
 
-    if(state[key])
-      state[key] = { ...state[key], isOpen: true }
+    state[modal] = { ...state[modal], isOpen: true }
+
+    this.store.dispatchAfter(this.store.composeAction('emit.event', {
+      event   : 'modal.opened',
+      payload : { },
+      channel : modal
+    }))
 
     return state
   }
 }
 
-module.exports = OpenModalObserver
+module.exports = OpenModalAction

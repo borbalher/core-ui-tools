@@ -7,10 +7,11 @@ class CoreHandlebarsHelperDate
 
   create()
   {
-    return function (date, valueFormat, format, isStrict)
+    const moment = this.moment
+    return (date, valueFormat, format, isStrict) =>
     {
       if(date)
-        return this.moment.formatDate(date, valueFormat, isStrict, format)
+        return moment.formatDate(date, valueFormat, isStrict, format)
     }
   }
 }

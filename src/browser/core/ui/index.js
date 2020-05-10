@@ -45,20 +45,25 @@ class UI
       // newComponentContext       = this.tree.getJSON(componentId, false)[newComponentData.name]
 
       if(!this.object.isEqual(previousComponentData, newComponentData) && exclude.indexOf(componentId) === -1)
-        exclude = [...exclude,  this.onComponentChange(componentId)]
+        exclude = [...exclude,  this.onComponentChange(componentId, previousComponentData, newComponentData)]
     }
   }
 
-  onComponentChange(componentId)
+  onComponentChange(componentId, previousComponentData, newComponentData)
   {
     const componentData = this.getComponentData(componentId)
 
     let subtreePath = []
 
+    const component = this.getComponent(componentId)
+
+    component.emit('component.changed', {
+      previous : previousComponentData,
+      current  : newComponentData
+    })
+
     if(componentData.renderOnChange)
     {
-      const component = this.getComponent(componentId)
-
       component.render()
 
       subtreePath = this.tree.bfs(componentId)

@@ -19,7 +19,7 @@ class ViewModel
     const
     url      = new URL(window.location.href),
     pathname = url.pathname.slice(1),
-    page     = `${pathname !== '' ? pathname : 'home'}-page`
+    page     = `${pathname !== '' ? pathname.split('/')[0] : 'home'}-page`
 
     return page
   }

@@ -7,7 +7,7 @@ module.exports = {
       {
         bindings : [
           {
-            selector       : '.button.modal-actions__action',
+            selector       : '.modal-actions__action[data-action]',
             domEvent       : 'click',
             map            : 'dispatch.action',
             mapper         : 'modal/mapper/modal-action',

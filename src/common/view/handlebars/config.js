@@ -20,7 +20,7 @@ module.exports = {
         'toLowerCase'    : 'view/handlebars/helper/to-lower-case',
         'toUpperCase'    : 'view/handlebars/helper/to-upper-case',
         'unless'         : 'view/handlebars/helper/unless',
-        'exists'         : 'view/handlebars/helper/exists',
+        'exists'         : 'view/handlebars/helper/exists'
         // 'translate'      : 'view/handlebars/helper/translate',
         // 'date'           : 'view/handlebars/helper/date'
       }

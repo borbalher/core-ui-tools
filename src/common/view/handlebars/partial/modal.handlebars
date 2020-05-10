@@ -7,16 +7,22 @@
       </div>
     </div>
     <div class='modal-body'>
-      {{> (lookup body 'template') body}}
+        {{> (lookup body 'template') body}}
     </div>
     <div class='modal-footer'>
       <button class='modal-actions__action button button--wired' data-action="close.modal">
         Cancel
       </button>
       {{#each actions}}
-        <button class='modal-actions__action button button--filled' data-action="{{id}}">
-          {{name}}
-        </button>
+        {{#if submit}}
+          <button type='submit' form="{{../body.id}}" class='modal-actions__action button button--filled'>
+            {{name}}
+          </button>
+        {{else}}
+          <button class='modal-actions__action button button--filled' data-action="{{id}}">
+            {{name}}
+          </button>
+        {{/if}}
       {{/each}}
     </div>
   </div>

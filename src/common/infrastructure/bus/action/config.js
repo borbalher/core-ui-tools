@@ -10,7 +10,7 @@ module.exports = {
     },
     locator :
     {
-      'infrastructure/bus/action/emit-event' : `${__dirname}/action/emit-event`
+      'infrastructure/bus/action/emit-event' : `${__dirname}/emit-event`
     }
   }
 }

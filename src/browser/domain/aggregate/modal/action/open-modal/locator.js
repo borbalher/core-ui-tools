@@ -1,6 +1,6 @@
-const OpenModalObserver = require('.')
+const OpenModalAction = require('.')
 
-class OpenModalObserverLocator
+class OpenModalActionLocator
 {
   constructor(locator)
   {
@@ -9,9 +9,9 @@ class OpenModalObserverLocator
 
   locate()
   {
-    const coreString = this.locator.locate('core/string')
-    return new OpenModalObserver(coreString)
+    const store = this.locator.locate('core/store')
+    return new OpenModalAction(store)
   }
 }
 
-module.exports = OpenModalObserverLocator
+module.exports = OpenModalActionLocator
