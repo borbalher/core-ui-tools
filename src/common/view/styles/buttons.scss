@@ -46,6 +46,15 @@
     }
   }
 
+  &--secondary{
+    color: $body-light;
+    background: $secondary-gradient;
+    border: none;
+    &:hover{
+      background: $secondary-gradient-inverse;
+    }
+  }
+
   &--wired{
     color: map-get($palette, color-primary);
     background-color: transparent;
@@ -75,10 +84,10 @@
 
   &--round{
     border-radius: 50%;
-    padding: .625rem;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     line-height: 1.5rem;
-    width: 1.5rem;
+    padding: .375rem .625rem .375rem .5rem;
+    width: 2.5rem;
 
     &.button--xl{
       font-size: 1.75rem;

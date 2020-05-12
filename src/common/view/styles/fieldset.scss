@@ -1,0 +1,16 @@
+@import '_colors.scss';
+
+fieldset {
+  & legend{
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-bottom: .25rem solid map-get($palette, color-grey_L2);
+    margin-bottom: 2rem;
+
+    & span {
+      border-bottom: .25rem solid map-get($palette, color-primary);
+      padding-bottom: .23rem;  //.23rem to match with H2 line
+    }
+  }
+}
