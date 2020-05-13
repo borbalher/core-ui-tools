@@ -1,7 +1,12 @@
 const dto = {
   '@meta' :
   {
-    extends : 'entity/component'
+    extends : 'entity/input'
+  },
+  input :
+  {
+    type   : 'schema',
+    schema : 'value-object/reference'
   },
   label :
   {

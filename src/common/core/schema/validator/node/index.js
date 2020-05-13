@@ -7,22 +7,21 @@ class SchemaValidatorNode
   valid(options, data)
   {
     if(typeof data !== 'object')
-    {
-      const msg = `Element must be an object`
-      throw new InvalidNodeError(msg)
-    }
+      throw new InvalidNodeError(`Element must be an object`)
 
-    if(data.hasOwnProperty('id') && typeof data.id  === 'string')
-    {
-      const msg = `Id must be a string`
-      throw new InvalidNodeError(msg)
-    }
+    if(!data.hasOwnProperty('id'))
+      throw new InvalidNodeError('id property missing')
+    else if(typeof data.id  !== 'string')
+      throw new InvalidNodeError('id must be a string')
+    else if(!data.id)
+      throw new InvalidNodeError('id must be a not empty string')
 
-    if(data.hasOwnProperty('name') && typeof data.name  === 'string')
-    {
-      const msg = `Name must be a string`
-      throw new InvalidNodeError(msg)
-    }
+    if(!data.hasOwnProperty('name'))
+      throw new InvalidNodeError('name property missing')
+    else if(typeof data.name  !== 'string')
+      throw new InvalidNodeError('name must be a string')
+    else if(!data.name)
+      throw new InvalidNodeError('name must be a not empty string')
   }
 }
 

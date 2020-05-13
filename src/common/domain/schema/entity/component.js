@@ -1,12 +1,7 @@
 module.exports = {
-  // '@meta' :
-  // {
-  //   extends : 'node'
-  // },
-  id :
+  '@meta' :
   {
-    type        : 'string',
-    'not-empty' : true
+    extends : 'tree-node'
   },
   template :
   {
@@ -18,7 +13,7 @@ module.exports = {
     type        : 'string',
     'not-empty' : true
   },
-  renderOnChange :
+  renderonchange :
   {
     type    : 'boolean',
     default : true
@@ -28,5 +23,17 @@ module.exports = {
     optional    : true,
     type        : 'string',
     'not-empty' : true
+  },
+  bindings :
+  {
+    type       : 'schema',
+    schema     : 'value-object/binding',
+    collection : true
+  },
+  listeners :
+  {
+    type       : 'schema',
+    schema     : 'value-object/listener',
+    collection : true
   }
 }

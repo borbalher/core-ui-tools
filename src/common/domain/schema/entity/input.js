@@ -30,7 +30,7 @@ const dto = {
     type    : 'boolean',
     default : false
   },
-  readOnly :
+  readonly :
   {
     type    : 'boolean',
     default : false

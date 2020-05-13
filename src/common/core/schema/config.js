@@ -5,10 +5,11 @@ module.exports = {
     {
       composer :
       {
-        'edge'  : `${__dirname}/value-object/edge`,
-        'node'  : `${__dirname}/entity/node`,
-        'graph' : `${__dirname}/entity/graph`,
-        'tree'  : `${__dirname}/entity/tree`
+        'edge'      : `${__dirname}/value-object/edge`,
+        'node'      : `${__dirname}/entity/node`,
+        'tree-node' : `${__dirname}/entity/tree-node`,
+        'graph'     : `${__dirname}/entity/graph`,
+        'tree'      : `${__dirname}/entity/tree`
       },
       filter :
       {
@@ -35,6 +36,8 @@ module.exports = {
         'collection'                 : 'core/schema/validator/collection',
         'custom-json'                : 'core/schema/validator/custom-json',
         'node'                       : 'core/schema/validator/node',
+        'tree'                       : 'core/schema/validator/tree',
+        'tree-node'                  : 'core/schema/validator/tree-node',
         'edge'                       : 'core/schema/validator/edge',
         'associative-array'          : 'core/schema/validator/associative-array',
         'multiple-associative-array' : 'core/schema/validator/multiple-associative-array'
@@ -63,6 +66,8 @@ module.exports = {
       'core/schema/validator/node'                       : `${__dirname}/validator/node`,
       'core/schema/validator/edge'                       : `${__dirname}/validator/edge`,
       'core/schema/validator/graph'                      : `${__dirname}/validator/graph`,
+      'core/schema/validator/tree-node'                  : `${__dirname}/validator/tree-node`,
+      'core/schema/validator/tree'                       : `${__dirname}/validator/tree`,
       'core/schema/validator/collection'                 : `${__dirname}/validator/collection`,
       'core/schema/validator/custom-json'                : `${__dirname}/validator/custom-json`,
       'core/schema/validator/associative-array'          : `${__dirname}/validator/associative-array`,

@@ -49,10 +49,10 @@ module.exports = {
       'collection-type'    : 'schema',
       'collection-options' :
       {
-        schema     : 'value-object/partial'
+        schema : 'value-object/partial'
       }
     },
-    default    : []
+    default : []
   },
   actions :
   {

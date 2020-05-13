@@ -24,6 +24,7 @@ class SchemaValidatorGraph
       const msg = `Element must be an object`
       throw new InvalidGraphError(msg)
     }
+
     if(data.hasOwnProperty('isDirected') && typeof data.isDirected  === 'boolean')
     {
       const msg = `IsDirected must be a boolean`

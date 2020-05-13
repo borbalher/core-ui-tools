@@ -2,6 +2,8 @@
 
 fieldset {
   & legend{
+    position: relative;
+    width: 100%;
     font-size: 1.5rem;
     font-weight: 700;
     text-transform: uppercase;

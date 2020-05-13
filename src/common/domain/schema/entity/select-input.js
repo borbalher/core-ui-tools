@@ -21,7 +21,7 @@ module.exports = {
   items :
   {
     type       : 'schema',
-    schema     : 'entity/select-input-item',
+    schema     : 'value-object/reference',
     collection : true,
     default    : []
   },

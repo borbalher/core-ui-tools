@@ -1,23 +1,21 @@
-<div id="{{id}}" class='input-group {{template}} {{#if big}}input-group--xl{{/if}} {{#if error.message}}--error{{/if}}'>
-
-  <div>
+<div id="{{id}}" class='input-group {{input.template}}-input-group {{#if big}}input-group--xl{{/if}} {{#if error.message}}--error{{/if}} {{classess}}'>
+  <div class='input-group__label-wrapper'>
     {{#if label}}
       <label class='input-group__label' for='{{input.id}}'>
         {{label}}
       </label>
     {{/if}}
-
-    {{#unless input.required}}
+    {{#unless required}}
       <span class='input-group__optional-label'>
         (optional)
       </span>
     {{/unless}}
   </div>
 
-  {{> @partial-block }}
+ {{> component input required=required disabled=disabled readonly=readonly}}
 
-  <div class='input-group__error'>
-    {{#if error.message}}{{error.message}}{{/if}}
-  </div>
+  {{#with error}}
+     <div class='input-group__error'>{{message}}  </div>
+  {{/with}}
 
 </div>

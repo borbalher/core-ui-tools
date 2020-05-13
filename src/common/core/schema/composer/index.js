@@ -31,20 +31,34 @@ class SchemaComposer
    */
   compose(schemaName, dto)
   {
-    const
-    schema = this.composeSchema(schemaName),
-    output = {}
+    let attributeName
+    try
+    {
+      const
+      schema = this.composeSchema(schemaName),
+      output = {}
 
-    if(Array.isArray(dto))
-      dto = this.deepmerge.merge({}, ...dto)
+      if(Array.isArray(dto))
+        dto = this.deepmerge.merge({}, ...dto)
 
-    for(const attribute in schema)
-      output[attribute] = this.attribute(schemaName, schema, attribute, dto[attribute])
+      for(const attribute in schema)
+      {
+        attributeName = attribute
+        output[attribute] = this.attribute(schemaName, schema, attribute, dto[attribute])
+      }
 
-    if(Object.isFrozen(schema))
-      this.deepfreeze.freeze(output)
 
-    return JSON.parse(JSON.stringify(output)) // removing undefined
+      if(Object.isFrozen(schema))
+        this.deepfreeze.freeze(output)
+
+      return JSON.parse(JSON.stringify(output)) // removing undefined
+    }
+    catch(error)
+    {
+      console.log(error)
+      console.log(attributeName)
+      console.log(schemaName)
+    }
   }
 
   /**
