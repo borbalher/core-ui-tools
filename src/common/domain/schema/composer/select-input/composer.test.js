@@ -37,7 +37,7 @@ describe('src/common/domain/schema/composer/select-input', () =>
 
   it('Can compose a select input', () =>
   {
-    const selectInput = selectInputComposer.compose({
+    const { nodes: [selectInput] }  = selectInputComposer.compose({
       attribute : 'addressId',
       disabled  : true,
       parentId  : null,

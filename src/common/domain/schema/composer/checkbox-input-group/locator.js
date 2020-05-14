@@ -1,6 +1,6 @@
-const CheckboxInputComposer = require('.')
+const CheckboxInputGroupComposer = require('.')
 
-class CheckboxInputComposerLocator
+class CheckboxInputGroupComposerLocator
 {
   constructor(locator)
   {
@@ -15,8 +15,8 @@ class CheckboxInputComposerLocator
     checkboxInputComposer = this.locator.locate('core/checkbox-input/composer'),
     componentComposer     = this.locator.locate('core/component/composer')
 
-    return new CheckboxInputComposer(componentComposer, checkboxInputComposer, options)
+    return new CheckboxInputGroupComposer(componentComposer, checkboxInputComposer, options)
   }
 }
 
-module.exports = CheckboxInputComposerLocator
+module.exports = CheckboxInputGroupComposerLocator

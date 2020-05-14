@@ -39,7 +39,7 @@ describe('src/common/domain/schema/composer/text-input-group', () =>
   it('Can compose a text input group', () =>
   {
     const
-    textInputGroupTree = textInputGroupComposer.compose({
+    textInputGroup = textInputGroupComposer.compose({
       attribute : 'text',
       disabled  : true,
       parentId  : null,
@@ -49,15 +49,11 @@ describe('src/common/domain/schema/composer/text-input-group', () =>
       value     : 'My text value',
       name      : 'text',
       id        : 'text-input-group'
-    }),
-    { nodes }      = textInputGroupTree,
-    textInputGroup = nodes[0],
-    textInput      = nodes[1]
+    })
 
     expect(() =>
     {
-      composer.compose('entity/input-group', textInputGroup)
-      composer.compose('entity/text-input', textInput)
+      composer.compose('entity/text-input-group', textInputGroup)
     }).to.not.throw()
   })
 })

@@ -18,10 +18,10 @@ module.exports = {
         'entity/pagination'          : `${__dirname}/entity/pagination`,
         'entity/button-group-button' : `${__dirname}/entity/button-group-button`,
         'entity/table'               : `${__dirname}/entity/table`,
-        'entity/checkbox-panel'      : `${__dirname}/entity/checkbox-panel`,
         // FORMS
         'entity/form'                : `${__dirname}/entity/form`,
         'entity/fieldset'            : `${__dirname}/entity/fieldset`,
+        'entity/toggeable-fieldset'  : `${__dirname}/entity/toggeable-fieldset`,
         'entity/input-group'         : `${__dirname}/entity/input-group`,
         // INPUTS
         'entity/input'               : `${__dirname}/entity/input`,

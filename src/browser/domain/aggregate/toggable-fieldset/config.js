@@ -3,7 +3,7 @@ module.exports = {
   {
     ui :
     {
-      'checkbox-panel' :
+      'toggable-fieldset' :
       {
         listeners : [
           {

@@ -1,30 +1,28 @@
 const ComponentComposer = require('../component')
 
 /**
- * CheckboxInput composer
+ * Fieldset composer
  * @class
  */
-class CheckboxInputComposer extends ComponentComposer
+class FieldsetComposer extends ComponentComposer
 {
   compose({
     listeners = [],
     bindings  = [],
     renderonchange,
-    attribute,
+    template,
     disabled,
     parentId,
-    readonly,
-    required,
     classes,
-    title,
-    value,
+    formId,
+    legend,
     name,
-    id
+    id,
+    ...args
   })
   {
-    const checkboxInput = super.compose({
-      template : 'checkbox-input',
-      schema   : 'entity/checkbox-input',
+    const fieldset = super.compose({
+      schema   : 'entity/fieldset',
       bindings : [
         ...this.bindings,
         ...bindings
@@ -34,20 +32,19 @@ class CheckboxInputComposer extends ComponentComposer
         ...listeners
       ],
       renderonchange,
-      attribute,
       disabled,
       parentId,
-      required,
-      readonly,
+      template,
       classes,
-      title,
-      value,
+      formId,
+      legend,
       name,
-      id
+      id,
+      ...args
     })
 
-    return checkboxInput
+    return fieldset
   }
 }
 
-module.exports = CheckboxInputComposer
+module.exports = FieldsetComposer

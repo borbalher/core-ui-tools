@@ -29,7 +29,7 @@ class SelectInputGroupComposer
   })
   {
     const
-    selectInput = this.selectInputComposer.compose({
+    { nodes: [selectInput] } = this.selectInputComposer.compose({
       renderonchange : false,
       parentId       : id,
       id             : `${id}-select-input`,
@@ -41,7 +41,7 @@ class SelectInputGroupComposer
       title,
       value
     }),
-    selectInputGroup = this.componentComposer.compose({
+    { nodes: [selectInputGroup] } = this.componentComposer.compose({
       template : 'input-group',
       schema   : 'entity/select-input-group',
       input    : {
@@ -78,9 +78,8 @@ class SelectInputGroupComposer
       nodes : [ selectInputGroup, selectInput ],
       edges : [
         {
-          source  : selectInputGroup.id,
-          target  : selectInput.id,
-          payload : {}
+          source : selectInputGroup.id,
+          target : selectInput.id
         }
       ]
     }

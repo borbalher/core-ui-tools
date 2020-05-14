@@ -11,14 +11,35 @@ class FormInputComposer
     this.listeners         = options && options.listeners ? options.listeners : []
   }
 
+  getSubTree(form, inputs, fieldsets)
+  {
+    const nodes = [...inputs, ...fieldsets]
+
+    let edges = []
+    for(const node of nodes)
+    {
+      node.parentId = form.id
+
+      if(form.disabled)
+        node.disabled = true
+
+      edges = [...edges, { source: form.id, target: node.id }]
+    }
+
+    return { nodes: [form, ...nodes], edges }
+  }
+
   compose({
     listeners = [],
     bindings  = [],
+    inputs    = [],
+    fieldsets = [],
     renderonchange,
     parentId,
     template,
     isValid,
     classes,
+    disabled,
     title,
     data,
     name,
@@ -36,6 +57,7 @@ class FormInputComposer
         ...listeners
       ],
       renderonchange,
+      disabled,
       parentId,
       template,
       isValid,
@@ -45,7 +67,6 @@ class FormInputComposer
       name,
       id
     })
-
 
     return form
   }

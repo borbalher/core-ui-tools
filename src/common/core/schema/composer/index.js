@@ -58,6 +58,7 @@ class SchemaComposer
       console.log(error)
       console.log(attributeName)
       console.log(schemaName)
+      throw error
     }
   }
 

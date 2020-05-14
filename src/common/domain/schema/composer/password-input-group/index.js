@@ -29,7 +29,7 @@ class PasswordInputGroupComposer
   })
   {
     const
-    passwordInput = this.passwordInputComposer.compose({
+    { nodes: [passwordInput] } = this.passwordInputComposer.compose({
       id             : `${id}-password-input`,
       renderonchange : false,
       name           : 'input',
@@ -41,7 +41,7 @@ class PasswordInputGroupComposer
       title,
       value
     }),
-    passwordInputGroup = this.componentComposer.compose({
+    { nodes: [passwordInputGroup] } = this.componentComposer.compose({
       schema   : 'entity/password-input-group',
       template : 'input-group',
       input    : {
@@ -73,9 +73,8 @@ class PasswordInputGroupComposer
       nodes : [ passwordInputGroup, passwordInput ],
       edges : [
         {
-          source  : passwordInputGroup.id,
-          target  : passwordInput.id,
-          payload : {}
+          source : passwordInputGroup.id,
+          target : passwordInput.id
         }
       ]
     }

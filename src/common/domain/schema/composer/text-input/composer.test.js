@@ -37,7 +37,7 @@ describe('src/common/domain/schema/composer/text-input', () =>
 
   it('Can compose a text input', () =>
   {
-    const textInput = textInputComposer.compose({
+    const { nodes: [textInput] } = textInputComposer.compose({
       attribute : 'text',
       disabled  : true,
       parentId  : null,

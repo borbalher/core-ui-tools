@@ -27,7 +27,7 @@ class PasswordInputComposer
     id
   })
   {
-    const textInput = this.componentComposer.compose({
+    const passwordInput = this.componentComposer.compose({
       template : 'password-input',
       schema   : 'entity/password-input',
       bindings : [
@@ -51,7 +51,7 @@ class PasswordInputComposer
       id
     })
 
-    return textInput
+    return passwordInput
   }
 }
 

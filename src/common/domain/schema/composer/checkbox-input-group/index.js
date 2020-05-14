@@ -1,17 +1,11 @@
+const ComponentComposer = require('../component')
+
 /**
  * CheckboxInputGroup composer
  * @class
  */
-class CheckboxInputGroupComposer
+class CheckboxInputGroupComposer extends ComponentComposer
 {
-  constructor(componentComposer, checkboxInputComposer, options)
-  {
-    this.componentComposer     = componentComposer
-    this.checkboxInputComposer = checkboxInputComposer
-    this.bindings              = options && options.bindings  ? options.bindings : []
-    this.listeners             = options && options.listeners ? options.listeners : []
-  }
-
   compose({
     bindings  = [],
     listeners = [],
@@ -29,24 +23,19 @@ class CheckboxInputGroupComposer
   })
   {
     const
-    checkboxInput = this.checkboxInputComposer.compose({
-      id             : `${id}-checkbox-input`,
-      name           : 'input',
-      renderonchange : false,
-      parentId       : id,
-      attribute,
-      required,
-      disabled,
-      readonly,
-      title,
-      value
-    }),
-    checkboxInputGroup = this.componentComposer.compose({
+    checkboxInputGroup = super.compose({
       schema   : 'entity/checkbox-input-group',
       template : 'checkbox-input-group',
       input    : {
-        id   : checkboxInput.id,
-        type : checkboxInput.template
+        id       : `${id}-checkbox-input`,
+        name     : 'input',
+        parentId : id,
+        attribute,
+        required,
+        disabled,
+        readonly,
+        title,
+        value
       },
       bindings : [
         ...this.bindings,
@@ -69,16 +58,7 @@ class CheckboxInputGroupComposer
       id
     })
 
-    return  {
-      nodes : [ checkboxInputGroup, checkboxInput ],
-      edges : [
-        {
-          source  : checkboxInputGroup.id,
-          target  : checkboxInput.id,
-          payload : {}
-        }
-      ]
-    }
+    return  checkboxInputGroup
   }
 }
 

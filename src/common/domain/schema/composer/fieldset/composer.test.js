@@ -1,4 +1,4 @@
-describe('src/common/domain/schema/composer/form', () =>
+describe('src/common/domain/schema/composer/fieldset', () =>
 {
   const
   expect      = require('chai').expect,
@@ -7,7 +7,7 @@ describe('src/common/domain/schema/composer/form', () =>
   let
   core,
   composer,
-  formComposer
+  fieldsetComposer
 
   before((done) =>
   {
@@ -21,32 +21,34 @@ describe('src/common/domain/schema/composer/form', () =>
       { name: 'core/schema/bootstrap',   path: 'node/core/schema/bootstrap' },
       { name: 'core/data-structure',     path: 'common/core/data-structure' },
       { name: 'core/component/composer', path: 'common/domain/schema/composer/component' },
-      { name: 'core/component/form',     path: 'common/domain/schema/composer/form' }
+      { name: 'core/component/fieldset', path: 'common/domain/schema/composer/fieldset' }
     ])
 
     core.load().then(() =>
     {
       core.locate('core/bootstrap').bootstrap().then(() =>
       {
-        composer     = core.locate('core/schema/composer')
-        formComposer = core.locate('core/form/composer')
+        composer         = core.locate('core/schema/composer')
+        fieldsetComposer = core.locate('core/fieldset/composer')
         done()
       })
     })
   })
 
-  it('Can compose a form', () =>
+  it('Can compose a fieldset', () =>
   {
-    const form = formComposer.compose({
-      template : 'my-form',
-      title    : 'Form title',
-      name     : 'text',
-      id       : 'form'
+    const fieldset = fieldsetComposer.compose({
+      parentId : null,
+      template : 'my-fieldset',
+      formId   : 'form-id',
+      legend   : 'Fieldset',
+      name     : 'fieldset',
+      id       : 'fieldset'
     })
 
     expect(() =>
     {
-      composer.compose('entity/form', form)
+      composer.compose('entity/fieldset', fieldset)
     }).to.not.throw()
   })
 })

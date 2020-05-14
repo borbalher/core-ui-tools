@@ -28,25 +28,19 @@ class TextInputGroupComposer
     id
   })
   {
-    const
-    textInput = this.textInputComposer.compose({
-      renderonchange : false,
-      parentId       : id,
-      id             : `${id}-text-input`,
-      name           : 'input',
-      attribute,
-      required,
-      disabled,
-      readonly,
-      title,
-      value
-    }),
-    textInputGroup = this.componentComposer.compose({
+    const textInputGroup = this.componentComposer.compose({
       template : 'input-group',
       schema   : 'entity/text-input-group',
       input    : {
-        id   : textInput.id,
-        type : textInput.template
+        parentId : id,
+        id       : `${id}-text-input`,
+        name     : 'input',
+        attribute,
+        required,
+        disabled,
+        readonly,
+        title,
+        value
       },
       bindings : [
         ...this.bindings,
@@ -69,16 +63,7 @@ class TextInputGroupComposer
       id
     })
 
-    return  {
-      nodes : [ textInputGroup, textInput ],
-      edges : [
-        {
-          source  : textInputGroup.id,
-          target  : textInput.id,
-          payload : {}
-        }
-      ]
-    }
+    return textInputGroup
   }
 }
 

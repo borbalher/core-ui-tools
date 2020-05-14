@@ -1,4 +1,4 @@
-describe('src/common/domain/schema/composer/checkbox-input', () =>
+describe('src/common/domain/schema/composer/password-input', () =>
 {
   const
   expect      = require('chai').expect,
@@ -7,7 +7,7 @@ describe('src/common/domain/schema/composer/checkbox-input', () =>
   let
   core,
   composer,
-  checkboxInputComposer
+  passwordInputComposer
 
   before((done) =>
   {
@@ -21,7 +21,7 @@ describe('src/common/domain/schema/composer/checkbox-input', () =>
       { name: 'core/schema/bootstrap',         path: 'node/core/schema/bootstrap' },
       { name: 'core/data-structure',           path: 'common/core/data-structure' },
       { name: 'core/component/composer',       path: 'common/domain/schema/composer/component' },
-      { name: 'core/component/checkbox-input', path: 'common/domain/schema/composer/checkbox-input' }
+      { name: 'core/component/password-input', path: 'common/domain/schema/composer/password-input' }
     ])
 
     core.load().then(() =>
@@ -29,29 +29,29 @@ describe('src/common/domain/schema/composer/checkbox-input', () =>
       core.locate('core/bootstrap').bootstrap().then(() =>
       {
         composer              = core.locate('core/schema/composer')
-        checkboxInputComposer = core.locate('core/checkbox-input/composer')
+        passwordInputComposer = core.locate('core/password-input/composer')
         done()
       })
     })
   })
 
-  it('Can compose a checkbox input', () =>
+  it('Can compose a password input', () =>
   {
-    const checkboxInput = checkboxInputComposer.compose({
-      attribute : 'checkbox',
+    const  { nodes: [passwordInput] }  = passwordInputComposer.compose({
+      attribute : 'password',
       disabled  : true,
       parentId  : null,
       readonly  : true,
       required  : true,
-      title     : 'Checkbox input title',
-      value     : true,
-      name      : 'checkbox',
-      id        : 'checkbox-input'
+      title     : 'Password input title',
+      value     : 'value',
+      name      : 'password',
+      id        : 'password-input'
     })
 
     expect(() =>
     {
-      composer.compose('entity/checkbox-input', checkboxInput)
+      composer.compose('entity/password-input', passwordInput)
     }).to.not.throw()
   })
 })
