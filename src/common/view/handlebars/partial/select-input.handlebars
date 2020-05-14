@@ -9,7 +9,7 @@
   {{#if placeholder}}<option value="" disabled hidden>{{placeholder}}</option>{{/if}}
   {{#each items as |item|}}
     {{#with item}}
-      <option value="{{id}}" class='dropdown__list-item {{#if ../value 'has' id}} --selected {{/if}} item' {{#if ../selectedId '==' id}}selected{{/if}}>
+      <option value="{{id}}" class='dropdown__list-item {{#if ../value 'has' id}} --selected {{/if}} item' {{#if ../value 'has' id}}selected{{/if}}>
         {{lookup . ../display}}
       </option>
     {{/with}}

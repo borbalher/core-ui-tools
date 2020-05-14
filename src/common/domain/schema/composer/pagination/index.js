@@ -1,8 +1,10 @@
+const ComponentComposer = require('../component')
+
 /**
  * Pagination composer
  * @class
  */
-class PaginationComposer
+class PaginationComposer extends ComponentComposer
 {
   getTotalPages(totalItems, pageSize)
   {
@@ -95,26 +97,53 @@ class PaginationComposer
     return hasOverflow
   }
 
-  create(limit, totalElements, selectedPage, offset)
+  compose({
+    listeners = [],
+    bindings  = [],
+    renderonchange,
+    totalElements,
+    selectedPage,
+    parentId,
+    classes,
+    offset,
+    limit,
+    name,
+    id
+  })
   {
     const
-    totalPages      = this.getTotalPages(totalElements, limit),
-    pages           = this.getPages(offset, selectedPage, totalPages),
-    leftOverflow    = this.hasLeftOverflow(pages),
-    rightOverflow   = this.hasRightOverflow(pages, totalPages),
-    lastPage        = totalPages > 1 ? totalPages : undefined
+    totalPages    = this.getTotalPages(totalElements, limit),
+    pages         = this.getPages(offset, selectedPage, totalPages),
+    leftOverflow  = this.hasLeftOverflow(pages),
+    rightOverflow = this.hasRightOverflow(pages, totalPages),
+    lastPage      = totalPages > 1 ? totalPages : undefined
 
-    return {
+    return super.compose({
+      schema   : 'entity/pagination',
+      template : 'pagination',
+      bindings : [
+        ...this.bindings,
+        ...bindings
+      ],
+      listeners : [
+        ...this.listeners,
+        ...listeners
+      ],
+      renderonchange,
       rightOverflow,
       totalElements,
       leftOverflow,
       selectedPage,
       totalPages,
       lastPage,
+      parentId,
+      classes,
       offset,
       limit,
-      pages
-    }
+      pages,
+      name,
+      id
+    })
   }
 }
 

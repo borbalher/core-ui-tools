@@ -16,7 +16,6 @@ module.exports = {
         'entity/page-blocker'             : `${__dirname}/entity/page-blocker`,
         'entity/page'                     : `${__dirname}/entity/page`,
         'entity/pagination'               : `${__dirname}/entity/pagination`,
-        'entity/button-group-button'      : `${__dirname}/entity/button-group-button`,
         'entity/table'                    : `${__dirname}/entity/table`,
         // FORMS
         'entity/form'                     : `${__dirname}/entity/form`,
@@ -29,13 +28,13 @@ module.exports = {
         'entity/password-input'           : `${__dirname}/entity/password-input`,
         'entity/text-input'               : `${__dirname}/entity/text-input`,
         'entity/textarea-input'           : `${__dirname}/entity/textarea-input`,
-        'entity/button-group-input'       : `${__dirname}/entity/button-group-input`,
+        'entity/radio-button-input'       : `${__dirname}/entity/radio-button-input`,
         'entity/checkbox-input'           : `${__dirname}/entity/checkbox-input`,
         'entity/select-input-group'       : `${__dirname}/entity/select-input-group`,
         'entity/password-input-group'     : `${__dirname}/entity/password-input-group`,
         'entity/text-input-group'         : `${__dirname}/entity/text-input-group`,
         'entity/textarea-input-group'     : `${__dirname}/entity/textarea-input-group`,
-        'entity/button-group-input-group' : `${__dirname}/entity/button-group-input-group`,
+        'entity/radio-button-input-group' : `${__dirname}/entity/radio-button-input-group`,
         'entity/checkbox-input-group'     : `${__dirname}/entity/checkbox-input-group`
       }
     },

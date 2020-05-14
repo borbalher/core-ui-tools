@@ -36,35 +36,28 @@ module.exports = {
   headers :
   {
     type       : 'schema',
-    schema     : 'value-object/partial',
+    schema     : 'entity/component',
     collection : true,
     default    : []
   },
   rows :
   {
-    type                 : 'collection',
-    'collection-type'    : 'collection',
-    'collection-options' :
-    {
-      'collection-type'    : 'schema',
-      'collection-options' :
-      {
-        schema : 'value-object/partial'
-      }
-    },
-    default : []
+    type       : 'schema',
+    schema     : 'entity/component',
+    collection : true,
+    default    : []
   },
   actions :
   {
     type       : 'schema',
-    schema     : 'value-object/partial',
+    schema     : 'entity/component',
     collection : true,
     default    : []
   },
   panels :
   {
     type       : 'schema',
-    schema     : 'value-object/partial',
+    schema     : 'entity/component',
     collection : true,
     default    : []
   }

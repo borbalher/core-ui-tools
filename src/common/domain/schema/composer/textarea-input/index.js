@@ -1,15 +1,14 @@
 const ComponentComposer = require('../component')
 /**
- * TextInput composer
+ * TextareaInput composer
  * @class
  */
-class TextInputComposer extends ComponentComposer
+class TextareaInputComposer extends ComponentComposer
 {
   compose({
     listeners = [],
     bindings  = [],
     renderonchange,
-    autocomplete,
     placeholder,
     maxLength,
     attribute,
@@ -18,16 +17,17 @@ class TextInputComposer extends ComponentComposer
     readonly,
     required,
     classes,
-    pattern,
+    columns,
     title,
     value,
     name,
+    rows,
     id
   })
   {
-    const textInput = super.compose({
-      template : 'text-input',
-      schema   : 'entity/text-input',
+    const textareaInput = super.compose({
+      template : 'textarea-input',
+      schema   : 'entity/textarea-input',
       bindings : [
         ...this.bindings,
         ...bindings
@@ -37,24 +37,24 @@ class TextInputComposer extends ComponentComposer
         ...listeners
       ],
       renderonchange,
-      autocomplete,
       placeholder,
       maxLength,
       attribute,
       disabled,
       parentId,
-      required,
       readonly,
+      required,
       classes,
-      pattern,
+      columns,
       title,
       value,
       name,
+      rows,
       id
     })
 
-    return textInput
+    return textareaInput
   }
 }
 
-module.exports = TextInputComposer
+module.exports = TextareaInputComposer

@@ -18,11 +18,6 @@ const dto = {
     type     : 'string',
     optional : true
   },
-  maxLength :
-  {
-    type     : 'integer',
-    optional : true
-  },
   rows :
   {
     type     : 'integer',

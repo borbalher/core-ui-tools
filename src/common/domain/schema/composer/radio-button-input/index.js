@@ -1,33 +1,28 @@
 const ComponentComposer = require('../component')
 /**
- * TextInput composer
+ * RadioButtonInput composer
  * @class
  */
-class TextInputComposer extends ComponentComposer
+class RadioButtonInputComposer extends ComponentComposer
 {
   compose({
     listeners = [],
     bindings  = [],
     renderonchange,
-    autocomplete,
-    placeholder,
-    maxLength,
     attribute,
     disabled,
     parentId,
     readonly,
     required,
     classes,
-    pattern,
-    title,
     value,
     name,
     id
   })
   {
-    const textInput = super.compose({
-      template : 'text-input',
-      schema   : 'entity/text-input',
+    const radioButtonInput = super.compose({
+      schema   : 'entity/radio-button-input',
+      template : 'radio-button-input',
       bindings : [
         ...this.bindings,
         ...bindings
@@ -37,24 +32,19 @@ class TextInputComposer extends ComponentComposer
         ...listeners
       ],
       renderonchange,
-      autocomplete,
-      placeholder,
-      maxLength,
       attribute,
       disabled,
       parentId,
-      required,
       readonly,
+      required,
       classes,
-      pattern,
-      title,
       value,
       name,
       id
     })
 
-    return textInput
+    return radioButtonInput
   }
 }
 
-module.exports = TextInputComposer
+module.exports = RadioButtonInputComposer

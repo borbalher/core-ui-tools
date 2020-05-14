@@ -5,25 +5,25 @@ const dto = {
   },
   totalElements :
   {
-    type   : 'integer',
+    type    : 'integer',
     min     : 0,
     default : 0
   },
   totalPages :
   {
-    type   : 'integer',
+    type    : 'integer',
     min     : 0,
     default : 0
   },
   limit :
   {
-    type   : 'integer',
+    type    : 'integer',
     min     : 1,
     default : 1
   },
   offset :
   {
-    type   : 'integer',
+    type    : 'integer',
     min     : 2,
     default : 2
   },

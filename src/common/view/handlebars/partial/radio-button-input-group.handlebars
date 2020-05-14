@@ -1,0 +1,10 @@
+<div id="{{id}}" class='btn-group__buttons'>
+  {{#each buttons as |button|}}
+    <div class='btn-group__button-container'>
+      {{> component button value=value attribute=attribute}}
+      <label class='btn-group__button' for='{{button.id}}'>
+        {{button.name}}
+      </label>
+    </div>
+  {{/each}}
+</div>

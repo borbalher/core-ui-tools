@@ -2,16 +2,15 @@ module.exports = {
   '@meta' : {
     extends : 'entity/input'
   },
-  selectedButton :
+  value :
   {
-    type        : 'string',
-    'not-empty' : true,
-    optional    : true
+    type     : 'string',
+    optional : true
   },
   buttons :
   {
     type       : 'schema',
-    schema     : 'entity/button-group-button',
+    schema     : 'entity/radio-button-input',
     collection : true,
     default    : []
   }
