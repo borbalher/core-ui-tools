@@ -10,12 +10,10 @@ class SelectInputComposerLocator
   locate()
   {
     const
-    configuration       = this.locator.locate('core/configuration'),
-    options             = configuration.find('core.component.select-input-group'),
-    selectInputComposer = this.locator.locate('core/select-input/composer'),
-    componentComposer   = this.locator.locate('core/component/composer')
+    configuration = this.locator.locate('core/configuration'),
+    options       = configuration.find('core.component.select-input-group')
 
-    return new SelectInputComposer(componentComposer, selectInputComposer, options)
+    return new SelectInputComposer(this.locator, options)
   }
 }
 

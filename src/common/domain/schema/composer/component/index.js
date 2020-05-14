@@ -4,6 +4,13 @@
  */
 class ComponentComposer
 {
+  constructor(locator, options)
+  {
+    this.locator   = locator
+    this.bindings  = options && options.bindings  ? options.bindings : []
+    this.listeners = options && options.listeners ? options.listeners : []
+  }
+
   compose({
     renderonchange = true,
     bindings       = [],

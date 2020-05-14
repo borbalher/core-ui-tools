@@ -1,53 +1,28 @@
+const ComponentComposer = require('../component')
 /**
  * FormInput composer
  * @class
  */
-class FormInputComposer
+class FormInputComposer extends ComponentComposer
 {
-  constructor(componentComposer, options)
-  {
-    this.componentComposer = componentComposer
-    this.bindings          = options && options.bindings  ? options.bindings : []
-    this.listeners         = options && options.listeners ? options.listeners : []
-  }
-
-  getSubTree(form, inputs, fieldsets)
-  {
-    const nodes = [...inputs, ...fieldsets]
-
-    let edges = []
-    for(const node of nodes)
-    {
-      node.parentId = form.id
-
-      if(form.disabled)
-        node.disabled = true
-
-      edges = [...edges, { source: form.id, target: node.id }]
-    }
-
-    return { nodes: [form, ...nodes], edges }
-  }
-
   compose({
     listeners = [],
     bindings  = [],
-    inputs    = [],
-    fieldsets = [],
     renderonchange,
     parentId,
     template,
     isValid,
     classes,
     disabled,
+    schema,
     title,
     data,
     name,
-    id
+    id,
+    ...args
   })
   {
-    const form = this.componentComposer.compose({
-      schema   : 'entity/form',
+    const form = super.compose({
       bindings : [
         ...this.bindings,
         ...bindings
@@ -62,10 +37,12 @@ class FormInputComposer
       template,
       isValid,
       classes,
+      schema,
       title,
       data,
       name,
-      id
+      id,
+      ...args
     })
 
     return form

@@ -9,7 +9,7 @@ class ComponentComposerLocator
 
   locate()
   {
-    return new ComponentComposer()
+    return new ComponentComposer(this.locator)
   }
 }
 

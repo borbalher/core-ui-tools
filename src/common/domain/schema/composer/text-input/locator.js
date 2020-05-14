@@ -10,11 +10,10 @@ class TextInputComposerLocator
   locate()
   {
     const
-    configuration     = this.locator.locate('core/configuration'),
-    options           = configuration.find('core.component.text-input'),
-    componentComposer = this.locator.locate('core/component/composer')
+    configuration = this.locator.locate('core/configuration'),
+    options       = configuration.find('core.component.text-input')
 
-    return new TextInputComposer(componentComposer, options)
+    return new TextInputComposer(this.locator, options)
   }
 }
 

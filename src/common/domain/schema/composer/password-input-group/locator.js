@@ -10,12 +10,10 @@ class PasswordInputComposerLocator
   locate()
   {
     const
-    configuration         = this.locator.locate('core/configuration'),
-    options               = configuration.find('core.component.password-input-group'),
-    passwordInputComposer = this.locator.locate('core/password-input/composer'),
-    componentComposer     = this.locator.locate('core/component/composer')
+    configuration = this.locator.locate('core/configuration'),
+    options       = configuration.find('core.component.password-input-group')
 
-    return new PasswordInputComposer(componentComposer, passwordInputComposer, options)
+    return new PasswordInputComposer(this.locator, options)
   }
 }
 

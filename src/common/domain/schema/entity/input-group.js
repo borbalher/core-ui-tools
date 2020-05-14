@@ -6,7 +6,7 @@ const dto = {
   input :
   {
     type   : 'schema',
-    schema : 'value-object/reference'
+    schema : 'entity/component'
   },
   label :
   {

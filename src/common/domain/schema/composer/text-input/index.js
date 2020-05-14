@@ -1,16 +1,10 @@
+const ComponentComposer = require('../component')
 /**
  * TextInput composer
  * @class
  */
-class TextInputComposer
+class TextInputComposer extends ComponentComposer
 {
-  constructor(componentComposer, options)
-  {
-    this.componentComposer = componentComposer
-    this.bindings          = options && options.bindings  ? options.bindings : []
-    this.listeners         = options && options.listeners ? options.listeners : []
-  }
-
   compose({
     listeners = [],
     bindings  = [],
@@ -27,7 +21,7 @@ class TextInputComposer
     id
   })
   {
-    const textInput = this.componentComposer.compose({
+    const textInput = super.compose({
       template : 'text-input',
       schema   : 'entity/text-input',
       bindings : [

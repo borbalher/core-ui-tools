@@ -1,15 +1,14 @@
+const ComponentComposer = require('../component')
 /**
  * SelectInputGroup composer
  * @class
  */
-class SelectInputGroupComposer
+class SelectInputGroupComposer extends ComponentComposer
 {
-  constructor(componentComposer, selectInputComposer, options)
+  constructor(...args)
   {
-    this.componentComposer   = componentComposer
-    this.selectInputComposer = selectInputComposer
-    this.bindings            = options && options.bindings  ? options.bindings : []
-    this.listeners           = options && options.listeners ? options.listeners : []
+    super(...args)
+    this.selectInputComposer = this.locator.locate('core/select-input/composer')
   }
 
   compose({
@@ -23,43 +22,38 @@ class SelectInputGroupComposer
     parentId,
     classes,
     title,
+    items,
+    label,
     value,
+    error,
     name,
+    big,
     id
   })
   {
     const
-    { nodes: [selectInput] } = this.selectInputComposer.compose({
-      renderonchange : false,
-      parentId       : id,
-      id             : `${id}-select-input`,
-      name           : 'input',
-      attribute,
-      required,
-      disabled,
-      readonly,
-      title,
-      value
-    }),
-    { nodes: [selectInputGroup] } = this.componentComposer.compose({
+    selectInputGroup = super.compose({
       template : 'input-group',
       schema   : 'entity/select-input-group',
-      input    : {
-        id   : selectInput.id,
-        type : selectInput.template
-      },
+      input    : this.selectInputComposer.compose({
+        id       : `${id}-select-input`,
+        parentId : id,
+        name     : 'input',
+        attribute,
+        required,
+        disabled,
+        readonly,
+        title,
+        items,
+        value
+      }),
       bindings : [
         ...this.bindings,
         ...bindings
       ],
       listeners : [
         ...this.listeners,
-        ...listeners,
-        {
-          channel : selectInput.id,
-          event   : 'input.changed',
-          locator : 'select-input-group/listener/validate-input'
-        }
+        ...listeners
       ],
       renderonchange,
       attribute,
@@ -69,20 +63,14 @@ class SelectInputGroupComposer
       parentId,
       classes,
       title,
-      value,
+      label,
+      error,
       name,
+      big,
       id
     })
 
-    return  {
-      nodes : [ selectInputGroup, selectInput ],
-      edges : [
-        {
-          source : selectInputGroup.id,
-          target : selectInput.id
-        }
-      ]
-    }
+    return selectInputGroup
   }
 }
 

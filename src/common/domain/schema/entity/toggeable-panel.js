@@ -16,11 +16,11 @@ module.exports  = {
   toggle :
   {
     type   : 'schema',
-    schema : 'value-object/reference'
+    schema : 'entity/checkbox-input-group'
   },
-  fieldset :
+  panel :
   {
     type   : 'schema',
-    schema : 'value-object/reference'
+    schema : 'entity/component'
   }
 }

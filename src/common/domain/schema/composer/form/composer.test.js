@@ -37,7 +37,8 @@ describe('src/common/domain/schema/composer/form', () =>
 
   it('Can compose a form', () =>
   {
-    const { nodes: [form] }  = formComposer.compose({
+    const form = formComposer.compose({
+      schema   : 'entity/my-form',
       template : 'my-form',
       title    : 'Form title',
       name     : 'text',

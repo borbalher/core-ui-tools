@@ -1,15 +1,14 @@
+const ComponentComposer = require('../component')
 /**
  * TextInputGroup composer
  * @class
  */
-class TextInputGroupComposer
+class TextInputGroupComposer extends ComponentComposer
 {
-  constructor(componentComposer, textInputComposer, options)
+  constructor(...args)
   {
-    this.componentComposer   = componentComposer
-    this.textInputComposer = textInputComposer
-    this.bindings            = options && options.bindings  ? options.bindings : []
-    this.listeners           = options && options.listeners ? options.listeners : []
+    super(...args)
+    this.textInputComposer = this.locator.locate('core/text-input/composer')
   }
 
   compose({
@@ -23,25 +22,28 @@ class TextInputGroupComposer
     parentId,
     classes,
     title,
+    label,
     value,
+    error,
     name,
+    big,
     id
   })
   {
-    const textInputGroup = this.componentComposer.compose({
+    const textInputGroup = super.compose({
       template : 'input-group',
       schema   : 'entity/text-input-group',
-      input    : {
-        parentId : id,
+      input    : this.textInputComposer.compose({
         id       : `${id}-text-input`,
         name     : 'input',
+        parentId : id,
         attribute,
         required,
         disabled,
         readonly,
         title,
         value
-      },
+      }),
       bindings : [
         ...this.bindings,
         ...bindings
@@ -58,8 +60,11 @@ class TextInputGroupComposer
       parentId,
       classes,
       title,
+      label,
       value,
+      error,
       name,
+      big,
       id
     })
 

@@ -37,7 +37,7 @@ describe('src/common/domain/schema/composer/password-input', () =>
 
   it('Can compose a password input', () =>
   {
-    const  { nodes: [passwordInput] }  = passwordInputComposer.compose({
+    const passwordInput  = passwordInputComposer.compose({
       attribute : 'password',
       disabled  : true,
       parentId  : null,

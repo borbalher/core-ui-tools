@@ -38,8 +38,7 @@ describe('src/common/domain/schema/composer/text-input-group', () =>
 
   it('Can compose a text input group', () =>
   {
-    const
-    textInputGroup = textInputGroupComposer.compose({
+    const textInputGroup = textInputGroupComposer.compose({
       attribute : 'text',
       disabled  : true,
       parentId  : null,

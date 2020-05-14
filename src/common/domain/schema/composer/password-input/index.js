@@ -1,16 +1,11 @@
+const ComponentComposer = require('../component')
+
 /**
  * PasswordInput composer
  * @class
  */
-class PasswordInputComposer
+class PasswordInputComposer extends ComponentComposer
 {
-  constructor(componentComposer, options)
-  {
-    this.componentComposer = componentComposer
-    this.bindings          = options && options.bindings  ? options.bindings : []
-    this.listeners         = options && options.listeners ? options.listeners : []
-  }
-
   compose({
     listeners = [],
     bindings  = [],
@@ -27,7 +22,7 @@ class PasswordInputComposer
     id
   })
   {
-    const passwordInput = this.componentComposer.compose({
+    const passwordInput = super.compose({
       template : 'password-input',
       schema   : 'entity/password-input',
       bindings : [

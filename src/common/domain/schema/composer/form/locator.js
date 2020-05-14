@@ -11,10 +11,9 @@ class FormInputComposerLocator
   {
     const
     configuration     = this.locator.locate('core/configuration'),
-    options           = configuration.find('core.component.form'),
-    componentComposer = this.locator.locate('core/component/composer')
+    options           = configuration.find('core.component.form')
 
-    return new FormInputComposer(componentComposer, options)
+    return new FormInputComposer(this.locator, options)
   }
 }
 

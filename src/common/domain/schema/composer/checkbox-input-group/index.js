@@ -6,6 +6,12 @@ const ComponentComposer = require('../component')
  */
 class CheckboxInputGroupComposer extends ComponentComposer
 {
+  constructor(...args)
+  {
+    super(...args)
+    this.checkboxInputComposer = this.locator.locate('core/checkbox-input/composer')
+  }
+
   compose({
     bindings  = [],
     listeners = [],
@@ -17,8 +23,11 @@ class CheckboxInputGroupComposer extends ComponentComposer
     parentId,
     classes,
     title,
+    label,
     value,
+    error,
     name,
+    big,
     id
   })
   {
@@ -26,7 +35,7 @@ class CheckboxInputGroupComposer extends ComponentComposer
     checkboxInputGroup = super.compose({
       schema   : 'entity/checkbox-input-group',
       template : 'checkbox-input-group',
-      input    : {
+      input    : this.checkboxInputComposer.compose({
         id       : `${id}-checkbox-input`,
         name     : 'input',
         parentId : id,
@@ -36,7 +45,7 @@ class CheckboxInputGroupComposer extends ComponentComposer
         readonly,
         title,
         value
-      },
+      }),
       bindings : [
         ...this.bindings,
         ...bindings
@@ -53,8 +62,11 @@ class CheckboxInputGroupComposer extends ComponentComposer
       parentId,
       classes,
       title,
+      label,
       value,
+      error,
       name,
+      big,
       id
     })
 

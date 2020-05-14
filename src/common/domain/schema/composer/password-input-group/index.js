@@ -1,15 +1,14 @@
+const ComponentComposer = require('../component')
 /**
  * PasswordInputGroup composer
  * @class
  */
-class PasswordInputGroupComposer
+class PasswordInputGroupComposer extends ComponentComposer
 {
-  constructor(componentComposer, passwordInputComposer, options)
+  constructor(...args)
   {
-    this.componentComposer     = componentComposer
-    this.passwordInputComposer = passwordInputComposer
-    this.bindings              = options && options.bindings  ? options.bindings : []
-    this.listeners             = options && options.listeners ? options.listeners : []
+    super(...args)
+    this.passwordInputComposer = this.locator.locate('core/password-input/composer')
   }
 
   compose({
@@ -23,31 +22,29 @@ class PasswordInputGroupComposer
     parentId,
     classes,
     title,
+    label,
     value,
+    error,
     name,
+    big,
     id
   })
   {
     const
-    { nodes: [passwordInput] } = this.passwordInputComposer.compose({
-      id             : `${id}-password-input`,
-      renderonchange : false,
-      name           : 'input',
-      parentId       : id,
-      attribute,
-      required,
-      disabled,
-      readonly,
-      title,
-      value
-    }),
-    { nodes: [passwordInputGroup] } = this.componentComposer.compose({
+    passwordInputGroup = super.compose({
       schema   : 'entity/password-input-group',
       template : 'input-group',
-      input    : {
-        id   : passwordInput.id,
-        type : passwordInput.template
-      },
+      input    : this.passwordInputComposer.compose({
+        id       : `${id}-password-input`,
+        name     : 'input',
+        parentId : id,
+        attribute,
+        required,
+        disabled,
+        readonly,
+        title,
+        value
+      }),
       bindings : [
         ...this.bindings,
         ...bindings
@@ -64,20 +61,15 @@ class PasswordInputGroupComposer
       parentId,
       classes,
       title,
+      label,
       value,
+      error,
       name,
+      big,
       id
     })
 
-    return  {
-      nodes : [ passwordInputGroup, passwordInput ],
-      edges : [
-        {
-          source : passwordInputGroup.id,
-          target : passwordInput.id
-        }
-      ]
-    }
+    return passwordInputGroup
   }
 }
 

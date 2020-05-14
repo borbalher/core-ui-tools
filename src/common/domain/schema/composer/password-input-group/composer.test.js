@@ -39,7 +39,7 @@ describe('src/common/domain/schema/composer/password-input-group', () =>
   it('Can compose a password input group', () =>
   {
     const
-    passwordInputGroupTree = passwordInputGroupComposer.compose({
+    passwordInputGroup = passwordInputGroupComposer.compose({
       attribute : 'password',
       disabled  : true,
       parentId  : null,
@@ -49,15 +49,11 @@ describe('src/common/domain/schema/composer/password-input-group', () =>
       value     : 'My password value',
       name      : 'password',
       id        : 'password-input-group'
-    }),
-    { nodes }      = passwordInputGroupTree,
-    passwordInputGroup = nodes[0],
-    passwordInput      = nodes[1]
+    })
 
     expect(() =>
     {
-      composer.compose('entity/input-group', passwordInputGroup)
-      composer.compose('entity/password-input', passwordInput)
+      composer.compose('entity/password-input-group', passwordInputGroup)
     }).to.not.throw()
   })
 })

@@ -1,16 +1,10 @@
+const ComponentComposer = require('../component')
 /**
  * SelectInput composer
  * @class
  */
-class SelectInputComposer
+class SelectInputComposer extends ComponentComposer
 {
-  constructor(componentComposer, options)
-  {
-    this.componentComposer = componentComposer
-    this.bindings          = options && options.bindings  ? options.bindings : []
-    this.listeners         = options && options.listeners ? options.listeners : []
-  }
-
   compose({
     listeners = [],
     bindings  = [],
@@ -28,7 +22,7 @@ class SelectInputComposer
     id
   })
   {
-    const selectInput = this.componentComposer.compose({
+    const selectInput = super.compose({
       template : 'select-input',
       schema   : 'entity/select-input',
       bindings : [

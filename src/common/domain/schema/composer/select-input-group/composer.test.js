@@ -38,8 +38,7 @@ describe('src/common/domain/schema/composer/select-input-group', () =>
 
   it('Can compose a select input group', () =>
   {
-    const
-    selectInputGroupTree = selectInputGroupComposer.compose({
+    const selectInputGroup = selectInputGroupComposer.compose({
       attribute : 'addressId',
       disabled  : true,
       parentId  : null,
@@ -50,15 +49,11 @@ describe('src/common/domain/schema/composer/select-input-group', () =>
       value     : [],
       name      : 'select',
       id        : 'select-input-group'
-    }),
-    { nodes } = selectInputGroupTree,
-    selectInputGroup = nodes[0],
-    selectInput      = nodes[1]
+    })
 
     expect(() =>
     {
-      composer.compose('entity/input-group', selectInputGroup)
-      composer.compose('entity/select-input', selectInput)
+      composer.compose('entity/select-input-group', selectInputGroup)
     }).to.not.throw()
   })
 })

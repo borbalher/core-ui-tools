@@ -1,4 +1,4 @@
-describe('src/common/domain/schema/composer/toggable-fieldset', () =>
+describe('src/common/domain/schema/composer/toggeable-panel', () =>
 {
   const
   expect      = require('chai').expect,
@@ -7,7 +7,7 @@ describe('src/common/domain/schema/composer/toggable-fieldset', () =>
   let
   core,
   composer,
-  toggableFieldsetComposer
+  toggeablePanelComposer
 
   before((done) =>
   {
@@ -23,34 +23,41 @@ describe('src/common/domain/schema/composer/toggable-fieldset', () =>
       { name: 'core/component/composer',             path: 'common/domain/schema/composer/component' },
       { name: 'core/component/checkbox-input',       path: 'common/domain/schema/composer/checkbox-input' },
       { name: 'core/component/checkbox-input-group', path: 'common/domain/schema/composer/checkbox-input-group' },
-      { name: 'core/component/toggable-fieldset',    path: 'common/domain/schema/composer/toggable-fieldset' }
+      { name: 'core/component/toggeable-panel',      path: 'common/domain/schema/composer/toggeable-panel' }
     ])
 
     core.load().then(() =>
     {
       core.locate('core/bootstrap').bootstrap().then(() =>
       {
-        composer         = core.locate('core/schema/composer')
-        toggableFieldsetComposer = core.locate('core/toggable-fieldset/composer')
+        composer               = core.locate('core/schema/composer')
+        toggeablePanelComposer = core.locate('core/toggeable-panel/composer')
         done()
       })
     })
   })
 
-  it('Can compose a fieldset', () =>
+  it('Can compose a toggeable panel', () =>
   {
-    const { nodes: [toggeableFieldset] } = toggableFieldsetComposer.compose({
-      parentId : null,
-      template : 'my-fieldset',
-      formId   : 'form-id',
-      legend   : 'Fieldset',
-      name     : 'fieldset',
-      id       : 'fieldset'
+    const
+    componentComposer = core.locate('core/toggeable-panel/composer'),
+    toggeablePanel    = toggeablePanelComposer.compose({
+      panel : componentComposer.compose({
+        template : 'component',
+        classes  : 'my-class',
+        schema   : 'entity/component',
+        name     : 'myComponent',
+        id       : 'component'
+      }),
+      schema   : 'entity/my-toggeable-panel',
+      template : 'my-toggeable-panel',
+      name     : 'panel',
+      id       : 'panel'
     })
 
     expect(() =>
     {
-      composer.compose('entity/toggable-fieldset', toggeableFieldset)
+      composer.compose('entity/toggeable-panel', toggeablePanel)
     }).to.not.throw()
   })
 })
