@@ -40,7 +40,25 @@ module.exports = {
     },
     locator :
     {
-      'composer/pagination' : `${__dirname}/composer/pagination`
+      // 'composer/checkbox-input'           : `${__dirname}/composer/checkbox-input`,
+      // 'composer/checkbox-input-group'     : `${__dirname}/composer/checkbox-input-group`,
+      // 'composer/component'                : `${__dirname}/composer/component`,
+      // 'composer/fieldset'                 : `${__dirname}/composer/fieldset`,
+      // 'composer/form'                     : `${__dirname}/composer/form`,
+      // 'composer/modal'                    : `${__dirname}/composer/modal`,
+      // 'composer/pagination'               : `${__dirname}/composer/pagination`,
+      // 'composer/password-input'           : `${__dirname}/composer/password-input`,
+      // 'composer/password-input-group'     : `${__dirname}/composer/password-input-group`,
+      // 'composer/radio-button-input'       : `${__dirname}/composer/radio-button-input`,
+      // 'composer/radio-button-input-group' : `${__dirname}/composer/radio-button-input-group`,
+      // 'composer/select-input'             : `${__dirname}/composer/select-input`,
+      // 'composer/select-input-group'       : `${__dirname}/composer/select-input-group`,
+      // 'composer/table'                    : `${__dirname}/composer/table`,
+      // 'composer/text-input'               : `${__dirname}/composer/text-input`,
+      // 'composer/text-input-group'         : `${__dirname}/composer/text-input-group`,
+      // 'composer/textarea-input'           : `${__dirname}/composer/textarea-input`,
+      // 'composer/textarea-input-group'     : `${__dirname}/composer/textarea-input-group`,
+      // 'composer/toggeable-panel'          : `${__dirname}/composer/toggeable-panel`
     }
   }
 }
