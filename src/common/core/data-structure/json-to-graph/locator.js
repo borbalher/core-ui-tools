@@ -1,11 +1,11 @@
-const JSONSToGraph = require('.')
+const JSONToGraph = require('.')
 
-class JSONSToGraphLocator
+class JSONToGraphLocator
 {
   locate()
   {
-    return new JSONSToGraph()
+    return new JSONToGraph()
   }
 }
 
-module.exports = JSONSToGraphLocator
+module.exports = JSONToGraphLocator

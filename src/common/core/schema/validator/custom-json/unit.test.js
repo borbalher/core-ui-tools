@@ -3,7 +3,7 @@ describe('core/schema/validator/custom-json', () =>
 {
   const
   expect      = require('chai').expect,
-  CoreFactory = require('../../../../../node/factory')
+  CoreFactory = require('node/core/factory')
 
   let
   core,
@@ -14,10 +14,10 @@ describe('core/schema/validator/custom-json', () =>
     const coreFactory = new CoreFactory()
 
     core = coreFactory.create([
-      { name: 'core/common/bootstrap' },
-      { name: 'core/common/schema' },
-      { name: 'core/common/data-structure' },
-      { name: 'core/node/schema/bootstrap' }
+      { name: 'common/core/bootstrap' },
+      { name: 'common/core/schema' },
+      { name: 'common/core/data-structure' },
+      { name: 'node/core/schema/bootstrap' }
     ])
 
     core.load().then(() =>

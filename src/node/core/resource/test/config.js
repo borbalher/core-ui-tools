@@ -15,7 +15,7 @@ module.exports = {
           {
             url      : '/resource/.+',
             method   : 'get',
-            endpoint : 'core/node/resource',
+            endpoint : 'node/core/resource',
             input    : false
           }
         }

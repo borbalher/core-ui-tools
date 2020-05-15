@@ -1,8 +1,8 @@
-describe('core/common/console/factory', () =>
+describe('common/core/console/factory', () =>
 {
   const
   expect      = require('chai').expect,
-  CoreFactory = require(`../../node/factory`)
+  CoreFactory = require(`node/core/factory`)
 
   let
   core,
@@ -13,8 +13,7 @@ describe('core/common/console/factory', () =>
     const coreFactory = new CoreFactory()
 
     core        = coreFactory.create([
-      { name: 'core/common/string' },
-      { name: 'core/common/console' }
+      { name: 'common/core/string' }
     ])
 
     core.load().then(() =>
@@ -38,11 +37,7 @@ describe('core/common/console/factory', () =>
     console        = factory.create(),
     inspectOptions = console.getInspectOptions()
 
-    expect(inspectOptions).to.be.deep.equal({
-      'maxArrayLength' : 10,
-      'colors'         : true,
-      'showHidden'     : false
-    })
+    expect(inspectOptions).to.be.deep.equal({})
 
     console = factory.create({
       'inspect' : false
@@ -147,7 +142,7 @@ describe('core/common/console/factory', () =>
     obj           = { 'foo': 'bar' },
     inspectString = console.inspectObject(obj)
 
-    expect(inspectString).to.be.deep.equal('{ foo: [32m\'bar\'[39m }')
+    expect(inspectString).to.be.deep.equal('{ foo: \'bar\' }')
   })
 
   it('Should return the object stringified', () =>
@@ -351,7 +346,10 @@ describe('core/common/console/factory', () =>
       })
     }
 
-    await console.measureTime('timeout test (success)', successCallback)
+    expect(async () =>
+    {
+      await console.measureTime('timeout test (success)', successCallback)
+    }).to.not.throw()
 
     try
     {

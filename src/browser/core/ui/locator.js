@@ -20,12 +20,12 @@ class UILocator
     const
     initialViewModel  = this.getInitialViewModel(),
     treeFactory       = this.locator.locate('data-structure/tree'),
-    viewModelToTree   = this.locator.locate('core/mapper/view-model-to-tree'),
+    jsonToTree        = this.locator.locate('data-structure/json-to-tree'),
     object            = this.locator.locate('core/object'),
     configuration     = this.locator.locate('core/configuration'),
     componentFactory  = this.locator.locate('core/component/factory')
 
-    return new UI(initialViewModel, treeFactory, viewModelToTree, object, this.locator, configuration, componentFactory)
+    return new UI(initialViewModel, treeFactory, jsonToTree, object, this.locator, configuration, componentFactory)
   }
 }
 

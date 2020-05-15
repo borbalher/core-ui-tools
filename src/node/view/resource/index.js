@@ -1,9 +1,9 @@
 const
 fs              = require('fs'),
 stat            = require('util').promisify(fs.stat),
-Dispatcher      = require('../../core/http/server/dispatcher'),
-BadRequest      = require('../../core/http/server/dispatcher/error/bad-request'),
-NotFound        = require('../../core/http/server/dispatcher/error/not-found')
+Dispatcher      = require('node/core/http/server/dispatcher'),
+BadRequest      = require('node/core/http/server/dispatcher/error/bad-request'),
+NotFound        = require('node/core/http/server/dispatcher/error/not-found')
 
 class ResourceEndpoint extends Dispatcher
 {

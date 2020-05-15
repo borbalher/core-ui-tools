@@ -1,4 +1,4 @@
-const QueueFactory = require('.')
+const QueueFactory = require('./factory')
 
 
 class QueueFactoryLocator

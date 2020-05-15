@@ -1,18 +1,19 @@
 const
 util                = require('util'),
 dateformat          = require('dateformat'),
-Core                = require('../../common/core'),
-Locator             = require('../../common/core/locator'),
-Deepclone           = require('../../common/core/deepclone'),
-Deepfreeze          = require('../../common/core/deepfreeze'),
-Deepfind            = require('../../common/core/deepfind'),
-Deepmerge           = require('../../common/core/deepmerge'),
-DeepAssign          = require('../../common/core/deepassign'),
-CoreString          = require('../../common/core/string'),
-Configuration       = require('../../common/core/configuration'),
-Metrics             = require('../../common/core/metrics'),
-Timer               = require('../../common/core/timer'),
-EventEmitterFactory = require('../../common/core/event-emitter/factory'),
+Core                = require('common/core'),
+Locator             = require('common/core/locator'),
+CoreObject          = require('common/core/object'),
+Deepclone           = require('common/core/deepclone'),
+Deepfreeze          = require('common/core/deepfreeze'),
+Deepfind            = require('common/core/deepfind'),
+Deepmerge           = require('common/core/deepmerge'),
+DeepAssign          = require('common/core/deepassign'),
+CoreString          = require('common/core/string'),
+Configuration       = require('common/core/configuration'),
+Metrics             = require('common/core/metrics'),
+Timer               = require('common/core/timer'),
+EventEmitterFactory = require('common/core/event-emitter/factory'),
 ConfigFetcher       = require('./config-fetcher'),
 ServiceLoader       = require('./service-loader'),
 consoleDefaults     = require('./console/defaults'),
@@ -43,6 +44,7 @@ class CoreFactory
     deepfreeze          = new Deepfreeze(),
     deepmerge           = new Deepmerge(),
     deepfind            = new Deepfind(),
+    object              = new CoreObject(),
     path                = new Path(),
     deepassign          = new DeepAssign(deepclone),
     configuration       = new Configuration(deepclone, deepmerge, deepfind, deepfreeze),
@@ -52,6 +54,7 @@ class CoreFactory
     consoleFactory      = new ConsoleFactory(util, dateformat, console, consoleDefaults, coreString),
     eventEmitterFactory = new EventEmitterFactory(consoleFactory)
 
+    locator.set('core/object', object)
     locator.set('core/path', path)
     locator.set('core/string', coreString)
     locator.set('core/deepclone', deepclone)

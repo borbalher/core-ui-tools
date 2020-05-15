@@ -1,8 +1,8 @@
-describe('core/common/event-emitter/factory', () =>
+describe('common/core/event-emitter/factory', () =>
 {
   const
   expect      = require('chai').expect,
-  CoreFactory = require(`core-ui-tools/core/node/factory`)
+  CoreFactory = require(`node/core/factory`)
 
   let
   core,
@@ -13,15 +13,13 @@ describe('core/common/event-emitter/factory', () =>
     const coreFactory = new CoreFactory()
 
     core        = coreFactory.create([
-      { name: 'core/common/bootstrap' },
-      { name: 'core/common/listener' },
-      { name: 'core/common/schema' },
-      { name: 'core/common/object' },
-      { name: 'core/common/string' },
-      { name: 'core/common/data-structure' },
-      { name: 'core/node/console' },
-      { name: 'core/node/schema/bootstrap' },
-      { name: 'core/common/event-emitter' }
+      { name: 'common/core/bootstrap' },
+      { name: 'common/core/listener' },
+      { name: 'common/core/schema' },
+      { name: 'common/core/string' },
+      { name: 'common/core/data-structure' },
+      { name: 'node/core/schema/bootstrap' },
+      { name: 'common/core/event-emitter' }
     ])
 
     core.load().then(() =>

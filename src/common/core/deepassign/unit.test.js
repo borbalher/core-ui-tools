@@ -3,7 +3,7 @@ describe('core/deepassign', () =>
 {
   const
   expect      = require('chai').expect,
-  CoreFactory = require('../../node/factory')
+  CoreFactory = require('node/core/factory')
 
   let
   core,

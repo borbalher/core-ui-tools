@@ -6,13 +6,11 @@ class Path
   {
     const
     filename    = require.main.filename,
-    dirname     = this.dirname(filename),
-    baseDir     = path.resolve(__dirname, '../../../../../..')
+    dirname     = this.dirname(filename)
 
     this.main   = {
       filename,
-      dirname,
-      baseDir
+      dirname
     }
   }
 

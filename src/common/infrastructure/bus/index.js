@@ -1,4 +1,4 @@
-const AssociativeArray = require('../../core/data-structure/associative-array')
+const AssociativeArray = require('common/core/data-structure/associative-array')
 
 class Bus
 {

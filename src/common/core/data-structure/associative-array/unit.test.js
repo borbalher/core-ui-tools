@@ -2,7 +2,7 @@ describe('data-structure/associative-array', () =>
 {
   const
   expect      = require('chai').expect,
-  CoreFactory = require('../../../node/factory')
+  CoreFactory = require('node/core/factory')
 
 
   let
@@ -14,17 +14,18 @@ describe('data-structure/associative-array', () =>
     const coreFactory = new CoreFactory()
 
     core = coreFactory.create([
-      { name: 'core/common/bootstrap' },
-      { name: 'core/common/schema' },
-      { name: 'core/common/data-structure' },
-      { name: 'core/node/schema/bootstrap' }
+      { name: 'common/core/object' },
+      { name: 'common/core/bootstrap' },
+      { name: 'common/core/schema' },
+      { name: 'common/core/data-structure' },
+      { name: 'node/core/schema/bootstrap' }
     ])
 
     core.load().then(() =>
     {
       core.locate('core/bootstrap').bootstrap().then(() =>
       {
-        factory = core.locate('data-structure/associative-array/factory')
+        factory = core.locate('data-structure/associative-array')
         done()
       })
     })

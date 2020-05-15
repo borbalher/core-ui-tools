@@ -1,4 +1,4 @@
-const isComponent = require('../../../core/is-component')
+const isComponent = require('browser/core/is-component')
 
 class Page
 {

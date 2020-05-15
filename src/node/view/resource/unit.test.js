@@ -11,23 +11,22 @@ describe('resource dispatcher integration tests', async () =>
   before((done) =>
   {
     const
-    CoreFactory = require('../factory'),
+    CoreFactory = require('node/core/factory'),
     coreFactory = new CoreFactory()
 
     core = coreFactory.create([
-      { name: 'core/common/bootstrap' },
-      { name: 'core/common/listener' },
-      { name: 'core/common/schema' },
-      { name: 'core/common/object' },
-      { name: 'core/common/string' },
-      { name: 'core/common/data-structure' },
-      { name: 'core/node/console' },
-      { name: 'core/node/process' },
-      { name: 'core/node/schema/bootstrap' },
-      { name: 'core/common/event-emitter' },
-      { name: 'core/common/bus' },
-      { name: 'core/node/http/server' },
-      { name: 'core/node/resource', path: __dirname },
+      { name: 'common/core/bootstrap' },
+      { name: 'common/core/listener' },
+      { name: 'common/core/schema' },
+      { name: 'common/core/object' },
+      { name: 'common/core/string' },
+      { name: 'common/core/data-structure' },
+      { name: 'node/core/process' },
+      { name: 'node/core/schema/bootstrap' },
+      { name: 'common/core/event-emitter' },
+      { name: 'common/infrastructure/bus' },
+      { name: 'node/core/http/server' },
+      { name: 'node/core/resource', path: __dirname },
       { name: 'test', path: path.resolve(__dirname, './test') }
     ])
 

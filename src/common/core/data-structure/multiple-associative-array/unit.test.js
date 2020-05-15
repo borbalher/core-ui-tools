@@ -2,7 +2,7 @@ describe('data/multiple-associative-array', () =>
 {
   const
   expect      = require('chai').expect,
-  CoreFactory = require('../../../node/factory')
+  CoreFactory = require('node/core/factory')
 
   let
   core,
@@ -13,24 +13,24 @@ describe('data/multiple-associative-array', () =>
     const coreFactory = new CoreFactory()
 
     core = coreFactory.create([
-      { name: 'core/common/bootstrap' },
-      { name: 'core/common/schema' },
-      { name: 'core/common/data-structure' },
-      { name: 'core/node/schema/bootstrap' }
+      { name: 'common/core/bootstrap' },
+      { name: 'common/core/schema' },
+      { name: 'common/core/data-structure' },
+      { name: 'node/core/schema/bootstrap' }
     ])
 
     core.load().then(() =>
     {
       core.locate('core/bootstrap').bootstrap().then(() =>
       {
-        factory = core.locate('data-structure/multiple-associative-array/factory')
+        factory = core.locate('data-structure/multiple-associative-array')
         done()
       })
     })
   })
 
 
-  it('Can create an associative array', () =>
+  it('Can create a multiple associative array', () =>
   {
     expect(() =>
     {

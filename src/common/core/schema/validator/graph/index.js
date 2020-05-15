@@ -20,22 +20,16 @@ class SchemaValidatorGraph
   valid(options, data)
   {
     if(typeof data !== 'object')
-    {
-      const msg = `Element must be an object`
-      throw new InvalidGraphError(msg)
-    }
+      throw new InvalidGraphError('Element must be an object')
 
     if(data.hasOwnProperty('isDirected') && typeof data.isDirected  === 'boolean')
-    {
-      const msg = `IsDirected must be a boolean`
-      throw new InvalidGraphError(msg)
-    }
+      throw new InvalidGraphError('Attribute isDirected must be a boolean')
+
 
     const { nodes, edges } = data
     if(!Array.isArray(nodes))
     {
-      const msg = `Nodes must be an array`
-      throw new InvalidGraphError(msg)
+      throw new InvalidGraphError('Nodes must be an array')
     }
     else
     {
@@ -47,15 +41,13 @@ class SchemaValidatorGraph
       }
       catch(error)
       {
-        const msg = `Element at index ${index} is not a node`
-        throw new InvalidGraphError(msg)
+        throw new InvalidGraphError(`Element at index ${index} is not a node`)
       }
     }
 
     if(!Array.isArray(edges))
     {
-      const msg = `Edges must be an array`
-      throw new InvalidGraphError(msg)
+      throw new InvalidGraphError('Edges must be an array')
     }
     else
     {
@@ -67,8 +59,7 @@ class SchemaValidatorGraph
       }
       catch(error)
       {
-        const msg = `Element at index ${index} is not an edge`
-        throw new InvalidGraphError(msg)
+        throw new InvalidGraphError(`Element at index ${index} is not an edge`)
       }
     }
   }

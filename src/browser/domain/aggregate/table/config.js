@@ -1,28 +1,6 @@
 module.exports = {
   core :
   {
-    ui :
-    {
-      'table' :
-      {
-        bindings :
-        [
-          {
-            selector : '.table__cell-action',
-            domEvent : 'click',
-            map      : 'action.clicked',
-            mapper   : 'table/mapper/action-clicked'
-          }
-        ],
-        listeners :
-        [
-          {
-            event   : 'action.clicked',
-            locator : 'table/listener/action-clicked'
-          }
-        ]
-      }
-    },
     locator :
     {
       'table/listener/action-clicked' : `${__dirname}/listener/action-clicked`,

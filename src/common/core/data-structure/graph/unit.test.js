@@ -2,7 +2,7 @@ describe('data-structure/graph', () =>
 {
   const
   expect      = require('chai').expect,
-  CoreFactory = require('../../../node/factory')
+  CoreFactory = require('node/core/factory')
 
   let
   core,
@@ -13,17 +13,17 @@ describe('data-structure/graph', () =>
     const coreFactory = new CoreFactory()
 
     core = coreFactory.create([
-      { name: 'core/common/bootstrap' },
-      { name: 'core/common/schema' },
-      { name: 'core/common/data-structure' },
-      { name: 'core/node/schema/bootstrap' }
+      { name: 'common/core/bootstrap' },
+      { name: 'common/core/schema' },
+      { name: 'common/core/data-structure' },
+      { name: 'node/core/schema/bootstrap' }
     ])
 
     core.load().then(() =>
     {
       core.locate('core/bootstrap').bootstrap().then(() =>
       {
-        factory = core.locate('data-structure/graph/factory')
+        factory = core.locate('data-structure/graph')
         done()
       })
     })
@@ -381,110 +381,6 @@ describe('data-structure/graph', () =>
     expect(path).to.deep.equal(['a', 'b', 'd', 'c'])
   })
 
-  it('Should throw an error while getting a BFS path for a graph if startNode does not exists', () =>
-  {
-    expect(() =>
-    {
-      const graph = factory.create(
-        [
-          {
-            id   : 'a',
-            name : 'a'
-          },
-          {
-            id   : 'b',
-            name : 'b'
-          },
-          {
-            id   : 'c',
-            name : 'c'
-          },
-          {
-            id   : 'd',
-            name : 'd'
-          }
-        ],
-        [
-          {
-            source  : 'a',
-            target  : 'b',
-            payload : {}
-          },
-          {
-            source  : 'a',
-            target  : 'c',
-            payload : {}
-          },
-          {
-            source  : 'b',
-            target  : 'a',
-            payload : {}
-          },
-          {
-            source  : 'b',
-            target  : 'd',
-            payload : {}
-          }
-        ],
-        true
-      )
-
-      graph.bfs('I don\'t exists')
-    }).to.throw()
-  })
-
-  it('Should throw an error while getting a DFS path for a graph if startNode does not exists', () =>
-  {
-    expect(() =>
-    {
-      const graph = factory.create(
-        [
-          {
-            id   : 'a',
-            name : 'a'
-          },
-          {
-            id   : 'b',
-            name : 'b'
-          },
-          {
-            id   : 'c',
-            name : 'c'
-          },
-          {
-            id   : 'd',
-            name : 'd'
-          }
-        ],
-        [
-          {
-            source  : 'a',
-            target  : 'b',
-            payload : {}
-          },
-          {
-            source  : 'a',
-            target  : 'c',
-            payload : {}
-          },
-          {
-            source  : 'b',
-            target  : 'a',
-            payload : {}
-          },
-          {
-            source  : 'b',
-            target  : 'd',
-            payload : {}
-          }
-        ],
-        true
-      )
-
-      graph.dfs('I don\'t exists')
-    }).to.throw()
-  })
-
   it('Should return the proper string tag ', async () =>
   {
     const graph = factory.create(
@@ -538,44 +434,5 @@ describe('data-structure/graph', () =>
     stringTag = Object.prototype.toString.call(factory)
 
     expect(stringTag).to.deep.equal('[object GraphFactory]')
-  })
-
-  it('Can set a graph from a JSON', () =>
-  {
-    const graph = factory.create()
-
-    graph.setGraphFromJSON({
-      id   : 'a',
-      name : 'a',
-      b    :
-      {
-        id   : 'b',
-        name : 'b'
-      },
-      c :
-      {
-        id   : 'c',
-        name : 'c',
-        d    : {
-          id   : 'd',
-          name : 'd'
-        }
-      }
-    })
-
-    const serialized = graph.serialize()
-    expect(serialized).to.deep.equal({
-      nodes : [
-        { id: 'b', name: 'b' },
-        { id: 'd', name: 'd' },
-        { id: 'c', name: 'c' },
-        { id: 'a', name: 'a' }
-      ],
-      links : [
-        { source: 'a', target: 'b', payload: {} },
-        { source: 'a', target: 'c', payload: {} },
-        { source: 'c', target: 'd', payload: {} }
-      ]
-    })
   })
 })

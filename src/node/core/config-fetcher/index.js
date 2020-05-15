@@ -16,12 +16,9 @@ class NodeConfigFetcher
       const
       path            = this.locator.locate('core/path'),
       dirnamePath     = `${path.main.dirname}/${pathname}/config`,
-      projectPath     = `${path.main.baseDir}/${pathname}/config`,
       nodeModulesPath = `${pathname}/config`
 
-      if(path.isResolvable(projectPath))
-        resolve(require(projectPath))
-      else if(path.isResolvable(nodeModulesPath))
+      if(path.isResolvable(nodeModulesPath))
         resolve(require(nodeModulesPath))
       else if(path.isResolvable(dirnamePath))
         resolve(require(dirnamePath))

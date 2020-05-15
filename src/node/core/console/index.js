@@ -1,4 +1,4 @@
-const CoreConsole = require('../../../common/core/console')
+const CoreConsole = require('common/core/console')
 
 class NodeConsole extends CoreConsole
 {

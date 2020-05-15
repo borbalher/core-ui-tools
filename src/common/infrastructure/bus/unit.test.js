@@ -1,8 +1,8 @@
-describe('core/common/bus', () =>
+describe('infrastructure/bus', () =>
 {
   const
   expect      = require('chai').expect,
-  CoreFactory = require('../../node/factory')
+  CoreFactory = require('node/core/factory')
 
   let
   core,
@@ -13,24 +13,22 @@ describe('core/common/bus', () =>
     const coreFactory = new CoreFactory()
 
     core        = coreFactory.create([
-      { name: 'core/common/bootstrap' },
-      { name: 'core/common/listener' },
-      { name: 'core/common/schema' },
-      { name: 'core/common/object' },
-      { name: 'core/common/string' },
-      { name: 'core/common/data-structure' },
-      { name: 'core/node/console' },
-      { name: 'core/node/process' },
-      { name: 'core/node/schema/bootstrap' },
-      { name: 'core/common/event-emitter' },
-      { name: 'core/common/bus' }
+      { name: 'common/core/bootstrap' },
+      { name: 'common/core/listener' },
+      { name: 'common/core/schema' },
+      { name: 'common/core/object' },
+      { name: 'common/core/string' },
+      { name: 'common/core/data-structure' },
+      { name: 'node/core/schema/bootstrap' },
+      { name: 'common/core/event-emitter' },
+      { name: 'common/infrastructure/bus' }
     ])
 
     core.load().then(() =>
     {
       core.locate('core/bootstrap').bootstrap().then(() =>
       {
-        bus = core.locate('core/bus')
+        bus = core.locate('infrastructure/bus')
         done()
       })
     })

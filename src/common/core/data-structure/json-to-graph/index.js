@@ -2,7 +2,7 @@ const isNode = require('../is-node')
 
 class JSONToGraph
 {
-  jsonToGraph(json, isDirected = false)
+  convert(json, isDirected = false)
   {
     const
     nodes = [],
@@ -11,7 +11,7 @@ class JSONToGraph
     if(isNode(json))
     {
       const startNode = this.mapNode(json, nodes, edges, isDirected)
-      nodes.push(startNode)
+      nodes.unshift(startNode)
     }
 
     return { nodes, edges, isDirected }

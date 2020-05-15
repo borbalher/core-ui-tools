@@ -6,7 +6,7 @@ class ViewModel
     this.channel            = channel
     this.viewModelAggregate = viewModelAggregate
 
-    this[Symbol.for('id')] = this.getPage()
+    this[Symbol.for('id')] = this.getViewModelId()
   }
 
   getViewModel()
@@ -14,14 +14,14 @@ class ViewModel
     return { ...this.viewModel }
   }
 
-  getPage()
+  getViewModelId()
   {
     const
-    url      = new URL(window.location.href),
-    pathname = url.pathname.slice(1),
-    page     = `${pathname !== '' ? pathname.split('/')[0] : 'home'}-page`
+    url         = new URL(window.location.href),
+    pathname    = url.pathname.slice(1),
+    viewModelId = `${pathname !== '' ? pathname.split('/')[0] : 'home'}-view-model`
 
-    return page
+    return viewModelId
   }
 
   composeViewModel(state)
