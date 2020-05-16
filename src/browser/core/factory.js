@@ -46,7 +46,7 @@ class CoreFactory
     timer               = new Timer(),
     metrics             = new Metrics(timer),
     coreString          = new CoreString(),
-    consoleFactory      = new ConsoleFactory(util, dateformat, console, consoleDefaults, coreString),
+    consoleFactory      = new ConsoleFactory(dateformat, console, consoleDefaults, coreString),
     eventEmitterFactory = new EventEmitterFactory(consoleFactory)
 
     locator.set('core/timer', timer)
