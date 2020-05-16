@@ -49,7 +49,7 @@ class StoreLocator
     deepmerge     = this.locator.locate('core/deepmerge'),
     normalizer    = this.locator.locate('core/normalizer')
 
-    return new Store(state, bus, middlewares, reducer, deepfind, deepmerge, normalizer, this.locator)
+    return new Store(state, channel, chain, reducer, deepfind, deepmerge, normalizer, this.locator)
   }
 }
 
