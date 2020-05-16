@@ -22,7 +22,7 @@ describe('core/deepassign', () =>
     })
   })
 
-  it('Can replace value a property', () =>
+  it('Can replace property value', () =>
   {
     const
     obj   = {

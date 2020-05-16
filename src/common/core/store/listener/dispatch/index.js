@@ -10,7 +10,9 @@ class DispatchObserver
 
   execute(event)
   {
-    this.store.dispatch(event)
+    const { data: { action } } = event
+
+    this.store.dispatch(action)
   }
 }
 

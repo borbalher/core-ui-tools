@@ -6,7 +6,7 @@ class Configuration
     this.deepmerge  = deepmerge
     this.deepfind   = deepfind
     this.deepfreeze = deepfreeze
-    this.config     = {}
+    this.config     = { core: { } }
   }
 
   extend(config)
