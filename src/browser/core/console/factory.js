@@ -2,9 +2,8 @@ const Console = require('.')
 
 class BrowserConsoleFactory
 {
-  constructor(util, dateformat, console, defaults, string)
+  constructor(dateformat, console, defaults, string)
   {
-    this.util       = util
     this.dateformat = dateformat
     this.console    = console
     this.defaults   = defaults
@@ -13,7 +12,7 @@ class BrowserConsoleFactory
 
   create(config = {})
   {
-    return new Console(this.util, this.dateformat, { ...this.defaults, ...config }, console, this.string)
+    return new Console(this.dateformat, { ...this.defaults, ...config }, console, this.string)
   }
 }
 

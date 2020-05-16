@@ -1,13 +1,82 @@
-const CoreConsole = require('common/core/console')
-
-class NodeConsole extends CoreConsole
+/* eslint-disable no-control-regex */
+class Console
 {
-  constructor(...args)
+  constructor(util, dateformat, config, console, coreString)
   {
-    super(...args)
+    this.index      = 0
+    this.coreString = coreString
+    this.util       = util
+    this.dateformat = dateformat
+    this.config     = config
+    this.console    = console
 
-    this.color      = this.getFontColor(this.config.color)
-    this.background = this.getBackgroundColor(this.config.background)
+    this.util.inspect.styles = { ...this.util.inspect.styles, ...this.getInspectStyles() }
+    this.color               = this.getFontColor(this.config.color)
+    this.background          = this.getBackgroundColor(this.config.background)
+  }
+
+  getInspectOptions()
+  {
+    return this.config.inspect && this.config.inspect.options ? this.config.inspect.options : {}
+  }
+
+  getInspectStyles()
+  {
+    return this.config.inspect && this.config.inspect.styles ? this.config.inspect.styles : {}
+  }
+
+  shortenString(s)
+  {
+    if(this.config.maxStringLength && s.length > this.config.maxStringLength)
+      return this.coreString.shorten(s, this.config.maxStringLength)
+
+    return s
+  }
+
+  formatOutputString(s)
+  {
+    const
+    noControlCharacters = this.removeControlCharacters(s),
+    formatted           = this.shortenString(noControlCharacters)
+
+    return formatted
+  }
+
+  getCurrentDate()
+  {
+    if(this.config.dateFormat)
+      return this.dateformat(new Date(), this.config.dateFormat)
+
+    return new Date().toISOString()
+  }
+
+  stringifyObject(arg)
+  {
+    const
+    replacer = this.config.stringify && this.config.stringify.replacer ? this.config.stringify.replacer : null,
+    space    = this.config.stringify && this.config.stringify.space ? this.config.stringify.space : ' '
+
+    return JSON.stringify(arg, replacer, space)
+  }
+
+  buildArg(arg)
+  {
+    if(typeof arg === 'object' && this.config.inspect)
+      return this.inspectObject(arg)
+    else if(typeof arg === 'object' && this.config.stringify)
+      return this.stringifyObject(arg)
+    else if(typeof arg === 'string')
+      return this.formatOutputString(arg)
+
+    return arg
+  }
+
+  buildArgs(args)
+  {
+    const output = []
+    for(const arg of args)
+      output.push(this.buildArg(arg))
+    return output
   }
 
   getFontColor(color)
@@ -46,24 +115,6 @@ class NodeConsole extends CoreConsole
     return s.replace(/[\x00-\x09\x10-\x1F]/g, '')
   }
 
-  formatOutputString(s)
-  {
-    const
-    noControlCharacters = this.removeControlCharacters(s),
-    formatted           = super.formatOutputString(noControlCharacters)
-
-    return formatted
-  }
-
-  buildOutput(args)
-  {
-    const
-    output    = super.buildOutput(args),
-    colorized = this.colorize(output)
-
-    return colorized
-  }
-
   colorize(output)
   {
     let outputSTR = output[0]
@@ -79,6 +130,128 @@ class NodeConsole extends CoreConsole
 
     return [outputSTR]
   }
+
+  buildOutput(args)
+  {
+    let output = []
+
+    if(this.config.date)
+      output.push(this.getCurrentDate())
+
+    if(this.config.prefix)
+      output.push(this.config.prefix)
+
+    if(this.config.index)
+      output.push(this.index)
+
+    output = [output.concat(this.buildArgs(args)).join(this.config.separator)]
+
+    return this.colorize(output)
+  }
+
+  inspectObject(obj)
+  {
+    const
+    inspectOptions = this.getInspectOptions(),
+    inspectString  = this.util.inspect(obj, inspectOptions)
+
+    return inspectString
+  }
+
+  output(args, cb)
+  {
+    this.index = this.index < Number.MAX_SAFE_INTEGER ? this.index + 1 : 0
+    if(this.config.debug)
+    {
+      const output = this.buildOutput(args)
+
+      cb.apply(this, output)
+    }
+  }
+
+  log(...args)
+  {
+    this.output(args, this.console.log)
+  }
+
+  info(...args)
+  {
+    this.output(args, this.console.log)
+  }
+
+  warning(...args)
+  {
+    this.output(args, this.console.warn)
+  }
+
+  error(...args)
+  {
+    this.output(args, this.console.error)
+  }
+
+  trace(...args)
+  {
+    this.output(args, this.console.trace)
+  }
+
+  table(...args)
+  {
+    this.output(args, this.console.table)
+  }
+
+  startTimer(label)
+  {
+    this.console.time(label)
+  }
+
+  getTimeLog(label)
+  {
+    this.console.timeLog(label)
+  }
+
+  finishTimer(label)
+  {
+    this.console.timeEnd(label)
+  }
+
+  group(collapsed, label)
+  {
+    if(collapsed)
+      this.console.groupCollapsed(label)
+    else
+      this.console.group(label)
+  }
+
+  clear()
+  {
+    this.console.clear()
+  }
+
+  groupEnd()
+  {
+    this.console.groupEnd()
+  }
+
+  async measureTime(label, cb, ...args)
+  {
+    return new Promise(async (resolve, reject) =>
+    {
+      try
+      {
+        this.startTimer(label)
+
+        const result = await cb(args)
+
+        this.finishTimer(label)
+        resolve(result)
+      }
+      catch(error)
+      {
+        this.finishTimer(label)
+        reject(error)
+      }
+    })
+  }
 }
 
-module.exports = NodeConsole
+module.exports = Console
