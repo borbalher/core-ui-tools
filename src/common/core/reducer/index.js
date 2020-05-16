@@ -1,4 +1,4 @@
-const ActionUndefinedError = require('./error/action-undefined-error')
+const ActionUndefinedError = require('./error/action-undefined')
 
 class Reducer
 {

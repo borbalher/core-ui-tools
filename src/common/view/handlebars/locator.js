@@ -1,6 +1,6 @@
 const
 CoreHandlebars = require('.'),
-handlebars     = require('handlebars')
+handlebars     = require('handlebars/runtime')
 
 /**
  * @implements {superhero/core/locator/constituent}
