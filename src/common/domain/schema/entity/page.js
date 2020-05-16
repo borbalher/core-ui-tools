@@ -25,5 +25,17 @@ module.exports = {
     type       : 'string',
     collection : true,
     default    : []
+  },
+  bindings :
+  {
+    type       : 'schema',
+    schema     : 'value-object/binding',
+    collection : true
+  },
+  listeners :
+  {
+    type       : 'schema',
+    schema     : 'value-object/listener',
+    collection : true
   }
 }

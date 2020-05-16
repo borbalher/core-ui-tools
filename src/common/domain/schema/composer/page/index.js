@@ -6,14 +6,18 @@ class PageComposer
 {
   constructor(locator, options)
   {
-    this.locator  = locator
-    this.scripts  = options && options.scripts  ? options.scripts : []
-    this.css      = options && options.css      ? options.css : []
+    this.locator   = locator
+    this.css       = options && options.css      ? options.css : []
+    this.scripts   = options && options.scripts  ? options.scripts : []
+    this.bindings  = options && options.bindings  ? options.bindings : []
+    this.listeners = options && options.listeners ? options.listeners : []
   }
 
   compose({
-    css     = [],
-    scripts = [],
+    listeners = [],
+    bindings  = [],
+    css       = [],
+    scripts   = [],
     renderonchange,
     template,
     classes,
@@ -31,6 +35,14 @@ class PageComposer
       css : [
         ...this.css,
         ...css
+      ],
+      bindings : [
+        ...this.bindings,
+        ...bindings
+      ],
+      listeners : [
+        ...this.listeners,
+        listeners
       ],
       parentId : null,
       renderonchange,
