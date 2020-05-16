@@ -35,7 +35,7 @@ class TextInputGroupComposer extends ComponentComposer
   })
   {
     const textInputGroup = super.compose({
-      template : 'input-group',
+      template : 'text-input-group',
       schema   : 'entity/text-input-group',
       input    : this.textInputComposer.compose({
         id       : `${id}-text-input`,

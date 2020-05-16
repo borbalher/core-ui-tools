@@ -1,5 +1,4 @@
 const
-util                = require('util'),
 dateformat          = require('dateformat'),
 Core                = require('core-ui-tools/common/core'),
 ConfigFetcher       = require('core-ui-tools/browser/core/config-fetcher'),

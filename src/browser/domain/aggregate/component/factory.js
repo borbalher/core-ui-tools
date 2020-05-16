@@ -10,18 +10,6 @@ class ComponentFactory
     this.deepfind      = deepfind
   }
 
-  getBindings(template)
-  {
-    const bindings = this.configuration.find(`core.ui.${template}.bindings`)
-    return Array.isArray(bindings) ? bindings : []
-  }
-
-  getListeners(template)
-  {
-    const listeners = this.configuration.find(`core.ui.${template}.listeners`)
-    return Array.isArray(listeners) ? listeners : []
-  }
-
   createBusChannel(id)
   {
     return this.bus.createChannel(id)
@@ -30,11 +18,14 @@ class ComponentFactory
   create(component)
   {
     const
-    { id, template } = component,
-    channel          = this.createBusChannel(id),
-    bindings         = this.getBindings(template),
-    listeners        = this.getListeners(template),
-    Component        = this.locator.locate(template)
+    {
+      listeners,
+      bindings,
+      template,
+      id
+    } = component,
+    channel   = this.createBusChannel(id),
+    Component = this.locator.locate(template)
 
     return (ui) =>
     {

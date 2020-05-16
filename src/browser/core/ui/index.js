@@ -13,7 +13,7 @@ class UI
     this.components       = new AssociativeArray()
     this.tree             = this.createTreeFromContext(initialViewModel)
 
-    const { nodes, edges, root } = this.jsonToTree.map(initialViewModel)
+    const { nodes, edges, root } = this.jsonToTree.convert(initialViewModel)
     this.tree = this.treeFactory.create(nodes, edges, root)
 
     this[Symbol.for('id')] = `${new URL(window.location.href).pathname.slice(1)}-page`
@@ -21,7 +21,7 @@ class UI
 
   createTreeFromContext(context)
   {
-    const { nodes, edges, root } = this.jsonToTree.map(context)
+    const { nodes, edges, root } = this.jsonToTree.convert(context)
     return this.treeFactory.create(nodes, edges, root)
   }
 

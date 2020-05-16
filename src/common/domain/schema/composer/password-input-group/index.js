@@ -34,7 +34,7 @@ class PasswordInputGroupComposer extends ComponentComposer
     const
     passwordInputGroup = super.compose({
       schema   : 'entity/password-input-group',
-      template : 'input-group',
+      template : 'password-input-group',
       input    : this.passwordInputComposer.compose({
         id       : `${id}-password-input`,
         name     : 'input',

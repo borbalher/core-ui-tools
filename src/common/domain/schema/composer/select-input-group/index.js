@@ -33,7 +33,7 @@ class SelectInputGroupComposer extends ComponentComposer
   {
     const
     selectInputGroup = super.compose({
-      template : 'input-group',
+      template : 'select-input-group',
       schema   : 'entity/select-input-group',
       input    : this.selectInputComposer.compose({
         id       : `${id}-select-input`,
