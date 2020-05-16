@@ -18,10 +18,10 @@ class NodeConfigFetcher
       dirnamePath     = `${path.main.dirname}/${pathname}/config`,
       nodeModulesPath = `${pathname}/config`
 
-      if(path.isResolvable(nodeModulesPath))
-        resolve(require(nodeModulesPath))
-      else if(path.isResolvable(dirnamePath))
+      if(path.isResolvable(dirnamePath))
         resolve(require(dirnamePath))
+      else if(path.isResolvable(nodeModulesPath))
+        resolve(require(nodeModulesPath))
       else
         reject(new ComponentNotResolvableError(`could not resolve path to component "${component}"`))
     })
