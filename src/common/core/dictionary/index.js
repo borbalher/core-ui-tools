@@ -40,11 +40,9 @@ class Dictionary
     this.dictionaries[lang][key] = value
   }
 
-  translate(key)
+  translate(lang, key)
   {
-    const
-    lang       = this.getLang(),
-    dictionary = this.getDictionary(lang)
+    const dictionary = this.getDictionary(lang)
 
     if(dictionary && dictionary[key])
       return dictionary[key]

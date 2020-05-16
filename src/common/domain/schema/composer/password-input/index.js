@@ -10,6 +10,7 @@ class PasswordInputComposer extends ComponentComposer
     listeners = [],
     bindings  = [],
     renderonchange,
+    placeholder,
     attribute,
     disabled,
     parentId,
@@ -34,6 +35,7 @@ class PasswordInputComposer extends ComponentComposer
         ...listeners
       ],
       renderonchange,
+      placeholder,
       attribute,
       disabled,
       parentId,

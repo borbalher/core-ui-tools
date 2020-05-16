@@ -15,12 +15,12 @@ class PageComposer
     css     = [],
     scripts = [],
     renderonchange,
-    parentId,
     template,
     classes,
     schema,
     name,
-    id
+    id,
+    ...args
   })
   {
     const page = {
@@ -38,7 +38,8 @@ class PageComposer
       classes,
       schema,
       name,
-      id
+      id,
+      ...args
     }
 
     return page

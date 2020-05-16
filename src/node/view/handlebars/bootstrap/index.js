@@ -11,8 +11,8 @@ class HandlebarsBootstrap
   {
     const
     handlebars      = this.handlebars.handlebars,
-    partials        = `${this.path.main.dirname}/api/www/assets/handlebars/partials`,
-    templates       = `${this.path.main.dirname}/api/www/assets/handlebars/templates`
+    partials        = `${this.path.main.dirname}/node/api/www/assets/handlebars/partials`,
+    templates       = `${this.path.main.dirname}/node/api/www/assets/handlebars/templates`
 
     global.Handlebars =
     {
