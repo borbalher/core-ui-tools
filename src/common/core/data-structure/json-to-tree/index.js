@@ -2,7 +2,7 @@ const isNode = require('../is-node')
 
 class JSONToTree
 {
-  jsonToTree(json)
+  convert(json)
   {
     const
     nodes = [],
@@ -12,7 +12,7 @@ class JSONToTree
     if(isNode(json))
     {
       const rootNode = this.mapNode(json, nodes, edges)
-      nodes.push(rootNode)
+      nodes.unshift(rootNode)
       root = rootNode.id
     }
 

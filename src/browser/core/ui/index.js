@@ -2,10 +2,10 @@ const AssociativeArray  = require('common/core/data-structure/associative-array'
 
 class UI
 {
-  constructor(initialViewModel, treeFactory, viewModelToTree, object, locator, configuration, componentFactory)
+  constructor(initialViewModel, treeFactory, jsonToTree, object, locator, configuration, componentFactory)
   {
     this.treeFactory      = treeFactory
-    this.viewModelToTree  = viewModelToTree
+    this.jsonToTree       = jsonToTree
     this.object           = object
     this.locator          = locator
     this.configuration    = configuration
@@ -13,7 +13,7 @@ class UI
     this.components       = new AssociativeArray()
     this.tree             = this.createTreeFromContext(initialViewModel)
 
-    const { nodes, edges, root } = this.viewModelToTree.map(initialViewModel)
+    const { nodes, edges, root } = this.jsonToTree.map(initialViewModel)
     this.tree = this.treeFactory.create(nodes, edges, root)
 
     this[Symbol.for('id')] = `${new URL(window.location.href).pathname.slice(1)}-page`
@@ -21,7 +21,7 @@ class UI
 
   createTreeFromContext(context)
   {
-    const { nodes, edges, root } = this.viewModelToTree.map(context)
+    const { nodes, edges, root } = this.jsonToTree.map(context)
     return this.treeFactory.create(nodes, edges, root)
   }
 

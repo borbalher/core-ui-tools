@@ -30,20 +30,6 @@ module.exports = {
               'ui/listener/view-model-changed' : true
             }
           }
-        },
-        'ui' :
-        {
-          listeners :
-          {
-            // 'component.changed' :
-            // {
-            //   'ui/listener/component-changed' : true
-            // },
-            // 'component.rendered' :
-            // {
-            //   'ui/listener/component-rendered' : true
-            // }
-          }
         }
       }
     }
