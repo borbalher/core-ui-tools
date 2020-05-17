@@ -2,28 +2,17 @@ class ViewModel
 {
   constructor({
     initialViewModel = {},
-    treeFactory,
-    jsonToTree,
     composer,
     channel,
     schema,
     id
   })
   {
-    this.composer               = composer
-    this.treeFactory            = treeFactory
-    this.jsonToTree             = jsonToTree
     this.viewModel              = initialViewModel
+    this.composer               = composer
     this.channel                = channel
-    this.tree                   = this.createTreeFromViewModel(initialViewModel)
     this[Symbol.for('id')]      = id
     this[Symbol.for('schema')]  = schema
-  }
-
-  createTreeFromViewModel(viewModel)
-  {
-    const { nodes, edges, root } = this.jsonToTree.convert(viewModel)
-    return this.treeFactory.create(nodes, edges, root)
   }
 
   getViewModel()
@@ -31,26 +20,18 @@ class ViewModel
     return { ...this.viewModel }
   }
 
-  composeViewModel(state)
+  composeViewModel(input = {})
   {
-    return this.composer.compose(this[Symbol.for('schema')], state)
+    const viewModel = this.composer.compose(input)
+    return viewModel
   }
 
-  setViewModelFromState(state)
-  {
-    const viewModel = this.composeViewModel(state)
-    this.setViewModel(viewModel)
-  }
-
-  setViewModel(viewModel)
+  setViewModel(state)
   {
     const
     previous       = this.viewModel,
-    current        = viewModel
-
+    current        = this.composeViewModel(state)
     this.viewModel = current
-    this.tree      = this.createTreeFromViewModel(viewModel)
-
     this.channel.emit('view.model.changed', { current, previous })
   }
 }

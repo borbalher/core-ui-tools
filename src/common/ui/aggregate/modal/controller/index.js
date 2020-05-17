@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const ComponentController = require('common/ui/component/controller')
+const ComponentController = require('common/ui/aggregate/component/controller')
 
 class Modal extends ComponentController
 {

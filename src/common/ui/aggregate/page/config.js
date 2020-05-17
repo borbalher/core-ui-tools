@@ -3,7 +3,7 @@ module.exports = {
   {
     locator :
     {
-      'core/page/composer' : __dirname
+      'ui/page/composer' : `${__dirname}/composer`
     }
   }
 }

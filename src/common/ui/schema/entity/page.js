@@ -37,5 +37,11 @@ module.exports = {
     type       : 'schema',
     schema     : 'value-object/listener',
     collection : true
+  },
+  classes :
+  {
+    optional    : true,
+    type        : 'string',
+    'not-empty' : true
   }
 }

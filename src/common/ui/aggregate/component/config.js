@@ -3,8 +3,8 @@ module.exports = {
   {
     locator :
     {
-      'ui/component/composer' : `${__dirname}/composer`,
-      'ui/component/factory'  : `${__dirname}/factory`
+      'ui/component/composer'           : `${__dirname}/composer`,
+      'ui/component/controller/factory' : `${__dirname}/controller/factory`
     }
   }
 }

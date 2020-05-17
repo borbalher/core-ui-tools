@@ -11,7 +11,7 @@ class OnStateChangedObserver
   execute(event)
   {
     const { data : { state } } = event
-    this.viewModel.setViewModelFromState(state)
+    this.viewModel.setViewModel(state)
   }
 }
 

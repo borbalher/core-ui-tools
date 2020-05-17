@@ -14,15 +14,13 @@ class ViewModelLocator
     id                = configuration['id'],
     initialViewModel  = configuration['state'],
     schema            = configuration['schema'],
-    composer          = this.locator.locate(`ui/${schema}/composer`),
-    jsonToTree        = this.locator.locate('data-structure/json-to-tree'),
-    treeFactory       = this.locator.locate('data-structure/tree'),
-    channel           = this.locator.locate('infrastructure/bus').createChannel('view-model')
+    composer          = this.locator.locate(`ui/${id}/composer`),
+    channel           = this.locator.locate('infrastructure/bus').createChannel('view-model'),
+    normalizer        = this.locator.locate('core/normalizer')
 
     return new ViewModel({
       initialViewModel,
-      treeFactory,
-      jsonToTree,
+      normalizer,
       composer,
       channel,
       schema,

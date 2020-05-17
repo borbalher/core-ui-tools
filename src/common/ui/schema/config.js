@@ -38,30 +38,6 @@ module.exports = {
         'entity/radio-button-input-group' : `${__dirname}/entity/radio-button-input-group`,
         'entity/checkbox-input-group'     : `${__dirname}/entity/checkbox-input-group`
       }
-    },
-    locator :
-    {
-      'core/checkbox-input/composer'           : `${__dirname}/composer/checkbox-input`,
-      'core/checkbox-input-group/composer'     : `${__dirname}/composer/checkbox-input-group`,
-      'core/component/composer'                : `${__dirname}/composer/component`,
-      'core/fieldset/composer'                 : `${__dirname}/composer/fieldset`,
-      'core/form/composer'                     : `${__dirname}/composer/form`,
-      'core/modal/composer'                    : `${__dirname}/composer/modal`,
-      'core/page/composer'                     : `${__dirname}/composer/page`,
-      'core/page-blocker/composer'             : `${__dirname}/composer/page-blocker`,
-      'core/pagination/composer'               : `${__dirname}/composer/pagination`,
-      'core/password-input/composer'           : `${__dirname}/composer/password-input`,
-      'core/password-input-group/composer'     : `${__dirname}/composer/password-input-group`,
-      'core/radio-button-input/composer'       : `${__dirname}/composer/radio-button-input`,
-      'core/radio-button-input-group/composer' : `${__dirname}/composer/radio-button-input-group`,
-      'core/select-input/composer'             : `${__dirname}/composer/select-input`,
-      'core/select-input-group/composer'       : `${__dirname}/composer/select-input-group`,
-      'core/table/composer'                    : `${__dirname}/composer/table`,
-      'core/text-input/composer'               : `${__dirname}/composer/text-input`,
-      'core/text-input-group/composer'         : `${__dirname}/composer/text-input-group`,
-      'core/textarea-input/composer'           : `${__dirname}/composer/textarea-input`,
-      'core/textarea-input-group/composer'     : `${__dirname}/composer/textarea-input-group`,
-      'core/toggeable-panel/composer'          : `${__dirname}/composer/toggeable-panel`
     }
   }
 }

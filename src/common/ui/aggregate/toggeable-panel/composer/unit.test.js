@@ -1,4 +1,4 @@
-describe('src/common/domain/schema/composer/toggeable-panel', () =>
+describe('src/common/ui/composer/toggeable-panel', () =>
 {
   const
   expect      = require('chai').expect,
@@ -14,16 +14,15 @@ describe('src/common/domain/schema/composer/toggeable-panel', () =>
     const coreFactory = new CoreFactory()
 
     core        = coreFactory.create([
-      { name: 'core/bootstrap',                      path: 'common/core/bootstrap' },
-      { name: 'core/object',                         path: 'common/core/object' },
-      { name: 'core/schema',                         path: 'common/core/schema' },
-      { name: 'domain/schema',                       path: 'common/domain/schema' },
-      { name: 'core/schema/bootstrap',               path: 'node/core/schema/bootstrap' },
-      { name: 'core/data-structure',                 path: 'common/core/data-structure' },
-      { name: 'core/component/composer',             path: 'common/domain/schema/composer/component' },
-      { name: 'core/component/checkbox-input',       path: 'common/domain/schema/composer/checkbox-input' },
-      { name: 'core/component/checkbox-input-group', path: 'common/domain/schema/composer/checkbox-input-group' },
-      { name: 'core/component/toggeable-panel',      path: 'common/domain/schema/composer/toggeable-panel' }
+      { name: 'common/core/bootstrap' },
+      { name: 'common/core/object' },
+      { name: 'common/core/schema' },
+      { name: 'node/core/schema/bootstrap' },
+      { name: 'common/core/data-structure' },
+      { name: 'common/ui/aggregate/component' },
+      { name: 'common/ui/aggregate/checkbox-input' },
+      { name: 'common/ui/aggregate/checkbox-input-group' },
+      { name: 'common/ui/aggregate/toggeable-panel' }
     ])
 
     core.load().then(() =>
@@ -31,7 +30,7 @@ describe('src/common/domain/schema/composer/toggeable-panel', () =>
       core.locate('core/bootstrap').bootstrap().then(() =>
       {
         composer               = core.locate('core/schema/composer')
-        toggeablePanelComposer = core.locate('core/toggeable-panel/composer')
+        toggeablePanelComposer = core.locate('ui/toggeable-panel/composer')
         done()
       })
     })
@@ -40,7 +39,7 @@ describe('src/common/domain/schema/composer/toggeable-panel', () =>
   it('Can compose a toggeable panel', () =>
   {
     const
-    componentComposer = core.locate('core/toggeable-panel/composer'),
+    componentComposer = core.locate('ui/component/composer'),
     toggeablePanel    = toggeablePanelComposer.compose({
       panel : componentComposer.compose({
         template : 'component',

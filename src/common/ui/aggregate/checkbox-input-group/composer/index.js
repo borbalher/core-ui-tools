@@ -1,4 +1,4 @@
-const ComponentComposer = require('common/ui/component/composer')
+const ComponentComposer = require('common/ui/aggregate/component/composer')
 
 /**
  * CheckboxInputGroup composer
@@ -9,7 +9,7 @@ class CheckboxInputGroupComposer extends ComponentComposer
   constructor(...args)
   {
     super(...args)
-    this.checkboxInputComposer = this.locator.locate('core/checkbox-input/composer')
+    this.checkboxInputComposer = this.locator.locate('ui/checkbox-input/composer')
   }
 
   compose({

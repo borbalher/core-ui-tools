@@ -1,6 +1,15 @@
 module.exports = {
   core :
   {
+    locator :
+    {
+      'ui/checkbox-input-group/listener/on-validate-input' : `${__dirname}/listener/on-validate-input`,
+      'ui/checkbox-input-group/controller'                 : `${__dirname}/controller`,
+      'ui/checkbox-input-group/composer'                   : `${__dirname}/composer`
+    }
+  },
+  ui :
+  {
     'component' :
     {
       'checkbox-input-group' :
@@ -20,12 +29,6 @@ module.exports = {
           }
         ]
       }
-    },
-    locator :
-    {
-      'ui/checkbox-input-group/listener/on-validate-input' : `${__dirname}/listener/on-validate-input`,
-      'ui/checkbox-input-group/controller'                 : `${__dirname}/controller`,
-      'ui/checkbox-input-group/composer'                   : `${__dirname}/composer`
     }
   }
 }

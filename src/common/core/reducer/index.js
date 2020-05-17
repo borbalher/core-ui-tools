@@ -13,7 +13,7 @@ class Reducer
     const service = this.actions[action]
 
     if(!service)
-      throw new ActionUndefinedError(`Action "${action}" does not exist`)
+      throw new ActionUndefinedError(`Action "${action}" has not been added`)
 
     return this.locator.locate(service)
   }

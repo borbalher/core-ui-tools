@@ -62,33 +62,31 @@ class Store
     return `entities.${type}.byId.${id}`
   }
 
-  getEntity(type, id)
+  getEntity(schemaName, id)
   {
     const
     state   = this.getState(),
+    type    = this.normalizer.getEntityType(schemaName),
     path    = this.getEntityPath(type, id),
     entity  = this.deepfind.find(path, state)
 
     return entity
   }
 
-  getEntityContext(type, id)
+  getEntityContext(schemaName, id)
   {
     const
+    type    = this.normalizer.getEntityType(schemaName),
     entity  = this.getEntity(type, id),
     context = this.normalizer.denormalize(entity, type, this.state['entities'])
 
     return context
   }
 
-  setEntity(entity, schemaName)
+  merge(state)
   {
-    const
-    normalized = this.normalizer.normalize(entity, schemaName),
-    state      = this.getState(),
-    newState   = this.deepmerge.merge(state, { entities: normalized })
-
-    this.setState(newState)
+    const  mergedState = this.deepmerge.merge(this.getState(), state)
+    return mergedState
   }
 
   applyMiddlewares(middlewares)

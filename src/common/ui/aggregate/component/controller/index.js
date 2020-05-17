@@ -1,20 +1,17 @@
-const
-isComponent = require('browser/core/is-component'),
-Entity      = require('common/core/data-structure/entity')
-
-class ComponentController extends Entity
+class ComponentController
 {
-  constructor(component, bus, store, hbs, deepfind, repository, channel,  deepfreeze, deepassign, composer, locator)
+  constructor(id, schema, bindings, listeners, bus, store, hbs, channel, locator)
   {
-    super(component, component.schema, deepfreeze, deepassign, channel, composer)
-
-    this.bus               = bus
-    this.store             = store
-    this.hbs               = hbs
-    this.deepfind          = deepfind
-    this.repository        = repository
-    this.channel           = channel
-    this.locator           = locator
+    this.bus                   = bus
+    this.store                 = store
+    this.hbs                   = hbs
+    this.store                 = store
+    this.channel               = channel
+    this.bindings              = bindings
+    this.listeners             = listeners
+    this.locator               = locator
+    this[Symbol.for('id')]     = id
+    this[Symbol.for('schema')] = schema
 
     this.bind()
     this.listen()
@@ -23,7 +20,7 @@ class ComponentController extends Entity
   render()
   {
     const
-    context                   = this.getComponentContext(this[Symbol.for('id')]),
+    context                   = this.store.getEntityContext(this[Symbol.for('schema')], this[Symbol.for('id')]),
     renderedComponentTemplate = this.hbs.compilePartial(context.template, context),
     wrapper                   = document.createElement('div')
 
@@ -33,60 +30,30 @@ class ComponentController extends Entity
     this.emit('component.rendered', { id: this[Symbol.for('id')], context })
   }
 
-  mapEmitToArray(emitTo, context)
+  addComponentListener(publisherChannel, subscriberChannel, eventName, map, locator, eventMapper)
   {
-    let channels = []
-    for(const channelId in emitTo)
-      channels = [...channels, this.getChannels(channelId, context)]
+    const
+    observer = locator      ? this.locator.locate(locator) : undefined,
+    mapper   = eventMapper  ? this.locator.locate(eventMapper) : undefined
 
-    return channels
-  }
-
-  mapEmitToString(emitTo, context)
-  {
-    const component = this.deepfind.find(emitTo, context)
-    return isComponent(component) ? [component.id] : [emitTo]
-  }
-
-  getChannels(emitTo)
-  {
-    const context = this.getComponentContext(this[Symbol.for('id')])
-    return Array.isArray(emitTo) ? this.mapEmitToArray(emitTo, context) : typeof emitTo === 'string' ? this.mapEmitToString(emitTo, context) : []
-  }
-
-  addComponentListener(listenToChannel, emitToChannels, eventName, map, locator, mapper)
-  {
-    for(const emitToChannel of emitToChannels)
+    this.bus.on(publisherChannel, eventName, (event) =>
     {
-      const
-      observer    = locator ? this.locator.locate(locator) : undefined,
-      eventMapper = mapper  ? this.locator.locate(mapper) : undefined
-
-      this.bus.on(listenToChannel, eventName, (event) =>
-      {
-        if(observer)
-          observer.execute({ ...event, meta: { ...event.meta, emitter: emitToChannel } })
-        else
-          this.bus.emit(emitToChannel, map  ? map : eventName, eventMapper ? eventMapper.map(event.data) : event.data)
-      })
-    }
-  }
-
-  addComponentListeners(listenToChannels, emitToChannels, event, map, locator, mapper)
-  {
-    for(const listenToChannel of listenToChannels)
-      this.addComponentListener(listenToChannel, emitToChannels, event, map, locator, mapper)
+      if(observer)
+        observer.execute({ ...event, meta: { ...event.meta, emitter: subscriberChannel } })
+      else
+        this.bus.emit(subscriberChannel, map  ? map : eventName, mapper ? mapper.map(event.data) : event.data)
+    })
   }
 
   listen()
   {
-    for(const { channel, event, map, locator, mapper } of this.listeners)
+    for(const { publisher, event, map, locator, eventMapper } of this.listeners)
     {
       const
-      listenToChannels = channel ? this.getChannels(channel) : [this[Symbol.for('id')]],
-      emitToChannels   = [this[Symbol.for('id')]]
+      publisherChannel  = publisher ? publisher : [this[Symbol.for('id')]],
+      subscriberChannel = this[Symbol.for('id')]
 
-      this.addComponentListeners(listenToChannels, emitToChannels, event, map, locator, mapper)
+      this.addComponentListener(publisherChannel, subscriberChannel, event, map, locator, eventMapper)
     }
 
     this.emit('component.listened', { id: this[Symbol.for('id')], listeners: this.listeners })
@@ -133,41 +100,6 @@ class ComponentController extends Entity
   emit(name, data)
   {
     this.channel.emit(name, data)
-  }
-
-  getParentComponentData()
-  {
-    return this.repository.getParentComponentData(this[Symbol.for('id')])
-  }
-
-  getComponentData(name)
-  {
-    if(!name)
-    {
-      return this.repository.getComponentData(this[Symbol.for('id')])
-    }
-    else
-    {
-      const child =  this.getComponentContext()[name]
-
-      if(child && child.id)
-        return this.repository.getComponentData(child.id)
-    }
-  }
-
-  setComponentData(componentData)
-  {
-    this.repository.setComponentData(componentData)
-  }
-
-  getComponentContext()
-  {
-    return this.repository.getComponentContext(this[Symbol.for('id')])
-  }
-
-  setComponentContext(context)
-  {
-    return this.repository.setComponentContext(context)
   }
 }
 

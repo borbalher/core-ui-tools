@@ -1,4 +1,4 @@
-const ComponentController = require('common/ui/component/controller')
+const ComponentController = require('common/ui/aggregate/component/controller')
 
 class PasswordInputController extends ComponentController
 {

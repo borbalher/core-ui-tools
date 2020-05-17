@@ -31,8 +31,8 @@
     "eslint-plugin-promise": "4.0.1",
     "eslint-plugin-standard": "4.0.0",
     "jsdoc": "3.6.3",
-    "mocha": "5.2.0",
-    "mochawesome": "3.1.1",
+    "mocha": "7.1.0",
+    "mochawesome": "5.0.0",
     "nyc": "14.1.1",
     "tui-jsdoc-template": "1.2.2"
   },

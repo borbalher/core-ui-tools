@@ -1,6 +1,7 @@
 {
+  "colors": true,
+  "full-trace": true,
   "require" : "./test/init.js",
-  "timeout" : 5000,
-  "ui"      : "bdd",
-  "colors"  : true
+  "timeout": 10000,
+  "ui": "bdd"
 }

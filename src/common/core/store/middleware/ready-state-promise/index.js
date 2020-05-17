@@ -8,17 +8,12 @@
  */
 const readyStatePromise = store => next => action =>
 {
-  if(!action.promise)
+  if(!action.meta.promise)
     return next(action)
 
-  const composeAction = (ready, data) =>
+  const composeAction = (ready, data = {}) =>
   {
-    return {
-      ...action,
-      promise : undefined,
-      ready,
-      data
-    }
+    return store.composeAction(action.name, { ...action.data, ...data }, { promise: undefined, ready })
   }
 
   next(composeAction(false))

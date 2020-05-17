@@ -1,4 +1,4 @@
-describe('src/common/domain/schema/composer/password-input-group', () =>
+describe('src/common/ui/composer/password-input-group', () =>
 {
   const
   expect      = require('chai').expect,
@@ -14,23 +14,23 @@ describe('src/common/domain/schema/composer/password-input-group', () =>
     const coreFactory = new CoreFactory()
 
     core        = coreFactory.create([
-      { name: 'core/bootstrap',                      path: 'common/core/bootstrap' },
-      { name: 'core/object',                         path: 'common/core/object' },
-      { name: 'core/schema',                         path: 'common/core/schema' },
-      { name: 'domain/schema',                       path: 'common/domain/schema' },
-      { name: 'core/schema/bootstrap',               path: 'node/core/schema/bootstrap' },
-      { name: 'core/data-structure',                 path: 'common/core/data-structure' },
-      { name: 'core/component/composer',             path: 'common/domain/schema/composer/component' },
-      { name: 'core/component/password-input',       path: 'common/domain/schema/composer/password-input' },
-      { name: 'core/component/password-input-group', path: 'common/domain/schema/composer/password-input-group' }
+      { name: 'common/core/bootstrap' },
+      { name: 'common/core/object' },
+      { name: 'common/core/schema' },
+      { name: 'node/core/schema/bootstrap' },
+      { name: 'common/core/data-structure' },
+      { name: 'common/ui/aggregate/component' },
+      { name: 'common/ui/schema' },
+      { name: 'common/ui/aggregate/password-input' },
+      { name: 'common/ui/aggregate/password-input-group' }
     ])
 
     core.load().then(() =>
     {
       core.locate('core/bootstrap').bootstrap().then(() =>
       {
-        composer               = core.locate('core/schema/composer')
-        passwordInputGroupComposer = core.locate('core/password-input-group/composer')
+        composer                   = core.locate('core/schema/composer')
+        passwordInputGroupComposer = core.locate('ui/password-input-group/composer')
         done()
       })
     })

@@ -23,7 +23,6 @@ describe('resource dispatcher integration tests', async () =>
       { name: 'common/core/data-structure' },
       { name: 'node/core/process' },
       { name: 'node/core/schema/bootstrap' },
-      { name: 'common/core/event-emitter' },
       { name: 'common/infrastructure/bus' },
       { name: 'node/core/http/server' },
       { name: 'node/core/resource', path: __dirname },

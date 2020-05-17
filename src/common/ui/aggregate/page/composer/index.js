@@ -42,7 +42,7 @@ class PageComposer
       ],
       listeners : [
         ...this.listeners,
-        listeners
+        ...listeners
       ],
       parentId : null,
       renderonchange,

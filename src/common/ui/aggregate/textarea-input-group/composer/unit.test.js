@@ -1,4 +1,4 @@
-describe('src/common/domain/schema/composer/textarea-input-group', () =>
+describe('src/common/ui/composer/textarea-input-group', () =>
 {
   const
   expect      = require('chai').expect,
@@ -14,15 +14,14 @@ describe('src/common/domain/schema/composer/textarea-input-group', () =>
     const coreFactory = new CoreFactory()
 
     core        = coreFactory.create([
-      { name: 'core/bootstrap',                      path: 'common/core/bootstrap' },
-      { name: 'core/object',                         path: 'common/core/object' },
-      { name: 'core/schema',                         path: 'common/core/schema' },
-      { name: 'domain/schema',                       path: 'common/domain/schema' },
-      { name: 'core/schema/bootstrap',               path: 'node/core/schema/bootstrap' },
-      { name: 'core/data-structure',                 path: 'common/core/data-structure' },
-      { name: 'core/component/composer',             path: 'common/domain/schema/composer/component' },
-      { name: 'core/component/textarea-input',       path: 'common/domain/schema/composer/textarea-input' },
-      { name: 'core/component/textarea-input-group', path: 'common/domain/schema/composer/textarea-input-group' }
+      { name: 'common/core/bootstrap' },
+      { name: 'common/core/object' },
+      { name: 'common/core/schema' },
+      { name: 'node/core/schema/bootstrap' },
+      { name: 'common/core/data-structure' },
+      { name: 'common/ui/aggregate/component' },
+      { name: 'common/ui/aggregate/textarea-input' },
+      { name: 'common/ui/aggregate/textarea-input-group' }
     ])
 
     core.load().then(() =>
@@ -30,7 +29,7 @@ describe('src/common/domain/schema/composer/textarea-input-group', () =>
       core.locate('core/bootstrap').bootstrap().then(() =>
       {
         composer                   = core.locate('core/schema/composer')
-        textareaInputGroupComposer = core.locate('core/textarea-input-group/composer')
+        textareaInputGroupComposer = core.locate('ui/textarea-input-group/composer')
         done()
       })
     })

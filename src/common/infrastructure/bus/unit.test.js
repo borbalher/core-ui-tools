@@ -20,7 +20,6 @@ describe('infrastructure/bus', () =>
       { name: 'common/core/string' },
       { name: 'common/core/data-structure' },
       { name: 'node/core/schema/bootstrap' },
-      { name: 'common/core/event-emitter' },
       { name: 'common/infrastructure/bus' }
     ])
 

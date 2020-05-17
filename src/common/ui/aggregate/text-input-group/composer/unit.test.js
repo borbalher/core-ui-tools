@@ -1,4 +1,4 @@
-describe('src/common/domain/schema/composer/text-input-group', () =>
+describe('src/common/ui/composer/text-input-group', () =>
 {
   const
   expect      = require('chai').expect,
@@ -14,15 +14,14 @@ describe('src/common/domain/schema/composer/text-input-group', () =>
     const coreFactory = new CoreFactory()
 
     core        = coreFactory.create([
-      { name: 'core/bootstrap',                  path: 'common/core/bootstrap' },
-      { name: 'core/object',                     path: 'common/core/object' },
-      { name: 'core/schema',                     path: 'common/core/schema' },
-      { name: 'domain/schema',                   path: 'common/domain/schema' },
-      { name: 'core/schema/bootstrap',           path: 'node/core/schema/bootstrap' },
-      { name: 'core/data-structure',             path: 'common/core/data-structure' },
-      { name: 'core/component/composer',         path: 'common/domain/schema/composer/component' },
-      { name: 'core/component/text-input',       path: 'common/domain/schema/composer/text-input' },
-      { name: 'core/component/text-input-group', path: 'common/domain/schema/composer/text-input-group' }
+      { name: 'common/core/bootstrap' },
+      { name: 'common/core/object' },
+      { name: 'common/core/schema' },
+      { name: 'node/core/schema/bootstrap' },
+      { name: 'common/core/data-structure' },
+      { name: 'common/ui/aggregate/component' },
+      { name: 'common/ui/aggregate/text-input' },
+      { name: 'common/ui/aggregate/text-input-group' }
     ])
 
     core.load().then(() =>
@@ -30,7 +29,7 @@ describe('src/common/domain/schema/composer/text-input-group', () =>
       core.locate('core/bootstrap').bootstrap().then(() =>
       {
         composer               = core.locate('core/schema/composer')
-        textInputGroupComposer = core.locate('core/text-input-group/composer')
+        textInputGroupComposer = core.locate('ui/text-input-group/composer')
         done()
       })
     })

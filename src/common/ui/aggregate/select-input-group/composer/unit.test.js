@@ -1,4 +1,4 @@
-describe('src/common/domain/schema/composer/select-input-group', () =>
+describe('src/common/ui/composer/select-input-group', () =>
 {
   const
   expect      = require('chai').expect,
@@ -14,15 +14,15 @@ describe('src/common/domain/schema/composer/select-input-group', () =>
     const coreFactory = new CoreFactory()
 
     core        = coreFactory.create([
-      { name: 'core/bootstrap',                    path: 'common/core/bootstrap' },
-      { name: 'core/object',                       path: 'common/core/object' },
-      { name: 'core/schema',                       path: 'common/core/schema' },
-      { name: 'domain/schema',                     path: 'common/domain/schema' },
-      { name: 'core/schema/bootstrap',             path: 'node/core/schema/bootstrap' },
-      { name: 'core/data-structure',               path: 'common/core/data-structure' },
-      { name: 'core/component/composer',           path: 'common/domain/schema/composer/component' },
-      { name: 'core/component/select-input',       path: 'common/domain/schema/composer/select-input' },
-      { name: 'core/component/select-input-group', path: 'common/domain/schema/composer/select-input-group' }
+      { name: 'common/core/bootstrap' },
+      { name: 'common/core/object' },
+      { name: 'common/core/schema' },
+      { name: 'node/core/schema/bootstrap' },
+      { name: 'common/core/data-structure' },
+      { name: 'common/ui/schema' },
+      { name: 'common/ui/aggregate/component' },
+      { name: 'common/ui/aggregate/select-input' },
+      { name: 'common/ui/aggregate/select-input-group' }
     ])
 
     core.load().then(() =>
@@ -30,7 +30,7 @@ describe('src/common/domain/schema/composer/select-input-group', () =>
       core.locate('core/bootstrap').bootstrap().then(() =>
       {
         composer                 = core.locate('core/schema/composer')
-        selectInputGroupComposer = core.locate('core/select-input-group/composer')
+        selectInputGroupComposer = core.locate('ui/select-input-group/composer')
         done()
       })
     })
