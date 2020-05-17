@@ -3,7 +3,8 @@ module.exports = {
   {
     locator :
     {
-      'core/page-blocker/composer' : __dirname
+      'ui/page-blocker/composer'   : `${__dirname}/composer`,
+      'ui/page-blocker/controller' : `${__dirname}/controller`
     }
   }
 }

@@ -1,30 +1,34 @@
 module.exports = {
   core :
   {
+    locator :
+    {
+      'ui/toggeable-panel/listener/on-toggle-panel' : `${__dirname}/listener/on-toggle-panel`,
+      'ui/toggeable-panel/composer'                 : `${__dirname}/composer`,
+      'ui/toggeable-panel/controller'               : `${__dirname}/controller`
+    }
+  },
+  ui :
+  {
     'component' :
     {
       'toggeable-panel' :
       {
         bindings : [
           {
-            selector : 'input[type="checkbox"]',
-            domEvent : 'change',
-            event    : 'toggle.panel',
-            mapper   : 'checkbox-input/mapper/input-data-mapper'
+            selector       : 'input[type="checkbox"]',
+            domEvent       : 'change',
+            domEventMapper : 'ui/checkbox-input/mapper/input-data-mapper',
+            event          : 'toggle.panel'
           }
         ],
         listeners : [
           {
             event   : 'toggle.panel',
-            locator : 'toggeable-panel/listener/toggle-panel'
+            locator : 'ui/toggeable-panel/listener/on-toggle-panel'
           }
         ]
       }
-    },
-    locator :
-    {
-      'toggeable-panel/listener/toggle-panel' : `${__dirname}/listener/toggle-panel`,
-      'toggeable-panel'                       : __dirname
     }
   }
 }

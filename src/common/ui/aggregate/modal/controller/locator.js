@@ -1,6 +1,6 @@
-const Modal = require('.')
+const ModalController = require('.')
 
-class ModalLocator
+class ModalControllerLocator
 {
   constructor(locator)
   {
@@ -9,8 +9,8 @@ class ModalLocator
 
   locate()
   {
-    return Modal
+    return ModalController
   }
 }
 
-module.exports = ModalLocator
+module.exports = ModalControllerLocator

@@ -11,7 +11,7 @@ class PaginationComposerLocator
   {
     const
     configuration = this.locator.locate('core/configuration'),
-    options       = configuration.find('core.component.pagination')
+    options       = configuration.find('ui.component.pagination')
 
     return new PaginationComposer(this.locator, options)
   }

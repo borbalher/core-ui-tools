@@ -1,8 +1,8 @@
-const Component = require('../component')
+const ComponentController = require('common/ui/component/controller')
 
-class SelectInputComponent extends Component
+class SelectInputController extends ComponentController
 {
 
 }
 
-module.exports = SelectInputComponent
+module.exports = SelectInputController

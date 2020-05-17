@@ -1,12 +1,12 @@
-const Component = require('../component')
+const ComponentController = require('common/ui/component/controller')
 
-class SelectInputGroupComponent extends Component
+class SelectInputGroupController extends ComponentController
 {
   validateInput(value)
   {
     const
-    selectInputGroup = this.getComponentContext(),
-    { input: { required, items }, label } = selectInputGroup
+    selectInputGroup = this.getControllerContext(),
+    { input: { required }, label } = selectInputGroup
 
     let
     message = null,
@@ -18,30 +18,11 @@ class SelectInputGroupComponent extends Component
       code    = 'E_INPUT_REQUIRED'
     }
 
-    // const domInputGroup = document.getElementById(this[Symbol.for('id')])
-    // if(message)
-    // {
-    //   domInputGroup.querySelector('.input-group__error').innerHTML = message
-    //   domInputGroup.classList.add('--error')
-    // }
-    // else
-    // {
-    //   domInputGroup.querySelector('.input-group__error').innerHTML = ''
-    //   domInputGroup.classList.remove('--error')
-    // }
-
-    this.setComponentContext({
+    this.setControllerContext({
       ...selectInputGroup,
       input :
       {
         ...selectInputGroup.input,
-        items : items.map((item) =>
-        {
-          return {
-            ...item,
-            selected : value.indexOf(item.id) !== -1
-          }
-        }),
         value
       },
       error :
@@ -55,4 +36,4 @@ class SelectInputGroupComponent extends Component
   }
 }
 
-module.exports = SelectInputGroupComponent
+module.exports = SelectInputGroupController

@@ -11,7 +11,7 @@ class TextareaInputGroupComposerLocator
   {
     const
     configuration = this.locator.locate('core/configuration'),
-    options       = configuration.find('core.component.textarea-input-group')
+    options       = configuration.find('ui.component.textarea-input-group')
 
     return new TextareaInputGroupComposer(this.locator, options)
   }

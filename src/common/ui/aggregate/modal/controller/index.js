@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
-const Component = require('../component')
+const ComponentController = require('common/ui/component/controller')
 
-class Modal extends Component
+class Modal extends ComponentController
 {
   dispatchAction(action)
   {

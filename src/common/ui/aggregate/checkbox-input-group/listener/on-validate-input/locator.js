@@ -1,6 +1,6 @@
-const OnValidateInputDataObserver = require('.')
+const OnOnValidateInputObserver = require('.')
 
-class OnValidateInputDataObserverLocator
+class OnOnValidateInputObserverLocator
 {
   constructor(locator)
   {
@@ -10,8 +10,8 @@ class OnValidateInputDataObserverLocator
   locate()
   {
     const ui = this.locator.locate('core/ui')
-    return new OnValidateInputDataObserver(ui)
+    return new OnOnValidateInputObserver(ui)
   }
 }
 
-module.exports = OnValidateInputDataObserverLocator
+module.exports = OnOnValidateInputObserverLocator

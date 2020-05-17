@@ -1,6 +1,6 @@
-const ButtonGroupInputComponent = require('.')
+const RadioButtonInputController = require('.')
 
-class ButtonGroupInputComponentLocator
+class RadioButtonInputControllerLocator
 {
   constructor(locator)
   {
@@ -9,8 +9,8 @@ class ButtonGroupInputComponentLocator
 
   locate()
   {
-    return ButtonGroupInputComponent
+    return RadioButtonInputController
   }
 }
 
-module.exports = ButtonGroupInputComponentLocator
+module.exports = RadioButtonInputControllerLocator

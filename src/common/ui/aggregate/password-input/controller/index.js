@@ -1,8 +1,8 @@
-const Component = require('../component')
+const ComponentController = require('common/ui/component/controller')
 
-class PasswordInputComponent extends Component
+class PasswordInputController extends ComponentController
 {
 
 }
 
-module.exports = PasswordInputComponent
+module.exports = PasswordInputController

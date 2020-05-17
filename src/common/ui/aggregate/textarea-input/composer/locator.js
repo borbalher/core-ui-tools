@@ -11,7 +11,7 @@ class TextareaInputComposerLocator
   {
     const
     configuration = this.locator.locate('core/configuration'),
-    options       = configuration.find('core.component.textarea-input')
+    options       = configuration.find('ui.component.textarea-input')
 
     return new TextareaInputComposer(this.locator, options)
   }

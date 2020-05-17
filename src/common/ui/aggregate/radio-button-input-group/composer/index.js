@@ -1,4 +1,4 @@
-const ComponentComposer = require('../component')
+const ComponentComposer = require('common/ui/component/composer')
 /**
  * RadioButtonInputGroup composer
  * @class
@@ -8,7 +8,7 @@ class RadioButtonInputGroupComposer extends ComponentComposer
   constructor(...args)
   {
     super(...args)
-    this.radioButtonInputComposer = this.locator.locate('core/radio-button-input/composer')
+    this.radioButtonInputComposer = this.locator.locate('ui/radio-button-input/composer')
   }
 
   composeRadioButtons(buttons, id, value, attribute, disabled, readonly, required)

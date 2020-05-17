@@ -1,8 +1,8 @@
-const Component = require('../component')
+const ComponentController = require('common/ui/component/controller')
 
-class PageBlockerComponent extends Component
+class PageBlockerController extends ComponentController
 {
 
 }
 
-module.exports = PageBlockerComponent
+module.exports = PageBlockerController

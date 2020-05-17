@@ -1,4 +1,4 @@
-const ComponentComposer = require('../component')
+const ComponentComposer = require('common/ui/component/composer')
 /**
  * TextareaInputGroupGroup composer
  * @class
@@ -8,7 +8,7 @@ class TextareaInputGroupGroupComposer extends ComponentComposer
   constructor(...args)
   {
     super(...args)
-    this.textareaInputComposer = this.locator.locate('core/textarea-input/composer')
+    this.textareaInputComposer = this.locator.locate('ui/textarea-input/composer')
   }
 
   compose({
@@ -34,7 +34,7 @@ class TextareaInputGroupGroupComposer extends ComponentComposer
     id
   })
   {
-    const textInputGroup = super.compose({
+    const textareaInputGroup = super.compose({
       template : 'textarea-input-group',
       schema   : 'entity/textarea-input-group',
       input    : this.textareaInputComposer.compose({
@@ -77,7 +77,7 @@ class TextareaInputGroupGroupComposer extends ComponentComposer
       id
     })
 
-    return textInputGroup
+    return textareaInputGroup
   }
 }
 

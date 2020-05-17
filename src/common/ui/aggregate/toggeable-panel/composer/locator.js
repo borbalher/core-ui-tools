@@ -11,7 +11,7 @@ class ToggeablePanelComposerLocator
   {
     const
     configuration = this.locator.locate('core/configuration'),
-    options       = configuration.find('core.component.toggeable-panel')
+    options       = configuration.find('ui.component.toggeable-panel')
 
     return new ToggeablePanelComposer(this.locator, options)
   }

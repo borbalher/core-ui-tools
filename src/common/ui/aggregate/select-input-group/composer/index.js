@@ -1,4 +1,4 @@
-const ComponentComposer = require('../component')
+const ComponentComposer = require('common/ui/component/composer')
 /**
  * SelectInputGroup composer
  * @class
@@ -8,7 +8,7 @@ class SelectInputGroupComposer extends ComponentComposer
   constructor(...args)
   {
     super(...args)
-    this.selectInputComposer = this.locator.locate('core/select-input/composer')
+    this.selectInputComposer = this.locator.locate('ui/select-input/composer')
   }
 
   compose({

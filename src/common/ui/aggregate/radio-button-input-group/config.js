@@ -8,24 +8,25 @@ module.exports = {
         bindings :
         [
           {
-            selector : 'input[type="radio"]',
-            domEvent : 'change',
-            event    : 'button.clicked',
-            mapper   : 'input/mapper/input-data-mapper'
+            selector       : 'input[type="radio"]',
+            domEvent       : 'change',
+            domEventMapper : 'ui/input/mapper/input-data-mapper',
+            event          : 'button.clicked'
           }
         ],
         listeners : [
           {
             event   : 'button.clicked',
-            locator : 'radio-button-input-group/listener/button-clicked'
+            locator : 'ui/radio-button-input-group/listener/on-button-clicked'
           }
         ]
       }
     },
     locator :
     {
-      'radio-button-input-group/listener/button-clicked' : `${__dirname}/listener/button-clicked`,
-      'radio-button-input-group'                         : __dirname
+      'ui/radio-button-input-group/listener/on-button-clicked' : `${__dirname}/listener/on-button-clicked`,
+      'ui/radio-button-input-group/composer'                   : `${__dirname}/composer`,
+      'ui/radio-button-input-group/controller'                 : `${__dirname}/controller`
     }
   }
 }

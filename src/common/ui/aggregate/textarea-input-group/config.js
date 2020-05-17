@@ -1,30 +1,34 @@
 module.exports = {
   core :
   {
+    locator :
+    {
+      'ui/textarea-input-group/listener/on-validate-input' : `${__dirname}/listener/on-validate-input`,
+      'ui/textarea-input-group/composer'                   : `${__dirname}/composer`,
+      'ui/textarea-input-group/controller'                 : `${__dirname}/controller`
+    }
+  },
+  ui :
+  {
     'component' :
     {
       'textarea-input-group' :
       {
         bindings : [
           {
-            selector : 'textarea',
-            domEvent : 'change',
-            event    : 'validate.input',
-            mapper   : 'input/mapper/input-data-mapper'
+            selector       : 'textarea',
+            domEvent       : 'change',
+            domEventMapper : 'ui/input/mapper/input-data-mapper',
+            event          : 'validate.input'
           }
         ],
         listeners : [
           {
             event   : 'validate.input',
-            locator : 'textarea-input-group/listener/validate-input'
+            locator : 'ui/textarea-input-group/listener/on-validate-input'
           }
         ]
       }
-    },
-    locator :
-    {
-      'textarea-input-group/listener/validate-input' : `${__dirname}/listener/validate-input`,
-      'textarea-input-group'                         : __dirname
     }
   }
 }

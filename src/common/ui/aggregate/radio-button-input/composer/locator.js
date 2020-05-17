@@ -11,7 +11,7 @@ class RadioButtonInputComposerLocator
   {
     const
     configuration = this.locator.locate('core/configuration'),
-    options       = configuration.find('core.component.radio-button-input')
+    options       = configuration.find('ui.component.radio-button-input')
 
     return new RadioButtonInputComposer(this.locator, options)
   }

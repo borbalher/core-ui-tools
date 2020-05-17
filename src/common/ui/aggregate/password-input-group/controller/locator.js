@@ -1,6 +1,6 @@
-const PasswordInputGroupComponent = require('.')
+const PasswordInputGroupController = require('.')
 
-class PasswordInputGroupComponentLocator
+class PasswordInputGroupControllerLocator
 {
   constructor(locator)
   {
@@ -9,8 +9,8 @@ class PasswordInputGroupComponentLocator
 
   locate()
   {
-    return PasswordInputGroupComponent
+    return PasswordInputGroupController
   }
 }
 
-module.exports = PasswordInputGroupComponentLocator
+module.exports = PasswordInputGroupControllerLocator

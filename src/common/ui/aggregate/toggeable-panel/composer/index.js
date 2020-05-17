@@ -1,14 +1,14 @@
-const ComponentComposer = require('../component')
+const ComponentComposer = require('common/ui/component/composer')
 /**
- * ToggeableFieldset composer
+ * ToggeablePanel composer
  * @class
  */
-class ToggeableFieldsetComposer extends ComponentComposer
+class ToggeablePanelComposer extends ComponentComposer
 {
   constructor(...args)
   {
     super(...args)
-    this.checkboxInputGroupComposer = this.locator.locate('core/checkbox-input-group/composer')
+    this.checkboxInputGroupComposer = this.locator.locate('ui/checkbox-input-group/composer')
   }
 
   isVisible(isToggled, showWhenToggled)
@@ -33,7 +33,7 @@ class ToggeableFieldsetComposer extends ComponentComposer
   })
   {
     const
-    toggeableFieldset = super.compose({
+    toggeablePanel = super.compose({
       template  : 'toggeable-panel',
       isVisible : this.isVisible(isToggled, showWhenToggled),
       bindings  : [
@@ -66,8 +66,8 @@ class ToggeableFieldsetComposer extends ComponentComposer
       id
     })
 
-    return toggeableFieldset
+    return toggeablePanel
   }
 }
 
-module.exports = ToggeableFieldsetComposer
+module.exports = ToggeablePanelComposer

@@ -3,7 +3,8 @@ module.exports = {
   {
     locator :
     {
-      'core/radio-button-input/composer' : __dirname
+      'ui/radio-button-input/composer'   : `${__dirname}/composer`,
+      'ui/radio-button-input/controller' : `${__dirname}/controller`
     }
   }
 }

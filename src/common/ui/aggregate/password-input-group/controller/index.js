@@ -1,11 +1,11 @@
-const Component = require('../component')
+const ComponentController = require('common/ui/component/controller')
 
-class PasswordInputGroupComponent extends Component
+class PasswordInputGroupController extends ComponentController
 {
   validateInput(value)
   {
     const
-    passwordInputGroup = this.getComponentContext(),
+    passwordInputGroup = this.getControllerContext(),
     { input: { required, pattern, title }, label } = passwordInputGroup
 
     let
@@ -30,19 +30,7 @@ class PasswordInputGroupComponent extends Component
       }
     }
 
-    // const domInputGroup = document.getElementById(this[Symbol.for('id')])
-    // if(message)
-    // {
-    //   domInputGroup.querySelector('.input-group__error').innerHTML = message
-    //   domInputGroup.classList.add('--error')
-    // }
-    // else
-    // {
-    //   domInputGroup.querySelector('.input-group__error').innerHTML = ''
-    //   domInputGroup.classList.remove('--error')
-    // }
-
-    this.setComponentContext({
+    this.setControllerContext({
       ...passwordInputGroup,
       input :
       {
@@ -60,4 +48,4 @@ class PasswordInputGroupComponent extends Component
   }
 }
 
-module.exports = PasswordInputGroupComponent
+module.exports = PasswordInputGroupController

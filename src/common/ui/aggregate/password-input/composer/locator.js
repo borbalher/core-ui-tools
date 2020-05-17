@@ -11,7 +11,7 @@ class PasswordInputComposerLocator
   {
     const
     configuration = this.locator.locate('core/configuration'),
-    options       = configuration.find('core.component.password-input')
+    options       = configuration.find('ui.component.password-input')
 
     return new PasswordInputComposer(this.locator, options)
   }

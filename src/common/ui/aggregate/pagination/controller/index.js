@@ -1,64 +1,64 @@
-const Component = require('../component')
+const ComponentController = require('common/ui/component/controller')
 
-class PaginationComponent extends Component
+class PaginationController extends ComponentController
 {
   constructor(...args)
   {
     super(...args)
 
-    this.paginationComposer = this.locator.locate('composer/pagination')
+    this.paginationComposer = this.locator.locate('ui/pagination/composer')
   }
 
-  pageClick(page)
+  pageClicked(page)
   {
     const
-    { limit, totalElements, offset } = this.getComponentContext(),
+    { limit, totalElements, offset } = this.getControllerContext(),
     paginationContext = this.paginationComposer.create(limit, totalElements, page, offset)
 
-    this.setComponentContext({
-      ...this.getComponentContext(),
+    this.setControllerContext({
+      ...this.getControllerContext(),
       ...paginationContext
     })
     this.emit('page.changed', { page })
   }
 
-  prevPageClick()
+  prevPageClicked()
   {
-    const { limit, totalElements, selectedPage, offset, firstPage } = this.getComponentContext()
+    const { limit, totalElements, selectedPage, offset, firstPage } = this.getControllerContext()
 
     if(selectedPage !== firstPage)
     {
       const
       prevPage          = selectedPage - 1,
       paginationContext = this.paginationComposer.create(limit, totalElements, prevPage, offset)
-      this.setComponentContext({
-        ...this.getComponentContext(),
+      this.setControllerContext({
+        ...this.getControllerContext(),
         ...paginationContext
       })
       this.emit('page.changed', { page: prevPage })
     }
   }
 
-  nextPageClick()
+  nextPageClicked()
   {
-    const { limit, totalElements, selectedPage, offset, lastPage } = this.getComponentContext()
+    const { limit, totalElements, selectedPage, offset, lastPage } = this.getControllerContext()
 
     if(selectedPage !== lastPage)
     {
       const
       nextPage          = selectedPage + 1,
       paginationContext = this.paginationComposer.create(limit, totalElements, nextPage, offset)
-      this.setComponentContext({
-        ...this.getComponentContext(),
+      this.setControllerContext({
+        ...this.getControllerContext(),
         ...paginationContext
       })
       this.emit('page.changed', { page: nextPage })
     }
   }
 
-  prevPagesClick()
+  prevPagesClicked()
   {
-    const { limit, totalElements, selectedPage, offset } = this.getComponentContext()
+    const { limit, totalElements, selectedPage, offset } = this.getControllerContext()
 
     let newSelectedPage = selectedPage - (offset * 2)
     if(newSelectedPage < 1)
@@ -66,16 +66,16 @@ class PaginationComponent extends Component
 
 
     const paginationContext = this.paginationComposer.create(limit, totalElements, newSelectedPage, offset)
-    this.setComponentContext({
-      ...this.getComponentContext(),
+    this.setControllerContext({
+      ...this.getControllerContext(),
       ...paginationContext
     })
     this.emit('page.changed', { page: newSelectedPage })
   }
 
-  nextPagesClick()
+  nextPagesClicked()
   {
-    const { limit, totalElements, selectedPage, offset, lastPage } = this.getComponentContext()
+    const { limit, totalElements, selectedPage, offset, lastPage } = this.getControllerContext()
 
     let newSelectedPage = selectedPage + (offset * 2)
     if(newSelectedPage > lastPage)
@@ -83,12 +83,12 @@ class PaginationComponent extends Component
 
 
     const paginationContext = this.paginationComposer.create(limit, totalElements, newSelectedPage, offset)
-    this.setComponentContext({
-      ...this.getComponentContext(),
+    this.setControllerContext({
+      ...this.getControllerContext(),
       ...paginationContext
     })
     this.emit('page.changed', { page: newSelectedPage })
   }
 }
 
-module.exports = PaginationComponent
+module.exports = PaginationController

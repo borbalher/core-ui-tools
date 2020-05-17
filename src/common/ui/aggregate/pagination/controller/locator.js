@@ -1,6 +1,6 @@
-const PaginationComponent = require('.')
+const PaginationController = require('.')
 
-class PaginationComponentLocator
+class PaginationControllerLocator
 {
   constructor(locator)
   {
@@ -9,8 +9,8 @@ class PaginationComponentLocator
 
   locate()
   {
-    return PaginationComponent
+    return PaginationController
   }
 }
 
-module.exports = PaginationComponentLocator
+module.exports = PaginationControllerLocator

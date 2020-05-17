@@ -1,30 +1,16 @@
-const Component = require('../component')
+const ComponentController = require('common/ui/component/controller')
 
-class RadioButtonInputGroupComponent extends Component
+class RadioButtonInputGroupController extends ComponentController
 {
   buttonClicked(value)
   {
-    const
-    buttonGroupInputGroup  = this.getComponentContext(),
-    { input: { buttons } } = buttonGroupInputGroup
+    const buttonGroupInputGroup = this.getControllerContext()
 
-    this.setComponentContext({
+    this.setControllerContext({
       ...buttonGroupInputGroup,
-      input :
-      {
-        ...buttonGroupInputGroup.input,
-        value,
-        selectedButton : value,
-        buttons        : buttons.map((button) =>
-        {
-          return {
-            ...button,
-            selected : button.id === value
-          }
-        })
-      }
+      value
     })
   }
 }
 
-module.exports = RadioButtonInputGroupComponent
+module.exports = RadioButtonInputGroupController

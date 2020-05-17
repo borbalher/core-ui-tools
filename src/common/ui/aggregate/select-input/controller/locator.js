@@ -1,6 +1,6 @@
-const SelectInputComponent = require('.')
+const SelectInputController = require('.')
 
-class SelectInputComponentLocator
+class SelectInputControllerLocator
 {
   constructor(locator)
   {
@@ -9,8 +9,8 @@ class SelectInputComponentLocator
 
   locate()
   {
-    return SelectInputComponent
+    return SelectInputController
   }
 }
 
-module.exports = SelectInputComponentLocator
+module.exports = SelectInputControllerLocator

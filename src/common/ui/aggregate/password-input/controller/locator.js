@@ -1,6 +1,6 @@
-const PasswordInputComponent = require('.')
+const PasswordInputController = require('.')
 
-class PasswordInputComponentLocator
+class PasswordInputControllerLocator
 {
   constructor(locator)
   {
@@ -9,8 +9,8 @@ class PasswordInputComponentLocator
 
   locate()
   {
-    return PasswordInputComponent
+    return PasswordInputController
   }
 }
 
-module.exports = PasswordInputComponentLocator
+module.exports = PasswordInputControllerLocator

@@ -1,6 +1,6 @@
-const PageBlockerComponent = require('.')
+const PageBlockerController = require('.')
 
-class PageBlockerComponentLocator
+class PageBlockerControllerLocator
 {
   constructor(locator)
   {
@@ -9,8 +9,8 @@ class PageBlockerComponentLocator
 
   locate()
   {
-    return PageBlockerComponent
+    return PageBlockerController
   }
 }
 
-module.exports = PageBlockerComponentLocator
+module.exports = PageBlockerControllerLocator

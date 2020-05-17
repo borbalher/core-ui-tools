@@ -1,6 +1,6 @@
-const TextInputGroupComponent = require('.')
+const RadioButtonInputGroupController = require('.')
 
-class TextInputGroupComponentLocator
+class RadioButtonInputGroupControllerLocator
 {
   constructor(locator)
   {
@@ -9,8 +9,8 @@ class TextInputGroupComponentLocator
 
   locate()
   {
-    return TextInputGroupComponent
+    return RadioButtonInputGroupController
   }
 }
 
-module.exports = TextInputGroupComponentLocator
+module.exports = RadioButtonInputGroupControllerLocator

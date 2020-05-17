@@ -1,4 +1,4 @@
-const ComponentComposer = require('../component')
+const ComponentComposer = require('common/ui/component/composer')
 /**
  * PageBlocker composer
  * @class

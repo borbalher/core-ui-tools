@@ -1,8 +1,8 @@
-const Component = require('../component')
+const ComponentController = require('common/ui/component/controller')
 
-class ButtonGroupInputComponent extends Component
+class RadioButtonInputController extends ComponentController
 {
 
 }
 
-module.exports = ButtonGroupInputComponent
+module.exports = RadioButtonInputController

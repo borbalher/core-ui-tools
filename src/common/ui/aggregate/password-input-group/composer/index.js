@@ -1,4 +1,4 @@
-const ComponentComposer = require('../component')
+const ComponentComposer = require('common/ui/component/composer')
 /**
  * PasswordInputGroup composer
  * @class
@@ -8,7 +8,7 @@ class PasswordInputGroupComposer extends ComponentComposer
   constructor(...args)
   {
     super(...args)
-    this.passwordInputComposer = this.locator.locate('core/password-input/composer')
+    this.passwordInputComposer = this.locator.locate('ui/password-input/composer')
   }
 
   compose({

@@ -11,7 +11,7 @@ class RadioButtonInputGroupComposerLocator
   {
     const
     configuration = this.locator.locate('core/configuration'),
-    options       = configuration.find('core.component.radio-button-input-group')
+    options       = configuration.find('ui.component.radio-button-input-group')
 
     return new RadioButtonInputGroupComposer(this.locator, options)
   }

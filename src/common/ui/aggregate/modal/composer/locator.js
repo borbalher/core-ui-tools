@@ -11,7 +11,7 @@ class CheckboxInputComposerLocator
   {
     const
     configuration = this.locator.locate('core/configuration'),
-    options       = configuration.find('core.component.modal')
+    options       = configuration.find('ui.component.modal')
 
     return new CheckboxInputComposer(this.locator, options)
   }

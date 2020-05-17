@@ -1,4 +1,4 @@
-const ComponentComposer = require('../component')
+const ComponentComposer = require('common/ui/component/composer')
 /**
  * TextInputGroup composer
  * @class
@@ -8,7 +8,7 @@ class TextInputGroupComposer extends ComponentComposer
   constructor(...args)
   {
     super(...args)
-    this.textInputComposer = this.locator.locate('core/text-input/composer')
+    this.textInputComposer = this.locator.locate('ui/text-input/composer')
   }
 
   compose({

@@ -1,6 +1,20 @@
 module.exports = {
   core :
   {
+    locator :
+    {
+      'ui/pagination/mapper/page-number-clicked'     : `${__dirname}/mapper/page-number-clicked`,
+      'ui/pagination/listener/on-page-clicked'       : `${__dirname}/listener/on-page-clicked`,
+      'ui/pagination/listener/on-prev-pages-clicked' : `${__dirname}/listener/on-prev-pages-clicked`,
+      'ui/pagination/listener/on-next-pages-clicked' : `${__dirname}/listener/on-next-pages-clicked`,
+      'ui/pagination/listener/on-prev-page-clicked'  : `${__dirname}/listener/on-prev-page-clicked`,
+      'ui/pagination/listener/on-next-page-clicked'  : `${__dirname}/listener/on-next-page-clicked`,
+      'ui/pagination/composer'                       : `${__dirname}/composer`,
+      'ui/pagination/controller'                     : `${__dirname}/controller`
+    }
+  },
+  ui :
+  {
     'component' :
     {
       'pagination' :
@@ -8,10 +22,10 @@ module.exports = {
         bindings :
         [
           {
-            selector : '.pagination__page__number',
-            domEvent : 'click',
-            event    : 'page.clicked',
-            mapper   : 'pagination/mapper/page-number-clicked'
+            selector       : '.pagination__page__number',
+            domEvent       : 'click',
+            event          : 'page.clicked',
+            domEventMapper : 'ui/pagination/mapper/page-number-clicked'
           },
           {
             domEvent : 'click',
@@ -37,36 +51,26 @@ module.exports = {
         listeners : [
           {
             event   : 'page.clicked',
-            locator : 'pagination/listener/page-click'
+            locator : 'ui/pagination/listener/on-page-clicked'
           },
           {
             event   : 'prev.pages.clicked',
-            locator : 'pagination/listener/prev-pages-click'
+            locator : 'ui/pagination/listener/on-prev-pages-clicked'
           },
           {
             event   : 'next.pages.clicked',
-            locator : 'pagination/listener/next-pages-click'
+            locator : 'ui/pagination/listener/on-next-pages-clicked'
           },
           {
             event   : 'prev.page.clicked',
-            locator : 'pagination/listener/prev-page-click'
+            locator : 'ui/pagination/listener/on-prev-page-clicked'
           },
           {
             event   : 'next.page.clicked',
-            locator : 'pagination/listener/next-page-click'
+            locator : 'ui/pagination/listener/on-next-page-clicked'
           }
         ]
       }
-    },
-    locator :
-    {
-      'pagination/mapper/page-number-clicked' : `${__dirname}/mapper/page-number-clicked`,
-      'pagination/listener/page-click'        : `${__dirname}/listener/page-click`,
-      'pagination/listener/prev-pages-click'  : `${__dirname}/listener/prev-pages-click`,
-      'pagination/listener/next-pages-click'  : `${__dirname}/listener/next-pages-click`,
-      'pagination/listener/prev-page-click'   : `${__dirname}/listener/prev-page-click`,
-      'pagination/listener/next-page-click'   : `${__dirname}/listener/next-page-click`,
-      'pagination'                            : __dirname
     }
   }
 }
