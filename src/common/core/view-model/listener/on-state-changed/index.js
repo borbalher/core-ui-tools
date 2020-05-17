@@ -1,7 +1,7 @@
 /**
  * @implements {superhero/core/eventbus/observer}
  */
-class StateChangedObserver
+class OnStateChangedObserver
 {
   constructor(viewModel)
   {
@@ -15,4 +15,4 @@ class StateChangedObserver
   }
 }
 
-module.exports = StateChangedObserver
+module.exports = OnStateChangedObserver

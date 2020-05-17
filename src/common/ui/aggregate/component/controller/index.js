@@ -1,18 +1,19 @@
-const isComponent = require('browser/core/is-component')
+const
+isComponent = require('browser/core/is-component'),
+Entity      = require('common/core/data-structure/entity')
 
-class UIComponent
+class ComponentController extends Entity
 {
-  constructor(id, bus, store, hbs, deepfind, repository, channel, bindings, listeners, locator)
+  constructor(component, bus, store, hbs, deepfind, repository, channel,  deepfreeze, deepassign, composer, locator)
   {
-    this[Symbol.for('id')] = id
+    super(component, component.schema, deepfreeze, deepassign, channel, composer)
+
     this.bus               = bus
     this.store             = store
     this.hbs               = hbs
     this.deepfind          = deepfind
     this.repository        = repository
     this.channel           = channel
-    this.bindings          = bindings
-    this.listeners         = listeners
     this.locator           = locator
 
     this.bind()
@@ -170,4 +171,4 @@ class UIComponent
   }
 }
 
-module.exports = UIComponent
+module.exports = ComponentController

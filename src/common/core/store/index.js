@@ -72,7 +72,16 @@ class Store
     return entity
   }
 
-  addEntity(entity, schemaName)
+  getEntityContext(type, id)
+  {
+    const
+    entity  = this.getEntity(type, id),
+    context = this.normalizer.denormalize(entity, type, this.state['entities'])
+
+    return context
+  }
+
+  setEntity(entity, schemaName)
   {
     const
     normalized = this.normalizer.normalize(entity, schemaName),

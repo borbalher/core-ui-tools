@@ -1,6 +1,6 @@
-const OnPageClickObserver = require('.')
+const OnPageClickedObserver = require('.')
 
-class OnPageClickObserverLocator
+class OnPageClickedObserverLocator
 {
   constructor(locator)
   {
@@ -10,8 +10,8 @@ class OnPageClickObserverLocator
   locate()
   {
     const ui = this.locator.locate('core/ui')
-    return new OnPageClickObserver(ui)
+    return new OnPageClickedObserver(ui)
   }
 }
 
-module.exports = OnPageClickObserverLocator
+module.exports = OnPageClickedObserverLocator

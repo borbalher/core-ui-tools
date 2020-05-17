@@ -1,31 +1,22 @@
 class Entity
 {
-  constructor({
-    id,
-    schema,
-    dto,
-    deepfreeze,
-    deepcopy,
-    deepassign, // TODO
-    channel,
-    composer
-  })
+  constructor(entity, schema, deepfreeze, deepassign, channel, composer)
   {
+    const { id }               = entity
     this[Symbol.for('id')]     = id
     this[Symbol.for('schema')] = schema
 
     this.deepassign            = deepassign
     this.deepfreeze            = deepfreeze
-    this.deepcopy              = deepcopy
     this.composer              = composer
     this.channel               = channel
-    this.state                 = this.createState(dto)
+    this.state                 = this.createState(entity)
   }
 
-  createState(dto)
+  createState(state)
   {
-    const state = this.composer.compose(this[Symbol.for('schema')], dto)
-    return this.deepfreeze.freeze(state)
+    const newState = this.composer.compose(this[Symbol.for('schema')], state)
+    return this.deepfreeze.freeze(newState)
   }
 
   changeStatePath(path, value)
@@ -34,20 +25,14 @@ class Entity
 
     this.state          = this.changeState(stateModified)
 
-    this.channel.emit({
-      name : `${this[Symbol.for('id')]}.${path}.state-changed`,
-      data : stateModified
-    })
+    this.channel.emit(`${this[Symbol.for('id')]}.${path}.state-changed`, { state: this.state })
   }
 
   changeState(newState)
   {
     this.state = this.createState(newState)
 
-    this.channel.emit({
-      name : `${this[Symbol.for('id')]}.state-changed`,
-      data : newState
-    })
+    this.channel.emit(`${this[Symbol.for('id')]}.state-changed`, { state: this.state })
   }
 
   get [Symbol.toStringTag]()

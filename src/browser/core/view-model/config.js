@@ -1,29 +1,28 @@
+const
+getInitialViewModel = () =>
+{
+  const
+  initialViewModel  = localStorage.getItem('initial-view-model')
+  return JSON.parse(initialViewModel)
+},
+getViewModelId = () =>
+{
+  const
+  url         = new URL(window.location.href),
+  pathname    = url.pathname.slice(1),
+  viewModelId = `${pathname !== '' ? pathname.split('/')[0] : 'home'}-view-model`
+
+  return viewModelId
+}
+
 module.exports = {
   core :
   {
-    locator :
+    'view-model' :
     {
-      'core/view-model'                   : __dirname,
-      'view-model/listener/state-changed' : `${__dirname}/listener/state-changed`
-    }
-  },
-  infrastructure :
-  {
-    bus :
-    {
-      channels :
-      {
-        'store' :
-        {
-          listeners :
-          {
-            'state.changed' :
-            {
-              'view-model/listener/state-changed' : true
-            }
-          }
-        }
-      }
+      id     : getViewModelId(),
+      schema : `entity/${getViewModelId()}`,
+      state  : getInitialViewModel()
     }
   }
 }
