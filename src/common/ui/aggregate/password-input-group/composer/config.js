@@ -3,9 +3,7 @@ module.exports = {
   {
     locator :
     {
-      'ui/password-input-group/listener/on-validate-input' : `${__dirname}/listener/on-validate-input`,
-      'ui/password-input-group/composer'                   : `${__dirname}/composer`,
-      'ui/password-input-group/controller'                 : `${__dirname}/controller`
+      'ui/password-input-group/composer' : __dirname
     },
     ui :
     {

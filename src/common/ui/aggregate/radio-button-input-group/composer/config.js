@@ -3,9 +3,7 @@ module.exports = {
   {
     locator :
     {
-      'ui/radio-button-input-group/listener/on-button-clicked' : `${__dirname}/listener/on-button-clicked`,
-      'ui/radio-button-input-group/composer'                   : `${__dirname}/composer`,
-      'ui/radio-button-input-group/controller'                 : `${__dirname}/controller`
+      'ui/radio-button-input-group/composer' : __dirname
     }
   },
   ui :

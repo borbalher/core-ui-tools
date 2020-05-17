@@ -1,22 +1,9 @@
 module.exports = {
   core :
   {
-    reducer :
-    {
-      actions :
-      {
-        'open.modal'  : 'ui/modal/action/open-modal',
-        'close.modal' : 'ui/modal/action/close-modal'
-      }
-    },
     locator :
     {
-      'ui/modal/listener/on-dispatch-action' : `${__dirname}/listener/on-dispatch-action`,
-      'ui/modal/mapper/modal-action'         : `${__dirname}/mapper/modal-action`,
-      'ui/modal/action/open-modal'           : `${__dirname}/action/open-modal`,
-      'ui/modal/action/close-modal'          : `${__dirname}/action/close-modal`,
-      'ui/modal/controller'                  : `${__dirname}/controller`,
-      'ui/modal/composer'                    : `${__dirname}/composer`
+      'ui/modal/composer' : __dirname
     }
   },
   ui :
