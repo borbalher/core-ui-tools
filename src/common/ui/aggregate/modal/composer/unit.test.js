@@ -25,7 +25,6 @@ describe('src/common/ui/composer/modal', () =>
       { name: 'common/core/store' },
       { name: 'common/view/handlebars' },
       { name: 'common/core/listener' },
-      { name: 'common/infrastructure/bus' },
       { name: 'common/core/normalizer' },
       { name: 'common/core/reducer' },
       { name: 'common/core/page' },

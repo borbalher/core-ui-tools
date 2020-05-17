@@ -1,7 +1,7 @@
 module.exports = {
   core :
   {
-    'page' :
+    'view-model' :
     {
       id     : 'test',
       schema : 'entity/test',

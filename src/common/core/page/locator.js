@@ -9,7 +9,7 @@ class PageLocator
   locate()
   {
     const
-    configuration        = this.locator.locate('core/configuration').find('core.page'),
+    configuration        = this.locator.locate('core/configuration').find('core.view-model'),
     id                   = configuration['id'],
     initialViewModel     = configuration['state'],
     schema               = configuration['schema'],
