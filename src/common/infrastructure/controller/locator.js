@@ -1,5 +1,5 @@
 const
-ControllerRepository  = require('.'),
+ControllerRepository  = require('./repository'),
 AssociativeArray      = require('common/core/data-structure/associative-array')
 
 class ControllerRepositoryLocator

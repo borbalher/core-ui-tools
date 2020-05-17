@@ -11,7 +11,7 @@ class OnValidateInputObserver
   execute(event)
   {
     const { meta: { emitter }, data: { value } } = event
-    this.ui.getComponent(emitter).validateInput(value)
+    this.page.getController(emitter).validateInput(value)
   }
 }
 

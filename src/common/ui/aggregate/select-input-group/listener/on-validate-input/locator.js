@@ -9,8 +9,8 @@ class OnValidateInputObserverLocator
 
   locate()
   {
-    const ui = this.locator.locate('core/ui')
-    return new OnValidateInputObserver(ui)
+    const page = this.locator.locate('core/page')
+    return new OnValidateInputObserver(page)
   }
 }
 

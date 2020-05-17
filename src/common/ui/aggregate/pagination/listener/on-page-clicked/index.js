@@ -3,15 +3,15 @@
  */
 class OnPageClickedObserver
 {
-  constructor(ui)
+  constructor(page)
   {
-    this.ui = ui
+    this.page = page
   }
 
   execute(event)
   {
     const { meta: { emitter }, data: { page } } = event
-    this.ui.getComponent(emitter).pageClicked(page)
+    this.page.getController(emitter).pageClicked(page)
   }
 }
 

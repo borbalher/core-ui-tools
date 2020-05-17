@@ -5,8 +5,8 @@ module.exports = {
     {
       'ui/table/listener/on-action-clicked' : `${__dirname}/listener/on-action-clicked`,
       'ui/table/mapper/action-clicked'      : `${__dirname}/mapper/action-clicked`,
-      'ui/tanñe/composer'                   : `${__dirname}/composer`,
-      'ui/tanñe/controller'                 : `${__dirname}/controller`
+      'ui/table/composer'                   : `${__dirname}/composer`,
+      'ui/table/controller'                 : `${__dirname}/controller`
     }
   },
   ui :

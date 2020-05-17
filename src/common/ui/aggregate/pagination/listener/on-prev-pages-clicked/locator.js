@@ -9,8 +9,8 @@ class OnPrevPagesClickedObserverLocator
 
   locate()
   {
-    const ui = this.locator.locate('core/ui')
-    return new OnPrevPagesClickedObserver(ui)
+    const page = this.locator.locate('core/page')
+    return new OnPrevPagesClickedObserver(page)
   }
 }
 

@@ -3,15 +3,15 @@
  */
 class OnDispatchActionObserver
 {
-  constructor(ui)
+  constructor(page)
   {
-    this.ui = ui
+    this.page = page
   }
 
   execute(event)
   {
     const { meta: { emitter }, data: { action } } = event
-    this.ui.getComponent(emitter).dispatchAction(action)
+    this.page.getController(emitter).dispatchAction(action)
   }
 }
 

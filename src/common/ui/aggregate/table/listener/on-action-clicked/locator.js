@@ -9,8 +9,8 @@ class OnActionClickedObserverLocator
 
   locate()
   {
-    const ui = this.locator.locate('core/ui')
-    return new OnActionClickedObserver(ui)
+    const page = this.locator.locate('core/page')
+    return new OnActionClickedObserver(page)
   }
 }
 

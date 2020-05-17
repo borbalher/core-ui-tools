@@ -3,7 +3,7 @@ module.exports = {
   {
     locator :
     {
-      'ui/fieldset/composer' : `${__dirname}/composer`
+      'infrastructure/controller/repository' : __dirname
     }
   }
 }

@@ -3,15 +3,15 @@
  */
 class OnNextPageClickedObserver
 {
-  constructor(ui)
+  constructor(page)
   {
-    this.ui = ui
+    this.page = page
   }
 
   execute(event)
   {
     const { meta: { emitter } } = event
-    this.ui.getComponent(emitter).nextPageClicked()
+    this.page.getController(emitter).nextPageClicked()
   }
 }
 

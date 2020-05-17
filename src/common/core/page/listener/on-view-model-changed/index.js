@@ -3,9 +3,9 @@
  */
 class OnViewModelChangedObserver
 {
-  constructor(ui)
+  constructor(page)
   {
-    this.ui = ui
+    this.page = page
   }
 
   execute(event)

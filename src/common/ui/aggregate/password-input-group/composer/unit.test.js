@@ -21,6 +21,17 @@ describe('src/common/ui/composer/password-input-group', () =>
       { name: 'common/core/data-structure' },
       { name: 'common/ui/aggregate/component' },
       { name: 'common/ui/schema' },
+      { name: 'common/infrastructure/bus' },
+      { name: 'common/core/store' },
+      { name: 'common/view/handlebars' },
+      { name: 'common/core/listener' },
+      { name: 'common/infrastructure/bus' },
+      { name: 'common/core/normalizer' },
+      { name: 'common/core/reducer' },
+      { name: 'common/core/page' },
+      { name: 'common/core/data-structure' },
+      { name: 'common/infrastructure/controller' },
+      { name: 'common/ui/aggregate/test' },
       { name: 'common/ui/aggregate/password-input' },
       { name: 'common/ui/aggregate/password-input-group' }
     ])

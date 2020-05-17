@@ -3,15 +3,15 @@
  */
 class OnPrevPageClickedObserver
 {
-  constructor(ui)
+  constructor(page)
   {
-    this.ui = ui
+    this.page = page
   }
 
   execute(event)
   {
     const { meta: { emitter } } = event
-    this.ui.getComponent(emitter).prevPageClicked()
+    this.page.getController(emitter).prevPageClicked()
   }
 }
 

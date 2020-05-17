@@ -9,8 +9,8 @@ class OnDispatchActionObserverLocator
 
   locate()
   {
-    const ui = this.locator.locate('core/ui')
-    return new OnDispatchActionObserver(ui)
+    const page = this.locator.locate('core/page')
+    return new OnDispatchActionObserver(page)
   }
 }
 

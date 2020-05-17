@@ -1,13 +1,13 @@
 class Page
 {
   constructor({
+    listeners = [],
+    bindings  = [],
     controllerRepository,
     initialViewModel,
     componentFactory,
     treeFactory,
     jsonToTree,
-    listeners,
-    bindings,
     composer,
     channel,
     object,
@@ -91,15 +91,20 @@ class Page
   {
     const
     root = this.tree.root,
-    path = this.tree.bfs(root).shift()
+    path = this.tree.bfs(root)
 
-    for(const componentId of path.reverse())
+    if(path)
     {
-      const
-      componentData = this.getData(componentId),
-      component     = this.componentFactory.create(componentData)(this)
+      path.shift()
 
-      this.components.setItem(componentId, component)
+      for(const componentId of path.reverse())
+      {
+        const
+        componentData = this.getData(componentId),
+        component     = this.componentFactory.create(componentData)(this)
+
+        this.components.setItem(componentId, component)
+      }
     }
   }
 
@@ -205,6 +210,11 @@ class Page
       this.addDOMBindings(`#${this[Symbol.for('id')]}${selector ? ` ${selector}` : ''}`, domEvent, event, preventDefault, stopPropagation, domEventMapper)
 
     this.emit('component.binded', { id: this[Symbol.for('id')], bindings: this.bindings })
+  }
+
+  emit(name, data)
+  {
+    this.channel.emit(name, data)
   }
 }
 

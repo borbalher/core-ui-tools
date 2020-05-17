@@ -49,9 +49,9 @@ module.exports = {
       'view/handlebars/helper/to-fixed'         : `${__dirname}/helper/to-fixed`,
       'view/handlebars/helper/to-lower-case'    : `${__dirname}/helper/to-lower-case`,
       'view/handlebars/helper/to-upper-case'    : `${__dirname}/helper/to-upper-case`,
-      'view/handlebars/helper/unless'           : `${__dirname}/helper/unless`,
-      'view/handlebars/helper/date'             : `${__dirname}/helper/date`,
-      'view/handlebars/helper/translate'        : `${__dirname}/helper/translate`
+      'view/handlebars/helper/unless'           : `${__dirname}/helper/unless`
+      // 'view/handlebars/helper/date'             : `${__dirname}/helper/date`,
+      // 'view/handlebars/helper/translate'        : `${__dirname}/helper/translate`
     }
   }
 }

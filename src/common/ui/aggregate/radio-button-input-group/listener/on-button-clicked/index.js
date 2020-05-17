@@ -3,16 +3,16 @@
  */
 class OnButtonClickedObserver
 {
-  constructor(ui)
+  constructor(page)
   {
-    this.ui = ui
+    this.page = page
   }
 
   execute(event)
   {
     const { meta: { emitter }, data: { value } } = event
 
-    this.ui.getComponent(emitter).buttonClicked(value)
+    this.page.getController(emitter).buttonClicked(value)
   }
 }
 

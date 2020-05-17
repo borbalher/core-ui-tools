@@ -1,6 +1,6 @@
-const OnOnValidateInputObserver = require('.')
+const OnValidateInputObserver = require('.')
 
-class OnOnValidateInputObserverLocator
+class OnValidateInputObserverLocator
 {
   constructor(locator)
   {
@@ -9,9 +9,9 @@ class OnOnValidateInputObserverLocator
 
   locate()
   {
-    const ui = this.locator.locate('core/ui')
-    return new OnOnValidateInputObserver(ui)
+    const page = this.locator.locate('core/page')
+    return new OnValidateInputObserver(page)
   }
 }
 
-module.exports = OnOnValidateInputObserverLocator
+module.exports = OnValidateInputObserverLocator

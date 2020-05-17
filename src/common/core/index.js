@@ -17,20 +17,13 @@ class Core
   {
     const configuration = this.locate('core/configuration')
 
-    try
+    // extending the configurations of every component
+    for(const component in this.components)
     {
-      // extending the configurations of every component
-      for(const component in this.components)
-      {
-        const
-        pathname = this.components[component] ? this.components[component] : component,
-        config   = await this.configFetcher.fetchComponentConfig(component, pathname)
-        configuration.extend(config)
-      }
-    }
-    catch(error)
-    {
-      console.log(error)
+      const
+      pathname = this.components[component] ? this.components[component] : component,
+      config   = await this.configFetcher.fetchComponentConfig(component, pathname)
+      configuration.extend(config)
     }
 
 
@@ -40,15 +33,7 @@ class Core
     serviceMap    = configuration.find('core.locator'),
     serviceNames  = serviceMap ? Object.keys(serviceMap) : []
 
-    try
-    {
-      await this.serviceLoader.loadServiceRecursion(serviceNames)
-    }
-    catch(error)
-    {
-      console.log(error)
-    }
-    // eager loading the services in the sevice locator
+    await this.serviceLoader.loadServiceRecursion(serviceNames)
   }
 
   locate(service)
