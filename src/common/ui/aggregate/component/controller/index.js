@@ -68,10 +68,10 @@ class ComponentController
     domNode.addEventListener(domEvent, function(domEventObject)
     {
       if(preventDefault)
-        event.preventDefault()
+        domEventObject.preventDefault()
 
       if(stopPropagation)
-        event.stopPropagation()
+        domEventObject.stopPropagation()
 
       const
       name        = event           ? event                                 : domEvent,

@@ -25,10 +25,10 @@ class ComponentFactory
       schema,
       id
     } = component,
-    channel   = this.createBusChannel(id),
-    Component = this.locator.locate(template)
+    channel    = this.createBusChannel(id),
+    Controller = this.locator.locate(`ui/${template}/controller`)
 
-    return new Component(id, schema, bindings, listeners, this.bus, this.store, this.hbs,  channel, this.locator)
+    return new Controller(id, schema, bindings, listeners, this.bus, this.store, this.hbs,  channel, this.locator)
   }
 }
 
