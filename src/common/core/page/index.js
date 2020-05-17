@@ -30,9 +30,6 @@ class Page
 
     this[Symbol.for('schema')]  = schema
     this[Symbol.for('id')]      = id
-
-    this.bind()
-    this.listen()
   }
 
   createTreeFromContext(context)
@@ -106,6 +103,9 @@ class Page
         this.components.setItem(componentId, component)
       }
     }
+
+    this.bind()
+    this.listen()
   }
 
   getController(componentId)

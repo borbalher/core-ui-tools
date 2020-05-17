@@ -110,11 +110,11 @@ describe('core/store', () =>
             },
             2 :
             {
-              id    : 1,
+              id    : 2,
               value : 'Second'
             }
           },
-          allIds : [2]
+          allIds : [1, 2]
         }
       }
     })
