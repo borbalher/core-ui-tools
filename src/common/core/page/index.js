@@ -64,7 +64,7 @@ class Page
 
     component.emit('component.changed', { previous, current })
 
-    if(data.renderOnChange)
+    if(data.renderonchange)
     {
       component.render()
 
