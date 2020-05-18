@@ -30,32 +30,26 @@ class ValidateInputAction
     }
 
     const
-    entities            = this.store.getEntities(),
-    checkboxInputGroups = this.store.getEntities('checkboxInputGroup'),
-    checkboxInputs      = this.store.getEntities('checkboxInput')
+    checkboxInputGroupsType = this.store.getEntityType(context.schema),
+    checkboxInputGroups     = this.store.getEntities(checkboxInputGroupsType),
+    checkboxInputType       = this.store.getEntityType(context.input.schema),
+    checkboxInputs          = this.store.getEntities(checkboxInputType)
 
-    checkboxInputGroups.byId[context.id] =
-    {
+    checkboxInputGroups.byId[context.id] = {
       ...checkboxInputGroups.byId[context.id],
       value,
       error
     }
 
-    checkboxInputs.byId[context.input.id] =
-    {
+    checkboxInputs.byId[context.input.id] = {
       ...checkboxInputs.byId[context.input.id],
       value
     }
 
-    return {
-      ...state,
-      entities :
-      {
-        ...entities,
-        checkboxInputGroup : { ...checkboxInputGroups },
-        checkboxInput      : { ...checkboxInputs }
-      }
-    }
+    state = this.store.setEntities(checkboxInputGroupsType, checkboxInputGroups)
+    state = this.store.setEntities(checkboxInputType, checkboxInputs)
+
+    return state
   }
 }
 

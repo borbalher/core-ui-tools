@@ -9,7 +9,7 @@ class CloseModalAction
     this.coreString = coreString
   }
 
-  execute(action)
+  execute(action, state)
   {
     const
     { meta: { emitter, schema } } = action,
@@ -21,8 +21,8 @@ class CloseModalAction
       isOpen : false
     }
 
-    const newState = this.store.setEntities(modalType, modals)
-    return newState
+    state = this.store.setEntities(modalType, modals)
+    return state
   }
 }
 

@@ -44,32 +44,26 @@ class ValidateInputAction
     }
 
     const
-    entities            = this.store.getEntities(),
-    passwordInputGroups = this.store.getEntities('passwordInputGroup'),
-    passwordInputs      = this.store.getEntities('passwordInput')
+    passwordInputGroupsType = this.store.getEntityType(context.schema),
+    passwordInputGroups     = this.store.getEntities(passwordInputGroupsType),
+    passwordInputType       = this.store.getEntityType(context.input.schema),
+    passwordInputs          = this.store.getEntities(passwordInputType)
 
-    passwordInputGroups.byId[context.id] =
-    {
+    passwordInputGroups.byId[context.id] = {
       ...passwordInputGroups.byId[context.id],
       value,
       error
     }
 
-    passwordInputs.byId[context.input.id] =
-    {
+    passwordInputs.byId[context.input.id] = {
       ...passwordInputs.byId[context.input.id],
       value
     }
 
-    return {
-      ...state,
-      entities :
-      {
-        ...entities,
-        passwordInputGroup : { ...passwordInputGroups },
-        passwordInput      : { ...passwordInputs }
-      }
-    }
+    state = this.store.setEntities(passwordInputGroupsType, passwordInputGroups)
+    state = this.store.setEntities(passwordInputType, passwordInputs)
+
+    return state
   }
 }
 

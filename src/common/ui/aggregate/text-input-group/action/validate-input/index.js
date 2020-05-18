@@ -44,32 +44,26 @@ class ValidateTextInputAction
     }
 
     const
-    entities        = this.store.getEntities(),
-    textInputGroups = this.store.getEntities('textInputGroup'),
-    textInputs      = this.store.getEntities('textInput')
+    textInputGroupsType = this.store.getEntityType(context.schema),
+    textInputGroups     = this.store.getEntities(textInputGroupsType),
+    textInputType       = this.store.getEntityType(context.input.schema),
+    textInputs          = this.store.getEntities(textInputType)
 
-    textInputGroups.byId[context.id] =
-    {
+    textInputGroups.byId[context.id] = {
       ...textInputGroups.byId[context.id],
       value,
       error
     }
 
-    textInputs.byId[context.input.id] =
-    {
+    textInputs.byId[context.input.id] = {
       ...textInputs.byId[context.input.id],
       value
     }
 
-    return {
-      ...state,
-      entities :
-      {
-        ...entities,
-        textInputGroup : { ...textInputGroups },
-        textInput      : { ...textInputs }
-      }
-    }
+    state = this.store.setEntities(textInputGroupsType, textInputGroups)
+    state = this.store.setEntities(textInputType, textInputs)
+
+    return state
   }
 }
 
