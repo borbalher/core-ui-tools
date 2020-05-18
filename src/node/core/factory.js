@@ -1,6 +1,5 @@
 const
 util                = require('util'),
-merge               = require('deepmerge'),
 dateformat          = require('dateformat'),
 Core                = require('common/core'),
 Locator             = require('common/core/locator'),
@@ -43,7 +42,7 @@ class CoreFactory
     locator             = new Locator(),
     deepclone           = new Deepclone(),
     deepfreeze          = new Deepfreeze(),
-    deepmerge           = new Deepmerge(merge),
+    deepmerge           = new Deepmerge(),
     deepfind            = new Deepfind(),
     object              = new CoreObject(),
     path                = new Path(),

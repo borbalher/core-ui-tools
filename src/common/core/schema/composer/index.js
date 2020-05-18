@@ -213,15 +213,14 @@ class SchemaComposer
     {
       if('extends' in schema['@meta'] || 'extend' in schema['@meta'])
       {
-        const
-        extendList     = schema['@meta'].extends || schema['@meta'].extend,
-        extendedSchema = {}
+        const extendList = schema['@meta'].extends || schema['@meta'].extend
 
+        let extendedSchema = {}
         for(const extendSchemaName of Array.isArray(extendList) ? extendList : [extendList])
         {
           const extend = this.buildSchema(this.schemas[extendSchemaName])
 
-          this.deepmerge.merge(extendedSchema, extend)
+          extendedSchema = this.deepmerge.merge(extendedSchema, extend)
         }
 
         schema = { ...extendedSchema, ...schema }
