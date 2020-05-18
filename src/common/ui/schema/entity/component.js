@@ -47,5 +47,5 @@ module.exports = {
         schema : 'value-object/listener'
       }
     }
-  },
+  }
 }
