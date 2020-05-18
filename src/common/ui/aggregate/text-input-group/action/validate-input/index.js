@@ -4,25 +4,26 @@
 class ValidateTextInputAction
 {
   // TODO add dictionary
-  constructor(store)
+  constructor(store, textInputComposer)
   {
-    this.store = store
+    this.store             = store
+    this.textInputComposer = textInputComposer
   }
 
   execute({ meta: { emitter, schema }, data: { value } })
   {
     const
-    textInputGroup = this.store.getEntityContext(schema, emitter),
-    { input: { required, pattern, title }, label } = textInputGroup
+    context = this.store.getEntityContext(schema, emitter),
+    { input: { required, pattern, title }, label } = context
 
-    let
-    message = null,
-    code    = null
+    let error
 
     if(required && (!value || value.trim() === ''))
     {
-      message = `${label} is required`
-      code    = 'E_INPUT_REQUIRED'
+      error = {
+        message : `${label} is required`,
+        code    : 'E_INPUT_REQUIRED'
+      }
     }
     else if(pattern)
     {
@@ -32,16 +33,20 @@ class ValidateTextInputAction
 
       if(!match)
       {
-        message = title ? title : `Format invalid`
-        code    = 'E_INPUT_FORMAT_INVALID'
+        error = {
+          message : title ? title : `Format invalid`,
+          code    : 'E_INPUT_FORMAT_INVALID'
+        }
       }
     }
 
-    const entities = this.store.normalizeEntityContext(schema, {
-      ...textInputGroup,
+    const
+    textInputGroup = this.textInputGroupComposer.compose({
+      ...context,
       value,
-      error : message ? { message, code } : undefined
-    })
+      error
+    }),
+    entities = this.store.normalizeEntityContext(schema, textInputGroup)
 
     return this.store.merge(entities)
   }

@@ -9,8 +9,10 @@ class OnValidateInputObserverLocator
 
   locate()
   {
-    const store = this.locator.locate('core/store')
-    return new OnValidateInputObserver(store)
+    const
+    store             = this.locator.locate('core/store'),
+    textInputComposer = this.locator.locate('ui/text-input-group/composer')
+    return new OnValidateInputObserver(store, textInputComposer)
   }
 }
 

@@ -115,4 +115,3 @@ class ComponentController
 }
 
 module.exports = ComponentController
-
