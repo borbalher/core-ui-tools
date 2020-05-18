@@ -1,10 +1,9 @@
 class ComponentController
 {
-  constructor(id, schema, bindings, listeners, bus, store, hbs, channel, page, locator)
+  constructor(id, schema, bindings, listeners, bus, store, hbs, channel,  locator)
   {
     this.bus                   = bus
     this.store                 = store
-    this.page                  = page
     this.hbs                   = hbs
     this.store                 = store
     this.channel               = channel
