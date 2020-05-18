@@ -64,7 +64,9 @@ class ComponentController
     const
     locator           = this.locator,
     bus               = this.bus,
-    subscriberChannel = this[Symbol.for('id')]
+    subscriberId      = this[Symbol.for('id')],
+    subscriberSchema  = this[Symbol.for('schema')],
+    store             = this.store
 
     domNode.addEventListener(domEvent, function(domEventObject)
     {
@@ -81,12 +83,12 @@ class ComponentController
 
       if(dispatch)
       {
-        bus.emit(subscriberChannel, name, data)
+        const action = store.composeAction(name, data, { emitter: subscriberId, schema: subscriberSchema })
+        store.dispatch(action)
       }
       else
       {
-        const action = this.store.composeAction(name, data, { emitter: this[Symbol.for('id')], schema: this[Symbol.for('schema')] })
-        this.store.dispatch(action)
+        bus.emit(subscriberId, name, data)
       }
     })
   }
@@ -113,3 +115,4 @@ class ComponentController
 }
 
 module.exports = ComponentController
+

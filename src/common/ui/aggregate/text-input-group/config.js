@@ -3,11 +3,14 @@ module.exports = {
   {
     reducer :
     {
-      'validate.text.input' : 'ui/text-input-group/action/validate-text-input'
+      actions :
+      {
+        'validate.text.input' : 'ui/text-input-group/action/validate-text-input'
+      }
     },
     locator :
     {
-      'ui/text-input-group/action/validate-text-input' : `${__dirname}/action/validate-text-input`,
+      'ui/text-input-group/action/validate-text-input' : `${__dirname}/action/validate-input`,
       'ui/text-input-group/composer'                   : `${__dirname}/composer`,
       'ui/text-input-group/controller'                 : `${__dirname}/controller`
     }
