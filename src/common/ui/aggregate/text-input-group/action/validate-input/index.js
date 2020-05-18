@@ -47,7 +47,7 @@ class ValidateTextInputAction
       }
     })
 
-    return this.store.merge({ entities })
+    return this.store.merge(entities)
   }
 }
 
