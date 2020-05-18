@@ -36,19 +36,16 @@ class Page
 
   update(previous, current)
   {
-    this.bootstrap()
-
-    const
-    previousTree = this.createTreeFromContext(previous),
-    currentTree  = this.createTreeFromContext(current),
-    path         = currentTree.bfs(currentTree.root).shift()
+    const previousTree = this.createTreeFromContext(previous)
+    this.tree          = this.createTreeFromContext(current)
+    const path         = this.tree.bfs(this.tree.root).shift()
 
     let exclude = []
     for(const componentId of path)
     {
       const
       previous = previousTree.nodes.getItem(componentId),
-      current  = currentTree.nodes.getItem(componentId)
+      current  = this.tree.nodes.getItem(componentId)
 
       if(!this.object.isEqual(previous, current) && exclude.indexOf(componentId) === -1)
         exclude = [...exclude,  this.onComponentChange(componentId, previous, current)]
