@@ -4,23 +4,23 @@ module.exports = {
     locator :
     {
       'ui/password-input-group/composer' : __dirname
-    },
-    ui :
+    }
+  },
+  ui :
+  {
+    'component' :
     {
-      'component' :
+      'password-input-group' :
       {
-        'password-input-group' :
-        {
-          bindings : [
-            {
-              selector       : 'input[type="password"]',
-              domEvent       : 'change',
-              domEventMapper : 'ui/input/mapper/input-data-mapper',
-              event          : 'validate.password.input',
-              dispatch       : true
-            }
-          ]
-        }
+        bindings : [
+          {
+            selector       : 'input[type="password"]',
+            domEvent       : 'change',
+            domEventMapper : 'ui/input/mapper/input-data-mapper',
+            event          : 'validate.password.input',
+            dispatch       : true
+          }
+        ]
       }
     }
   }
