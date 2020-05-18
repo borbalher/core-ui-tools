@@ -1,5 +1,3 @@
-const ActionUndefinedError = require('./error/action-undefined')
-
 class Reducer
 {
   constructor(actions, locator)
@@ -12,10 +10,8 @@ class Reducer
   {
     const service = this.actions[action]
 
-    if(!service)
-      throw new ActionUndefinedError(`Action "${action}" has not been added`)
-
-    return this.locator.locate(service)
+    if(service)
+      return this.locator.locate(service)
   }
 
   apply(action, state)
@@ -23,7 +19,7 @@ class Reducer
     const
     { meta: { name } } = action,
     reducer            = this.getReducer(name),
-    newState           = reducer.execute(action, state)
+    newState           = reducer ? reducer.execute(action, state) : state
     return newState
   }
 }
