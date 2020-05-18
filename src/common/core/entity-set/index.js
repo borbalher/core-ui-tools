@@ -18,14 +18,9 @@ class EntitySet
     this.entities = entities
   }
 
-  getEntityTypePath(type)
-  {
-    return `entities.${type}`
-  }
-
   getEntityPath(type, id)
   {
-    return `entities.${type}.byId.${id}`
+    return `${type}.byId.${id}`
   }
 
   getEntity(type, id)
