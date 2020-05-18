@@ -105,14 +105,13 @@ class EventEmitter
    * Publish an event
    * @param {string} eventName - Event name
    * @param {Object} data - Event data
+   * @param {Object} meta - Event meta
    * @returns {boolean} - Flag indicating if the event has listeners
    */
-  async emit(eventName, data)
+  async emit(eventName, data, meta)
   {
-    console.log(this[Symbol.for('id')], eventName, data)
-
     const
-    event             = this.createEvent(eventName, data),
+    event             = this.createEvent(eventName, data, meta),
     globalListeners   = this.listeners.getItem('*') || [],
     eventListeners    = this.listeners.getItem(eventName) || [],
     listeners         = globalListeners.concat(eventListeners)

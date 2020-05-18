@@ -22,6 +22,11 @@ const dto = {
     'not-empty' : true,
     optional    : true
   },
+  dispatch :
+  {
+    type    : 'boolean',
+    default : false
+  },
   domEventMapper :
   {
     type        : 'string',

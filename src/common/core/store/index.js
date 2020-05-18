@@ -83,6 +83,16 @@ class Store
     return context
   }
 
+  normalizeEntityContext(schemaName, context)
+  {
+    const
+    type        = this.normalizer.getEntityType(schemaName),
+    normalized  = this.normalizer.normalize(context, type)
+    // mergedState = this.merge()
+
+    return { entities: normalized }
+  }
+
   merge(state)
   {
     const  mergedState = this.deepmerge.merge(this.getState(), state)

@@ -8,11 +8,11 @@ class AddCommentAction
     this.store = store
   }
 
-  execute(action)
+  execute(action, state)
   {
     const
-    { data: { comment } } = action,
-    normalized            = this.store.normalizer.normalize(comment, 'entity/comment')
+    { data: comment } = action,
+    normalized        = this.store.normalizer.normalize(comment, 'entity/comment')
 
     return this.store.merge({ 'entities': { ...normalized } })
   }

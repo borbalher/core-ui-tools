@@ -17,7 +17,7 @@ class ComponentRepository
 
   getController(id)
   {
-    this.controllers.getItem(id)
+    return this.controllers.getItem(id)
   }
 }
 

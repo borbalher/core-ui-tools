@@ -10,7 +10,7 @@ class ViewModelLocator
   locate()
   {
     const
-    configuration     = this.locator.locate('core/configuration').find('core.view-model'),
+    configuration     = this.locator.locate('core/configuration').find('core.page'),
     id                = configuration['id'],
     initialViewModel  = configuration['state'],
     schema            = configuration['schema'],

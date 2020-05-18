@@ -1,33 +1,32 @@
 module.exports = {
   core :
   {
+    reducer :
+    {
+      'validate.password.input' : 'ui/password-input-group/action/validate-password-input'
+    },
     locator :
     {
-      'ui/password-input-group/listener/on-validate-input' : `${__dirname}/listener/on-validate-input`,
-      'ui/password-input-group/composer'                   : `${__dirname}/composer`,
-      'ui/password-input-group/controller'                 : `${__dirname}/controller`
-    },
-    ui :
+      'ui/password-input-group/action/validate-password-input' : `${__dirname}/action/validate-password-input`,
+      'ui/password-input-group/composer'                       : `${__dirname}/composer`,
+      'ui/password-input-group/controller'                     : `${__dirname}/controller`
+    }
+  },
+  ui :
+  {
+    'component' :
     {
-      'component' :
+      'password-input-group' :
       {
-        'password-input-group' :
-        {
-          bindings : [
-            {
-              selector       : 'input[type="password"]',
-              domEvent       : 'change',
-              domEventMapper : 'ui/input/mapper/input-data-mapper',
-              event          : 'validate.input'
-            }
-          ],
-          listeners : [
-            {
-              event   : 'validate.input',
-              locator : 'ui/password-input-group/listener/on-validate-input'
-            }
-          ]
-        }
+        bindings : [
+          {
+            selector       : 'input[type="password"]',
+            domEvent       : 'change',
+            domEventMapper : 'ui/input/mapper/input-data-mapper',
+            event          : 'validate.password.input',
+            dispatch       : true
+          }
+        ]
       }
     }
   }

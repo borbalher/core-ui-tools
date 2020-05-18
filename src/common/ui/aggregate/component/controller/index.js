@@ -50,7 +50,7 @@ class ComponentController
     for(const { publisher, event, map, locator, eventMapper } of this.listeners)
     {
       const
-      publisherChannel  = publisher ? publisher : [this[Symbol.for('id')]],
+      publisherChannel  = publisher ? publisher : this[Symbol.for('id')],
       subscriberChannel = this[Symbol.for('id')]
 
       this.addComponentListener(publisherChannel, subscriberChannel, event, map, locator, eventMapper)
@@ -59,11 +59,12 @@ class ComponentController
     this.emit('component.listened', { id: this[Symbol.for('id')], listeners: this.listeners })
   }
 
-  addDOMBinding(domEvent, event, preventDefault, stopPropagation, domEventMapper, domNode)
+  addDOMBinding(domEvent, event, preventDefault, stopPropagation, domEventMapper, dispatch, domNode)
   {
     const
-    locator = this.locator,
-    bus     = this.bus
+    locator           = this.locator,
+    bus               = this.bus,
+    subscriberChannel = this[Symbol.for('id')]
 
     domNode.addEventListener(domEvent, function(domEventObject)
     {
@@ -78,28 +79,36 @@ class ComponentController
       eventMapper = domEventMapper  ? locator.locate(domEventMapper)        : undefined,
       data        = domEventMapper  ? eventMapper.map(domEventObject, this) : { event }
 
-      bus.emit(this[Symbol.for('id')], name, data)
+      if(dispatch)
+      {
+        bus.emit(subscriberChannel, name, data)
+      }
+      else
+      {
+        const action = this.store.composeAction(name, data, { emitter: this[Symbol.for('id')], schema: this[Symbol.for('schema')] })
+        this.store.dispatch(action)
+      }
     })
   }
 
-  addDOMBindings(selector, domEvent, event, preventDefault, stopPropagation, domEventMapper)
+  addDOMBindings(selector, domEvent, event, preventDefault, stopPropagation, domEventMapper, dispatch)
   {
     const nodes = document.querySelectorAll(selector)
     if(nodes)
-      nodes.forEach(this.addDOMBinding.bind(this, domEvent, event, preventDefault, stopPropagation, domEventMapper))
+      nodes.forEach(this.addDOMBinding.bind(this, domEvent, event, preventDefault, stopPropagation, domEventMapper, dispatch))
   }
 
   bind()
   {
-    for(const { selector, domEvent, event, preventDefault, stopPropagation, domEventMapper } of this.bindings)
-      this.addDOMBindings(`#${this[Symbol.for('id')]}${selector ? ` ${selector}` : ''}`, domEvent, event, preventDefault, stopPropagation, domEventMapper)
+    for(const { selector, domEvent, event, dispatch, preventDefault, stopPropagation, domEventMapper } of this.bindings)
+      this.addDOMBindings(`#${this[Symbol.for('id')]}${selector ? ` ${selector}` : ''}`, domEvent, event, preventDefault, stopPropagation, domEventMapper, dispatch)
 
     this.emit('component.binded', { id: this[Symbol.for('id')], bindings: this.bindings })
   }
 
   emit(name, data)
   {
-    this.channel.emit(name, data)
+    this.channel.emit(name, data, { schema: this[Symbol.for('id')] })
   }
 }
 

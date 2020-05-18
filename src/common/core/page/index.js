@@ -101,7 +101,7 @@ class Page
 
   getController(componentId)
   {
-    return this.controllers.setController(componentId)
+    return this.controllers.getController(componentId)
   }
 
   setData(component)

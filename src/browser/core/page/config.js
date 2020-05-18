@@ -5,12 +5,12 @@ getInitialViewModel = () =>
   initialViewModel  = localStorage.getItem('initial-view-model')
   return JSON.parse(initialViewModel)
 },
-getViewModelId = () =>
+getPageId = () =>
 {
   const
   url         = new URL(window.location.href),
   pathname    = url.pathname.slice(1),
-  viewModelId = `${pathname !== '' ? pathname.split('/')[0] : 'home'}-view-model`
+  viewModelId = `${pathname !== '' ? pathname.split('/')[0] : 'home'}-page`
 
   return viewModelId
 }
@@ -18,10 +18,10 @@ getViewModelId = () =>
 module.exports = {
   core :
   {
-    page :
+    'page' :
     {
-      id     : getViewModelId(),
-      schema : `entity/${getViewModelId()}`,
+      id     : getPageId(),
+      schema : `entity/${getPageId()}`,
       state  : getInitialViewModel()
     }
   }

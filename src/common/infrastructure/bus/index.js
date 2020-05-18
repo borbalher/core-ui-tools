@@ -25,10 +25,10 @@ class Bus
     return this.channels.getItem(id)
   }
 
-  async emit(channelId, name, data)
+  async emit(channelId, name, data, meta)
   {
     const channel = this.getChannel(channelId)
-    await channel.emit(name, data)
+    await channel.emit(name, data, meta)
   }
 
   on(channelId, event, listener)

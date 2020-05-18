@@ -42,6 +42,9 @@ class Dictionary
 
   translate(lang, key)
   {
+    if(!lang)
+      lang = this.getLang()
+
     const dictionary = this.getDictionary(lang)
 
     if(dictionary && dictionary[key])

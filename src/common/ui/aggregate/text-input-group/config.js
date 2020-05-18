@@ -1,9 +1,13 @@
 module.exports = {
   core :
   {
+    reducer :
+    {
+      'validate.text.input' : 'ui/text-input-group/action/validate-text-input'
+    },
     locator :
     {
-      'ui/text-input-group/listener/on-validate-input' : `${__dirname}/listener/on-validate-input`,
+      'ui/text-input-group/action/validate-text-input' : `${__dirname}/action/validate-text-input`,
       'ui/text-input-group/composer'                   : `${__dirname}/composer`,
       'ui/text-input-group/controller'                 : `${__dirname}/controller`
     }
@@ -19,13 +23,8 @@ module.exports = {
             selector       : 'input[type="text"]',
             domEvent       : 'change',
             domEventMapper : 'ui/input/mapper/input-data-mapper',
-            event          : 'validate.input'
-          }
-        ],
-        listeners : [
-          {
-            event   : 'validate.input',
-            locator : 'ui/text-input-group/listener/on-validate-input'
+            event          : 'validate.text.input',
+            dispatch       : true
           }
         ]
       }
