@@ -1,6 +1,6 @@
 class ComponentFactory
 {
-  constructor(configuration, bus, locator, store, hbs, deepfind, page)
+  constructor(configuration, bus, locator, store, hbs, deepfind)
   {
     this.configuration = configuration
     this.bus           = bus
@@ -8,7 +8,6 @@ class ComponentFactory
     this.store         = store
     this.hbs           = hbs
     this.deepfind      = deepfind
-    this.page          = page
   }
 
   createBusChannel(id)
@@ -29,7 +28,10 @@ class ComponentFactory
     channel    = this.createBusChannel(id),
     Controller = this.locator.locate(`ui/${template}/controller`)
 
-    return new Controller(id, schema, bindings, listeners, this.bus, this.store, this.hbs,  channel, this.page, this.locator)
+    return (page) =>
+    {
+      return new Controller(id, schema, bindings, listeners, this.bus, this.store, this.hbs,  channel, page, this.locator)
+    }
   }
 }
 
