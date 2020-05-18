@@ -1,6 +1,6 @@
-const OnValidateInputObserver = require('.')
+const ValidatePasswordInputAction = require('.')
 
-class OnValidateInputObserverLocator
+class ValidatePasswordInputActionLocator
 {
   constructor(locator)
   {
@@ -10,8 +10,8 @@ class OnValidateInputObserverLocator
   locate()
   {
     const store = this.locator.locate('core/store')
-    return new OnValidateInputObserver(store)
+    return new ValidatePasswordInputAction(store)
   }
 }
 
-module.exports = OnValidateInputObserverLocator
+module.exports = ValidatePasswordInputActionLocator

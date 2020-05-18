@@ -40,11 +40,7 @@ class ValidateTextInputAction
     const entities = this.store.normalizeEntityContext(schema, {
       ...textInputGroup,
       value,
-      error :
-      {
-        message,
-        code
-      }
+      error : message ? { message, code } : undefined
     })
 
     return this.store.merge(entities)

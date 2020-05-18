@@ -17,7 +17,7 @@ const dto = {
   error :
   {
     type     : 'schema',
-    schema   : 'error',
+    schema   : 'value-object/error',
     optional : true
   },
   big :

@@ -1,7 +1,7 @@
 /**
  * @implements {common/core/reducer/action}
  */
-class ValidateTextInputAction
+class ValidatePasswordInputAction
 {
   // TODO add dictionary
   constructor(store)
@@ -40,15 +40,11 @@ class ValidateTextInputAction
     const entities = this.store.normalizeEntityContext(schema, {
       ...passwordInputGroup,
       value,
-      error :
-      {
-        message,
-        code
-      }
+      error : message ? { message, code } : undefined
     })
 
     return this.store.merge(entities)
   }
 }
 
-module.exports = ValidateTextInputAction
+module.exports = ValidatePasswordInputAction
