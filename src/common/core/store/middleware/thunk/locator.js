@@ -1,4 +1,4 @@
-const thunkMiddleware = require('.')
+const ThunkMiddleware = require('.')
 
 class ThunkMiddlewareMiddlewareLocator
 {
@@ -9,7 +9,7 @@ class ThunkMiddlewareMiddlewareLocator
 
   locate()
   {
-    return thunkMiddleware
+    return new ThunkMiddleware()
   }
 }
 

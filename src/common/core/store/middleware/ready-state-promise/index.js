@@ -6,27 +6,32 @@
  *
  * For convenience, `dispatch` will return the promise so the caller can wait.
  */
-const readyStatePromise = store => next => action =>
+class ReadyStatePromiseMiddleware
 {
-  if(!action.meta.promise)
-    return next(action)
-
-  const composeAction = (ready, data = {}) =>
+  middleware()
   {
-    return store.composeAction(action.name, { ...action.data, ...data }, { promise: undefined, ready })
+    return store => next => action =>
+    {
+      if(!action.meta.promise)
+        return next(action)
+
+      const promiseAction = store.composeAction(action.name, action.data, { promise: undefined, ready: false })
+
+      next(promiseAction)
+
+      return action.meta.promise
+        .then(response =>
+        {
+          const successAction = store.composeAction(`${action.name}.success`, { response }, { ready: true })
+          return next(successAction)
+        })
+        .catch(error =>
+        {
+          const errorAction = store.composeAction(`${action.name}.error`, { error }, { ready: true })
+          return next(errorAction)
+        })
+    }
   }
-
-  next(composeAction(false))
-
-  return action.promise
-    .then(response =>
-    {
-      return next(composeAction(true, { response }))
-    })
-    .catch(error =>
-    {
-      return next(composeAction(true, { error }))
-    })
 }
 
-module.exports = readyStatePromise
+module.exports = ReadyStatePromiseMiddleware

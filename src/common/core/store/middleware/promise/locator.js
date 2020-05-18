@@ -1,4 +1,4 @@
-const promiseMiddleware = require('.')
+const PromiseMiddleware = require('.')
 
 class PromiseMiddlewareLocator
 {
@@ -9,7 +9,7 @@ class PromiseMiddlewareLocator
 
   locate()
   {
-    return promiseMiddleware
+    return new PromiseMiddleware()
   }
 }
 

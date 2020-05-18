@@ -1,4 +1,4 @@
-const loggerMiddleware = require('.')
+const LoggerMiddleware = require('.')
 
 class LoggerMiddlewareLocator
 {
@@ -9,7 +9,7 @@ class LoggerMiddlewareLocator
 
   locate()
   {
-    return loggerMiddleware
+    return new LoggerMiddleware()
   }
 }
 

@@ -22,7 +22,7 @@ class StoreLocator
     {
       return middlewares.map((middleware) =>
       {
-        return this.locator.locate(middleware)
+        return this.locator.locate(middleware).middleware()
       }).reverse()
     }
   }

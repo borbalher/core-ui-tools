@@ -1,4 +1,4 @@
-const delayerMiddleware = require('.')
+const DelayerMiddleware = require('.')
 
 class DelayerMiddlewareLocator
 {
@@ -9,7 +9,7 @@ class DelayerMiddlewareLocator
 
   locate()
   {
-    return delayerMiddleware
+    return new DelayerMiddleware()
   }
 }
 

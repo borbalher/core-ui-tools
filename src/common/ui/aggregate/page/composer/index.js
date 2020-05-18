@@ -4,13 +4,22 @@
  */
 class PageComposer
 {
-  constructor(locator, options)
+  constructor(locator, configuration)
   {
-    this.locator   = locator
-    this.css       = options && options.css      ? options.css : []
-    this.scripts   = options && options.scripts  ? options.scripts : []
-    this.bindings  = options && options.bindings  ? options.bindings : []
-    this.listeners = options && options.listeners ? options.listeners : []
+    this.locator       = locator
+    this.configuration = configuration
+  }
+
+  getPageOptions(id)
+  {
+    const options = this.configuration.find(`ui.component.${id}`)
+
+    return {
+      css       : options && options.css       ? options.css : [],
+      scripts   : options && options.scripts   ? options.scripts : [],
+      bindings  : options && options.bindings  ? options.bindings : [],
+      listeners : options && options.listeners ? options.listeners : []
+    }
   }
 
   compose({
@@ -27,21 +36,23 @@ class PageComposer
     ...args
   })
   {
-    const page = {
+    const
+    options = this.getPageOptions(id),
+    page    = {
       scripts : [
-        ...this.scripts,
+        ...options.scripts,
         ...scripts
       ],
       css : [
-        ...this.css,
+        ...options.css,
         ...css
       ],
       bindings : [
-        ...this.bindings,
+        ...options.bindings,
         ...bindings
       ],
       listeners : [
-        ...this.listeners,
+        ...options.listeners,
         ...listeners
       ],
       parentId : null,

@@ -1,4 +1,4 @@
-const crashReportMiddleware = require('.')
+const CrashReportMiddleware = require('.')
 
 class CrashReportMiddlewareLocator
 {
@@ -9,7 +9,7 @@ class CrashReportMiddlewareLocator
 
   locate()
   {
-    return crashReportMiddleware
+    return new CrashReportMiddleware()
   }
 }
 

@@ -1,4 +1,4 @@
-const readyStatePromiseMiddleware = require('.')
+const ReadyStatePromiseMiddleware = require('.')
 
 class ReadyStatePromiseMiddlewareLocator
 {
@@ -9,7 +9,7 @@ class ReadyStatePromiseMiddlewareLocator
 
   locate()
   {
-    return readyStatePromiseMiddleware
+    return new ReadyStatePromiseMiddleware()
   }
 }
 

@@ -9,11 +9,8 @@ class PageComposerLocator
 
   locate()
   {
-    const
-    configuration = this.locator.locate('core/configuration'),
-    options       = configuration.find('ui.component.page')
-
-    return new PageComposer(this.locator, options)
+    const configuration = this.locator.locate('core/configuration')
+    return new PageComposer(this.locator, configuration)
   }
 }
 

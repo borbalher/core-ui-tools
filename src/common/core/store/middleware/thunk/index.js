@@ -7,12 +7,18 @@
  *
  * `dispatch` will return the return value of the dispatched function.
  */
-const thunk = store => next => action =>
+class ThunkMiddleware
 {
-  if(typeof action === 'function')
-    return action(store.dispatch, store.getState)
+  middleware()
+  {
+    return store => next => action =>
+    {
+      if(typeof action === 'function')
+        return action(store.dispatch, store.getState)
 
-  return next(action)
+      return next(action)
+    }
+  }
 }
 
-module.exports = thunk
+module.exports = ThunkMiddleware

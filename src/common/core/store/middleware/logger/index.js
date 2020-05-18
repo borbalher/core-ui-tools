@@ -1,15 +1,21 @@
 /**
  * Logs all actions and states after they are dispatched.
  */
-const logger = store => next => action =>
+class LoggerMiddleware
 {
-  console.group(action.meta.name)
-  console.info('dispatching', action)
-  let nextState = next(action)
-  console.log('next state', store.getState())
-  console.groupEnd()
+  middleware()
+  {
+    return store => next => action =>
+    {
+      console.group(action.meta.name)
+      console.info('dispatching', action)
+      let nextState = next(action)
+      console.log('next state', store.getState())
+      console.groupEnd()
 
-  return nextState
+      return nextState
+    }
+  }
 }
 
-module.exports = logger
+module.exports = LoggerMiddleware

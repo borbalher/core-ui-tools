@@ -1,22 +1,28 @@
 /**
  * Sends crash reports as state is updated and listeners are notified.
  */
-const crashReport = store => next => action =>
+class CrashReportMiddleware
 {
-  try
+  middleware()
   {
-    return next(action)
-  }
-  catch(error)
-  {
-    console.error('EXCEPTION', {
-      error,
-      action,
-      state : store.getState()
-    })
+    return store => next => action =>
+    {
+      try
+      {
+        return next(action)
+      }
+      catch(error)
+      {
+        console.error('EXCEPTION', {
+          error,
+          action,
+          state : store.getState()
+        })
 
-    throw error
+        throw error
+      }
+    }
   }
 }
 
-module.exports = crashReport
+module.exports = CrashReportMiddleware

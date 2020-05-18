@@ -3,12 +3,18 @@
  * If the promise is resolved, its result will be dispatched as an action.
  * The promise is returned from `dispatch` so the caller may handle rejection.
  */
-const promise = store => next => action =>
+class PromiseMiddleware
 {
-  if(typeof action.then !== 'function')
-    return next(action)
+  middleware()
+  {
+    return store => next => action =>
+    {
+      if(typeof action.then !== 'function')
+        return next(action)
 
-  return Promise.resolve(action).then(store.dispatch)
+      return Promise.resolve(action).then(store.dispatch)
+    }
+  }
 }
 
-module.exports = promise
+module.exports = PromiseMiddleware
