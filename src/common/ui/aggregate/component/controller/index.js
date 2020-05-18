@@ -21,7 +21,7 @@ class ComponentController
   render()
   {
     const
-    context                   = this.page.getContext(this[Symbol.for('id')]),
+    context                   = this.store.getEntityContext(this[Symbol.for('schema')], this[Symbol.for('id')]),
     renderedComponentTemplate = this.hbs.compilePartial(context.template, context),
     wrapper                   = document.createElement('div')
 
