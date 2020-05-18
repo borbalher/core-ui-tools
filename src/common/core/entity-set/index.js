@@ -23,23 +23,20 @@ class Entities
     return `entities.${type}.byId.${id}`
   }
 
-  getEntity(schemaName, id)
+  getEntity(type, id)
   {
     const
-    state   = this.getState(),
-    type    = this.normalizer.getEntityType(schemaName),
     path    = this.getEntityPath(type, id),
-    entity  = this.deepfind.find(path, state)
+    entity  = this.deepfind.find(path, this.entities)
 
     return entity
   }
 
-  getEntityContext(schemaName, id)
+  getEntityContext(type, id)
   {
     const
-    entity  = this.getEntity(schemaName, id),
-    context = this.normalizer.denormalize(entity, schemaName, this.entities)
-
+    entity  = this.getEntity(type, id),
+    context = this.normalizer.denormalize(entity, `entity/${type}`, this.entities)
     return context
   }
 }
