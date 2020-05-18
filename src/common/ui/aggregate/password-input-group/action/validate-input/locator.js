@@ -1,6 +1,6 @@
-const ValidatePasswordInputAction = require('.')
+const ValidateInputAction = require('.')
 
-class ValidatePasswordInputActionLocator
+class ValidateInputActionLocator
 {
   constructor(locator)
   {
@@ -9,9 +9,15 @@ class ValidatePasswordInputActionLocator
 
   locate()
   {
-    const store = this.locator.locate('core/store')
-    return new ValidatePasswordInputAction(store)
+    const
+    store                      = this.locator.locate('core/store'),
+    passwordInputGroupComposer = this.locator.locate('ui/password-input-group/composer')
+
+    return new ValidateInputAction({
+      passwordInputGroupComposer,
+      store
+    })
   }
 }
 
-module.exports = ValidatePasswordInputActionLocator
+module.exports = ValidateInputActionLocator

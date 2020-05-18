@@ -1,28 +1,32 @@
 /**
  * @implements {common/core/reducer/action}
  */
-class ValidatePasswordInputAction
+class ValidateInputAction
 {
   // TODO add dictionary
-  constructor(store)
+  constructor({
+    passwordInputGroupComposer,
+    store
+  })
   {
-    this.store = store
+    this.store                      = store
+    this.passwordInputGroupComposer = passwordInputGroupComposer
   }
 
   execute({ meta: { emitter, schema }, data: { value } })
   {
     const
-    passwordInputGroup = this.store.getEntityContext(schema, emitter),
-    { input: { required, pattern, title }, label } = passwordInputGroup
+    context = this.store.getEntityContext(schema, emitter),
+    { input: { required, pattern, title }, label } = context
 
-    let
-    message = null,
-    code    = null
+    let error
 
     if(required && (!value || value.trim() === ''))
     {
-      message = `${label} is required`
-      code    = 'E_INPUT_REQUIRED'
+      error = {
+        message : `${label} is required`,
+        code    : 'E_INPUT_REQUIRED'
+      }
     }
     else if(pattern)
     {
@@ -32,19 +36,23 @@ class ValidatePasswordInputAction
 
       if(!match)
       {
-        message = title ? title : `Format invalid`
-        code    = 'E_INPUT_FORMAT_INVALID'
+        error = {
+          message : title ? title : `Format invalid`,
+          code    : 'E_INPUT_FORMAT_INVALID'
+        }
       }
     }
 
-    const entities = this.store.normalizeEntityContext(schema, {
-      ...passwordInputGroup,
+    const
+    passwordInputGroup = this.passwordInputGroupComposer.compose({
+      ...context,
       value,
-      error : message ? { message, code } : undefined
-    })
+      error
+    }),
+    entities = this.store.normalizeEntityContext(schema, passwordInputGroup)
 
     return this.store.merge(entities)
   }
 }
 
-module.exports = ValidatePasswordInputAction
+module.exports = ValidateInputAction

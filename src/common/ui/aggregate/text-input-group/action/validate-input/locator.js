@@ -1,6 +1,6 @@
-const OnValidateInputObserver = require('.')
+const ValidateInputAction = require('.')
 
-class OnValidateInputObserverLocator
+class ValidateInputActionLocator
 {
   constructor(locator)
   {
@@ -10,10 +10,14 @@ class OnValidateInputObserverLocator
   locate()
   {
     const
-    store             = this.locator.locate('core/store'),
-    textInputComposer = this.locator.locate('ui/text-input-group/composer')
-    return new OnValidateInputObserver(store, textInputComposer)
+    store                  = this.locator.locate('core/store'),
+    textInputGroupComposer = this.locator.locate('ui/text-input-group/composer')
+
+    return new ValidateInputAction({
+      textInputGroupComposer,
+      store
+    })
   }
 }
 
-module.exports = OnValidateInputObserverLocator
+module.exports = ValidateInputActionLocator

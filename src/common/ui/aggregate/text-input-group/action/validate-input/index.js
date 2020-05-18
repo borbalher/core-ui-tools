@@ -4,10 +4,13 @@
 class ValidateTextInputAction
 {
   // TODO add dictionary
-  constructor(store, textInputComposer)
+  constructor({
+    textInputGroupComposer,
+    store
+  })
   {
-    this.store             = store
-    this.textInputComposer = textInputComposer
+    this.store                  = store
+    this.textInputGroupComposer = textInputGroupComposer
   }
 
   execute({ meta: { emitter, schema }, data: { value } })
