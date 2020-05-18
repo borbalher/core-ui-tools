@@ -39,11 +39,7 @@ class ValidateTextInputAction
 
     const entities = this.store.normalizeEntityContext(schema, {
       ...passwordInputGroup,
-      input :
-      {
-        ...passwordInputGroup.input,
-        value
-      },
+      value,
       error :
       {
         message,

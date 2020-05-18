@@ -32,6 +32,12 @@ class Entities
     return entity
   }
 
+  getAttribute(type, id, attribute)
+  {
+    const entity = this.getEntity(type, id)
+    return entity ? entity[attribute] : undefined
+  }
+
   getEntityContext(type, id)
   {
     const
