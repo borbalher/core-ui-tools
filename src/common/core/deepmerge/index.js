@@ -1,34 +1,13 @@
 class DeepMerge
 {
-  merge(a, b, ...c)
+  constructor(merge)
   {
-    const result = this._merge(a, b)
-
-    return c.length ? this.merge(result, c[0], ...c.slice(1)) : result
+    this.merge = merge
   }
 
-  _merge(a, b)
+  merge(a, b, options)
   {
-    if(typeof a !== 'object' || a === null)
-      return b
-
-    return Array.isArray(a) ? this._mergeArray(a, b) : this._mergeObject(a, b)
-  }
-
-  _mergeArray(a, b)
-  {
-    if(!Array.isArray(b))
-      return b
-
-    return [...a, ...b]
-  }
-
-  _mergeObject(a, b)
-  {
-    for(const key in b)
-      a[key] = key in a ? this._merge(a[key], b[key]) : b[key]
-
-    return a
+    return this.merge(a, b, options)
   }
 }
 

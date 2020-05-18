@@ -1,5 +1,6 @@
 const
 dateformat          = require('dateformat'),
+merge               = require('deepmerge'),
 Core                = require('core-ui-tools/common/core'),
 ConfigFetcher       = require('core-ui-tools/browser/core/config-fetcher'),
 consoleDefaults     = require('core-ui-tools/browser/core/console/defaults'),
@@ -39,7 +40,7 @@ class CoreFactory
     locator             = new Locator(),
     deepclone           = new Deepclone(),
     deepfreeze          = new Deepfreeze(),
-    deepmerge           = new Deepmerge(),
+    deepmerge           = new Deepmerge(merge),
     deepfind            = new Deepfind(),
     deepassign          = new DeepAssign(deepclone),
     configuration       = new Configuration(deepclone, deepmerge, deepfind, deepfreeze),

@@ -9,7 +9,8 @@ class DeepMergeLocator
 
   locate()
   {
-    return new DeepMerge()
+    const merge = require('deepmerge')
+    return new DeepMerge(merge)
   }
 }
 
