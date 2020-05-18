@@ -1,11 +1,18 @@
 module.exports = {
   core :
   {
+    reducer :
+    {
+      actions :
+      {
+        'validate.checkbox.input' : 'ui/checkbox-input-group/action/validate-checkbox-input'
+      }
+    },
     locator :
     {
-      'ui/checkbox-input-group/listener/on-validate-input' : `${__dirname}/listener/on-validate-input`,
-      'ui/checkbox-input-group/controller'                 : `${__dirname}/controller`,
-      'ui/checkbox-input-group/composer'                   : `${__dirname}/composer`
+      'ui/checkbox-input-group/action/validate-checkbox-input' : `${__dirname}/action/validate-input`,
+      'ui/checkbox-input-group/controller'                     : `${__dirname}/controller`,
+      'ui/checkbox-input-group/composer'                       : `${__dirname}/composer`
     }
   },
   ui :
@@ -14,20 +21,17 @@ module.exports = {
     {
       'checkbox-input-group' :
       {
-        bindings : [
+        bindings :
+        {
+          'validate.checkbox-input.on.change' :
           {
             selector       : 'input[type="checkbox"]',
             domEvent       : 'change',
             domEventMapper : 'ui/checkbox-input/mapper/input-data-mapper',
-            event          : 'validate.input'
+            event          : 'validate.checkbox.input',
+            dispatch       : true
           }
-        ],
-        listeners : [
-          {
-            event   : 'validate.input',
-            locator : 'ui/checkbox-input-group/listener/on-validate-input'
-          }
-        ]
+        }
       }
     }
   }

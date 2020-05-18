@@ -7,8 +7,8 @@ const ComponentComposer = require('common/ui/aggregate/component/composer')
 class FieldsetComposer extends ComponentComposer
 {
   compose({
-    listeners = [],
-    bindings  = [],
+    listeners = {},
+    bindings  = {},
     renderonchange,
     template,
     disabled,
@@ -23,14 +23,14 @@ class FieldsetComposer extends ComponentComposer
   {
     const fieldset = super.compose({
       schema   : 'entity/fieldset',
-      bindings : [
+      bindings : {
         ...this.bindings,
         ...bindings
-      ],
-      listeners : [
+      },
+      listeners : {
         ...this.listeners,
         ...listeners
-      ],
+      },
       renderonchange,
       disabled,
       parentId,

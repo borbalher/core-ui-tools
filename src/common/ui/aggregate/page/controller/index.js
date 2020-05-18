@@ -70,14 +70,17 @@ class Page
 
   listen()
   {
-    for(const { listenTo, event, map, emitTo, locator, mapper } of this.listeners)
+    for(const key of Object.keys(this.listeners))
     {
       const
-      listenToChannels = listenTo ? this.getChannels(listenTo) : [this[Symbol.for('id')]],
-      emitToChannels   = emitTo   ? this.getChannels(emitTo)   : [this[Symbol.for('id')]]
+      { publisher, event, map, locator, eventMapper }  = this.listeners[key],
+      publisherChannel  = publisher ? publisher : this[Symbol.for('id')],
+      subscriberChannel = this[Symbol.for('id')]
 
-      this.addComponentListeners(listenToChannels, emitToChannels, event, map, locator, mapper)
+      this.addComponentListener(publisherChannel, subscriberChannel, event, map, locator, eventMapper)
     }
+
+    this.emit('component.listened', { id: this[Symbol.for('id')], listeners: this.listeners })
   }
 
   addDOMBinding(channels, domEvent, map, preventDefault, mapper, domNode)
@@ -106,11 +109,13 @@ class Page
 
   bind()
   {
-    for(const { selector, domEvent, map, emitTo, preventDefault, mapper } of this.bindings)
+    for(const key of Object.keys(this.bindings))
     {
-      const channels = emitTo ? this.getChannels(emitTo) : [this[Symbol.for('id')]]
-      this.addDOMBindings(channels, `#${this[Symbol.for('id')]}${selector ? ` ${selector}` : ''}`, domEvent, map, preventDefault, mapper)
+      const { selector, domEvent, event, dispatch, preventDefault, stopPropagation, domEventMapper } = this.bindings[key]
+      this.addDOMBindings(`#${this[Symbol.for('id')]}${selector ? ` ${selector}` : ''}`, domEvent, event, preventDefault, stopPropagation, domEventMapper, dispatch)
     }
+
+    this.emit('component.binded', { id: this[Symbol.for('id')], bindings: this.bindings })
   }
 
   emit(name, data)

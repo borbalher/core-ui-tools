@@ -13,56 +13,44 @@ module.exports = {
       'pagination' :
       {
         bindings :
-        [
+        {
+          'page.clicked' :
           {
             selector       : '.pagination__page__number',
             domEvent       : 'click',
+            domEventMapper : 'ui/pagination/mapper/page-number-clicked',
             event          : 'page.clicked',
-            domEventMapper : 'ui/pagination/mapper/page-number-clicked'
+            dispatch       : true
           },
+          'prev.pages.clicked' :
           {
             domEvent : 'click',
             selector : '.pagination__prev-pages',
-            event    : 'prev.pages.clicked'
+            event    : 'prev.pages.clicked',
+            dispatch : true
           },
+          'next.pages.clicked' :
           {
             domEvent : 'click',
             selector : '.pagination__next-pages',
-            event    : 'next.pages.clicked'
+            event    : 'next.pages.clicked',
+            dispatch : true
           },
+          'next.page.clicked' :
           {
             domEvent : 'click',
             selector : '.pagination__next-page',
-            event    : 'next.page.clicked'
+            event    : 'next.page.clicked',
+            dispatch : true
           },
+          'prev.page.clicked' :
           {
             domEvent : 'click',
             selector : '.pagination__prev-page',
-            event    : 'prev.page.clicked'
+            event    : 'prev.page.clicked',
+            dispatch : true
           }
-        ],
-        listeners : [
-          {
-            event   : 'page.clicked',
-            locator : 'ui/pagination/listener/on-page-clicked'
-          },
-          {
-            event   : 'prev.pages.clicked',
-            locator : 'ui/pagination/listener/on-prev-pages-clicked'
-          },
-          {
-            event   : 'next.pages.clicked',
-            locator : 'ui/pagination/listener/on-next-pages-clicked'
-          },
-          {
-            event   : 'prev.page.clicked',
-            locator : 'ui/pagination/listener/on-prev-page-clicked'
-          },
-          {
-            event   : 'next.page.clicked',
-            locator : 'ui/pagination/listener/on-next-page-clicked'
-          }
-        ]
+        }
       }
     }
   }

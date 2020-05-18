@@ -12,20 +12,17 @@ module.exports = {
     {
       'select-input-group' :
       {
-        bindings : [
+        bindings :
+        {
+          'validate.text-input.on.change' :
           {
             selector       : 'select',
             domEvent       : 'change',
             domEventMapper : 'ui/select-input/mapper/selected-options-to-data',
-            event          : 'validate.input'
+            event          : 'validate.select.input',
+            dispatch       : true
           }
-        ],
-        listeners : [
-          {
-            event   : 'validate.input',
-            locator : 'ui/select-input-group/listener/on-validate-input'
-          }
-        ]
+        }
       }
     }
   }

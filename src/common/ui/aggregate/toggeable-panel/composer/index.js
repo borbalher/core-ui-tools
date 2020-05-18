@@ -17,8 +17,8 @@ class ToggeablePanelComposer extends ComponentComposer
   }
 
   compose({
-    listeners = [],
-    bindings  = [],
+    listeners = {},
+    bindings  = {},
     renderonchange,
     showWhenToggled,
     isToggled,
@@ -36,14 +36,14 @@ class ToggeablePanelComposer extends ComponentComposer
     toggeablePanel = super.compose({
       template  : 'toggeable-panel',
       isVisible : this.isVisible(isToggled, showWhenToggled),
-      bindings  : [
+      bindings  : {
         ...this.bindings,
         ...bindings
-      ],
-      listeners : [
+      },
+      listeners : {
         ...this.listeners,
         ...listeners
-      ],
+      },
       toggle : this.checkboxInputGroupComposer.compose({
         id       : `${id}-checkbox-input-group`,
         value    : isToggled,

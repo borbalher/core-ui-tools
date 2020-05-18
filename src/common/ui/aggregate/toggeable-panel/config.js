@@ -3,9 +3,8 @@ module.exports = {
   {
     locator :
     {
-      'ui/toggeable-panel/listener/on-toggle-panel' : `${__dirname}/listener/on-toggle-panel`,
-      'ui/toggeable-panel/composer'                 : `${__dirname}/composer`,
-      'ui/toggeable-panel/controller'               : `${__dirname}/controller`
+      'ui/toggeable-panel/composer'   : `${__dirname}/composer`,
+      'ui/toggeable-panel/controller' : `${__dirname}/controller`
     }
   },
   ui :
@@ -14,20 +13,17 @@ module.exports = {
     {
       'toggeable-panel' :
       {
-        bindings : [
+        bindings :
+        {
+          'toggle.panel.on.change' :
           {
             selector       : 'input[type="checkbox"]',
             domEvent       : 'change',
             domEventMapper : 'ui/checkbox-input/mapper/input-data-mapper',
-            event          : 'toggle.panel'
+            event          : 'toggle.panel',
+            dispatch       : true
           }
-        ],
-        listeners : [
-          {
-            event   : 'toggle.panel',
-            locator : 'ui/toggeable-panel/listener/on-toggle-panel'
-          }
-        ]
+        }
       }
     }
   }

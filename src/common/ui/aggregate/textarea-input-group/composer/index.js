@@ -12,8 +12,8 @@ class TextareaInputGroupGroupComposer extends ComponentComposer
   }
 
   compose({
-    bindings  = [],
-    listeners = [],
+    bindings  = {},
+    listeners = {},
     renderonchange,
     placeholder,
     maxLength,
@@ -34,7 +34,8 @@ class TextareaInputGroupGroupComposer extends ComponentComposer
     id
   })
   {
-    const textareaInputGroup = super.compose({
+    const
+    textareaInputGroup = super.compose({
       template : 'textarea-input-group',
       schema   : 'entity/textarea-input-group',
       input    : this.textareaInputComposer.compose({
@@ -53,14 +54,14 @@ class TextareaInputGroupGroupComposer extends ComponentComposer
         value,
         rows
       }),
-      bindings : [
+      bindings : {
         ...this.bindings,
         ...bindings
-      ],
-      listeners : [
+      },
+      listeners : {
         ...this.listeners,
         ...listeners
-      ],
+      },
       renderonchange,
       attribute,
       required,

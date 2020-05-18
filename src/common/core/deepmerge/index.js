@@ -20,7 +20,10 @@ class DeepMerge
     if(!Array.isArray(b))
       return b
 
-    return [...new Set([...a, ...b])]
+    // let merged = [...a, ...b]
+    // const uniques = merged.filter((item, index) => merged.indexOf(item) === index)
+    // return uniques
+    return [...a, ...b]
   }
 
   _mergeObject(a, b)

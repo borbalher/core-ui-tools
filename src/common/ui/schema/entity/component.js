@@ -24,16 +24,28 @@ module.exports = {
     type        : 'string',
     'not-empty' : true
   },
-  bindings :
+  bindings : // TODO
   {
-    type       : 'schema',
-    schema     : 'value-object/binding',
-    collection : true
+    type          : 'custom-json',
+    'custom-json' :
+    {
+      type    : 'schema',
+      options :
+      {
+        schema : 'value-object/binding'
+      }
+    }
   },
   listeners :
   {
-    type       : 'schema',
-    schema     : 'value-object/listener',
-    collection : true
-  }
+    type          : 'custom-json',
+    'custom-json' :
+    {
+      type    : 'schema',
+      options :
+      {
+        schema : 'value-object/listener'
+      }
+    }
+  },
 }

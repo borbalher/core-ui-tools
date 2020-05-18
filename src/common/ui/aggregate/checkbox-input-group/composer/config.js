@@ -12,20 +12,17 @@ module.exports = {
     {
       'checkbox-input-group' :
       {
-        bindings : [
+        bindings :
+        {
+          'validate.checkbox-input.on.change' :
           {
             selector       : 'input[type="checkbox"]',
             domEvent       : 'change',
             domEventMapper : 'ui/checkbox-input/mapper/input-data-mapper',
-            event          : 'validate.input'
+            event          : 'validate.checkbox.input',
+            dispatch       : true
           }
-        ],
-        listeners : [
-          {
-            event   : 'validate.input',
-            locator : 'ui/checkbox-input-group/listener/on-validate-input'
-          }
-        ]
+        }
       }
     }
   }

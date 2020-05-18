@@ -48,9 +48,10 @@ class ComponentController
 
   listen()
   {
-    for(const { publisher, event, map, locator, eventMapper } of this.listeners)
+    for(const key of Object.keys(this.listeners))
     {
       const
+      { publisher, event, map, locator, eventMapper }  = this.listeners[key],
       publisherChannel  = publisher ? publisher : this[Symbol.for('id')],
       subscriberChannel = this[Symbol.for('id')]
 
@@ -103,8 +104,11 @@ class ComponentController
 
   bind()
   {
-    for(const { selector, domEvent, event, dispatch, preventDefault, stopPropagation, domEventMapper } of this.bindings)
+    for(const key of Object.keys(this.bindings))
+    {
+      const { selector, domEvent, event, dispatch, preventDefault, stopPropagation, domEventMapper } = this.bindings[key]
       this.addDOMBindings(`#${this[Symbol.for('id')]}${selector ? ` ${selector}` : ''}`, domEvent, event, preventDefault, stopPropagation, domEventMapper, dispatch)
+    }
 
     this.emit('component.binded', { id: this[Symbol.for('id')], bindings: this.bindings })
   }

@@ -13,21 +13,16 @@ module.exports = {
       'table' :
       {
         bindings :
-        [
+        {
+          'on.table.action.clicked' :
           {
             selector       : '.table__cell-action',
             domEvent       : 'click',
             domEventMapper : 'ui/table/mapper/action-clicked',
-            event          : 'action.clicked'
+            event          : 'table.action.clicked',
+            dispatch       : true
           }
-        ],
-        listeners :
-        [
-          {
-            event   : 'action.clicked',
-            locator : 'ui/table/listener/on-action-clicked'
-          }
-        ]
+        }
       }
     }
   }

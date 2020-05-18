@@ -12,20 +12,17 @@ module.exports = {
     {
       'textarea-input-group' :
       {
-        bindings : [
+        bindings :
+        {
+          'validate.textarea-input.on.change' :
           {
             selector       : 'textarea',
             domEvent       : 'change',
             domEventMapper : 'ui/input/mapper/input-data-mapper',
-            event          : 'validate.input'
+            event          : 'validate.textarea.input',
+            dispatch       : true
           }
-        ],
-        listeners : [
-          {
-            event   : 'validate.input',
-            locator : 'ui/textarea-input-group/listener/on-validate-input'
-          }
-        ]
+        }
       }
     }
   }

@@ -1,11 +1,18 @@
 module.exports = {
   core :
   {
+    reducer :
+    {
+      actions :
+      {
+        'validate.textarea.input' : 'ui/text-input-group/action/validate-textarea-input'
+      }
+    },
     locator :
     {
-      'ui/textarea-input-group/listener/on-validate-input' : `${__dirname}/listener/on-validate-input`,
-      'ui/textarea-input-group/composer'                   : `${__dirname}/composer`,
-      'ui/textarea-input-group/controller'                 : `${__dirname}/controller`
+      'ui/textarea-input-group/action/validate-textarea-input' : `${__dirname}/action/validate-input`,
+      'ui/textarea-input-group/composer'                       : `${__dirname}/composer`,
+      'ui/textarea-input-group/controller'                     : `${__dirname}/controller`
     }
   },
   ui :
@@ -14,20 +21,17 @@ module.exports = {
     {
       'textarea-input-group' :
       {
-        bindings : [
+        bindings :
+        {
+          'validate.textarea-input.on.change' :
           {
             selector       : 'textarea',
             domEvent       : 'change',
             domEventMapper : 'ui/input/mapper/input-data-mapper',
-            event          : 'validate.input'
+            event          : 'validate.textarea.input',
+            dispatch       : true
           }
-        ],
-        listeners : [
-          {
-            event   : 'validate.input',
-            locator : 'ui/textarea-input-group/listener/on-validate-input'
-          }
-        ]
+        }
       }
     }
   }

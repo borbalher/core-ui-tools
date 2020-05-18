@@ -6,8 +6,8 @@ const ComponentComposer = require('common/ui/aggregate/component/composer')
 class PageBlockerComposer extends ComponentComposer
 {
   compose({
-    listeners = [],
-    bindings  = [],
+    listeners = {},
+    bindings  = {},
     renderonchange,
     isBlocked,
     parentId,
@@ -19,14 +19,14 @@ class PageBlockerComposer extends ComponentComposer
     const pageBlocker = super.compose({
       schema   : 'entity/page-blocker',
       template : 'page-blocker',
-      bindings : [
+      bindings : {
         ...this.bindings,
         ...bindings
-      ],
-      listeners : [
+      },
+      listeners : {
         ...this.listeners,
         ...listeners
-      ],
+      },
       renderonchange,
       isBlocked,
       parentId,

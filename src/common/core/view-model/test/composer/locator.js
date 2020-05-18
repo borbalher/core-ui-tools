@@ -9,11 +9,8 @@ class TestComposerLocator
 
   locate()
   {
-    const
-    configuration = this.locator.locate('core/configuration'),
-    options       = configuration.find('ui.component.test')
-
-    return new TestComposer(this.locator, options)
+    const configuration = this.locator.locate('core/configuration')
+    return new TestComposer(this.locator, configuration)
   }
 }
 

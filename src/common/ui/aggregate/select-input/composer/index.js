@@ -6,8 +6,8 @@ const ComponentComposer = require('common/ui/aggregate/component/composer')
 class SelectInputComposer extends ComponentComposer
 {
   compose({
-    listeners = [],
-    bindings  = [],
+    listeners = {},
+    bindings  = {},
     renderonchange,
     attribute,
     disabled,
@@ -25,14 +25,14 @@ class SelectInputComposer extends ComponentComposer
     const selectInput = super.compose({
       template : 'select-input',
       schema   : 'entity/select-input',
-      bindings : [
+      bindings : {
         ...this.bindings,
         ...bindings
-      ],
-      listeners : [
+      },
+      listeners : {
         ...this.listeners,
         ...listeners
-      ],
+      },
       renderonchange,
       attribute,
       disabled,

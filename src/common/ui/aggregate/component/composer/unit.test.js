@@ -44,10 +44,6 @@ describe('src/common/ui/composer/component', () =>
   it('Can compose a component', () =>
   {
     const component = composer.compose({
-      // renderonchange = true,
-      // bindings       = [],
-      // listeners      = [],
-      // parentId       = null,
       template : 'component',
       classes  : 'my-class',
       schema   : 'entity/component',

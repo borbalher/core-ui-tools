@@ -6,8 +6,8 @@ const ComponentComposer = require('common/ui/aggregate/component/composer')
 class FormInputComposer extends ComponentComposer
 {
   compose({
-    listeners = [],
-    bindings  = [],
+    listeners = {},
+    bindings  = {},
     renderonchange,
     parentId,
     template,
@@ -23,14 +23,14 @@ class FormInputComposer extends ComponentComposer
   })
   {
     const form = super.compose({
-      bindings : [
+      bindings : {
         ...this.bindings,
         ...bindings
-      ],
-      listeners : [
+      },
+      listeners : {
         ...this.listeners,
         ...listeners
-      ],
+      },
       renderonchange,
       disabled,
       parentId,
