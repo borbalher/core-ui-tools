@@ -20,7 +20,7 @@ class DeepMerge
     if(!Array.isArray(b))
       return b
 
-    return [...a, ...b]
+    return [...new Set([...a, ...b])]
   }
 
   _mergeObject(a, b)
