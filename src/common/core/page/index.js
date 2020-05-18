@@ -50,7 +50,7 @@ class Page
       current  = this.tree.nodes.getItem(componentId)
 
       if(!this.object.isEqual(previous, current) && exclude.indexOf(componentId) === -1)
-        exclude = [...exclude,  this.onComponentChange(componentId, previous, current)]
+        exclude = [...exclude,  ...this.onComponentChange(componentId, previous, current)]
     }
   }
 
