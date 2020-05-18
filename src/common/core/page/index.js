@@ -38,7 +38,9 @@ class Page
   {
     const previousTree = this.createTreeFromContext(previous)
     this.tree          = this.createTreeFromContext(current)
-    const path         = this.tree.bfs(this.tree.root).shift()
+    const path         = this.tree.bfs(this.tree.root)
+
+    path.shift()
 
     let exclude = []
     for(const componentId of path)
