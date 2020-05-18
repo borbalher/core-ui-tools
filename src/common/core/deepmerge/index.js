@@ -20,8 +20,7 @@ class DeepMerge
     if(!Array.isArray(b))
       return b
 
-    a.push(...b)
-    return a
+    return [...a, ...b]
   }
 
   _mergeObject(a, b)

@@ -48,7 +48,7 @@ class Page
     {
       const
       previous = previousTree.nodes.getItem(componentId),
-      current  = currentTree.tree.nodes.getItem(componentId)
+      current  = currentTree.nodes.getItem(componentId)
 
       if(!this.object.isEqual(previous, current) && exclude.indexOf(componentId) === -1)
         exclude = [...exclude,  this.onComponentChange(componentId, previous, current)]

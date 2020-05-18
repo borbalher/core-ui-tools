@@ -76,9 +76,8 @@ class Store
   getEntityContext(schemaName, id)
   {
     const
-    type    = this.normalizer.getEntityType(schemaName),
-    entity  = this.getEntity(type, id),
-    context = this.normalizer.denormalize(entity, type, this.state['entities'])
+    entity  = this.getEntity(schemaName, id),
+    context = this.normalizer.denormalize(entity, schemaName, this.state['entities'])
 
     return context
   }
@@ -86,8 +85,7 @@ class Store
   normalizeEntityContext(schemaName, context)
   {
     const
-    type        = this.normalizer.getEntityType(schemaName),
-    normalized  = this.normalizer.normalize(context, type)
+    normalized  = this.normalizer.normalize(context, schemaName)
     // mergedState = this.merge()
 
     return { entities: normalized }
