@@ -9,8 +9,10 @@ class NormalizerLocator
 
   locate()
   {
-    const composer = this.locator.locate('core/schema/composer')
-    return new Normalizer(composer)
+    const
+    composer   = this.locator.locate('core/schema/composer'),
+    coreString = this.locator.locate('core/string')
+    return new Normalizer(composer, coreString)
   }
 }
 

@@ -13,7 +13,7 @@ class ValidateInputAction
     this.passwordInputGroupComposer = passwordInputGroupComposer
   }
 
-  execute({ meta: { emitter, schema }, data: { value } })
+  execute({ meta: { emitter, schema }, data: { value } }, state)
   {
     const
     context = this.store.getEntityContext(schema, emitter),
@@ -44,14 +44,32 @@ class ValidateInputAction
     }
 
     const
-    passwordInputGroup = this.passwordInputGroupComposer.compose({
-      ...context,
+    entities            = this.store.getEntities(),
+    passwordInputGroups = this.store.getEntities('passwordInputGroup'),
+    passwordInputs      = this.store.getEntities('passwordInput')
+
+    passwordInputGroups.byId[context.id] =
+    {
+      ...passwordInputGroups.byId[context.id],
       value,
       error
-    }),
-    entities = this.store.normalizeEntityContext(schema, passwordInputGroup)
+    }
 
-    return this.store.merge(entities)
+    passwordInputs.byId[context.input.id] =
+    {
+      ...passwordInputs.byId[context.input.id],
+      value
+    }
+
+    return {
+      ...state,
+      entities :
+      {
+        ...entities,
+        passwordInputGroup : { ...passwordInputGroups },
+        passwordInput      : { ...passwordInputs }
+      }
+    }
   }
 }
 

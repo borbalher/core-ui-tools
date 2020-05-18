@@ -13,7 +13,7 @@ class ValidateTextInputAction
     this.textareaInputGroupComposer = textareaInputGroupComposer
   }
 
-  execute({ meta: { emitter, schema }, data: { value } })
+  execute({ meta: { emitter, schema }, data: { value } }, state)
   {
     const
     context = this.store.getEntityContext(schema, emitter),
@@ -30,14 +30,32 @@ class ValidateTextInputAction
     }
 
     const
-    textareaInputGroup = this.textInputGroupComposer.compose({
-      ...context,
+    entities            = this.store.getEntities(),
+    textareaInputGroups = this.store.getEntities('textareaInputGroup'),
+    textareaInputs      = this.store.getEntities('textareaInput')
+
+    textareaInputGroups.byId[context.id] =
+    {
+      ...textareaInputGroups.byId[context.id],
       value,
       error
-    }),
-    entities = this.store.normalizeEntityContext(schema, textareaInputGroup)
+    }
 
-    return this.store.merge(entities)
+    textareaInputs.byId[context.input.id] =
+    {
+      ...textareaInputs.byId[context.input.id],
+      value
+    }
+
+    return {
+      ...state,
+      entities :
+      {
+        ...entities,
+        textareaInputGroup : { ...textareaInputGroups },
+        textareaInput      : { ...textareaInputs }
+      }
+    }
   }
 }
 

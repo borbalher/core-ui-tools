@@ -12,9 +12,7 @@ class DeepAssignLocator
    */
   locate()
   {
-    const deepclone = this.locator.locate('core/deepclone')
-
-    return new DeepAssign(deepclone)
+    return new DeepAssign()
   }
 }
 

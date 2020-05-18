@@ -3,24 +3,26 @@
  */
 class CloseModalAction
 {
-  constructor(store)
+  constructor(store, coreString)
   {
-    this.store = store
+    this.store      = store
+    this.coreString = coreString
   }
 
-  execute(action, state)
+  execute(action)
   {
-    const { data: { modal } } = action
+    const
+    { meta: { emitter, schema } } = action,
+    modalType = this.store.getEntityType(schema),
+    modals    = this.store.getEntities(modalType)
 
-    state[modal] = { ...state[modal], isOpen: false }
+    modals.byId[emitter] = {
+      ...modals.byId[emitter],
+      isOpen : false
+    }
 
-    this.store.dispatchAfter(this.store.composeAction('emit.event', {
-      event   : 'modal.closed',
-      payload : { },
-      channel : modal
-    }))
-
-    return state
+    const newState = this.store.setEntities(modalType, modals)
+    return newState
   }
 }
 

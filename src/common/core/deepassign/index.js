@@ -2,9 +2,8 @@ const NotAnObjectError = require('./error/not-an-object')
 
 class DeepAssign
 {
-  constructor(deepclone)
+  constructor()
   {
-    this.deepclone            = deepclone
     this.arrayPropertyRegexp  = /(\w+)\[([0-9]+)\]/i
   }
 
@@ -98,7 +97,7 @@ class DeepAssign
   {
     const
     keys  = path.split(/\.|\//),
-    copy  = this.deepclone.clone(obj)
+    copy  = { ...obj }
 
     return this.assignPath(copy, keys, value)
   }

@@ -10,17 +10,18 @@ class OpenModalAction
 
   execute(action, state)
   {
-    const { data: { modal } } = action
+    const
+    { meta: { emitter, schema } } = action,
+    modalType = this.store.getEntityType(schema),
+    modals    = this.store.getEntities(modalType)
 
-    state[modal] = { ...state[modal], isOpen: true }
+    modals.byId[emitter] = {
+      ...modals.byId[emitter],
+      isOpen : true
+    }
 
-    this.store.dispatchAfter(this.store.composeAction('emit.event', {
-      event   : 'modal.opened',
-      payload : { },
-      channel : modal
-    }))
-
-    return state
+    const newState = this.store.setEntities(modalType, modals)
+    return newState
   }
 }
 

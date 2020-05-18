@@ -62,6 +62,11 @@ class Store
     return `entities.${type}.byId.${id}`
   }
 
+  getEntityType(schemaName)
+  {
+    return this.normalizer.getEntityType(schemaName)
+  }
+
   getEntity(schemaName, id)
   {
     const
@@ -95,6 +100,22 @@ class Store
   {
     const  mergedState = this.deepmerge.merge(this.getState(), state)
     return mergedState
+  }
+
+  getEntities(type)
+  {
+    // const type = this.normalizer.getEntityType(schemaName)
+    if(!type)
+      return this.state.entites
+    else
+      return this.state.entities[type] ? this.state.entities[type] : { byId: {}, allIds: [] }
+  }
+
+  setEntities(type, entities)
+  {
+    const newState = { ...this.getState() }
+    newState.entities[type] = { ...entities }
+    return newState
   }
 
   applyMiddlewares(middlewares)

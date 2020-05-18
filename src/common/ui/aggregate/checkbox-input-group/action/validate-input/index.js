@@ -13,7 +13,7 @@ class ValidateInputAction
     this.checkboxInputGroupComposer = checkboxInputGroupComposer
   }
 
-  execute({ meta: { emitter, schema }, data: { value } })
+  execute({ meta: { emitter, schema }, data: { value } }, state)
   {
     const
     context = this.store.getEntityContext(schema, emitter),
@@ -30,14 +30,32 @@ class ValidateInputAction
     }
 
     const
-    checkboxInputGroup = this.checkboxInputGroupComposer.compose({
-      ...context,
+    entities            = this.store.getEntities(),
+    checkboxInputGroups = this.store.getEntities('checkboxInputGroup'),
+    checkboxInputs      = this.store.getEntities('checkboxInput')
+
+    checkboxInputGroups.byId[context.id] =
+    {
+      ...checkboxInputGroups.byId[context.id],
       value,
       error
-    }),
-    entities = this.store.normalizeEntityContext(schema, checkboxInputGroup)
+    }
 
-    return this.store.merge(entities)
+    checkboxInputs.byId[context.input.id] =
+    {
+      ...checkboxInputs.byId[context.input.id],
+      value
+    }
+
+    return {
+      ...state,
+      entities :
+      {
+        ...entities,
+        checkboxInputGroup : { ...checkboxInputGroups },
+        checkboxInput      : { ...checkboxInputs }
+      }
+    }
   }
 }
 

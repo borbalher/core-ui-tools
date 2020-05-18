@@ -1,8 +1,9 @@
 class Normalizer
 {
-  constructor(composer)
+  constructor(composer, coreString)
   {
-    this.composer = composer
+    this.composer   = composer
+    this.coreString = coreString
   }
 
   denormalize(data, schemaName, entities)
@@ -49,7 +50,7 @@ class Normalizer
   {
     const match = /entity\/(.+)/.exec(schemaName)
     if(match)
-      return match[1]
+      return this.coreString.camelCase(match[1])
   }
 
   isEntity(schemaName)
