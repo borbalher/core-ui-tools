@@ -1,6 +1,11 @@
-class Entities
+class EntitySet
 {
-  constructor(entities, deepfind, deepmerge, normalizer)
+  constructor({
+    entities,
+    deepfind,
+    deepmerge,
+    normalizer
+  })
   {
     this.entities   = entities
     this.deepfind   = deepfind
@@ -47,4 +52,4 @@ class Entities
   }
 }
 
-module.exports = Entities
+module.exports = EntitySet
