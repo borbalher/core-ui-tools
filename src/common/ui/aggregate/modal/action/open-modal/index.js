@@ -12,16 +12,10 @@ class OpenModalAction
   {
     const
     { meta: { emitter, schema } } = action,
-    modalType = this.store.getEntityType(schema),
-    modals    = this.store.getEntities(modalType)
+    context = this.store.getEntityContext(schema, emitter),
+    { entities } = this.store.normalizeEntityContext(schema, { ...context, isOpen: true })
 
-    modals.byId[emitter] = {
-      ...modals.byId[emitter],
-      isOpen : true
-    }
-
-    const newState = this.store.setEntities(modalType, modals)
-    return newState
+    return this.store.addEntitiesToState(entities, state)
   }
 }
 

@@ -87,6 +87,16 @@ class Store
     return context
   }
 
+  getEntityContextNormalized(schemaName, id)
+  {
+    const
+    entity            = this.getEntity(schemaName, id),
+    context           = this.normalizer.denormalize(entity, schemaName, this.state['entities']),
+    contextNormalized = this.normalizer.normalize(context, schemaName, this.state['entities'])
+
+    return contextNormalized
+  }
+
   normalizeEntityContext(schemaName, context)
   {
     const
@@ -96,26 +106,57 @@ class Store
     return { entities: normalized }
   }
 
-  merge(state)
-  {
-    const  mergedState = this.deepmerge.merge(this.getState(), state)
-    return mergedState
-  }
 
   getEntities(type)
   {
-    // const type = this.normalizer.getEntityType(schemaName)
-    if(!type)
-      return this.state.entites
-    else
-      return this.state.entities[type] ? this.state.entities[type] : { byId: {}, allIds: [] }
+    return this.state.entities[type] ? { ...this.state.entities[type] } : { byId: {}, allIds: [] }
   }
 
-  setEntities(type, entities)
+  addEntitiesToState(entities, state)
   {
-    const newState = { ...this.getState() }
-    newState.entities[type] = { ...entities }
-    return newState
+    const types = Object.keys(entities)
+
+    let stateEntities = { }
+    for(const type of types)
+      stateEntities = { ...this.addEntitiesToStateByType(type, entities[type], stateEntities) }
+
+    return { ...state, entities: { ...state.entities, ...stateEntities.entities } }
+  }
+
+  addEntitiesToStateByType(type, entities, state)
+  {
+    const stateEntities  = this.getEntities(type)
+
+    stateEntities.byId   = { ...stateEntities.byId, ...entities.byId }
+    stateEntities.allIds = [...new Set([...stateEntities.allIds, ...entities.allIds])]
+
+    const entityGroup  = {}
+    entityGroup[type]  = stateEntities
+
+    return { ...state, entities: { ...state.entities, ...entityGroup } }
+  }
+
+  addEntityToState(type, id, entity, state)
+  {
+    const entities  = this.getEntities(type)
+
+    entities.byId[id] = { ...entity }
+    entities.allIds   = [...new Set([...entities.allIds, entity.id])]
+
+    return { ...state, entities: { ...state.entities, ...entities } }
+  }
+
+  removeEntityFromState(type, id, state)
+  {
+    const entities = this.getEntities(type)
+
+    delete entities.byId[id]
+    entities.allIds     = entities.allIds.filter((entityId) => id !== entityId)
+
+    const entityGroup  = {}
+    entityGroup[type]  = entities
+
+    return { ...state, entities: { ...state.entities, ...entityGroup } }
   }
 
   applyMiddlewares(middlewares)

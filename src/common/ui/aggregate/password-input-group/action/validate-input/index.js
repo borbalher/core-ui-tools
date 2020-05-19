@@ -44,26 +44,14 @@ class ValidateInputAction
     }
 
     const
-    passwordInputGroupsType = this.store.getEntityType(context.schema),
-    passwordInputGroups     = this.store.getEntities(passwordInputGroupsType),
-    passwordInputType       = this.store.getEntityType(context.input.schema),
-    passwordInputs          = this.store.getEntities(passwordInputType)
-
-    passwordInputGroups.byId[context.id] = {
-      ...passwordInputGroups.byId[context.id],
+    passwordInputGroup = this.passwordInputGroupComposer.compose({
+      ...context,
       value,
       error
-    }
+    }),
+    { entities } = this.store.normalizeEntityContext(schema, passwordInputGroup)
 
-    passwordInputs.byId[context.input.id] = {
-      ...passwordInputs.byId[context.input.id],
-      value
-    }
-
-    state = this.store.setEntities(passwordInputGroupsType, passwordInputGroups)
-    state = this.store.setEntities(passwordInputType, passwordInputs)
-
-    return state
+    return this.store.addEntitiesToState(entities, state)
   }
 }
 

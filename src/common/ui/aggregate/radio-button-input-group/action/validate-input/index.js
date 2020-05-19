@@ -30,26 +30,14 @@ class ValidateInputAction
     }
 
     const
-    radioButtonInputGroupsType = this.store.getEntityType(context.schema),
-    radioButtonInputGroups     = this.store.getEntities(radioButtonInputGroupsType),
-    radioButtonInputType       = this.store.getEntityType(context.input.schema),
-    radioButtonInputs          = this.store.getEntities(radioButtonInputType)
-
-    radioButtonInputGroups.byId[context.id] = {
-      ...radioButtonInputGroups.byId[context.id],
+    radioButtonInputGroup = this.radioButtonInputGroupComposer.compose({
+      ...context,
       value,
       error
-    }
+    }),
+    { entities } = this.store.normalizeEntityContext(schema, radioButtonInputGroup)
 
-    radioButtonInputs.byId[context.input.id] = {
-      ...radioButtonInputs.byId[context.input.id],
-      value
-    }
-
-    state = this.store.setEntities(radioButtonInputGroupsType, radioButtonInputGroups)
-    state = this.store.setEntities(radioButtonInputType, radioButtonInputs)
-
-    return state
+    return this.store.addEntitiesToState(entities, state)
   }
 }
 

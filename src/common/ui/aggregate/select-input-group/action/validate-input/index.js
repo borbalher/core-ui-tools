@@ -30,26 +30,14 @@ class ValidateTextInputAction
     }
 
     const
-    selectInputGroupsType = this.store.getEntityType(context.schema),
-    selectInputGroups     = this.store.getEntities(selectInputGroupsType),
-    selectInputType       = this.store.getEntityType(context.input.schema),
-    selectInputs          = this.store.getEntities(selectInputType)
-
-    selectInputGroups.byId[context.id] = {
-      ...selectInputGroups.byId[context.id],
+    selectInputGroup = this.selectInputGroupComposer.compose({
+      ...context,
       value,
       error
-    }
+    }),
+    { entities } = this.store.normalizeEntityContext(schema, selectInputGroup)
 
-    selectInputs.byId[context.input.id] = {
-      ...selectInputs.byId[context.input.id],
-      value
-    }
-
-    state = this.store.setEntities(selectInputGroupsType, selectInputGroups)
-    state = this.store.setEntities(selectInputType, selectInputs)
-
-    return state
+    return this.store.addEntitiesToState(entities, state)
   }
 }
 

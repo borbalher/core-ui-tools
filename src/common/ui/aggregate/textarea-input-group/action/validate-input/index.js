@@ -30,26 +30,14 @@ class ValidateTextInputAction
     }
 
     const
-    textareaInputGroupsType = this.store.getEntityType(context.schema),
-    textareaInputGroups     = this.store.getEntities(textareaInputGroupsType),
-    textareaInputType       = this.store.getEntityType(context.input.schema),
-    textareaInputs          = this.store.getEntities(textareaInputType)
-
-    textareaInputGroups.byId[context.id] = {
-      ...textareaInputGroups.byId[context.id],
+    textareaInputGroup = this.textareaInputGroupComposer.compose({
+      ...context,
       value,
       error
-    }
+    }),
+    { entities } = this.store.normalizeEntityContext(schema, textareaInputGroup)
 
-    textareaInputs.byId[context.input.id] = {
-      ...textareaInputs.byId[context.input.id],
-      value
-    }
-
-    state = this.store.setEntities(textareaInputGroupsType, textareaInputGroups)
-    state = this.store.setEntities(textareaInputType, textareaInputs)
-
-    return state
+    return this.store.addEntitiesToState(entities, state)
   }
 }
 
