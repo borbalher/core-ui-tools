@@ -4,8 +4,7 @@ module.exports = {
     locator :
     {
       'ui/table/mapper/action-clicked' : `${__dirname}/mapper/action-clicked`,
-      'ui/table/composer'              : `${__dirname}/composer`,
-      'ui/table/controller'            : `${__dirname}/controller`
+      'ui/table/composer'              : `${__dirname}/composer`
     }
   },
   ui :

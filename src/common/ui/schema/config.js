@@ -26,6 +26,7 @@ module.exports = {
         // INPUTS
         'entity/input'                    : `${__dirname}/entity/input`,
         'entity/select-input'             : `${__dirname}/entity/select-input`,
+        'entity/select-input-item'        : `${__dirname}/entity/select-input-item`,
         'entity/password-input'           : `${__dirname}/entity/password-input`,
         'entity/text-input'               : `${__dirname}/entity/text-input`,
         'entity/textarea-input'           : `${__dirname}/entity/textarea-input`,

@@ -3,8 +3,7 @@ module.exports = {
   {
     locator :
     {
-      'ui/toggeable-panel/composer'   : `${__dirname}/composer`,
-      'ui/toggeable-panel/controller' : `${__dirname}/controller`
+      'ui/toggeable-panel/composer' : `${__dirname}/composer`
     }
   },
   ui :

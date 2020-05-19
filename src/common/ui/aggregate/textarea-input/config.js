@@ -3,8 +3,7 @@ module.exports = {
   {
     locator :
     {
-      'ui/textarea-input/composer'   : `${__dirname}/composer`,
-      'ui/textarea-input/controller' : `${__dirname}/controller`
+      'ui/textarea-input/composer' : `${__dirname}/composer`
     }
   }
 }

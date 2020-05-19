@@ -11,8 +11,7 @@ module.exports = {
     locator :
     {
       'ui/radio-button-input-group/action/validate-radio-button-input' : `${__dirname}/action/validate-input`,
-      'ui/radio-button-input-group/composer'                           : `${__dirname}/composer`,
-      'ui/radio-button-input-group/controller'                         : `${__dirname}/controller`
+      'ui/radio-button-input-group/composer'                           : `${__dirname}/composer`
     }
   },
   ui :

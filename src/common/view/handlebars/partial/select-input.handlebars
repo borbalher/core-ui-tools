@@ -10,7 +10,7 @@
   {{#each items as |item|}}
     {{#with item}}
       <option value="{{id}}" class='dropdown__list-item {{#if ../value 'has' id}} --selected {{/if}} item' {{#if ../value 'has' id}}selected{{/if}}>
-        {{lookup . ../display}}
+        {{name}}
       </option>
     {{/with}}
   {{/each}}

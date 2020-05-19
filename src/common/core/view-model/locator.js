@@ -14,7 +14,7 @@ class ViewModelLocator
     id                = configuration['id'],
     initialViewModel  = configuration['state'],
     schema            = configuration['schema'],
-    composer          = this.locator.locate(`ui/${id}/composer`),
+    composer          = this.locator.locate(`view-model/${id}/composer`),
     channel           = this.locator.locate('infrastructure/bus').createChannel('view-model'),
     normalizer        = this.locator.locate('core/normalizer')
 

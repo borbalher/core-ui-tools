@@ -106,10 +106,12 @@ class Store
     return { entities: normalized }
   }
 
-
   getEntities(type)
   {
-    return this.state.entities[type] ? { ...this.state.entities[type] } : { byId: {}, allIds: [] }
+    if(this.state.entities && this.state.entities[type])
+      return { ...this.state.entities[type] }
+    else
+      return { byId: {}, allIds: [] }
   }
 
   addEntitiesToState(entities, state)

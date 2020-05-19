@@ -1,4 +1,4 @@
-const LocatorNotImplementedError = require('core-ui-tools/common/core/locator/error/locator-not-implemented')
+const LocatorNotImplementedError = require('common/core/locator/error/locator-not-implemented')
 /**
  * For classes that represent a locator constituent of a composite pattern.
  *

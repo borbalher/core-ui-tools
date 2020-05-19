@@ -11,8 +11,7 @@ module.exports = {
     locator :
     {
       'ui/password-input-group/action/validate-password-input' : `${__dirname}/action/validate-input`,
-      'ui/password-input-group/composer'                       : `${__dirname}/composer`,
-      'ui/password-input-group/controller'                     : `${__dirname}/controller`
+      'ui/password-input-group/composer'                       : `${__dirname}/composer`
     }
   },
   ui :

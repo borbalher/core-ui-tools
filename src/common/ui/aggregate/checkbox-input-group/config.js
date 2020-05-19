@@ -11,7 +11,6 @@ module.exports = {
     locator :
     {
       'ui/checkbox-input-group/action/validate-checkbox-input' : `${__dirname}/action/validate-input`,
-      'ui/checkbox-input-group/controller'                     : `${__dirname}/controller`,
       'ui/checkbox-input-group/composer'                       : `${__dirname}/composer`
     }
   },

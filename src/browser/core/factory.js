@@ -1,21 +1,21 @@
 const
 dateformat          = require('dateformat'),
-Core                = require('core-ui-tools/common/core'),
-ConfigFetcher       = require('core-ui-tools/browser/core/config-fetcher'),
-consoleDefaults     = require('core-ui-tools/browser/core/console/defaults'),
-ConsoleFactory      = require('core-ui-tools/browser/core/console/factory'),
-ServiceLoader       = require('core-ui-tools/browser/core/service-loader'),
-Locator             = require('core-ui-tools/common/core/locator'),
-Deepclone           = require('core-ui-tools/common/core/deepclone'),
-Deepfreeze          = require('core-ui-tools/common/core/deepfreeze'),
-Deepfind            = require('core-ui-tools/common/core/deepfind'),
-Deepmerge           = require('core-ui-tools/common/core/deepmerge'),
-DeepAssign          = require('core-ui-tools/common/core/deepassign'),
-CoreString          = require('core-ui-tools/common/core/string'),
-Configuration       = require('core-ui-tools/common/core/configuration'),
-Metrics             = require('core-ui-tools/common/core/metrics'),
-Timer               = require('core-ui-tools/common/core/timer'),
-EventEmitterFactory = require('core-ui-tools/common/core/event-emitter/factory')
+Core                = require('common/core'),
+ConfigFetcher       = require('browser/core/config-fetcher'),
+consoleDefaults     = require('browser/core/console/defaults'),
+ConsoleFactory      = require('browser/core/console/factory'),
+ServiceLoader       = require('browser/core/service-loader'),
+Locator             = require('common/core/locator'),
+Deepclone           = require('common/core/deepclone'),
+Deepfreeze          = require('common/core/deepfreeze'),
+Deepfind            = require('common/core/deepfind'),
+Deepmerge           = require('common/core/deepmerge'),
+DeepAssign          = require('common/core/deepassign'),
+CoreString          = require('common/core/string'),
+Configuration       = require('common/core/configuration'),
+Metrics             = require('common/core/metrics'),
+Timer               = require('common/core/timer'),
+EventEmitterFactory = require('common/core/event-emitter/factory')
 
 class CoreFactory
 {

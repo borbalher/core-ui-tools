@@ -1,4 +1,4 @@
-// const InvalidSchemaError = require('core-ui-tools/common/core/schema/validator/schema/error/invalid')
+// const InvalidSchemaError = require('common/core/schema/validator/schema/error/invalid')
 /**
  * @implements {SchemaValidator}
  */

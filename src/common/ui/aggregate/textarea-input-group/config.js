@@ -11,8 +11,7 @@ module.exports = {
     locator :
     {
       'ui/textarea-input-group/action/validate-textarea-input' : `${__dirname}/action/validate-input`,
-      'ui/textarea-input-group/composer'                       : `${__dirname}/composer`,
-      'ui/textarea-input-group/controller'                     : `${__dirname}/controller`
+      'ui/textarea-input-group/composer'                       : `${__dirname}/composer`
     }
   },
   ui :

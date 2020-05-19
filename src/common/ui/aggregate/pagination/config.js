@@ -20,8 +20,7 @@ module.exports = {
       // 'ui/pagination/action/next-pages-clicked'  : `${__dirname}/action/next-pages-clicked`,
       // 'ui/pagination/action/prev-page-clicked'   : `${__dirname}/action/prev-page-clicked`,
       // 'ui/pagination/action/next-page-clicked'   : `${__dirname}/action/next-page-clicked`,
-      'ui/pagination/composer'                   : `${__dirname}/composer`,
-      'ui/pagination/controller'                 : `${__dirname}/controller`
+      'ui/pagination/composer'                   : `${__dirname}/composer`
     }
   },
   ui :
