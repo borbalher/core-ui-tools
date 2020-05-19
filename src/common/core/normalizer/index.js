@@ -35,7 +35,7 @@ class Normalizer
         entityId = data[attribute],
         entity   = this.getEntity(entities, schema[attribute].schema, entityId)
 
-        dto[attribute] = this.denormalize(entity, schema[attribute].schema, entities)
+        dto[attribute] = entityId ? this.denormalize(entity, schema[attribute].schema, entities) : undefined
       }
       else
       {
@@ -106,8 +106,11 @@ class Normalizer
       else if(type === 'schema' && isEntity)
       {
         const entity = data[attribute]
-        this.normalize(entity, schema[attribute].schema, entities)
-        dto[attribute] = entity.id
+
+        if(entity)
+          this.normalize(entity, schema[attribute].schema, entities)
+
+        dto[attribute] = entity ? entity.id : undefined
       }
       else
       {
