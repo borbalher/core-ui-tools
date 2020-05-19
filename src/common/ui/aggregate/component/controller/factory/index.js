@@ -15,6 +15,19 @@ class ComponentFactory
     return this.bus.createChannel(id)
   }
 
+  getControllerClass(template)
+  {
+    try
+    {
+      return this.locator.locate(`ui/${template}/controller`)
+    }
+    catch(error)
+    {
+      console.warn(`Using basic controller instead ${template} controller`)
+      return this.locator.locate('ui/component/controller')
+    }
+  }
+
   create(component)
   {
     const
@@ -26,7 +39,7 @@ class ComponentFactory
       id
     } = component,
     channel    = this.createBusChannel(id),
-    Controller = this.locator.locate(`ui/${template}/controller`)
+    Controller = this.getControllerClass(template)
 
     return (page) =>
     {
