@@ -16,6 +16,7 @@ class RadioButtonInputGroupComposer extends ComponentComposer
     return buttons.map((button) =>
     {
       return this.radioButtonInputComposer.compose({
+        label    : button.label,
         id       : button.id,
         name     : 'input',
         parentId : id,

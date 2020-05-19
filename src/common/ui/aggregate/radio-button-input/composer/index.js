@@ -16,6 +16,7 @@ class RadioButtonInputComposer extends ComponentComposer
     required,
     classes,
     value,
+    label,
     name,
     id
   })
@@ -39,6 +40,7 @@ class RadioButtonInputComposer extends ComponentComposer
       required,
       classes,
       value,
+      label,
       name,
       id
     })

@@ -1,1 +1,3 @@
-{{> (lookup this 'template') this}}
+{{#if this}}
+  {{> (lookup this 'template') this}}
+{{/if}}
