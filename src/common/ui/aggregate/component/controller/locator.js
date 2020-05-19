@@ -1,4 +1,4 @@
-const ComponentFactory = require('.')
+const ComponentFactory = require('./factory')
 
 class ComponentFactoryLocator
 {

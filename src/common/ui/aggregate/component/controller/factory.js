@@ -1,4 +1,5 @@
-class ComponentFactory
+const ComponentController = require('.')
+class ComponentControllerFactory
 {
   constructor(configuration, bus, locator, store, hbs, deepfind)
   {
@@ -24,7 +25,7 @@ class ComponentFactory
     catch(error)
     {
       console.warn(`Using basic controller instead ${template} controller`)
-      return this.locator.locate('ui/component/controller')
+      return ComponentController
     }
   }
 
@@ -48,4 +49,4 @@ class ComponentFactory
   }
 }
 
-module.exports = ComponentFactory
+module.exports = ComponentControllerFactory
