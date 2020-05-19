@@ -28,7 +28,10 @@ class ComponentFactory
     channel    = this.createBusChannel(id),
     Controller = this.locator.locate(`ui/${template}/controller`)
 
-    return new Controller(id, schema, bindings, listeners, this.bus, this.store, this.hbs,  channel, this.locator)
+    return (page) =>
+    {
+      return new Controller(id, schema, bindings, listeners, this.bus, this.store, this.hbs,  channel, this.locator, page)
+    }
   }
 }
 

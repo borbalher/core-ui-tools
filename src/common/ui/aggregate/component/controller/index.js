@@ -1,6 +1,6 @@
 class ComponentController
 {
-  constructor(id, schema, bindings, listeners, bus, store, hbs, channel,  locator)
+  constructor(id, schema, bindings, listeners, bus, store, hbs, channel, locator, page)
   {
     this.bus                   = bus
     this.store                 = store
@@ -10,6 +10,7 @@ class ComponentController
     this.bindings              = bindings
     this.listeners             = listeners
     this.locator               = locator
+    this.page                  = page
     this[Symbol.for('id')]     = id
     this[Symbol.for('schema')] = schema
 
@@ -20,7 +21,7 @@ class ComponentController
   render()
   {
     const
-    context                   = this.store.getEntityContext(this[Symbol.for('schema')], this[Symbol.for('id')]),
+    context                   = this.page.getContext(this[Symbol.for('id')]),
     renderedComponentTemplate = this.hbs.compilePartial(context.template, context),
     wrapper                   = document.createElement('div')
 

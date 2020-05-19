@@ -91,7 +91,7 @@ class Page
       {
         const
         data      = this.getData(componentId),
-        component = this.componentFactory.create(data)
+        component = this.componentFactory.create(data)(this)
 
         this.controllers.setController(componentId, component)
       }
