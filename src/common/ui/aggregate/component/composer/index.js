@@ -7,6 +7,7 @@ class ComponentComposer
   constructor(locator, options)
   {
     this.locator   = locator
+    this.options   = options
     this.bindings  = options && options.bindings  ? options.bindings  : {}
     this.listeners = options && options.listeners ? options.listeners : {}
   }
