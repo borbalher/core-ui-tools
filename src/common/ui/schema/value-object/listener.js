@@ -28,6 +28,11 @@ const dto = {
     type        : 'string',
     'not-empty' : true,
     optional    : true
+  },
+  dispatch :
+  {
+    type    : 'boolean',
+    default : false
   }
 }
 

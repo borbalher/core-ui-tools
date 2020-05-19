@@ -31,19 +31,42 @@ class ComponentController
     this.emit('component.rendered', { id: this[Symbol.for('id')], context })
   }
 
-  addComponentListener(publisherChannel, subscriberChannel, eventName, map, locator, eventMapper)
+  addComponentListener(publisherChannel, eventName, map, locator, eventMapper, dispatch)
   {
     const
-    observer = locator      ? this.locator.locate(locator) : undefined,
-    mapper   = eventMapper  ? this.locator.locate(eventMapper) : undefined
+    subscriberId      = this[Symbol.for('id')],
+    subscriberSchema  = this[Symbol.for('schema')],
+    store             = this.store,
+    observer          = locator      ? this.locator.locate(locator)                : undefined,
+    name              = map          ? map                                         : eventName,
+    data              = eventMapper  ? locator.locate(eventMapper).map(event.data) : event.data
 
     this.bus.on(publisherChannel, eventName, (event) =>
     {
-      if(observer)
-        observer.execute({ ...event, meta: { ...event.meta, emitter: subscriberChannel } })
+      if(dispatch)
+      {
+        const action = store.composeAction(name, data, { emitter: subscriberId, schema: subscriberSchema })
+        store.dispatch(action)
+      }
+      else if(observer)
+      {
+        observer.execute({ data, meta: { ...event.meta, emitter: subscriberId } })
+      }
       else
-        this.bus.emit(subscriberChannel, map  ? map : eventName, mapper ? mapper.map(event.data) : event.data)
+      {
+        this.bus.emit(subscriberId, name, data)
+      }
     })
+  }
+
+  getPublisherChannel(channel)
+  {
+    const context = this.page.getContext(this[Symbol.for('id')])
+
+    if(context[channel].id) // TODO WE NEED TO ENSURE THAT THIS IS CORRECT
+      return context[channel].id
+
+    return channel
   }
 
   listen()
@@ -51,11 +74,10 @@ class ComponentController
     for(const key of Object.keys(this.listeners))
     {
       const
-      { publisher, event, map, locator, eventMapper }  = this.listeners[key],
-      publisherChannel  = publisher ? publisher : this[Symbol.for('id')],
-      subscriberChannel = this[Symbol.for('id')]
+      { channel, event, map, locator, eventMapper, dispatch }  = this.listeners[key],
+      publisherChannel  = channel ? this.getPublisherChannel(channel) : this[Symbol.for('id')]
 
-      this.addComponentListener(publisherChannel, subscriberChannel, event, map, locator, eventMapper)
+      this.addComponentListener(publisherChannel, event, map, locator, eventMapper, dispatch)
     }
 
     this.emit('component.listened', { id: this[Symbol.for('id')], listeners: this.listeners })
