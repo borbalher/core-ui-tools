@@ -42,8 +42,7 @@ class EntitySet
   getEntityContext(schemaName, id)
   {
     const
-    type    = this.normalizer.getEntityType(schemaName),
-    entity  = this.getEntity(type, id),
+    entity  = this.getEntity(schemaName, id),
     context = entity ? this.normalizer.denormalize(entity, schemaName, this.entities) : undefined
     return context
   }

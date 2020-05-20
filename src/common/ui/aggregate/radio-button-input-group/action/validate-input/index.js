@@ -9,7 +9,7 @@ class ValidateInputAction
     store
   })
   {
-    this.store                      = store
+    this.store                         = store
     this.radioButtonInputGroupComposer = radioButtonInputGroupComposer
   }
 
@@ -17,7 +17,7 @@ class ValidateInputAction
   {
     const
     context = this.store.getEntityContext(schema, emitter),
-    { input: { required }, label } = context
+    { required, label } = context
 
     let error
 

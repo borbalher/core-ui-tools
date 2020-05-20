@@ -14,15 +14,9 @@
         Cancel
       </button>
       {{#each actions}}
-        {{#if submit}}
-          <button type='submit' form="{{../body.id}}" class='modal-actions__action button button--filled'>
-            {{name}}
-          </button>
-        {{else}}
-          <button class='modal-actions__action button button--filled' data-action="{{id}}">
-            {{name}}
-          </button>
-        {{/if}}
+         <button {{#if submit}}type='submit' form="{{../body.id}}"{{/if}} class='modal-actions__action button button--filled' data-action="{{id}}">
+           {{name}}
+         </button>
       {{/each}}
     </div>
   </div>
