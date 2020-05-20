@@ -1,6 +1,6 @@
-const FormInputComposer = require('.')
+const FormComposer = require('.')
 
-class FormInputComposerLocator
+class FormComposerLocator
 {
   constructor(locator)
   {
@@ -10,11 +10,11 @@ class FormInputComposerLocator
   locate()
   {
     const
-    configuration     = this.locator.locate('core/configuration'),
-    options           = configuration.find('ui.component.form')
+    configuration = this.locator.locate('core/configuration'),
+    options       = configuration.find('ui.component.form')
 
-    return new FormInputComposer(this.locator, options)
+    return new FormComposer(this.locator, options)
   }
 }
 
-module.exports = FormInputComposerLocator
+module.exports = FormComposerLocator

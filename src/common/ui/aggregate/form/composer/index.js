@@ -1,10 +1,25 @@
 const ComponentComposer = require('common/ui/aggregate/component/composer')
 /**
- * FormInput composer
+ * Form composer
  * @class
  */
-class FormInputComposer extends ComponentComposer
+class FormComposer extends ComponentComposer
 {
+  constructor(...args)
+  {
+    super(...args)
+    this.configuration = this.locator.locate('core/configuration')
+
+
+  }
+
+  getFormOptions(template)
+  {
+    this.options   = this.configuration.find(`ui.component.${template}`) || {}
+    this.bindings  = this.options.bindings  ? this.options.bindings  : {}
+    this.listeners = this.options.listeners ? this.options.listeners : {}
+  }
+
   compose({
     listeners = {},
     bindings  = {},
@@ -22,7 +37,11 @@ class FormInputComposer extends ComponentComposer
     ...args
   })
   {
-    const form = super.compose({
+
+    this.getFormOptions(template)
+
+    const
+    form    = super.compose({
       bindings : {
         ...this.bindings,
         ...bindings
@@ -49,4 +68,4 @@ class FormInputComposer extends ComponentComposer
   }
 }
 
-module.exports = FormInputComposer
+module.exports = FormComposer

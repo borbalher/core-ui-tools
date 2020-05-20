@@ -146,12 +146,20 @@ class Store
 
   addEntityToStateByType(type, id, entity, state)
   {
-    const entities  = this.getEntities(type)
+    const
+    stateEntities  = this.getEntities(type),
+    byId           = {},
+    allIds         = [entity.id]
 
-    entities.byId[id] = { ...entity }
-    entities.allIds   = [...new Set([...entities.allIds, entity.id])]
+    byId[id] = { ...entity }
 
-    return { ...state, entities: { ...state.entities, ...entities } }
+    stateEntities.byId   = { ...stateEntities.byId, ...byId }
+    stateEntities.allIds = [...new Set([...stateEntities.allIds, ...allIds])]
+
+    const entityGroup  = {}
+    entityGroup[type]  = stateEntities
+
+    return { ...state, entities: { ...state.entities, ...entityGroup } }
   }
 
   removeEntityFromState(type, id, state)
