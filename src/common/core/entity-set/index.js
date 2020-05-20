@@ -4,13 +4,15 @@ class EntitySet
     entities,
     deepfind,
     deepmerge,
-    normalizer
+    normalizer,
+    coreString
   })
   {
     this.entities   = entities
     this.deepfind   = deepfind
     this.deepmerge  = deepmerge
     this.normalizer = normalizer
+    this.coreString = coreString
   }
 
   setEntities(entities)
@@ -42,7 +44,7 @@ class EntitySet
   {
     const
     entity  = this.getEntity(type, id),
-    context = entity ? this.normalizer.denormalize(entity, `entity/${type}`, this.entities) : undefined
+    context = entity ? this.normalizer.denormalize(entity, `entity/${this.coreString.hyphenate(type)}`, this.entities) : undefined
     return context
   }
 }
