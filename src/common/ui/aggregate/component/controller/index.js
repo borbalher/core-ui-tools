@@ -18,10 +18,22 @@ class ComponentController
     this.listen()
   }
 
+  getContext()
+  {
+    return this.page.getContext(this[Symbol.for('id')])
+  }
+
+  dispatch(name, data, meta = {})
+  {
+    const action = this.store.composeAction(name, data, { ...meta, emitter: this[Symbol.for('id')], schema: this[Symbol.for('schema')] })
+    this.store.dispatch(action)
+    this.emit('action.dispatched', { action })
+  }
+
   render()
   {
     const
-    context                   = this.page.getContext(this[Symbol.for('id')]),
+    context                   = this.getContext(),
     renderedComponentTemplate = this.hbs.compilePartial(context.template, context),
     wrapper                   = document.createElement('div')
 
