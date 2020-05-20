@@ -33,8 +33,8 @@ class ComponentControllerFactory
   {
     const
     {
-      listeners,
-      bindings,
+      listeners = {},
+      bindings  = {},
       template,
       schema,
       id

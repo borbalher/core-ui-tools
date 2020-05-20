@@ -34,8 +34,8 @@ class EntitySet
 
   getAttribute(type, id, attribute, defaultValue = undefined)
   {
-    const entity = this.getEntity(type, id)
-    return entity ? entity[attribute] : defaultValue
+    const entity = this.getEntityContext(type, id)
+    return entity &&  entity[attribute] ? entity[attribute] : defaultValue
   }
 
   getEntityContext(type, id)

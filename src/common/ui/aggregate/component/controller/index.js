@@ -1,6 +1,6 @@
 class ComponentController
 {
-  constructor(id, schema, bindings, listeners, bus, store, hbs, channel, locator, page)
+  constructor(id, schema, bindings = {}, listeners = {}, bus, store, hbs, channel, locator, page)
   {
     this.bus                   = bus
     this.store                 = store
@@ -38,11 +38,12 @@ class ComponentController
     subscriberSchema  = this[Symbol.for('schema')],
     store             = this.store,
     observer          = locator      ? this.locator.locate(locator)                : undefined,
-    name              = map          ? map                                         : eventName,
-    data              = eventMapper  ? locator.locate(eventMapper).map(event.data) : event.data
+    name              = map          ? map                                         : eventName
 
     this.bus.on(publisherChannel, eventName, (event) =>
     {
+      const  data = eventMapper  ? locator.locate(eventMapper).map(event.data) : event.data
+
       if(dispatch)
       {
         const action = store.composeAction(name, data, { emitter: subscriberId, schema: subscriberSchema })

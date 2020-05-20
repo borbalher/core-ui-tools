@@ -4,12 +4,12 @@
  */
 class ComponentComposer
 {
-  constructor(locator, options)
+  constructor(locator, options = {})
   {
     this.locator   = locator
     this.options   = options
-    this.bindings  = options && options.bindings  ? options.bindings  : {}
-    this.listeners = options && options.listeners ? options.listeners : {}
+    this.bindings  = options.bindings  ? options.bindings  : {}
+    this.listeners = options.listeners ? options.listeners : {}
   }
 
   compose({
