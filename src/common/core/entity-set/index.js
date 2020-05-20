@@ -4,15 +4,13 @@ class EntitySet
     entities,
     deepfind,
     deepmerge,
-    normalizer,
-    coreString
+    normalizer
   })
   {
     this.entities   = entities
     this.deepfind   = deepfind
     this.deepmerge  = deepmerge
     this.normalizer = normalizer
-    this.coreString = coreString
   }
 
   setEntities(entities)
@@ -25,26 +23,28 @@ class EntitySet
     return `${type}.byId.${id}`
   }
 
-  getEntity(type, id)
+  getEntity(schemaName, id)
   {
     const
+    type    = this.normalizer.getEntityType(schemaName),
     path    = this.getEntityPath(type, id),
     entity  = this.deepfind.find(path, this.entities)
 
     return entity
   }
 
-  getAttribute(type, id, attribute, defaultValue = undefined)
+  getAttribute(schemaName, id, attribute, defaultValue = undefined)
   {
-    const entity = this.getEntityContext(type, id)
+    const entity = this.getEntityContext(schemaName, id)
     return entity &&  entity[attribute] ? entity[attribute] : defaultValue
   }
 
-  getEntityContext(type, id)
+  getEntityContext(schemaName, id)
   {
     const
+    type    = this.normalizer.getEntityType(schemaName),
     entity  = this.getEntity(type, id),
-    context = entity ? this.normalizer.denormalize(entity, `entity/${this.coreString.hyphenate(type)}`, this.entities) : undefined
+    context = entity ? this.normalizer.denormalize(entity, schemaName, this.entities) : undefined
     return context
   }
 }
