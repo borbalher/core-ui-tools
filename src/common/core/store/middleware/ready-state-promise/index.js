@@ -15,19 +15,19 @@ class ReadyStatePromiseMiddleware
       if(!action.meta.promise)
         return next(action)
 
-      const promiseAction = store.composeAction(action.meta.name, action.data, { promise: undefined, ready: false })
+      const promiseAction = store.composeAction(action.meta.name, action.data, { ...action.meta, promise: undefined, ready: false })
 
       next(promiseAction)
 
       return action.meta.promise
         .then(response =>
         {
-          const successAction = store.composeAction(`${action.meta.name}.success`, { ...action.data, response }, { ready: true })
+          const successAction = store.composeAction(`${action.meta.name}.success`, { ...action.data, response }, { ...action.meta, ready: true })
           return next(successAction)
         })
         .catch(error =>
         {
-          const errorAction = store.composeAction(`${action.meta.name}.error`, { ...action.data, error }, { ready: true })
+          const errorAction = store.composeAction(`${action.meta.name}.error`, { ...action.data, error }, { ...action.meta, ready: true })
           return next(errorAction)
         })
     }

@@ -19,9 +19,9 @@ class Store
   {
     return  {
       meta : {
+        ...meta,
         timestamp : new Date().toISOString(),
-        name,
-        ...meta
+        name
       },
       data
     }
