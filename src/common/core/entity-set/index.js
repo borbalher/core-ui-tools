@@ -42,7 +42,7 @@ class EntitySet
   {
     const
     entity  = this.getEntity(type, id),
-    context = this.normalizer.denormalize(entity, `entity/${type}`, this.entities)
+    context = entity ? this.normalizer.denormalize(entity, `entity/${type}`, this.entities) : undefined
     return context
   }
 }
