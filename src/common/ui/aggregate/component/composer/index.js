@@ -27,6 +27,7 @@ class ComponentComposer
   {
     const component = {
       ...args,
+      options : this.options,
       renderonchange,
       listeners,
       bindings,

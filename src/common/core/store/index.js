@@ -138,7 +138,13 @@ class Store
     return { ...state, entities: { ...state.entities, ...entityGroup } }
   }
 
-  addEntityToState(type, id, entity, state)
+  addEntityToState(schemaName, id, entity, state)
+  {
+    const type = this.getEntityType(schemaName)
+    return this.addEntityToStateByType(type, id, entity, state)
+  }
+
+  addEntityToStateByType(type, id, entity, state)
   {
     const entities  = this.getEntities(type)
 

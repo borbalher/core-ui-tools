@@ -1,6 +1,6 @@
 class ComponentController
 {
-  constructor(id, schema, bindings = {}, listeners = {}, bus, store, hbs, channel, locator, page)
+  constructor(id, schema, bindings = {}, listeners = {}, options = {}, bus, store, hbs, channel, locator, page)
   {
     this.bus                   = bus
     this.store                 = store
@@ -11,6 +11,7 @@ class ComponentController
     this.listeners             = listeners
     this.locator               = locator
     this.page                  = page
+    this.options               = options
     this[Symbol.for('id')]     = id
     this[Symbol.for('schema')] = schema
 
@@ -28,6 +29,28 @@ class ComponentController
     const action = this.store.composeAction(name, data, { ...meta, emitter: this[Symbol.for('id')], schema: this[Symbol.for('schema')] })
     this.store.dispatch(action)
     this.emit('action.dispatched', { action })
+  }
+
+  getChildrenController(name)
+  {
+    const childrenId = this.getChildrenId(name)
+
+    if(childrenId) // TODO WE NEED TO ENSURE THAT THIS IS CORRECT
+      return this.page.controllerRepository.getController(childrenId)
+  }
+
+  getChildrenContext(name)
+  {
+    const context = this.page.getContext(this[Symbol.for('id')])
+    if(context[name] && context[name].id) // TODO WE NEED TO ENSURE THAT THIS IS CORRECT
+      return this.page.getContext(context[name].id)
+  }
+
+  getChildrenId(name)
+  {
+    const context = this.page.getContext(this[Symbol.for('id')])
+    if(context[name] && context[name].id) // TODO WE NEED TO ENSURE THAT THIS IS CORRECT
+      return context[name].id
   }
 
   render()
@@ -72,14 +95,12 @@ class ComponentController
     })
   }
 
-  getPublisherChannel(channel)
+  getChildrenChannel(channel)
   {
     const context = this.page.getContext(this[Symbol.for('id')])
 
     if(context[channel] && context[channel].id) // TODO WE NEED TO ENSURE THAT THIS IS CORRECT
       return context[channel].id
-
-    return channel
   }
 
   listen()
@@ -87,8 +108,15 @@ class ComponentController
     for(const key of Object.keys(this.listeners))
     {
       const
-      { channel, event, map, locator, eventMapper, dispatch }  = this.listeners[key],
-      publisherChannel  = channel ? this.getPublisherChannel(channel) : this[Symbol.for('id')]
+      { channel, event, map, locator, eventMapper, dispatch }  = this.listeners[key]
+
+      let publisherChannel
+      if(!channel)
+        publisherChannel = this[Symbol.for('id')]
+      else if(channel && this.getChildrenChannel(channel))
+        publisherChannel  = this.getChildrenChannel(channel)
+      else
+        publisherChannel = channel
 
       this.addComponentListener(publisherChannel, event, map, locator, eventMapper, dispatch)
     }

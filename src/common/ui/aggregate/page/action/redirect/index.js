@@ -8,6 +8,8 @@ class RedirectAction
     const { data: { url } } = action
 
     window.location.href = url
+
+    return state
   }
 }
 

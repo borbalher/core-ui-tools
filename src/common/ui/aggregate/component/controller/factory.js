@@ -36,6 +36,7 @@ class ComponentControllerFactory
       listeners = {},
       bindings  = {},
       template,
+      options,
       schema,
       id
     } = component,
@@ -44,7 +45,7 @@ class ComponentControllerFactory
 
     return (page) =>
     {
-      return new Controller(id, schema, bindings, listeners, this.bus, this.store, this.hbs,  channel, this.locator, page)
+      return new Controller(id, schema, bindings, listeners, options, this.bus, this.store, this.hbs,  channel, this.locator, page)
     }
   }
 }
