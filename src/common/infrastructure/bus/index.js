@@ -10,9 +10,7 @@ class Bus
 
   createChannel(id)
   {
-    const channel = this.channelFactory.create(id)
-    this.channels.setItem(id, channel)
-    return channel
+    return this.getChannel(id)
   }
 
   deleteChannel(id)
@@ -22,7 +20,17 @@ class Bus
 
   getChannel(id)
   {
-    return this.channels.getItem(id)
+    const existsChannel = this.channels.getItem(id)
+
+    if(!existsChannel)
+    {
+      const channel = this.channelFactory.create(id)
+      this.channels.setItem(id, channel)
+
+      return channel
+    }
+
+    return existsChannel
   }
 
   async emit(channelId, name, data, meta)
@@ -34,10 +42,7 @@ class Bus
   on(channelId, event, listener)
   {
     const channel = this.getChannel(channelId)
-    if(channel)
-      return channel.on(event, listener)
-    else
-      console.warn(`Channel ${channelId} error`)
+    return channel.on(event, listener)
   }
 
   once(channelId, event, listener)
