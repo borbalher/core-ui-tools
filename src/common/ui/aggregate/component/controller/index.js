@@ -76,7 +76,7 @@ class ComponentController
   {
     const context = this.page.getContext(this[Symbol.for('id')])
 
-    if(context[channel].id) // TODO WE NEED TO ENSURE THAT THIS IS CORRECT
+    if(context[channel] && context[channel].id) // TODO WE NEED TO ENSURE THAT THIS IS CORRECT
       return context[channel].id
 
     return channel
