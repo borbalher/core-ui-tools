@@ -47,5 +47,10 @@ module.exports = {
         schema : 'value-object/listener'
       }
     }
+  },
+  options :
+  {
+    type     : 'json',
+    optional : true
   }
 }
