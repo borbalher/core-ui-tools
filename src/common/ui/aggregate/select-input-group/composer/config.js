@@ -13,8 +13,7 @@ module.exports = {
       'select-input-group' :
       {
         bindings :
-        {
-          'validate.text-input.on.change' :
+        [
           {
             selector       : 'select',
             domEvent       : 'change',
@@ -22,7 +21,7 @@ module.exports = {
             event          : 'validate.select.input',
             dispatch       : true
           }
-        }
+        ]
       }
     }
   }

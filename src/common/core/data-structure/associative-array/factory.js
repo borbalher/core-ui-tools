@@ -2,9 +2,9 @@ const AssociativeArray = require('.')
 
 class AssociativeArrayFactory
 {
-  create()
+  create(iterable)
   {
-    return new AssociativeArray()
+    return new AssociativeArray(iterable)
   }
 }
 

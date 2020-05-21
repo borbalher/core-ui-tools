@@ -7,9 +7,9 @@ class MultipleAssociativeArrayFactory
     this.object = object
   }
 
-  create()
+  create(iterable)
   {
-    return new MultipleAssociativeArray(this.object)
+    return new MultipleAssociativeArray(iterable, this.object)
   }
 }
 

@@ -12,8 +12,8 @@ class SelectInputGroupComposer extends ComponentComposer
   }
 
   compose({
-    bindings  = {},
-    listeners = {},
+    bindings  = [],
+    listeners = [],
     renderonchange,
     attribute,
     required,
@@ -47,14 +47,14 @@ class SelectInputGroupComposer extends ComponentComposer
         items,
         value
       }),
-      bindings : {
+      bindings : [
         ...this.bindings,
         ...bindings
-      },
-      listeners : {
+      ],
+      listeners : [
         ...this.listeners,
         ...listeners
-      },
+      ],
       renderonchange,
       attribute,
       required,

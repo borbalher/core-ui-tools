@@ -2,9 +2,9 @@ const AssociativeArray = require('../associative-array')
 
 class MultipleAssociativeArray extends AssociativeArray
 {
-  constructor(object)
+  constructor(iterable, object)
   {
-    super()
+    super(iterable)
     this.object = object
   }
 

@@ -8,15 +8,15 @@ class ComponentComposer
   {
     this.locator   = locator
     this.options   = options
-    this.bindings  = options.bindings  ? options.bindings  : {}
-    this.listeners = options.listeners ? options.listeners : {}
+    this.bindings  = options.bindings  ? options.bindings  : []
+    this.listeners = options.listeners ? options.listeners : []
   }
 
   compose({
-    renderonchange = true,
-    bindings       = {},
-    listeners      = {},
-    parentId       = null,
+    renderonchange = false,
+    bindings       = [],
+    listeners      = [],
+    parentId,
     template,
     classes,
     schema,

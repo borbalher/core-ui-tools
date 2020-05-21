@@ -22,10 +22,10 @@ class SchemaValidatorEdge
     if(typeof data !== 'object')
       throw new InvalidEdgeError(`Element must be an object`)
 
-    if(data.hasOwnProperty('source') && typeof data.source  === 'string')
+    if(data.hasOwnProperty('source') && typeof data.source  !== 'string')
       throw new InvalidEdgeError(`Source must be a string`)
 
-    if(data.hasOwnProperty('target') && typeof data.target  === 'string')
+    if(data.hasOwnProperty('target') && typeof data.target  !== 'string')
       throw new InvalidEdgeError(`Target must be a string`)
 
     try

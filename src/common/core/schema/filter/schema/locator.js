@@ -9,8 +9,7 @@ class SchemaFilterSchemaLocator
 
   locate()
   {
-    const composer = this.locator.locate('core/schema/composer')
-    return new SchemaFilterSchema(composer)
+    return new SchemaFilterSchema(this.locator)
   }
 }
 

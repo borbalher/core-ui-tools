@@ -4,9 +4,9 @@ const MissingSchemaDefinitionError = require('./error/missing-schema-definition'
  */
 class SchemaFilterSchema
 {
-  constructor(composer)
+  constructor(locator)
   {
-    this.composer = composer
+    this.locator = locator
   }
 
   filter(options, data)
@@ -36,9 +36,11 @@ class SchemaFilterSchema
   {
     if(typeof options.schema === 'string')
     {
+      const composer = this.locator.locate('core/schema/composer')
+
       return options.trait
-        ? this.composer.trait(options.schema, options.trait, data)
-        : this.composer.compose(options.schema, data)
+        ? composer.trait(options.schema, options.trait, data)
+        : composer.compose(options.schema, data)
     }
     else
     {

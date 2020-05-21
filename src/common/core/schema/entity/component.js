@@ -1,7 +1,7 @@
 module.exports = {
   '@meta' :
   {
-    extends : 'tree-node'
+    extends : 'entity/tree-node'
   },
   template :
   {
@@ -26,27 +26,17 @@ module.exports = {
   },
   bindings : // TODO
   {
-    type          : 'custom-json',
-    'custom-json' :
-    {
-      type    : 'schema',
-      options :
-      {
-        schema : 'value-object/binding'
-      }
-    }
+    type       : 'schema',
+    collection : true,
+    default    : [],
+    schema     : 'value-object/binding'
   },
   listeners :
   {
-    type          : 'custom-json',
-    'custom-json' :
-    {
-      type    : 'schema',
-      options :
-      {
-        schema : 'value-object/listener'
-      }
-    }
+    type       : 'schema',
+    collection : true,
+    default    : [],
+    schema     : 'value-object/listener'
   },
   options :
   {

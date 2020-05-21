@@ -13,19 +13,14 @@ describe('data-structure/graph', () =>
     const coreFactory = new CoreFactory()
 
     core = coreFactory.create([
-      { name: 'common/core/bootstrap' },
       { name: 'common/core/schema' },
-      { name: 'common/core/data-structure' },
-      { name: 'node/core/schema/bootstrap' }
+      { name: 'common/core/data-structure' }
     ])
 
     core.load().then(() =>
     {
-      core.locate('core/bootstrap').bootstrap().then(() =>
-      {
-        factory = core.locate('data-structure/graph')
-        done()
-      })
+      factory = core.locate('data-structure/graph')
+      done()
     })
   })
 
@@ -34,6 +29,7 @@ describe('data-structure/graph', () =>
     expect(() =>
     {
       factory.create(
+        'my-graph',
         [
           {
             id   : 'a',
@@ -69,6 +65,7 @@ describe('data-structure/graph', () =>
   {
     const
     graph  = factory.create(
+      'my-graph',
       [
         {
           id   : 'a',
@@ -90,6 +87,7 @@ describe('data-structure/graph', () =>
   it('Can add an edge in a directed graph', () =>
   {
     const graph  =  factory.create(
+      'my-graph',
       [
         {
           id   : 'a',
@@ -122,6 +120,7 @@ describe('data-structure/graph', () =>
   it('Can add an edge in a undirected graph', () =>
   {
     const graph  =  factory.create(
+      'my-graph',
       [
         {
           id   : 'a',
@@ -156,6 +155,7 @@ describe('data-structure/graph', () =>
     expect(() =>
     {
       const graph  =  factory.create(
+        'my-graph',
         [
           {
             id   : 'a',
@@ -192,6 +192,7 @@ describe('data-structure/graph', () =>
   it('Can get a BFS path for a graph if startNode exists', () =>
   {
     const graph  =  factory.create(
+      'my-graph',
       [
         {
           id   : 'a',
@@ -243,6 +244,7 @@ describe('data-structure/graph', () =>
   {
     const
     graph  = factory.create(
+      'my-graph',
       [
         {
           id   : 'a',
@@ -334,6 +336,7 @@ describe('data-structure/graph', () =>
   it('Can get a DFS path for a graph if startNode exists', () =>
   {
     const graph = factory.create(
+      'my-graph',
       [
         {
           id   : 'a',
@@ -384,6 +387,7 @@ describe('data-structure/graph', () =>
   it('Should return the proper string tag ', async () =>
   {
     const graph = factory.create(
+      'my-graph',
       [
         {
           id   : 'a',

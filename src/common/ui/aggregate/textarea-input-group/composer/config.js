@@ -13,8 +13,7 @@ module.exports = {
       'textarea-input-group' :
       {
         bindings :
-        {
-          'validate.textarea-input.on.change' :
+        [
           {
             selector       : 'textarea',
             domEvent       : 'change',
@@ -22,7 +21,7 @@ module.exports = {
             event          : 'validate.textarea.input',
             dispatch       : true
           }
-        }
+        ]
       }
     }
   }

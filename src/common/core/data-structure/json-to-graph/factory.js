@@ -7,7 +7,7 @@ class JSONToGraphFactory
     this.composer = composer
   }
 
-  create(entitySchema = 'node')
+  create(entitySchema = 'entity/node')
   {
     return new JSONToGraph(this.composer, entitySchema)
   }

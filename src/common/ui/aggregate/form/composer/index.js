@@ -14,13 +14,13 @@ class FormComposer extends ComponentComposer
   getFormOptions(template)
   {
     this.options   = this.configuration.find(`ui.component.${template}`) || {}
-    this.bindings  = this.options.bindings  ? this.options.bindings  : {}
-    this.listeners = this.options.listeners ? this.options.listeners : {}
+    this.bindings  = this.options.bindings  ? this.options.bindings  : []
+    this.listeners = this.options.listeners ? this.options.listeners : []
   }
 
   compose({
-    listeners = {},
-    bindings  = {},
+    listeners = [],
+    bindings  = [],
     renderonchange,
     parentId,
     template,
@@ -39,14 +39,14 @@ class FormComposer extends ComponentComposer
 
     const
     form    = super.compose({
-      bindings : {
+      bindings : [
         ...this.bindings,
         ...bindings
-      },
-      listeners : {
+      ],
+      listeners : [
         ...this.listeners,
         ...listeners
-      },
+      ],
       renderonchange,
       disabled,
       parentId,

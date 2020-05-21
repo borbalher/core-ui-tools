@@ -13,8 +13,7 @@ module.exports = {
       'password-input-group' :
       {
         bindings :
-        {
-          'validate.password-input.on.change' :
+        [
           {
             selector       : 'input[type="password"]',
             domEvent       : 'change',
@@ -22,7 +21,7 @@ module.exports = {
             event          : 'validate.password.input',
             dispatch       : true
           }
-        }
+        ]
       }
     }
   }

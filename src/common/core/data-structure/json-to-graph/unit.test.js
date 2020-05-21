@@ -13,19 +13,14 @@ describe('data-structure/json-to-graph', () =>
     const coreFactory = new CoreFactory()
 
     core = coreFactory.create([
-      { name: 'common/core/bootstrap' },
       { name: 'common/core/schema' },
-      { name: 'common/core/data-structure' },
-      { name: 'node/core/schema/bootstrap' }
+      { name: 'common/core/data-structure' }
     ])
 
     core.load().then(() =>
     {
-      core.locate('core/bootstrap').bootstrap().then(() =>
-      {
-        jsonToGraphFactory = core.locate('data-structure/json-to-graph/factory')
-        done()
-      })
+      jsonToGraphFactory = core.locate('data-structure/json-to-graph/factory')
+      done()
     })
   })
 

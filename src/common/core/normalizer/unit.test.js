@@ -15,21 +15,15 @@ describe('core/common/normalizer', () =>
     const coreFactory = new CoreFactory()
 
     core = coreFactory.create([
-      { name: 'common/core/bootstrap' },
       { name: 'common/core/schema' },
-      { name: 'node/core/schema/bootstrap' },
-      { name: 'common/core/normalizer' },
-      { name: 'common/core/normalizer/test' }
+      { name: 'common/core/normalizer' }
     ])
 
     core.load().then(() =>
     {
-      core.locate('core/bootstrap').bootstrap().then(() =>
-      {
-        normalizer = core.locate('core/normalizer')
-        composer   = core.locate('core/schema/composer')
-        done()
-      })
+      normalizer = core.locate('core/normalizer')
+      composer   = core.locate('core/schema/composer')
+      done()
     })
   })
 
@@ -37,10 +31,10 @@ describe('core/common/normalizer', () =>
   {
     let type
 
-    type = normalizer.getEntityType('entity/a')
-    expect(type).to.be.equal('a')
+    type = normalizer.getEntityType('entity/node')
+    expect(type).to.be.equal('node')
 
-    type = normalizer.getEntityType('value-object/a')
+    type = normalizer.getEntityType('value/edge')
     expect(type).to.be.equal(undefined)
   })
 
@@ -48,42 +42,56 @@ describe('core/common/normalizer', () =>
   {
     let isEntity
 
-    isEntity = normalizer.isEntity('entity/a')
+    isEntity = normalizer.isEntity('entity/node')
     expect(isEntity).to.be.equal(true)
 
-    isEntity = normalizer.isEntity('value-object/a')
+    isEntity = normalizer.isEntity('value/edge')
     expect(isEntity).to.be.equal(false)
   })
 
   it('Can normalize a json and get the json back', () =>
   {
     const
-    composedFoobar = composer.compose('entity/foobar', {
-      id  : 'foobar-id',
-      foo :
-      [
+    graph = composer.compose('entity/graph', {
+      id    : 'my-graph',
+      nodes : [
         {
-          id    : 'foo-id',
-          value : 'foo',
-          bar   :
-          {
-            id    : 'foo-bar-id',
-            value : 'foo > bar'
-          }
+          id   : 'a',
+          name : 'a'
+        },
+        {
+          id   : 'b',
+          name : 'b'
+        },
+        {
+          id   : 'c',
+          name : 'c'
+        },
+        {
+          id   : 'd',
+          name : 'd'
         }
       ],
-      bar :
-      {
-        id    : 'bar-id',
-        value : 'bar'
-      },
-      baz :
-      {
-        value : 'baz'
-      }
+      edges : [
+        {
+          source  : 'a',
+          target  : 'b',
+          payload : {}
+        },
+        {
+          source  : 'a',
+          target  : 'c',
+          payload : {}
+        },
+        {
+          source  : 'c',
+          target  : 'd',
+          payload : {}
+        }
+      ]
     }),
-    entities            = normalizer.normalize(composedFoobar, 'entity/foobar'),
-    reconstructedFoobar = normalizer.denormalize(entities['foobar'].byId['foobar-id'], 'entity/foobar', entities)
-    expect(composedFoobar).to.be.deep.equal(reconstructedFoobar)
+    entities           = normalizer.normalize(graph, 'entity/graph'),
+    reconstructedGraph = normalizer.denormalize(entities['graph'].byId['my-graph'], 'entity/graph', entities)
+    expect(graph).to.be.deep.equal(reconstructedGraph)
   })
 })

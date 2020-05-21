@@ -13,8 +13,7 @@ module.exports = {
       'modal' :
       {
         bindings :
-        {
-          'on.modal.action.clicked' :
+        [
           {
             selector       : '.modal-actions__action[data-action]',
             domEvent       : 'click',
@@ -22,7 +21,6 @@ module.exports = {
             event          : 'dispatch.action',
             preventDefault : true
           },
-          'on.modal.close.button.clicked' :
           {
             selector       : '.close-modal__button',
             domEvent       : 'click',
@@ -30,15 +28,14 @@ module.exports = {
             event          : 'dispatch.action',
             preventDefault : true
           }
-        },
+        ],
         listeners :
-        {
-          'dispatch.action' :
+        [
           {
             event   : 'dispatch.action',
             locator : 'ui/modal/listener/on-dispatch-action'
           }
-        }
+        ]
       }
     }
   }

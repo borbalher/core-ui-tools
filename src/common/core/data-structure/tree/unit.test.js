@@ -13,19 +13,14 @@ describe('data-structure/tree', () =>
     const coreFactory = new CoreFactory()
 
     core = coreFactory.create([
-      { name: 'common/core/bootstrap' },
       { name: 'common/core/schema' },
-      { name: 'common/core/data-structure' },
-      { name: 'node/core/schema/bootstrap' }
+      { name: 'common/core/data-structure' }
     ])
 
     core.load().then(() =>
     {
-      core.locate('core/bootstrap').bootstrap().then(() =>
-      {
-        factory = core.locate('data-structure/tree')
-        done()
-      })
+      factory = core.locate('data-structure/tree')
+      done()
     })
   })
 
@@ -34,6 +29,7 @@ describe('data-structure/tree', () =>
     expect(() =>
     {
       factory.create(
+        'my-tree',
         [
           {
             id   : 'a',
@@ -68,6 +64,7 @@ describe('data-structure/tree', () =>
   it('Can set the tree root if node exists', () =>
   {
     const tree = factory.create(
+      'my-tree',
       [
         {
           id   : 'a',
@@ -141,6 +138,7 @@ describe('data-structure/tree', () =>
   it('Can get tree leaves', () =>
   {
     const tree = factory.create(
+      'my-tree',
       [
         {
           id   : 'a',
@@ -176,6 +174,7 @@ describe('data-structure/tree', () =>
   it('Can get a JSON tree flattened', () =>
   {
     const tree = factory.create(
+      'my-tree',
       [
         {
           id   : 'a',
@@ -243,6 +242,7 @@ describe('data-structure/tree', () =>
   it('Can get a JSON tree', () =>
   {
     const tree = factory.create(
+      'my-tree',
       [
         {
           id   : 'a',
@@ -307,6 +307,7 @@ describe('data-structure/tree', () =>
   it('Should return the proper string tag ', async () =>
   {
     const tree = factory.create(
+      'my-tree',
       [
         {
           id   : 'a',

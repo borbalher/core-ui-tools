@@ -30,8 +30,8 @@ class RadioButtonInputGroupComposer extends ComponentComposer
   }
 
   compose({
-    listeners = {},
-    bindings  = {},
+    listeners = [],
+    bindings  = [],
     buttons   = [],
     renderonchange,
     attribute,
@@ -50,14 +50,14 @@ class RadioButtonInputGroupComposer extends ComponentComposer
       buttons  : this.composeRadioButtons(buttons, id, value, attribute, disabled, readonly, required),
       schema   : 'entity/radio-button-input-group',
       template : 'radio-button-input-group',
-      bindings : {
+      bindings : [
         ...this.bindings,
         ...bindings
-      },
-      listeners : {
+      ],
+      listeners : [
         ...this.listeners,
         ...listeners
-      },
+      ],
       renderonchange,
       attribute,
       disabled,

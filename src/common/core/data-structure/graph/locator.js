@@ -12,8 +12,13 @@ class GraphLocator
    */
   locate()
   {
-    const object = this.locator.locate('core/object')
-    return new GraphFactory(object)
+    const
+    multipleAssociativeArrayFactory = this.locator.locate('data-structure/multiple-associative-array'),
+    associativeArrayFactory         = this.locator.locate('data-structure/associative-array'),
+    queueFactory                    = this.locator.locate('data-structure/queue'),
+    composer                        = this.locator.locate('core/schema/composer')
+
+    return new GraphFactory(multipleAssociativeArrayFactory, associativeArrayFactory, queueFactory, composer)
   }
 }
 

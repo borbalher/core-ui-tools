@@ -1,19 +1,12 @@
-const
-// NodeNotExist              = require('./error/node-not-exists'),
-Queue                     = require('../queue'),
-MultipleAssociativeArray  = require('../multiple-associative-array'),
-AssociativeArray          = require('../associative-array')
-
 class Graph
 {
-  constructor(object, nodes, edges, isDirected)
+  constructor(id, nodes, edges, isDirected, queue)
   {
-    this.edges      = new MultipleAssociativeArray(object)
-    this.nodes      = new AssociativeArray()
-    this.isDirected = isDirected
-
-    this.addNodes(nodes)
-    this.addEdges(edges)
+    this.nodes             = nodes
+    this.edges             = edges
+    this.queue             = queue
+    this.isDirected        = isDirected
+    this[Symbol.for('id')] = id
   }
 
   reset()
@@ -88,18 +81,19 @@ class Graph
   {
     const
     visited = {},
-    path    = [],
-    queue   = new Queue()
+    path    = []
+
+    this.queue.reset()
 
     if(!this.nodes.getItem(startNodeId))
       return path
 
     visited[startNodeId] = true
-    queue.enqueue(startNodeId)
+    this.queue.enqueue(startNodeId)
 
-    while(!queue.isEmpty())
+    while(!this.queue.isEmpty())
     {
-      const sourceNodeId  = queue.dequeue()
+      const sourceNodeId  = this.queue.dequeue()
 
       path.push(sourceNodeId)
 
@@ -113,7 +107,7 @@ class Graph
           const targetNodeId = edge.target
 
           if(!visited[targetNodeId])
-            queue.enqueue(targetNodeId)
+            this.queue.enqueue(targetNodeId)
         }
       }
     }

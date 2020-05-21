@@ -5,18 +5,58 @@ InvalidSchemaError                  = require('./error/invalid-schema'),
 SchemaNotFoundError                 = require('./error/schema-not-found'),
 FilterIsNotHoneringContractError    = require('./error/filter-is-not-honering-contract'),
 ValidatorIsNotHoneringContractError = require('./error/validator-is-not-honering-contract'),
-ValidatorNotFoundError              = require('./error/validator-not-found')
+ValidatorNotFoundError              = require('./error/validator-not-found'),
+SchemaNotResolvable                 = require('./error/schema-not-resolvable')
 
 class SchemaComposer
 {
-  constructor(deepmerge, deepclone, deepfreeze)
+  constructor(locator, deepmerge, deepclone, deepfreeze, schemas, filters, validators)
   {
+    this.locator    = locator
     this.deepmerge  = deepmerge
     this.deepclone  = deepclone
     this.deepfreeze = deepfreeze
     this.schemas    = {}
     this.filters    = {}
     this.validators = {}
+
+    this.addSchemas(schemas)
+    this.addFilters(filters)
+    this.addValidators(validators)
+  }
+
+  addSchemas(schemas)
+  {
+    for(const schemaName in schemas || [])
+    {
+      try
+      {
+        const schema = require(`schema/${schemas[schemaName]}`)
+        this.addSchema(schemaName, schema)
+      }
+      catch(error)
+      {
+        throw new SchemaNotResolvable(`Could not resolve path for schema: "${schemaName}", path: "${schemas[schemaName]}"`)
+      }
+    }
+  }
+
+  addFilters(filters)
+  {
+    for(const filterName in filters || [])
+    {
+      const filter = this.locator.locate(filters[filterName])
+      this.addFilter(filterName, filter)
+    }
+  }
+
+  addValidators(validators)
+  {
+    for(const validatorName in validators || [])
+    {
+      const validator = this.locator.locate(validators[validatorName])
+      this.addValidator(validatorName, validator)
+    }
   }
 
   /**

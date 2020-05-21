@@ -13,19 +13,14 @@ describe('data-structure/stack', () =>
     const coreFactory = new CoreFactory()
 
     core = coreFactory.create([
-      { name: 'common/core/bootstrap' },
       { name: 'common/core/schema' },
-      { name: 'common/core/data-structure' },
-      { name: 'node/core/schema/bootstrap' }
+      { name: 'common/core/data-structure' }
     ])
 
     core.load().then(() =>
     {
-      core.locate('core/bootstrap').bootstrap().then(() =>
-      {
-        factory = core.locate('data-structure/stack')
-        done()
-      })
+      factory = core.locate('data-structure/stack')
+      done()
     })
   })
 

@@ -7,7 +7,7 @@ class JSONToTreeFactory
     this.composer = composer
   }
 
-  create(entitySchema = 'tree-node')
+  create(entitySchema = 'entity/tree-node')
   {
     return new JSONToTree(this.composer, entitySchema)
   }

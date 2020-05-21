@@ -19,7 +19,6 @@ describe('infrastructure/bus', () =>
       { name: 'common/core/object' },
       { name: 'common/core/string' },
       { name: 'common/core/data-structure' },
-      { name: 'node/core/schema/bootstrap' },
       { name: 'common/infrastructure/bus' }
     ])
 
@@ -53,7 +52,7 @@ describe('infrastructure/bus', () =>
 
     bus.deleteChannel(channelId)
 
-    const channel = bus.getChannel(channelId)
+    const channel = bus.channels.getItem(channelId)
     expect(channel).to.be.deep.equal(undefined)
   })
 
@@ -102,7 +101,7 @@ describe('infrastructure/bus', () =>
 
   it('Can on once into a channel', async () =>
   {
-    const channelId   = 'my-custom-channel'
+    const channelId   = 'Can on once into a channel'
 
     bus.createChannel(channelId)
 
@@ -136,7 +135,7 @@ describe('infrastructure/bus', () =>
 
   it('Can remove all listeners from an event in a specific channel', () =>
   {
-    const channelId   = 'my-custom-channel'
+    const channelId   = 'remove all listeners from an event'
 
     bus.createChannel(channelId)
 
@@ -155,7 +154,7 @@ describe('infrastructure/bus', () =>
 
   it('Can remove an listener from an event in a specific channel', () =>
   {
-    const channelId   = 'my-custom-channel'
+    const channelId   = 'remove an listener from an event'
 
     bus.createChannel(channelId)
 

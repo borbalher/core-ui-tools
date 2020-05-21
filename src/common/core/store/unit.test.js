@@ -16,7 +16,6 @@ describe('core/store', () =>
     core = coreFactory.create([
       { name: 'common/core/bootstrap' },
       { name: 'common/core/schema' },
-      { name: 'node/core/schema/bootstrap' },
       { name: 'common/core/listener' },
       { name: 'common/infrastructure/bus' },
       { name: 'common/core/normalizer' },
@@ -46,14 +45,14 @@ describe('core/store', () =>
     store.setState({
       entities :
       {
-        comment :
+        node :
         {
           byId :
           {
             1 :
             {
-              id    : 1,
-              value : 'First'
+              id   : 1,
+              name : 'A'
             }
           },
           allIds : [1]
@@ -66,14 +65,14 @@ describe('core/store', () =>
     expect(state).to.be.deep.equal({
       entities :
       {
-        comment :
+        node :
         {
           byId :
           {
             1 :
             {
-              id    : 1,
-              value : 'First'
+              id   : 1,
+              name : 'A'
             }
           },
           allIds : [1]
@@ -92,26 +91,26 @@ describe('core/store', () =>
 
   it('Can dispatch an action', () =>
   {
-    const action = store.composeAction('add.comment', { comment: { id: 2, value: 'Second' } }, { charset: 'utf-8' })
+    const action = store.composeAction('add.node', { node: { id: 2, name: 'B' } }, { charset: 'utf-8' })
     store.dispatch(action)
 
     const state = store.getState()
     expect(state).to.be.deep.equal({
       entities :
       {
-        comment :
+        node :
         {
           byId :
           {
             1 :
             {
-              id    : 1,
-              value : 'First'
+              id   : 1,
+              name : 'A'
             },
             2 :
             {
-              id    : 2,
-              value : 'Second'
+              id   : 2,
+              name : 'B'
             }
           },
           allIds : [1, 2]
@@ -119,16 +118,5 @@ describe('core/store', () =>
       }
     })
   })
-
-  // it('Can set the view model', async () =>
-  // {
-  //   bus.on('view-model', 'view.model.changed', (event) =>
-  //   {
-  //     const { data: { previous, current } } = event
-  //     expect(previous).to.be.not.deep.equal(current)
-  //   })
-
-  //   viewModel.setViewModel({ classes: 'my-class' })
-  // })
 })
 

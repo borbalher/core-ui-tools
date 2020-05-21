@@ -50,7 +50,7 @@ class JSONToGraph
 
         edges.push({ source: element.id, target: childNode.id, payload: {} })
 
-        if(this.isDirected)
+        if(!this.isDirected)
           edges.push({ source: childNode.id, target: element.id, payload: {} })
       }
       else

@@ -1,7 +1,7 @@
 const dto = {
   '@meta' :
   {
-    extends : 'node'
+    extends : 'entity/node'
   },
   buttonText :
   {

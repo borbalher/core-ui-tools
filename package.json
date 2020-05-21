@@ -55,6 +55,7 @@
   },
   "_moduleAliases": {
     "~root": ".",
+    "schema": "src/common/core/schema",
     "common": "src/common",
     "browser": "src/browser",
     "node": "src/node"

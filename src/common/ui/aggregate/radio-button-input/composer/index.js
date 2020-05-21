@@ -6,8 +6,8 @@ const ComponentComposer = require('common/ui/aggregate/component/composer')
 class RadioButtonInputComposer extends ComponentComposer
 {
   compose({
-    listeners = {},
-    bindings  = {},
+    listeners = [],
+    bindings  = [],
     renderonchange,
     attribute,
     disabled,
@@ -24,14 +24,14 @@ class RadioButtonInputComposer extends ComponentComposer
     const radioButtonInput = super.compose({
       schema   : 'entity/radio-button-input',
       template : 'radio-button-input',
-      bindings : {
+      bindings : [
         ...this.bindings,
         ...bindings
-      },
-      listeners : {
+      ],
+      listeners : [
         ...this.listeners,
         ...listeners
-      },
+      ],
       renderonchange,
       attribute,
       disabled,

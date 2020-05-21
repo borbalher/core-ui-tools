@@ -2,7 +2,7 @@ module.exports = {
   '@meta' :
   {
     immutable : false,
-    extends   : 'graph'
+    extends   : 'entity/graph'
   },
   isDirected :
   {

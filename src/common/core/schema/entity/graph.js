@@ -1,4 +1,9 @@
 module.exports = {
+  id :
+  {
+    type        : 'string',
+    'not-empty' : false
+  },
   isDirected :
   {
     type    : 'boolean',
@@ -6,13 +11,15 @@ module.exports = {
   },
   nodes :
   {
-    type       : 'node',
+    type       : 'schema',
+    schema     : 'entity/node',
     collection : true,
     default    : []
   },
   edges :
   {
-    type       : 'edge',
+    type       : 'schema',
+    schema     : 'value/edge',
     collection : true,
     default    : []
   }

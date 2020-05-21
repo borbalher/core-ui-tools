@@ -13,8 +13,7 @@ module.exports = {
       'table' :
       {
         bindings :
-        {
-          'on.table.action.clicked' :
+        [
           {
             selector       : '.table__cell-action',
             domEvent       : 'click',
@@ -22,7 +21,7 @@ module.exports = {
             event          : 'table.action.clicked',
             dispatch       : true
           }
-        }
+        ]
       }
     }
   }

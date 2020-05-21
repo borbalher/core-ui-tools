@@ -4,11 +4,10 @@ NodeNotExist = require('../graph/error/node-not-exists')
 
 class Tree extends Graph
 {
-  constructor(object, deepassign, nodes, edges, isDirected, root)
+  constructor(id, nodes, edges, isDirected, queue, root, deepassign)
   {
-    super(object, nodes, edges, isDirected)
+    super(id, nodes, edges, isDirected, queue)
     this.deepassign = deepassign
-
     if(root) this.setRoot(root)
   }
 

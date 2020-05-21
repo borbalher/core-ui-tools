@@ -17,8 +17,7 @@ describe('common/core/event-emitter/factory', () =>
       { name: 'common/core/listener' },
       { name: 'common/core/schema' },
       { name: 'common/core/string' },
-      { name: 'common/core/data-structure' },
-      { name: 'node/core/schema/bootstrap' }
+      { name: 'common/core/data-structure' }
     ])
 
     core.load().then(() =>

@@ -17,14 +17,14 @@ class PageComposer
     return {
       css       : options && options.css       ? options.css       : [],
       scripts   : options && options.scripts   ? options.scripts   : [],
-      bindings  : options && options.bindings  ? options.bindings  : {},
-      listeners : options && options.listeners ? options.listeners : {}
+      bindings  : options && options.bindings  ? options.bindings  : [],
+      listeners : options && options.listeners ? options.listeners : []
     }
   }
 
   compose({
-    listeners = {},
-    bindings  = {},
+    listeners = [],
+    bindings  = [],
     css       = [],
     scripts   = [],
     renderonchange,
@@ -47,15 +47,14 @@ class PageComposer
         ...options.css,
         ...css
       ],
-      bindings : {
+      bindings : [
         ...options.bindings,
         ...bindings
-      },
-      listeners : {
+      ],
+      listeners : [
         ...options.listeners,
         ...listeners
-      },
-      parentId : null,
+      ],
       renderonchange,
       template,
       classes,

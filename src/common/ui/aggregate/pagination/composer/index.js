@@ -98,8 +98,8 @@ class PaginationComposer extends ComponentComposer
   }
 
   compose({
-    listeners = {},
-    bindings  = {},
+    listeners = [],
+    bindings  = [],
     renderonchange,
     totalElements,
     selectedPage,
@@ -121,14 +121,14 @@ class PaginationComposer extends ComponentComposer
     return super.compose({
       schema   : 'entity/pagination',
       template : 'pagination',
-      bindings : {
+      bindings : [
         ...this.bindings,
         ...bindings
-      },
-      listeners : {
+      ],
+      listeners : [
         ...this.listeners,
         ...listeners
-      },
+      ],
       renderonchange,
       rightOverflow,
       totalElements,

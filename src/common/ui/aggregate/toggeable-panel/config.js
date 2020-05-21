@@ -13,8 +13,7 @@ module.exports = {
       'toggeable-panel' :
       {
         bindings :
-        {
-          'toggle.panel.on.change' :
+        [
           {
             selector       : 'input[type="checkbox"]',
             domEvent       : 'change',
@@ -22,7 +21,7 @@ module.exports = {
             event          : 'toggle.panel',
             dispatch       : true
           }
-        }
+        ]
       }
     }
   }

@@ -46,14 +46,14 @@ class CheckboxInputGroupComposer extends ComponentComposer
         title,
         value
       }),
-      bindings : {
+      bindings : [
         ...this.bindings,
         ...bindings
-      },
-      listeners : {
+      ],
+      listeners : [
         ...this.listeners,
         ...listeners
-      },
+      ],
       renderonchange,
       attribute,
       required,

@@ -1,8 +1,8 @@
 class AssociativeArray
 {
-  constructor()
+  constructor(iterable)
   {
-    this.items  = new Map()
+    this.items  = new Map(iterable)
   }
 
   getItem(key)

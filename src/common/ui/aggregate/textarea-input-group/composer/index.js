@@ -12,8 +12,8 @@ class TextareaInputGroupGroupComposer extends ComponentComposer
   }
 
   compose({
-    bindings  = {},
-    listeners = {},
+    bindings  = [],
+    listeners = [],
     renderonchange,
     placeholder,
     maxLength,
@@ -54,14 +54,14 @@ class TextareaInputGroupGroupComposer extends ComponentComposer
         value,
         rows
       }),
-      bindings : {
+      bindings : [
         ...this.bindings,
         ...bindings
-      },
-      listeners : {
+      ],
+      listeners : [
         ...this.listeners,
         ...listeners
-      },
+      ],
       renderonchange,
       attribute,
       required,

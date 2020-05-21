@@ -1,23 +1,16 @@
 module.exports = {
   core :
   {
-    schema :
-    {
-      composer :
-      {
-        'entity/comment' : `${__dirname}/schema/entity/comment`
-      }
-    },
     reducer :
     {
       actions :
       {
-        'add.comment' : 'test/action/add-comment'
+        'add.node' : 'test/action/add-node'
       }
     },
     locator :
     {
-      'test/action/add-comment' : `${__dirname}/action/add-comment`
+      'test/action/add-node' : `${__dirname}/action/add-node`
     }
   }
 }

@@ -12,8 +12,8 @@ class PasswordInputGroupComposer extends ComponentComposer
   }
 
   compose({
-    bindings  = {},
-    listeners = {},
+    bindings  = [],
+    listeners = [],
     renderonchange,
     placeholder,
     attribute,
@@ -47,14 +47,14 @@ class PasswordInputGroupComposer extends ComponentComposer
         title,
         value
       }),
-      bindings : {
+      bindings : [
         ...this.bindings,
         ...bindings
-      },
-      listeners : {
+      ],
+      listeners : [
         ...this.listeners,
         ...listeners
-      },
+      ],
       renderonchange,
       attribute,
       required,

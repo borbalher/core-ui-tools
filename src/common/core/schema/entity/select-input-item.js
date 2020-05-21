@@ -1,5 +1,5 @@
 module.exports = {
   '@meta' : {
-    extends : 'node'
+    extends : 'entity/node'
   }
 }

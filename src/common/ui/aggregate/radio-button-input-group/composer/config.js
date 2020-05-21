@@ -13,8 +13,7 @@ module.exports = {
       'radio-button-input-group' :
       {
         bindings :
-        {
-          'validate.radio-button-input.on.change' :
+        [
           {
             selector       : 'input[type="radio"]',
             domEvent       : 'change',
@@ -22,7 +21,7 @@ module.exports = {
             event          : 'validate.radio.button.input',
             dispatch       : true
           }
-        }
+        ]
       }
     }
   }

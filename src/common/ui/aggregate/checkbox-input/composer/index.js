@@ -7,8 +7,8 @@ const ComponentComposer = require('common/ui/aggregate/component/composer')
 class CheckboxInputComposer extends ComponentComposer
 {
   compose({
-    listeners = {},
-    bindings  = {},
+    listeners = [],
+    bindings  = [],
     renderonchange,
     attribute,
     disabled,
@@ -26,14 +26,14 @@ class CheckboxInputComposer extends ComponentComposer
     checkboxInput = super.compose({
       template : 'checkbox-input',
       schema   : 'entity/checkbox-input',
-      bindings : {
+      bindings : [
         ...this.bindings,
         ...bindings
-      },
-      listeners : {
+      ],
+      listeners : [
         ...this.listeners,
         ...listeners
-      },
+      ],
       renderonchange,
       attribute,
       disabled,

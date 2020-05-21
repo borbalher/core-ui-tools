@@ -12,8 +12,8 @@ class TextInputGroupComposer extends ComponentComposer
   }
 
   compose({
-    bindings  = {},
-    listeners = {},
+    bindings  = [],
+    listeners = [],
     renderonchange,
     autocomplete,
     placeholder,
@@ -53,14 +53,14 @@ class TextInputGroupComposer extends ComponentComposer
         title,
         value
       }),
-      bindings : {
+      bindings : [
         ...this.bindings,
         ...bindings
-      },
-      listeners : {
+      ],
+      listeners : [
         ...this.listeners,
         ...listeners
-      },
+      ],
       renderonchange,
       attribute,
       required,
