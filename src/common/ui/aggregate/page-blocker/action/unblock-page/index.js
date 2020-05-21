@@ -10,7 +10,7 @@ class UnblockPageAction
 
   execute(action, state)
   {
-    return { ...state, ui: { isBlocked: false } }
+    return { ...state, ui: { ...state.ui, isBlocked: false } }
   }
 }
 

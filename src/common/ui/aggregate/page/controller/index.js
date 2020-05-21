@@ -97,7 +97,7 @@ class Page
       const eventMapper = mapper ? locator.locate(mapper) : undefined
 
       for(const channel of channels)
-        bus.emit(channel, map  ? map : domEvent, eventMapper ? eventMapper.map(event, this) : event.data)
+        bus.emit(channel, map  ? map : domEvent, eventMapper ? eventMapper.map(event, this) : { event, node: this })
     })
   }
 

@@ -36,7 +36,7 @@ class ComponentController
     const childrenId = this.getChildrenId(name)
 
     if(childrenId) // TODO WE NEED TO ENSURE THAT THIS IS CORRECT
-      return this.page.controllerRepository.getController(childrenId)
+      return this.page.controllers.getController(childrenId)
   }
 
   getChildrenContext(name)
@@ -144,7 +144,7 @@ class ComponentController
       const
       name        = event           ? event                                 : domEvent,
       eventMapper = domEventMapper  ? locator.locate(domEventMapper)        : undefined,
-      data        = domEventMapper  ? eventMapper.map(domEventObject, this) : { event }
+      data        = domEventMapper  ? eventMapper.map(domEventObject, this) : { event, node: this }
 
       if(dispatch)
       {
