@@ -10,6 +10,7 @@ class Page
     channel,
     object,
     schema,
+    store,
     id
   })
   {
@@ -21,6 +22,7 @@ class Page
     this.composer               = composer
     this.channel                = channel
     this.object                 = object
+    this.store                  = store
 
     this.tree                   = this.createTreeFromContext(initialViewModel)
 
@@ -34,13 +36,6 @@ class Page
     return this.treeFactory.create(nodes, edges, root)
   }
 
-  isComponent(data = {})
-  {
-    const { schema, id, name, template, bindings, listeners } = data
-
-    return schema && id && name && template && bindings && listeners
-  }
-
   update(previous, current)
   {
     const previousTree = this.createTreeFromContext(previous)
@@ -52,15 +47,12 @@ class Page
     let exclude = []
     for(const componentId of path)
     {
-      if(this.isComponent(this.tree.nodes.getItem(componentId)))
-      {
-        const
-        previous = previousTree.nodes.getItem(componentId),
-        current  = this.tree.nodes.getItem(componentId)
+      const
+      previous = previousTree.nodes.getItem(componentId),
+      current  = this.tree.nodes.getItem(componentId)
 
-        if(!this.object.isEqual(previous, current) && exclude.indexOf(componentId) === -1)
-          exclude = [...exclude,  ...this.onComponentChange(componentId, previous, current)]
-      }
+      if(!this.object.isEqual(previous, current) && exclude.indexOf(componentId) === -1)
+        exclude = [...exclude,  ...this.onComponentChange(componentId, previous, current)]
     }
   }
 

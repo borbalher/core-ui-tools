@@ -7,6 +7,6 @@ module.exports = {
   {
     type        : 'string',
     'not-empty' : true,
-    nullable    : true
+    optional    : true
   }
 }

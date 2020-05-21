@@ -1,11 +1,17 @@
-const JSONSToGraph = require('.')
+const JSONToTreeFactory = require('./factory')
 
-class JSONSToGraphLocator
+class JSONToTreeFactoryLocator
 {
+  constructor(locator)
+  {
+    this.locator = locator
+  }
+
   locate()
   {
-    return new JSONSToGraph()
+    const composer = this.locator.locate('core/schema/composer')
+    return new JSONToTreeFactory(composer)
   }
 }
 
-module.exports = JSONSToGraphLocator
+module.exports = JSONToTreeFactoryLocator

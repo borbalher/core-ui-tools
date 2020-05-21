@@ -1,25 +1,41 @@
-const isNode = require('../is-node')
-
-class JSONToTree
+class JSONToGraph
 {
-  convert(json)
+  constructor(composer, nodeSchema)
+  {
+    this.composer   = composer
+    this.nodeSchema = nodeSchema
+  }
+
+  isNode(json)
+  {
+    try
+    {
+      return this.composer.compose(this.nodeSchema, json)
+    }
+    catch(error)
+    {
+      return false
+    }
+  }
+
+  convert(json, isDirected = false)
   {
     const
     nodes = [],
     edges = []
 
     let root
-    if(isNode(json))
+    if(this.isNode(json))
     {
-      const rootNode = this.mapNode(json, nodes, edges)
+      const rootNode = this.mapNode(json, nodes, edges, isDirected)
       nodes.unshift(rootNode)
       root = rootNode.id
     }
 
-    return { nodes, edges, isDirected: true, root }
+    return { nodes, edges, isDirected: false, root }
   }
 
-  mapNode(element, nodes, edges)
+  mapNode(element, nodes, edges, isDirected, parentId)
   {
     const
     { id, name } = element,
@@ -28,11 +44,13 @@ class JSONToTree
 
     for(const key of keys)
     {
-      if(isNode(element[key]))
+      if(this.isNode(element[key]))
       {
-        const child = this.mapNode(element[key], nodes, edges)
-        nodes.push(child)
-        edges.push({ source: element.id, target: child.id, payload: {} })
+        const childNode = this.mapNode(element[key], nodes, edges, isDirected, id)
+
+        nodes.push(childNode)
+
+        edges.push({ source: element.id, target: childNode.id, payload: {} })
       }
       else
       {
@@ -40,8 +58,8 @@ class JSONToTree
       }
     }
 
-    return node
+    return { ...node, parentId }
   }
 }
 
-module.exports = JSONToTree
+module.exports = JSONToGraph

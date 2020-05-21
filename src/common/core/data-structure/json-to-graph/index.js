@@ -1,6 +1,6 @@
 class JSONToGraph
 {
-  constructor(composer, nodeSchema = 'entity/node')
+  constructor(composer, nodeSchema)
   {
     this.composer   = composer
     this.nodeSchema = nodeSchema
@@ -44,15 +44,13 @@ class JSONToGraph
     {
       if(this.isNode(element[key]))
       {
-        const
-        child     = element[key],
-        childNode = this.mapNode(child, nodes, edges, isDirected)
+        const childNode = this.mapNode(element[key], nodes, edges, isDirected)
 
         nodes.push(childNode)
 
         edges.push({ source: element.id, target: childNode.id, payload: {} })
 
-        if(!this.isDirected)
+        if(this.isDirected)
           edges.push({ source: childNode.id, target: element.id, payload: {} })
       }
       else

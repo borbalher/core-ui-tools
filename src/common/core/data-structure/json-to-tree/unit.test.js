@@ -6,7 +6,7 @@ describe('data-structure/json-to-tree', () =>
 
   let
   core,
-  jsonToTree
+  jsonToTreeFactory
 
   before((done) =>
   {
@@ -23,7 +23,7 @@ describe('data-structure/json-to-tree', () =>
     {
       core.locate('core/bootstrap').bootstrap().then(() =>
       {
-        jsonToTree = core.locate('data-structure/json-to-tree')
+        jsonToTreeFactory = core.locate('data-structure/json-to-tree/factory')
         done()
       })
     })
@@ -31,7 +31,9 @@ describe('data-structure/json-to-tree', () =>
 
   it('Can get a tree from a JSON', () =>
   {
-    const { nodes, edges } = jsonToTree.convert({
+    const
+    jsonToTree       = jsonToTreeFactory.create(),
+    { nodes, edges } = jsonToTree.convert({
       id   : 'a',
       name : 'a',
       b    :
