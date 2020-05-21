@@ -34,6 +34,13 @@ class Page
     return this.treeFactory.create(nodes, edges, root)
   }
 
+  isComponent(data = {})
+  {
+    const { schema, id, name, template, bindings, listeners } = data
+
+    return schema && id && name && template && bindings && listeners
+  }
+
   update(previous, current)
   {
     const previousTree = this.createTreeFromContext(previous)
@@ -45,12 +52,15 @@ class Page
     let exclude = []
     for(const componentId of path)
     {
-      const
-      previous = previousTree.nodes.getItem(componentId),
-      current  = this.tree.nodes.getItem(componentId)
+      if(this.isComponent(this.tree.nodes.getItem(componentId)))
+      {
+        const
+        previous = previousTree.nodes.getItem(componentId),
+        current  = this.tree.nodes.getItem(componentId)
 
-      if(!this.object.isEqual(previous, current) && exclude.indexOf(componentId) === -1)
-        exclude = [...exclude,  ...this.onComponentChange(componentId, previous, current)]
+        if(!this.object.isEqual(previous, current) && exclude.indexOf(componentId) === -1)
+          exclude = [...exclude,  ...this.onComponentChange(componentId, previous, current)]
+      }
     }
   }
 
