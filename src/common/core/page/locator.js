@@ -16,7 +16,7 @@ class PageLocator
     controllerRepository = this.locator.locate('infrastructure/controller/repository'),
     componentFactory     = this.locator.locate('ui/component/controller/factory'),
     treeFactory          = this.locator.locate('data-structure/tree'),
-    jsonToTree           = this.locator.locate('data-structure/json-to-tree-component'),
+    jsonToTree           = this.locator.locate('data-structure/json-to-component-tree'),
     composer             = this.locator.locate(`view-model/${id}/composer`),
     channel              = this.locator.locate('infrastructure/bus').createChannel('page'),
     object               = this.locator.locate('core/object')
