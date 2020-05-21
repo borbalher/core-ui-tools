@@ -24,8 +24,6 @@ class Page
     this.object                 = object
     this.store                  = store
 
-    this.tree                   = this.createTreeFromContext(initialViewModel)
-
     this[Symbol.for('schema')]  = schema
     this[Symbol.for('id')]      = id
   }
@@ -83,6 +81,8 @@ class Page
 
   bootstrap()
   {
+    this.tree = this.createTreeFromContext(this.initialViewModel)
+
     const
     root = this.tree.root,
     path = this.tree.bfs(root)
