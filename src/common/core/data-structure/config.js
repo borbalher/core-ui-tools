@@ -10,8 +10,7 @@ module.exports = {
       'data-structure/queue'                      : `${__dirname}/queue`,
       'data-structure/stack'                      : `${__dirname}/stack`,
       'data-structure/json-to-graph'              : `${__dirname}/json-to-graph`,
-      'data-structure/json-to-tree'               : `${__dirname}/json-to-tree`,
-      'data-structure/json-to-component-tree'     : `${__dirname}/json-to-component-tree`
+      'data-structure/json-to-tree'               : `${__dirname}/json-to-tree`
     }
   }
 }
