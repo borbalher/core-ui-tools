@@ -1,14 +1,30 @@
-const isNode = require('../is-node')
-
 class JSONToGraph
 {
+  constructor(composer, nodeSchema = 'entity/node')
+  {
+    this.composer   = composer
+    this.nodeSchema = nodeSchema
+  }
+
+  isNode(json)
+  {
+    try
+    {
+      return this.composer.compose(this.nodeSchema, json)
+    }
+    catch(error)
+    {
+      return false
+    }
+  }
+
   convert(json, isDirected = false)
   {
     const
     nodes = [],
     edges = []
 
-    if(isNode(json))
+    if(this.isNode(json))
     {
       const startNode = this.mapNode(json, nodes, edges, isDirected)
       nodes.unshift(startNode)
@@ -26,7 +42,7 @@ class JSONToGraph
 
     for(const key of keys)
     {
-      if(isNode(element[key]))
+      if(this.isNode(element[key]))
       {
         const
         child     = element[key],

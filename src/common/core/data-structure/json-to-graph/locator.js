@@ -1,11 +1,17 @@
-const JSONToGraph = require('.')
+const JSONToGraphFactory = require('./factory')
 
-class JSONToGraphLocator
+class JSONToGraphFactoryLocator
 {
+  constructor(locator)
+  {
+    this.locator = locator
+  }
+
   locate()
   {
-    return new JSONToGraph()
+    const composer = this.locator.locate('core/schema/composer')
+    return new JSONToGraphFactory(composer)
   }
 }
 
-module.exports = JSONToGraphLocator
+module.exports = JSONToGraphFactoryLocator

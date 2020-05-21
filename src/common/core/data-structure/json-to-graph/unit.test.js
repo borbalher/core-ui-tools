@@ -6,7 +6,7 @@ describe('data-structure/json-to-graph', () =>
 
   let
   core,
-  jsonToGraph
+  jsonToGraphFactory
 
   before((done) =>
   {
@@ -23,7 +23,7 @@ describe('data-structure/json-to-graph', () =>
     {
       core.locate('core/bootstrap').bootstrap().then(() =>
       {
-        jsonToGraph = core.locate('data-structure/json-to-graph')
+        jsonToGraphFactory = core.locate('data-structure/json-to-graph/factory')
         done()
       })
     })
@@ -31,7 +31,9 @@ describe('data-structure/json-to-graph', () =>
 
   it('Can get a graph from a JSON', () =>
   {
-    const { nodes, edges } = jsonToGraph.convert({
+    const
+    jsonToGraph      = jsonToGraphFactory.create(),
+    { nodes, edges } = jsonToGraph.convert({
       id   : 'a',
       name : 'a',
       b    :
