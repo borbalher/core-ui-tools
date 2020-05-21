@@ -158,9 +158,9 @@ class ComponentController
     })
   }
 
-  addDOMBindings(selector, domEvent, event, preventDefault, stopPropagation, domEventMapper, dispatch)
+  addDOMBindings({ selector, domEvent, event, dispatch, preventDefault, stopPropagation, domEventMapper })
   {
-    const nodes = document.querySelectorAll(selector)
+    const nodes = document.querySelectorAll(`#${this[Symbol.for('id')]}${selector ? ` ${selector}` : ''}`)
     if(nodes)
       nodes.forEach(this.addDOMBinding.bind(this, domEvent, event, preventDefault, stopPropagation, domEventMapper, dispatch))
   }
@@ -168,10 +168,7 @@ class ComponentController
   bind()
   {
     for(const key of Object.keys(this.bindings))
-    {
-      const { selector, domEvent, event, dispatch, preventDefault, stopPropagation, domEventMapper } = this.bindings[key]
-      this.addDOMBindings(`#${this[Symbol.for('id')]}${selector ? ` ${selector}` : ''}`, domEvent, event, preventDefault, stopPropagation, domEventMapper, dispatch)
-    }
+      this.addDOMBindings(this.bindings[key])
 
     this.emit('component.binded', { id: this[Symbol.for('id')], bindings: this.bindings })
   }

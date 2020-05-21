@@ -9,8 +9,6 @@ class FormComposer extends ComponentComposer
   {
     super(...args)
     this.configuration = this.locator.locate('core/configuration')
-
-
   }
 
   getFormOptions(template)
@@ -37,7 +35,6 @@ class FormComposer extends ComponentComposer
     ...args
   })
   {
-
     this.getFormOptions(template)
 
     const
