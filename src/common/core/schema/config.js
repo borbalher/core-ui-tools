@@ -6,6 +6,7 @@ module.exports = {
       composer :
       {
         'value/edge'                      : `value-object/edge`,
+        'entity/error'                    : `entity/error`,
         'entity/node'                     : `entity/node`,
         'entity/tree-node'                : `entity/tree-node`,
         'entity/graph'                    : `entity/graph`,

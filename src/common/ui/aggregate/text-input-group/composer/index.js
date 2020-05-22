@@ -9,6 +9,7 @@ class TextInputGroupComposer extends ComponentComposer
   {
     super(...args)
     this.textInputComposer = this.locator.locate('ui/text-input/composer')
+    this.errorComposer     = this.locator.locate('ui/error/composer')
   }
 
   compose({
@@ -28,31 +29,37 @@ class TextInputGroupComposer extends ComponentComposer
     title,
     label,
     value,
-    error,
     name,
     big,
     id
   })
   {
-    const textInputGroup = super.compose({
+    const
+    error = this.errorComposer.compose({
+      id       : `${id}-error`,
+      name     : 'error',
+      classes  : 'input-group__error',
+      parentId : id
+    }),
+    textInput  = this.textInputComposer.compose({
+      id       : `${id}-text-input`,
+      name     : 'input',
+      parentId : id,
+      autocomplete,
+      placeholder,
+      maxLength,
+      attribute,
+      disabled,
+      readonly,
+      required,
+      pattern,
+      title,
+      value
+    }),
+    textInputGroup = super.compose({
       template : 'text-input-group',
       schema   : 'entity/text-input-group',
-      input    : this.textInputComposer.compose({
-        id       : `${id}-text-input`,
-        name     : 'input',
-        parentId : id,
-        autocomplete,
-        placeholder,
-        maxLength,
-        attribute,
-        disabled,
-        readonly,
-        required,
-        classes,
-        pattern,
-        title,
-        value
-      }),
+      input    : textInput,
       bindings : [
         ...this.bindings,
         ...bindings
@@ -62,15 +69,9 @@ class TextInputGroupComposer extends ComponentComposer
         ...listeners
       ],
       renderonchange,
-      attribute,
-      required,
-      disabled,
-      readonly,
       parentId,
       classes,
-      title,
       label,
-      value,
       error,
       name,
       big,

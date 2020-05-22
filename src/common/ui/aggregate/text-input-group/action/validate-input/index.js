@@ -6,10 +6,12 @@ class ValidateTextInputAction
   // TODO add dictionary
   constructor({
     textInputGroupComposer,
+    virtualDOM,
     store
   })
   {
     this.store                  = store
+    this.virtualDOM             = virtualDOM
     this.textInputGroupComposer = textInputGroupComposer
   }
 
@@ -43,14 +45,18 @@ class ValidateTextInputAction
       }
     }
 
-    const
-    textInputGroup = this.textInputGroupComposer.compose({
+    const textInputGroup = this.textInputGroupComposer.compose({
       ...context,
-      value,
-      error
+      error :
+      {
+        ...context.error,
+        ...error
+      }
     })
 
-    return this.store.addEntityContextToState(schema, textInputGroup)
+    this.virtualDOM.setContext(textInputGroup)
+
+    return state
   }
 }
 

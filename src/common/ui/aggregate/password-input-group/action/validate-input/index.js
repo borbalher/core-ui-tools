@@ -1,23 +1,25 @@
 /**
  * @implements {common/core/reducer/action}
  */
-class ValidateInputAction
+class ValidatePasswordInputAction
 {
   // TODO add dictionary
   constructor({
     passwordInputGroupComposer,
+    virtualDOM,
     store
   })
   {
-    this.store                      = store
+    this.store                  = store
+    this.virtualDOM             = virtualDOM
     this.passwordInputGroupComposer = passwordInputGroupComposer
   }
 
   execute({ meta: { emitter, schema }, data: { value } }, state)
   {
     const
-    context = this.store.getEntityContext(schema, emitter),
-    { input: { required, pattern, title }, label } = context
+    conpassword = this.store.getEntityConpassword(schema, emitter),
+    { input: { required, pattern, title }, label } = conpassword
 
     let error
 
@@ -43,15 +45,19 @@ class ValidateInputAction
       }
     }
 
-    const
-    passwordInputGroup = this.passwordInputGroupComposer.compose({
+    const passwordInputGroup = this.passwordInputGroupComposer.compose({
       ...context,
-      value,
-      error
+      error :
+      {
+        ...context.error,
+        ...error
+      }
     })
 
-    return this.store.addEntityContextToState(schema, passwordInputGroup)
+    this.virtualDOM.setContext(passwordInputGroup)
+
+    return state
   }
 }
 
-module.exports = ValidateInputAction
+module.exports = ValidatePasswordInputAction

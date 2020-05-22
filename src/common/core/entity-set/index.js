@@ -42,7 +42,7 @@ class EntitySet
   {
     const
     entity  = this.getEntity(schemaName, id),
-    context = this.normalizer.denormalize(entity, schemaName, this.entitySet.entities)
+    context = entity ? this.normalizer.denormalize(entity, schemaName, this.entities) : undefined
 
     return context
   }

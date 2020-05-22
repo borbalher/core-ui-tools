@@ -1,12 +1,12 @@
 const dto = {
   '@meta' :
   {
-    extends : 'entity/input'
+    extends : 'entity/component'
   },
   input :
   {
     type   : 'schema',
-    schema : 'entity/component'
+    schema : 'entity/input'
   },
   label :
   {
@@ -17,7 +17,7 @@ const dto = {
   error :
   {
     type     : 'schema',
-    schema   : 'value-object/error',
+    schema   : 'entity/error',
     optional : true
   },
   big :

@@ -12,10 +12,8 @@
     {{/unless}}
   </div>
 
- {{> component input value=value required=required disabled=disabled readonly=readonly}}
+ {{> component input}}
 
-  {{#with error}}
-     <div class='input-group__error'>{{message}}  </div>
-  {{/with}}
+ {{> component error}}
 
 </div>

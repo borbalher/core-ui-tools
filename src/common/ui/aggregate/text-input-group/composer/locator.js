@@ -1,6 +1,6 @@
-const TextInputComposer = require('.')
+const TextInputGroupComposer = require('.')
 
-class TextInputComposerLocator
+class TextInputGroupComposerLocator
 {
   constructor(locator)
   {
@@ -13,8 +13,8 @@ class TextInputComposerLocator
     configuration = this.locator.locate('core/configuration'),
     options       = configuration.find('ui.component.text-input-group')
 
-    return new TextInputComposer(this.locator, options)
+    return new TextInputGroupComposer(this.locator, options)
   }
 }
 
-module.exports = TextInputComposerLocator
+module.exports = TextInputGroupComposerLocator
