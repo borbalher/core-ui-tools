@@ -1,8 +1,9 @@
 class ProcessBootstrap
 {
-  constructor(bus)
+  constructor(bus, eventComposer)
   {
-    this.bus = bus
+    this.bus           = bus
+    this.eventComposer = eventComposer
   }
 
   bootstrap()
@@ -14,11 +15,18 @@ class ProcessBootstrap
   onError(error, rejectedPromise)
   {
     if(rejectedPromise && rejectedPromise.domain)
-      rejectedPromise.domain.emit('error', error)
-    else if(process.domain)
+    {
       process.domain.emit('error', error)
+    }
+    else if(process.domain)
+    {
+      process.domain.emit('error', error)
+    }
     else
-      this.bus.emit('app', 'core.error', error)
+    {
+      const appErrorEvent = this.eventComposer.compose('core.error', { error })
+      this.bus.emit('app', appErrorEvent)
+    }
   }
 }
 

@@ -9,8 +9,10 @@ class ProcessBootstrapLocator
 
   locate()
   {
-    const bus = this.locator.locate('infrastructure/bus')
-    return new ProcessBootstrap(bus)
+    const
+    bus           = this.locator.locate('infrastructure/bus'),
+    eventComposer = this.locator.locate('core/event/composer')
+    return new ProcessBootstrap(bus, eventComposer)
   }
 }
 

@@ -1,7 +1,7 @@
 class EntitySet
 {
   constructor({
-    entities,
+    entities = {},
     deepfind,
     deepmerge,
     normalizer
