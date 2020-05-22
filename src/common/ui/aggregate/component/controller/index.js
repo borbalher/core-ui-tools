@@ -1,11 +1,12 @@
 class ComponentController
 {
-  constructor(component, bus, store, hbs, channel, locator, virtualDOM, actionComposer)
+  constructor(component, bus, store, hbs, channel, locator, virtualDOM, actionComposer, eventComposer)
   {
     this.bus                   = bus
     this.store                 = store
     this.hbs                   = hbs
     this.actionComposer        = actionComposer
+    this.eventComposer         = eventComposer
     this.channel               = channel
     this.locator               = locator
     this.virtualDOM            = virtualDOM
@@ -34,7 +35,7 @@ class ComponentController
 
   composeEvent(name, data, meta = {})
   {
-    return this.actionComposer.compose(name, data, { ...meta, emitter: this[Symbol.for('id')], schema: this[Symbol.for('schema')] })
+    return this.eventComposer.compose(name, data, { ...meta, emitter: this[Symbol.for('id')], schema: this[Symbol.for('schema')] })
   }
 
   dispatch(name, data, meta = {})
@@ -76,7 +77,8 @@ class ComponentController
     wrapper.innerHTML = renderedComponentTemplate.trim()
 
     document.getElementById(this[Symbol.for('id')]).replaceWith(wrapper.firstChild)
-    this.emit('component.rendered', { id: this[Symbol.for('id')], context })
+
+    this.emit('component.rendered', { context })
   }
 
   addComponentListener(publisherChannel, eventName, map, locator, eventMapper, dispatch)

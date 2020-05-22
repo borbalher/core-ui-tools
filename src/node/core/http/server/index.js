@@ -7,7 +7,7 @@ class HttpServer
    */
   constructor(server, requestBuilder, sessionBuilder, routeBuilder,
     dispatcherCollectionBuilder, dispatcherChain, configuration,
-    locator, bus, domainFactory)
+    locator, bus, domainFactory, eventComposer)
   {
     this.server                       = server
     this.requestBuilder               = requestBuilder
@@ -19,6 +19,7 @@ class HttpServer
     this.locator                      = locator
     this.bus                          = bus
     this.domainFactory                = domainFactory
+    this.eventComposer                = eventComposer
   }
 
   listen(...args)
@@ -86,9 +87,10 @@ class HttpServer
         `Recieved: ${domain.members.length}`,
         `Emitters: ${emitters}`,
         `Timeouts: ${timeouts}`
-      ].join('\n')
+      ].join('\n'),
+      coreWarningEvent = this.eventComposer.compose('core.warning', msg)
 
-      this.bus.emit('app', 'core.warning', msg)
+      this.bus.emit('app', coreWarningEvent)
     }
 
     domain.exit()
@@ -121,7 +123,8 @@ class HttpServer
     }
     case 'E_NO_ENDPOINT_DEFINED_IN_ROUTE':
     {
-      this.bus.emit('app', 'core.error', error)
+      const coreErrorEvent = this.eventComposer.compose('core.warning', error)
+      this.bus.emit('app', coreErrorEvent)
 
       output.writeHead(404)
       output.end('Endpoint Not Found')
@@ -129,7 +132,8 @@ class HttpServer
     }
     default:
     {
-      this.bus.emit('app', 'core.error', error)
+      const coreErrorEvent = this.eventComposer.compose('core.warning', error)
+      this.bus.emit('app', coreErrorEvent)
 
       output.writeHead(500)
       output.end('Internal Server Error')

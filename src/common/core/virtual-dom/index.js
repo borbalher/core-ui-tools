@@ -4,6 +4,7 @@ class Page
     controllerRepository,
     initialViewModel,
     componentFactory,
+    eventComposer,
     treeFactory,
     jsonToTree,
     composer,
@@ -16,6 +17,7 @@ class Page
   {
     this.initialViewModel       = initialViewModel
     this.componentFactory       = componentFactory
+    this.eventComposer          = eventComposer
     this.treeFactory            = treeFactory
     this.controllers            = controllerRepository
     this.jsonToTree             = jsonToTree
@@ -63,9 +65,11 @@ class Page
 
     let subtreePath = []
 
-    const component = this.getController(componentId)
+    const
+    component             = this.getController(componentId),
+    viewModelChangedEvent = this.eventComposer.compose('component.changed', { previous, current })
 
-    component.emit('component.changed', { previous, current })
+    component.emit(viewModelChangedEvent)
 
     if(data.renderonchange)
     {
@@ -123,7 +127,10 @@ class Page
     const { nodes, edges } = this.viewModelToTree.map(context)
 
     for(const node of nodes)
+    {
+      this.tree.edges.removeItem(node.id)
       this.tree.addNode(node)
+    }
 
     for(const edge of edges)
       this.tree.addEdge(edge)
@@ -140,9 +147,9 @@ class Page
     return json[name]
   }
 
-  emit(name, data)
+  emit(event)
   {
-    this.channel.emit(name, data)
+    this.channel.emit(event)
   }
 }
 

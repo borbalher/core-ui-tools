@@ -17,6 +17,7 @@ describe('resource dispatcher integration tests', async () =>
     core = coreFactory.create([
       { name: 'common/core/bootstrap' },
       { name: 'common/core/listener' },
+      { name: 'common/core/event/composer' },
       { name: 'common/core/schema' },
       { name: 'common/core/object' },
       { name: 'common/core/string' },

@@ -19,12 +19,14 @@ class VirtualDOMLocator
     composer             = this.locator.locate(`view-model/${id}/composer`),
     jsonToTree           = this.locator.locate('data-structure/json-to-graph/factory').create('entity/component'),
     channel              = this.locator.locate('infrastructure/bus').createChannel('virtual-dom'),
-    object               = this.locator.locate('core/object')
+    object               = this.locator.locate('core/object'),
+    eventComposer        = this.locator.locate('core/event/composer')
 
     return new VirtualDOM({
       controllerRepository,
       initialViewModel,
       componentFactory,
+      eventComposer,
       treeFactory,
       jsonToTree,
       composer,

@@ -19,10 +19,11 @@ class HttpServerLocator
     dispatcherCollectionBuilder = this.locator.locate('core/http/server/dispatcher/collection/builder'),
     dispatcherChain             = this.locator.locate('core/http/server/dispatcher/chain'),
     bus                         = this.locator.locate('infrastructure/bus'),
+    eventComposer               = this.locator.locate('core/event/composer'),
     domainFactory               = require('domain'), //! deprecated API
     httpServer                  = new HttpServer(server, requestBuilder, sessionFactory, routeBuilder,
       dispatcherCollectionBuilder, dispatcherChain, configuration,
-      this.locator, bus, domainFactory)
+      this.locator, bus, domainFactory, eventComposer)
 
     server.timeout = configuration.find('core.http.server.timeout')
     server.on('request', httpServer.onRequest.bind(httpServer))

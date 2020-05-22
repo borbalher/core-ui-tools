@@ -16,10 +16,12 @@ class ViewModelLocator
     schema            = configuration['schema'],
     composer          = this.locator.locate(`view-model/${id}/composer`),
     channel           = this.locator.locate('infrastructure/bus').createChannel('view-model'),
-    normalizer        = this.locator.locate('core/normalizer')
+    normalizer        = this.locator.locate('core/normalizer'),
+    eventComposer     = this.locator.locate('core/event/composer')
 
     return new ViewModel({
       initialViewModel,
+      eventComposer,
       normalizer,
       composer,
       channel,

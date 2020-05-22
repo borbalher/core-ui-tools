@@ -79,7 +79,10 @@ class BrowserApplication
           {
             metrics.end('core-bootstrap')
             this.eventbus = this.core.locate('infrastructure/bus').getChannel('app')
-            this.eventbus.emit('app.initialized', {
+
+            const
+            eventComposer       = this.core.locate('core/event/composer'),
+            appInitializedEvent = eventComposer.compose('app.initialized', {
               components      : this.core.components,
               totalcomponents : Object.keys(this.core.components).length,
               metrics         :
@@ -87,6 +90,8 @@ class BrowserApplication
                 ...metrics.getReport()
               }
             })
+
+            this.eventbus.emit(appInitializedEvent)
 
             this.running = true
 

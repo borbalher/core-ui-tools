@@ -16,7 +16,7 @@ class ProcessBootstrap
   {
     if(rejectedPromise && rejectedPromise.domain)
     {
-      process.domain.emit('error', error)
+      rejectedPromise.domain.emit('error', error)
     }
     else if(process.domain)
     {

@@ -2,12 +2,14 @@ class ViewModel
 {
   constructor({
     initialViewModel = {},
+    eventComposer,
     composer,
     channel,
     schema,
     id
   })
   {
+    this.eventComposer          = eventComposer
     this.viewModel              = initialViewModel
     this.composer               = composer
     this.channel                = channel
@@ -32,7 +34,9 @@ class ViewModel
     previous       = this.viewModel,
     current        = this.composeViewModel(state)
     this.viewModel = current
-    this.channel.emit('view.model.changed', { current, previous })
+
+    const viewModelChangedEvent = this.eventComposer.compose('view.model.changed', { current, previous })
+    this.channel.emit(viewModelChangedEvent)
   }
 }
 

@@ -19,6 +19,7 @@ describe('resource dispatcher integration tests', async () =>
       { name: 'common/core/listener' },
       { name: 'common/core/schema' },
       { name: 'common/core/object' },
+      { name: 'common/core/event/composer' },
       { name: 'common/core/string' },
       { name: 'common/core/data-structure' },
       { name: 'node/core/process' },
