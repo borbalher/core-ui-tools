@@ -3,15 +3,15 @@
  */
 class OnViewModelChangedObserver
 {
-  constructor(page)
+  constructor(virtualDOM)
   {
-    this.page = page
+    this.virtualDOM = virtualDOM
   }
 
   execute(event)
   {
     const { data: { current, previous } } = event
-    this.page.update(previous, current)
+    this.virtualDOM.update(previous, current)
   }
 }
 

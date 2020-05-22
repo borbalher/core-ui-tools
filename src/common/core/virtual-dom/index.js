@@ -38,7 +38,10 @@ class Page
   {
     const previousTree = this.createTreeFromContext(previous)
     this.tree          = this.createTreeFromContext(current)
-    const path         = this.tree.bfs(this.tree.root)
+
+    const
+    path = this.tree.bfs(this.tree.root)
+    // page = path.shift()
 
     path.shift()
 

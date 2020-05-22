@@ -48,10 +48,9 @@ class ValidateTextInputAction
       ...context,
       value,
       error
-    }),
-    { entities } = this.store.normalizeEntityContext(schema, textInputGroup)
+    })
 
-    return this.store.addEntitiesToState(entities, state)
+    return this.store.addEntityContextToState(schema, textInputGroup)
   }
 }
 

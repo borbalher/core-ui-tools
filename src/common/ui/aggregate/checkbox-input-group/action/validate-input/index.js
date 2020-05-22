@@ -34,10 +34,9 @@ class ValidateInputAction
       ...context,
       value,
       error
-    }),
-    { entities } = this.store.normalizeEntityContext(schema, checkboxInputGroup)
+    })
 
-    return this.store.addEntitiesToState(entities, state)
+    return this.store.addEntityContextToState(schema, checkboxInputGroup)
   }
 }
 

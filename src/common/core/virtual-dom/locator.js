@@ -1,6 +1,6 @@
-const Page = require('.')
+const VirtualDOM = require('.')
 
-class PageLocator
+class VirtualDOMLocator
 {
   constructor(locator)
   {
@@ -16,12 +16,12 @@ class PageLocator
     controllerRepository = this.locator.locate('infrastructure/controller/repository'),
     componentFactory     = this.locator.locate('ui/component/controller/factory'),
     treeFactory          = this.locator.locate('data-structure/tree'),
-    jsonToTree           = this.locator.locate('data-structure/json-to-graph/factory').create('entity/component'),
     composer             = this.locator.locate(`view-model/${id}/composer`),
-    channel              = this.locator.locate('infrastructure/bus').createChannel('page'),
+    jsonToTree           = this.locator.locate('data-structure/json-to-graph/factory').create('entity/component'),
+    channel              = this.locator.locate('infrastructure/bus').createChannel('virtual-dom'),
     object               = this.locator.locate('core/object')
 
-    return new Page({
+    return new VirtualDOM({
       controllerRepository,
       initialViewModel,
       componentFactory,
@@ -36,4 +36,4 @@ class PageLocator
   }
 }
 
-module.exports = PageLocator
+module.exports = VirtualDOMLocator

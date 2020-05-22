@@ -56,9 +56,106 @@ describe('data-structure/graph', () =>
             payload : {}
           }
         ],
-        true
+        true,
+        'entity/graph'
       )
     }).to.not.throw()
+  })
+
+
+  it('Can create a graph (optionals)', () =>
+  {
+    expect(() =>
+    {
+      factory.create('my-graph')
+    }).to.not.throw()
+  })
+
+  it('Can get adjacent nodes', () =>
+  {
+    const graph = factory.create(
+      'my-graph',
+      [
+        {
+          id   : 'a',
+          name : 'a'
+        },
+        {
+          id   : 'b',
+          name : 'b'
+        },
+        {
+          id   : 'c',
+          name : 'c'
+        }
+      ],
+      [
+        {
+          source  : 'a',
+          target  : 'b',
+          payload : {}
+        },
+        {
+          source  : 'a',
+          target  : 'c',
+          payload : {}
+        }
+      ],
+      true,
+      'entity/graph'
+    )
+
+    let adjacentNodes = graph.getAdjacentNodes('a')
+
+    expect(adjacentNodes).to.be.deep.equal(['b', 'c'])
+
+    adjacentNodes = graph.getAdjacentNodes('b')
+
+    expect(adjacentNodes).to.be.deep.equal([])
+  })
+
+  it('Can clear a graph', () =>
+  {
+    const graph = factory.create(
+      'my-graph',
+      [
+        {
+          id   : 'a',
+          name : 'a'
+        },
+        {
+          id   : 'b',
+          name : 'b'
+        },
+        {
+          id   : 'c',
+          name : 'c'
+        }
+      ],
+      [
+        {
+          source  : 'a',
+          target  : 'b',
+          payload : {}
+        },
+        {
+          source  : 'a',
+          target  : 'c',
+          payload : {}
+        }
+      ],
+      true,
+      'entity/graph'
+    )
+
+    graph.reset()
+
+    const serialized = graph.serialize()
+
+    expect(serialized).to.deep.equal({
+      nodes : [],
+      links : []
+    })
   })
 
   it('Can add a node', () =>
@@ -76,10 +173,12 @@ describe('data-structure/graph', () =>
       true
     )
 
-    graph.addNode({
-      id   : 'b',
-      name : 'b'
-    })
+    graph.addNodes([
+      {
+        id   : 'b',
+        name : 'b'
+      }
+    ])
 
     expect(graph.totalNodes()).to.deep.equal(2)
   })
@@ -106,13 +205,15 @@ describe('data-structure/graph', () =>
       true
     )
 
-    graph.addEdge({
-      source  : 'b',
-      target  : 'a',
-      payload : {
-        weight : 0.8
+    graph.addEdges([
+      {
+        source  : 'b',
+        target  : 'a',
+        payload : {
+          weight : 0.8
+        }
       }
-    })
+    ])
 
     expect(graph.edges.length()).to.deep.equal(1)
   })
@@ -189,7 +290,58 @@ describe('data-structure/graph', () =>
     }).to.not.throw()
   })
 
-  it('Can get a BFS path for a graph if startNode exists', () =>
+  it('BFS should return a path for a graph if startNode exists and targetNode is specified', () =>
+  {
+    const graph  =  factory.create(
+      'my-graph',
+      [
+        {
+          id   : 'a',
+          name : 'a'
+        },
+        {
+          id   : 'b',
+          name : 'b'
+        },
+        {
+          id   : 'c',
+          name : 'c'
+        },
+        {
+          id   : 'd',
+          name : 'd'
+        }
+      ],
+      [
+        {
+          source  : 'a',
+          target  : 'b',
+          payload : {}
+        },
+        {
+          source  : 'a',
+          target  : 'c',
+          payload : {}
+        },
+        {
+          source  : 'b',
+          target  : 'a',
+          payload : {}
+        },
+        {
+          source  : 'b',
+          target  : 'd',
+          payload : {}
+        }
+      ],
+      true
+    ),
+    path = graph.bfs('a', 'c')
+
+    expect(path).to.deep.equal(['a', 'b', 'c'])
+  })
+
+  it('BFS should return a full path for a graph if startNode exists and targetNode is not specified', () =>
   {
     const graph  =  factory.create(
       'my-graph',
@@ -238,6 +390,57 @@ describe('data-structure/graph', () =>
     path = graph.bfs('a')
 
     expect(path).to.deep.equal(['a', 'b', 'c', 'd'])
+  })
+
+  it('BFS should return an empty path for a graph if startNode does not exists', () =>
+  {
+    const graph  =  factory.create(
+      'my-graph',
+      [
+        {
+          id   : 'a',
+          name : 'a'
+        },
+        {
+          id   : 'b',
+          name : 'b'
+        },
+        {
+          id   : 'c',
+          name : 'c'
+        },
+        {
+          id   : 'd',
+          name : 'd'
+        }
+      ],
+      [
+        {
+          source  : 'a',
+          target  : 'b',
+          payload : {}
+        },
+        {
+          source  : 'a',
+          target  : 'c',
+          payload : {}
+        },
+        {
+          source  : 'b',
+          target  : 'a',
+          payload : {}
+        },
+        {
+          source  : 'b',
+          target  : 'd',
+          payload : {}
+        }
+      ],
+      true
+    ),
+    path = graph.bfs()
+
+    expect(path).to.deep.equal([])
   })
 
   it('Can serialize a graph', () =>
@@ -333,7 +536,58 @@ describe('data-structure/graph', () =>
     })
   })
 
-  it('Can get a DFS path for a graph if startNode exists', () =>
+  it('DFS should return a path for a graph if startNode exists and targetNode is specified', () =>
+  {
+    const graph = factory.create(
+      'my-graph',
+      [
+        {
+          id   : 'a',
+          name : 'a'
+        },
+        {
+          id   : 'b',
+          name : 'b'
+        },
+        {
+          id   : 'c',
+          name : 'c'
+        },
+        {
+          id   : 'd',
+          name : 'd'
+        }
+      ],
+      [
+        {
+          source  : 'a',
+          target  : 'b',
+          payload : {}
+        },
+        {
+          source  : 'a',
+          target  : 'c',
+          payload : {}
+        },
+        {
+          source  : 'b',
+          target  : 'a',
+          payload : {}
+        },
+        {
+          source  : 'b',
+          target  : 'd',
+          payload : {}
+        }
+      ],
+      true
+    ),
+    path = graph.dfs('a', 'd')
+
+    expect(path).to.deep.equal(['a', 'b', 'd'])
+  })
+
+  it('DFS should return a full path for a graph if startNode exists and targetNode is not specified', () =>
   {
     const graph = factory.create(
       'my-graph',
@@ -382,6 +636,57 @@ describe('data-structure/graph', () =>
     path = graph.dfs('a')
 
     expect(path).to.deep.equal(['a', 'b', 'd', 'c'])
+  })
+
+  it('DFS should return an empty path for a graph if startNode does not exists', () =>
+  {
+    const graph = factory.create(
+      'my-graph',
+      [
+        {
+          id   : 'a',
+          name : 'a'
+        },
+        {
+          id   : 'b',
+          name : 'b'
+        },
+        {
+          id   : 'c',
+          name : 'c'
+        },
+        {
+          id   : 'd',
+          name : 'd'
+        }
+      ],
+      [
+        {
+          source  : 'a',
+          target  : 'b',
+          payload : {}
+        },
+        {
+          source  : 'a',
+          target  : 'c',
+          payload : {}
+        },
+        {
+          source  : 'b',
+          target  : 'a',
+          payload : {}
+        },
+        {
+          source  : 'b',
+          target  : 'd',
+          payload : {}
+        }
+      ],
+      true
+    ),
+    path = graph.dfs('not-exists')
+
+    expect(path).to.deep.equal([])
   })
 
   it('Should return the proper string tag ', async () =>

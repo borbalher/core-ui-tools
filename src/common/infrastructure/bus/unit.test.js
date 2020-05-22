@@ -6,7 +6,8 @@ describe('infrastructure/bus', () =>
 
   let
   core,
-  bus
+  bus,
+  eventComposer
 
   before((done) =>
   {
@@ -18,6 +19,7 @@ describe('infrastructure/bus', () =>
       { name: 'common/core/schema' },
       { name: 'common/core/object' },
       { name: 'common/core/string' },
+      { name: 'common/core/event/composer' },
       { name: 'common/core/data-structure' },
       { name: 'common/infrastructure/bus' }
     ])
@@ -26,7 +28,8 @@ describe('infrastructure/bus', () =>
     {
       core.locate('core/bootstrap').bootstrap().then(() =>
       {
-        bus = core.locate('infrastructure/bus')
+        bus           = core.locate('infrastructure/bus')
+        eventComposer = core.locate('core/event/composer')
         done()
       })
     })
@@ -66,31 +69,19 @@ describe('infrastructure/bus', () =>
     let counter = 0
 
     const
-    event     = 'EVENT_NAME',
+    eventName = 'EVENT_NAME',
+    event     = eventComposer.compose(eventName, { increment: 1 }),
     listener  = (eventEmmited) =>
     {
       const payload = eventEmmited.data
       counter += payload.increment
     }
 
-    bus.on(channelId, event, listener)
+    bus.on(channelId, eventName, listener)
 
-    await bus.emit(channelId, event, { increment: 1 })
+    await bus.emit(channelId, event)
 
     expect(counter).to.be.equal(1)
-  })
-
-  it('Should throw E_SCHEMA_INVALID_ATTRIBUTE error when trying to emit an event with invalid name', async () =>
-  {
-    const channelId   = 'my-custom-channel'
-
-    bus.createChannel(channelId)
-
-    await bus.emit(channelId, { foo: 'bar' }, { increment: 1 })
-      .catch((error) =>
-      {
-        expect(error.code).to.be.equals('E_SCHEMA_INVALID_ATTRIBUTE')
-      })
   })
 
   it('Should return the proper string tag ', async () =>
@@ -106,14 +97,15 @@ describe('infrastructure/bus', () =>
     bus.createChannel(channelId)
 
     const
-    event     = 'EVENT_NAME',
+    eventName = 'EVENT_NAME',
+    event     = eventComposer.compose('EVENT_NAME', { increment: 1 }),
     listener  = () => {}
 
-    bus.once(channelId, event, listener)
+    bus.once(channelId, eventName, listener)
 
     await bus.emit(channelId, event, { increment: 1 })
 
-    const hasListeners = bus.getChannel(channelId).hasListeners(event)
+    const hasListeners = bus.getChannel(channelId).hasListeners(eventName)
 
     expect(hasListeners).to.be.equal(false)
   })
@@ -140,14 +132,14 @@ describe('infrastructure/bus', () =>
     bus.createChannel(channelId)
 
     const
-    event     = 'EVENT_NAME',
+    eventName = 'EVENT_NAME',
     listener  = () => {}
 
-    bus.on(channelId, event, listener)
+    bus.on(channelId, eventName, listener)
 
-    bus.removeAllListeners(channelId, event)
+    bus.removeAllListeners(channelId, eventName)
 
-    const hasListeners = bus.getChannel(channelId).hasListeners(event)
+    const hasListeners = bus.getChannel(channelId).hasListeners(eventName)
 
     expect(hasListeners).to.be.equal(false)
   })
@@ -159,13 +151,13 @@ describe('infrastructure/bus', () =>
     bus.createChannel(channelId)
 
     const
-    event     = 'EVENT_NAME',
+    eventName = 'EVENT_NAME',
     listener  = () => {}
 
-    bus.on(channelId, event, listener)
-    bus.removeListener(channelId, event, listener)
+    bus.on(channelId, eventName, listener)
+    bus.removeListener(channelId, eventName, listener)
 
-    const hasListeners = bus.getChannel(channelId).hasListeners(event)
+    const hasListeners = bus.getChannel(channelId).hasListeners(eventName)
     expect(hasListeners).to.be.equal(false)
   })
 

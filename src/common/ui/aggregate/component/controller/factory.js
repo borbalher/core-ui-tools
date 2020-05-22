@@ -33,19 +33,15 @@ class ComponentControllerFactory
   {
     const
     {
-      listeners = {},
-      bindings  = {},
       template,
-      options,
-      schema,
       id
     } = component,
     channel    = this.createBusChannel(id),
     Controller = this.getControllerClass(template)
 
-    return (page) =>
+    return (virtualDOM) =>
     {
-      return new Controller(id, schema, bindings, listeners, options, this.bus, this.store, this.hbs,  channel, this.locator, page)
+      return new Controller(component, this.bus, this.store, this.hbs,  channel, this.locator, virtualDOM)
     }
   }
 }

@@ -57,7 +57,7 @@ class AssociativeArray
     this.items = new Map()
 
     for(const key of Object.keys(json))
-      this.set(key, json[key])
+      this.items.set(key, json[key])
   }
 
   setFromKeyValuedArray(kvArray)

@@ -43,6 +43,24 @@ describe('data-structure/associative-array', () =>
     expect(associativeArray.getItem('id')).to.be.deep.equal(true)
   })
 
+  it('Can get the associative array in linear format', () =>
+  {
+    const associativeArray  = factory.create()
+
+    associativeArray.setItem('id', true)
+
+    expect(associativeArray.toLinearArray()).to.be.deep.equal([['id', true]])
+  })
+
+  it('Can set the associative array from a [key, value] array', () =>
+  {
+    const associativeArray  = factory.create()
+
+    associativeArray.setFromKeyValuedArray([['id', true]])
+
+    expect(associativeArray.toLinearArray()).to.be.deep.equal([['id', true]])
+  })
+
   it('Removing an element that not exists does not throw an error', () =>
   {
     const associativeArray  = factory.create()
@@ -62,6 +80,15 @@ describe('data-structure/associative-array', () =>
     associativeArray.removeItem('id')
 
     expect(associativeArray.getItem('id')).to.be.equal(undefined)
+  })
+
+  it('Can set the associative array from a JSON', () =>
+  {
+    const associativeArray  = factory.create()
+
+    associativeArray.setFromJSON({ 'id': true })
+
+    expect(associativeArray.toLinearArray()).to.be.deep.equal([['id', true]])
   })
 
   it('Can clear the associative array', () =>

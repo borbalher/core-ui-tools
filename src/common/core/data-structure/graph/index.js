@@ -77,7 +77,7 @@ class Graph
     }
   }
 
-  bfs(startNodeId)
+  bfs(startNodeId, targetNode)
   {
     const
     visited = {},
@@ -99,36 +99,43 @@ class Graph
 
       visited[sourceNodeId] = true
 
-      const adjacencyList = this.edges.getItem(sourceNodeId)
-      if(adjacencyList)
+      if(targetNode !== sourceNodeId)
       {
-        for(let edge of adjacencyList)
+        const adjacencyList = this.edges.getItem(sourceNodeId)
+        if(adjacencyList)
         {
-          const targetNodeId = edge.target
+          for(let edge of adjacencyList)
+          {
+            const targetNodeId = edge.target
 
-          if(!visited[targetNodeId])
-            this.queue.enqueue(targetNodeId)
+            if(!visited[targetNodeId])
+              this.queue.enqueue(targetNodeId)
+          }
         }
+      }
+      else
+      {
+        this.queue.reset()
       }
     }
     return path
   }
 
-  dfs(startNodeId)
+  dfs(startNodeId, targetNode)
   {
     const
-    visited = { },
-    path    = []
+    visited     = { },
+    path        = []
 
     if(!this.nodes.getItem(startNodeId))
       return path
 
-    this.recursiveDFS(startNodeId, visited, path)
+    this.recursiveDFS(startNodeId, visited, path, targetNode, false)
 
     return path
   }
 
-  recursiveDFS(nodeId, visited, path)
+  recursiveDFS(nodeId, visited, path, targetNode)
   {
     visited[nodeId] = true
 
@@ -141,25 +148,27 @@ class Graph
       for(let edge of adjacencyList)
       {
         const targetNodeId = edge.target
-        if(!visited[targetNodeId])
-          this.recursiveDFS(targetNodeId, visited, path)
+
+        if(!visited[targetNodeId] && targetNodeId !== targetNode)
+        {
+          this.recursiveDFS(targetNodeId, visited, path, targetNode)
+        }
+        else if(!visited[targetNodeId] && targetNodeId === targetNode)
+        {
+          path.push(targetNodeId)
+          const nodeIds = this.nodes.toArray().keys
+          for(const nodeId of nodeIds)
+            visited[nodeId] = true
+
+          break
+        }
       }
     }
   }
 
-  reduceEdgeArrayToLinks(acc, nodeEdges, index)
+  reduceEdgeArrayToLinks(acc, nodeEdges)
   {
-    const
-    source          = this.edges.toArray().keys[index],
-    edgesWithSource = nodeEdges.map((nodeEdge) =>
-    {
-      if(!nodeEdge.source)
-        return { source, ...nodeEdge }
-      else
-        return nodeEdge
-    })
-
-    return acc.concat(edgesWithSource)
+    return acc.concat(nodeEdges)
   }
 
   edgesToLinks()

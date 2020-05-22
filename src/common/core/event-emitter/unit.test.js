@@ -6,7 +6,8 @@ describe('common/core/event-emitter/factory', () =>
 
   let
   core,
-  factory
+  factory,
+  eventComposer
 
   before((done) =>
   {
@@ -17,6 +18,7 @@ describe('common/core/event-emitter/factory', () =>
       { name: 'common/core/listener' },
       { name: 'common/core/schema' },
       { name: 'common/core/string' },
+      { name: 'common/core/event/composer' },
       { name: 'common/core/data-structure' }
     ])
 
@@ -24,7 +26,8 @@ describe('common/core/event-emitter/factory', () =>
     {
       core.locate('core/bootstrap').bootstrap().then(() =>
       {
-        factory = core.locate('core/event-emitter/factory')
+        factory       = core.locate('core/event-emitter/factory')
+        eventComposer = core.locate('core/event/composer')
         done()
       })
     })
@@ -185,25 +188,12 @@ describe('common/core/event-emitter/factory', () =>
     expect(listeners).to.deep.equal([listener, listener])
   })
 
-  it('Can create an event', () =>
-  {
-    const
-    eventEmitter  = factory.create('my-event-emitter'),
-    data          = {
-      foo : 'bar'
-    },
-    event       = eventEmitter.createEvent('EVENT', data)
-
-    expect(event.meta.name).to.deep.equal('EVENT')
-    expect(event.meta.emitter).to.deep.equal('my-event-emitter')
-    expect(event.data).to.deep.equal(data)
-  })
-
   it('Can subscribe once to an event', async () =>
   {
     const
     eventEmitter  = factory.create('my-event-emitter'),
     eventName     = 'EVENT_NAME',
+    event         = eventComposer.compose(eventName, {}),
     listener      = (payload) =>
     {
       return payload
@@ -211,7 +201,7 @@ describe('common/core/event-emitter/factory', () =>
 
     eventEmitter.once(eventName, listener)
 
-    await eventEmitter.emit(eventName, { })
+    await eventEmitter.emit(event)
 
 
     const hasListeners = eventEmitter.hasListeners(eventName)
@@ -226,6 +216,7 @@ describe('common/core/event-emitter/factory', () =>
     const
     eventEmitter  = factory.create('my-event-emitter'),
     eventName     = 'EVENT_NAME',
+    event         = eventComposer.compose(eventName, { increment: 1 }),
     listener      = (emittedEvent) =>
     {
       const payload = emittedEvent.data
@@ -234,7 +225,7 @@ describe('common/core/event-emitter/factory', () =>
 
     eventEmitter.on(eventName, listener)
 
-    await eventEmitter.emit(eventName, { increment: 1 })
+    await eventEmitter.emit(event)
 
     expect(counter).to.be.equal(1)
   })
@@ -246,6 +237,7 @@ describe('common/core/event-emitter/factory', () =>
     const
     eventEmitter  = factory.create('my-event-emitter'),
     eventName     = 'EVENT_NAME',
+    event         = eventComposer.compose(eventName, { increment: 1 }),
     listener      = (emittedEvent) =>
     {
       const payload = emittedEvent.data
@@ -254,7 +246,7 @@ describe('common/core/event-emitter/factory', () =>
 
     eventEmitter.onAll(listener)
 
-    await eventEmitter.emit(eventName, { increment: 1 })
+    await eventEmitter.emit(event)
 
     expect(counter).to.be.equal(1)
   })

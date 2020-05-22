@@ -1,16 +1,19 @@
 class ComponentController
 {
-  constructor(id, schema, bindings = {}, listeners = {}, options = {}, bus, store, hbs, channel, locator, page)
+  constructor(component, bus, store, hbs, channel, locator, virtualDOM, actionComposer)
   {
     this.bus                   = bus
     this.store                 = store
     this.hbs                   = hbs
-    this.store                 = store
+    this.actionComposer        = actionComposer
     this.channel               = channel
+    this.locator               = locator
+    this.virtualDOM            = virtualDOM
+
+    const { bindings, listeners, options, schema, id } = component
+
     this.bindings              = bindings
     this.listeners             = listeners
-    this.locator               = locator
-    this.page                  = page
     this.options               = options
     this[Symbol.for('id')]     = id
     this[Symbol.for('schema')] = schema
@@ -21,12 +24,22 @@ class ComponentController
 
   getContext()
   {
-    return this.page.getContext(this[Symbol.for('id')])
+    return this.virtualDOM.getContext(this[Symbol.for('id')])
+  }
+
+  composeAction(name, data, meta = {})
+  {
+    return this.actionComposer.compose(name, data, { ...meta, emitter: this[Symbol.for('id')], schema: this[Symbol.for('schema')] })
+  }
+
+  composeEvent(name, data, meta = {})
+  {
+    return this.actionComposer.compose(name, data, { ...meta, emitter: this[Symbol.for('id')], schema: this[Symbol.for('schema')] })
   }
 
   dispatch(name, data, meta = {})
   {
-    const action = this.store.composeAction(name, data, { ...meta, emitter: this[Symbol.for('id')], schema: this[Symbol.for('schema')] })
+    const action = this.composeAction(name, data, meta)
     this.store.dispatch(action)
     this.emit('action.dispatched', { action })
   }
@@ -36,19 +49,19 @@ class ComponentController
     const childrenId = this.getChildrenId(name)
 
     if(childrenId) // TODO WE NEED TO ENSURE THAT THIS IS CORRECT
-      return this.page.controllers.getController(childrenId)
+      return this.virtualDOM.controllers.getController(childrenId)
   }
 
   getChildrenContext(name)
   {
-    const context = this.page.getContext(this[Symbol.for('id')])
+    const context = this.virtualDOM.getContext(this[Symbol.for('id')])
     if(context[name] && context[name].id) // TODO WE NEED TO ENSURE THAT THIS IS CORRECT
-      return this.page.getContext(context[name].id)
+      return this.virtualDOM.getContext(context[name].id)
   }
 
   getChildrenId(name)
   {
-    const context = this.page.getContext(this[Symbol.for('id')])
+    const context = this.virtualDOM.getContext(this[Symbol.for('id')])
     if(context[name] && context[name].id) // TODO WE NEED TO ENSURE THAT THIS IS CORRECT
       return context[name].id
   }
@@ -69,35 +82,34 @@ class ComponentController
   addComponentListener(publisherChannel, eventName, map, locator, eventMapper, dispatch)
   {
     const
-    subscriberId      = this[Symbol.for('id')],
-    subscriberSchema  = this[Symbol.for('schema')],
     store             = this.store,
     observer          = locator      ? this.locator.locate(locator)                : undefined,
     name              = map          ? map                                         : eventName
 
     this.bus.on(publisherChannel, eventName, (event) =>
     {
-      const  data = eventMapper  ? locator.locate(eventMapper).map(event.data) : event.data
+      const data = eventMapper  ? locator.locate(eventMapper).map(event.data) : event.data
 
       if(dispatch)
       {
-        const action = store.composeAction(name, data, { emitter: subscriberId, schema: subscriberSchema })
+        const action = this.composeAction(name, data)
         store.dispatch(action)
       }
       else if(observer)
       {
-        observer.execute({ data, meta: { ...event.meta, emitter: subscriberId } })
+        const event = this.composeEvent(name, data)
+        observer.execute(event)
       }
       else
       {
-        this.bus.emit(subscriberId, name, data)
+        this.emit(name, data)
       }
     })
   }
 
   getChildrenChannel(channel)
   {
-    const context = this.page.getContext(this[Symbol.for('id')])
+    const context = this.virtualDOM.getContext(this[Symbol.for('id')])
 
     if(context[channel] && context[channel].id) // TODO WE NEED TO ENSURE THAT THIS IS CORRECT
       return context[channel].id
@@ -105,10 +117,10 @@ class ComponentController
 
   listen()
   {
-    for(const key of Object.keys(this.listeners))
+    for(const listener of this.listeners)
     {
       const
-      { channel, event, map, locator, eventMapper, dispatch }  = this.listeners[key]
+      { channel, event, map, locator, eventMapper, dispatch }  = listener
 
       let publisherChannel
       if(!channel)
@@ -121,7 +133,7 @@ class ComponentController
       this.addComponentListener(publisherChannel, event, map, locator, eventMapper, dispatch)
     }
 
-    this.emit('component.listened', { id: this[Symbol.for('id')], listeners: this.listeners })
+    this.emit('listeners.added', { listeners: this.listeners })
   }
 
   addDOMBinding(domEvent, event, preventDefault, stopPropagation, domEventMapper, dispatch, domNode)
@@ -148,7 +160,7 @@ class ComponentController
 
       if(dispatch)
       {
-        const action = store.composeAction(name, data, { emitter: subscriberId, schema: subscriberSchema })
+        const action = this.actionComposer.compose(name, data, { emitter: subscriberId, schema: subscriberSchema })
         store.dispatch(action)
       }
       else
@@ -170,12 +182,13 @@ class ComponentController
     for(const key of Object.keys(this.bindings))
       this.addDOMBindings(this.bindings[key])
 
-    this.emit('component.binded', { id: this[Symbol.for('id')], bindings: this.bindings })
+    this.emit('bindings.added', { bindings: this.bindings })
   }
 
   emit(name, data)
   {
-    this.channel.emit(name, data, { schema: this[Symbol.for('id')] })
+    const event = this.composeEvent(name, data)
+    this.channel.emit(event)
   }
 }
 

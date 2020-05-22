@@ -72,30 +72,6 @@ class EventEmitter
     return this.listeners.hasElements(eventName)
   }
 
-  /**
-   * Creates an event
-   * @param {string} name - Event name
-   * @param {Object} data - Event payload
-   * @returns {Event} event
-   */
-  createEvent(name, data, meta)
-  {
-    const
-    timestamp = new Date().toISOString(),
-    emitter   = this[Symbol.for('id')]
-
-    return {
-      meta :
-      {
-        timestamp,
-        emitter,
-        name,
-        ...meta
-      },
-      data
-    }
-  }
-
   clear()
   {
     this.listeners.clear()
@@ -103,23 +79,21 @@ class EventEmitter
 
   /**
    * Publish an event
-   * @param {string} eventName - Event name
-   * @param {Object} data - Event data
-   * @param {Object} meta - Event meta
+   * @param {event} eventName - Event
    * @returns {boolean} - Flag indicating if the event has listeners
    */
-  async emit(eventName, data, meta)
+  async emit(event)
   {
     const
-    event             = this.createEvent(eventName, data, meta),
-    globalListeners   = this.listeners.getItem('*') || [],
-    eventListeners    = this.listeners.getItem(eventName) || [],
-    listeners         = globalListeners.concat(eventListeners)
+    { meta: { name } } = event,
+    globalListeners    = this.listeners.getItem('*')  || [],
+    eventListeners     = this.listeners.getItem(name) || [],
+    listeners          = globalListeners.concat(eventListeners)
 
-    if(listeners.length === 0 && !this.warnings.includes(eventName))
+    if(listeners.length === 0 && !this.warnings.includes(name))
     {
-      this.warnings.push(eventName)
-      this.console.warning(`event: "${eventName}" does not have a defined listener in channel ${this[Symbol.for('id')]}`)
+      this.warnings.push(name)
+      this.console.warning(`event: "${name}" does not have a defined listener in channel ${this[Symbol.for('id')]}`)
     }
 
     await this.executeListeners(listeners, event)
@@ -156,10 +130,10 @@ class EventEmitter
    * @param {string} event - Event name
    * @param {function} listener - Listener function
    */
-  once(event, listener)
+  once(eventName, listener)
   {
     const remove = this.on(
-      event,
+      eventName,
       (...args) =>
       {
         remove()

@@ -30,16 +30,30 @@ class StoreLocator
   locate()
   {
     const
-    configuration = this.locator.locate('core/configuration').find('core.store'),
-    state         = configuration.state ? configuration.state : {},
-    channel       = this.createBusChannel(),
-    chain         = this.getMiddlewareChain(configuration),
-    reducer       = this.locator.locate('core/reducer'),
-    deepfind      = this.locator.locate('core/deepfind'),
-    deepmerge     = this.locator.locate('core/deepmerge'),
-    normalizer    = this.locator.locate('core/normalizer')
+    configuration      = this.locator.locate('core/configuration').find('core.store'),
+    state              = configuration.state   || {},
+    options            = configuration.options || {},
+    channel            = this.createBusChannel(),
+    chain              = this.getMiddlewareChain(configuration),
+    reducer            = this.locator.locate('core/reducer'),
+    deepfind           = this.locator.locate('core/deepfind'),
+    deepmerge          = this.locator.locate('core/deepmerge'),
+    { entities = {} }  = state,
+    eventComposer      = this.locator.locate('core/event/composer'),
+    entitySet          = this.locator.locate('core/entity-set/factory').create(entities)
 
-    return new Store(state, channel, chain, reducer, deepfind, deepmerge, normalizer, this.locator)
+    return new Store({
+      locator     : this.locator,
+      middlewares : chain,
+      eventComposer,
+      deepmerge,
+      entitySet,
+      deepfind,
+      reducer,
+      channel,
+      options,
+      state
+    })
   }
 }
 

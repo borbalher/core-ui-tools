@@ -9,8 +9,8 @@ class OnViewModelChangedObserverLocator
 
   locate()
   {
-    const page = this.locator.locate('core/page')
-    return new OnViewModelChangedObserver(page)
+    const virtualDOM = this.locator.locate('core/virtual-dom')
+    return new OnViewModelChangedObserver(virtualDOM)
   }
 }
 

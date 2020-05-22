@@ -3,21 +3,44 @@ module.exports = {
   {
     store :
     {
+      options :
+      {
+        stateLimit : 10
+      },
       middlewares : [
-        'store/middleware/crash-report',
-        'store/middleware/logger',
-        'store/middleware/ready-state-promise',
-        'store/middleware/delayer'
+        'core/store/middleware/crash-report',
+        'core/store/middleware/logger',
+        'core/store/middleware/ready-state-promise',
+        'core/store/middleware/delayer'
       ]
     },
     locator :
     {
-      'store/middleware/crash-report'        : `${__dirname}/middleware/crash-report`,
-      'store/middleware/logger'              : `${__dirname}/middleware/logger`,
-      'store/middleware/delayer'             : `${__dirname}/middleware/delayer`,
-      'store/middleware/ready-state-promise' : `${__dirname}/middleware/ready-state-promise`,
-      'core/store'                           : __dirname
-
+      'core/store/listener/on-dispatch-action'    : `${__dirname}/listener/on-dispatch-action`,
+      'core/store/middleware/crash-report'        : `${__dirname}/middleware/crash-report`,
+      'core/store/middleware/logger'              : `${__dirname}/middleware/logger`,
+      'core/store/middleware/delayer'             : `${__dirname}/middleware/delayer`,
+      'core/store/middleware/ready-state-promise' : `${__dirname}/middleware/ready-state-promise`,
+      'core/store'                                : __dirname
+    }
+  },
+  infrastructure :
+  {
+    bus :
+    {
+      channels :
+      {
+        'store' :
+        {
+          listeners :
+          {
+            'dispatch.action' :
+            {
+              'core/store/listener/on-dispatch-action' : true
+            }
+          }
+        }
+      }
     }
   }
 }

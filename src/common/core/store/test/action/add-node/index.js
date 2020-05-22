@@ -11,10 +11,8 @@ class AddNodeAction
   execute(action, state)
   {
     const
-    { data: { node } } = action,
-    { entities } = this.store.normalizeEntityContext('entity/node', node)
-
-    return this.store.addEntitiesToState(entities, state)
+    { data: { node } } = action
+    return this.store.addEntityContextToState('entity/node', node)
   }
 }
 
