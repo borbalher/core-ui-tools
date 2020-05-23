@@ -11,7 +11,7 @@ class VirtualDOMLocator
     const
     configuration        = this.locator.locate('core/configuration').find('core.page'),
     id                   = configuration['id'],
-    initialViewModel     = configuration['state'],
+    initialViewModel     = configuration['viewModel'],
     schema               = configuration['schema'],
     controllerRepository = this.locator.locate('infrastructure/controller/repository'),
     componentFactory     = this.locator.locate('ui/component/controller/factory'),
