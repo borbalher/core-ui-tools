@@ -124,7 +124,7 @@ class VirtualDOM
 
   setContext(context)
   {
-    const { nodes, edges } = this.viewModelToTree.map(context)
+    const { nodes, edges } = this.jsonToTree.convert(context)
 
     for(const node of nodes)
     {
