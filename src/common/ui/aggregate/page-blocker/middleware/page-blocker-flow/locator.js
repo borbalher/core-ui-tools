@@ -9,8 +9,10 @@ class PageBlockerFlowMiddlewareLocator
 
   locate()
   {
-    const bus = this.locator.locate('infrastructure/bus')
-    return new PageBlockerFlowMiddleware(bus)
+    const
+    bus           = this.locator.locate('infrastructure/bus'),
+    eventComposer = this.loc.locate('core/event/composer')
+    return new PageBlockerFlowMiddleware(bus, eventComposer)
   }
 }
 

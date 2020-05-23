@@ -1,8 +1,9 @@
 class PageBlockerFlow
 {
-  constructor(bus)
+  constructor(bus, eventComposer)
   {
     this.bus = bus
+    this.eventComposer = eventComposer
   }
 
   middleware()
