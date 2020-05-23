@@ -1,14 +1,16 @@
 const ComponentController = require('.')
 class ComponentControllerFactory
 {
-  constructor(configuration, bus, locator, store, hbs, deepfind)
+  constructor(configuration, bus, locator, store, hbs, deepfind, eventComposer, actionComposer)
   {
-    this.configuration = configuration
-    this.bus           = bus
-    this.locator       = locator
-    this.store         = store
-    this.hbs           = hbs
-    this.deepfind      = deepfind
+    this.configuration  = configuration
+    this.bus            = bus
+    this.locator        = locator
+    this.store          = store
+    this.hbs            = hbs
+    this.deepfind       = deepfind
+    this.eventComposer  = eventComposer
+    this.actionComposer = actionComposer
   }
 
   createBusChannel(id)
@@ -41,7 +43,7 @@ class ComponentControllerFactory
 
     return (virtualDOM) =>
     {
-      return new Controller(component, this.bus, this.store, this.hbs,  channel, this.locator, virtualDOM)
+      return new Controller(component, this.bus, this.store, this.hbs,  channel, this.locator, virtualDOM, this.actionComposer, this.eventComposer)
     }
   }
 }
