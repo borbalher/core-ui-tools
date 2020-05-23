@@ -22,7 +22,7 @@ class PageBlockerFlow
         { ui: { isBlocked } } = store.getState(),
         toggleBlockerEvent    = this.eventComposer.compose('toggle.blocker', { isBlocked })
 
-        this.bus.emit(toggleBlockerEvent)
+        this.bus.emit('ui', toggleBlockerEvent)
         break
       }
     }

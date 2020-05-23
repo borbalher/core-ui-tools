@@ -15,6 +15,7 @@ module.exports = {
         listeners :
         [
           {
+            channel  : 'ui',
             event    : 'toggle.blocker',
             dispatch : true
           }
