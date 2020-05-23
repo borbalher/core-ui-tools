@@ -15,6 +15,8 @@ class TextInputGroupComposer extends ComponentComposer
   compose({
     bindings  = [],
     listeners = [],
+    errorMessage,
+    errorCode,
     renderonchange,
     autocomplete,
     placeholder,
@@ -35,11 +37,13 @@ class TextInputGroupComposer extends ComponentComposer
   })
   {
     const
-    error = this.errorComposer.compose({
+    error     = this.errorComposer.compose({
       id       : `${id}-error`,
       name     : 'error',
       classes  : 'input-group__error',
-      parentId : id
+      parentId : id,
+      message  : errorMessage,
+      code     : errorCode
     }),
     textInput  = this.textInputComposer.compose({
       id       : `${id}-text-input`,
@@ -69,16 +73,10 @@ class TextInputGroupComposer extends ComponentComposer
         ...listeners
       ],
       renderonchange,
-      attribute,
-      required,
-      disabled,
-      readonly,
       parentId,
       classes,
-      title,
-      label,
-      value,
       error,
+      label,
       name,
       big,
       id

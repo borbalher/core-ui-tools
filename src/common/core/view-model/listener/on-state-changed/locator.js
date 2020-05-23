@@ -9,8 +9,11 @@ class OnStateChangedObserverLocator
 
   locate()
   {
-    const viewModel = this.locator.locate('core/view-model')
-    return new OnStateChangedObserver(viewModel)
+    const
+    viewModel = this.locator.locate('core/view-model'),
+    store     = this.locator.locate('core/store')
+
+    return new OnStateChangedObserver(store, viewModel)
   }
 }
 

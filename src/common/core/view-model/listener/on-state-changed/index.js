@@ -3,15 +3,16 @@
  */
 class OnStateChangedObserver
 {
-  constructor(viewModel)
+  constructor(store, viewModel)
   {
+    this.store     = store
     this.viewModel = viewModel
   }
 
   execute(event)
   {
-    const { data : { state } } = event
-    this.viewModel.setViewModel(state)
+    const viewModel = this.store.getEntityContext(this.viewModel[Symbol.for('schema')], this.viewModel[Symbol.for('id')])
+    this.viewModel.setViewModel(viewModel)
   }
 }
 

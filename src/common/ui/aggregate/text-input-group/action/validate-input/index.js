@@ -39,17 +39,27 @@ class ValidateTextInputAction
       }
     }
 
-    const textInputGroup = this.textInputGroupComposer.compose({
-      ...context,
-      error :
+    return {
+      ...state,
+      entities :
       {
-        ...context.error,
-        message,
-        code
+        ...state.entities,
+        error :
+        {
+          ...state.entities.error,
+          byId :
+          {
+            ...state.entities.error.byId,
+            [context.error.id] :
+            {
+              ...state.entities.error.byId[context.error.id],
+              message,
+              code
+            }
+          }
+        }
       }
-    })
-
-    return this.store.addEntityContextToState(schema, textInputGroup)
+    }
   }
 }
 

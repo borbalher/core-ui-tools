@@ -28,11 +28,11 @@ class ViewModel
     return viewModel
   }
 
-  setViewModel(state)
+  setViewModel(viewModel)
   {
     const
     previous       = this.viewModel,
-    current        = this.composeViewModel(state)
+    current        = viewModel
     this.viewModel = current
 
     const viewModelChangedEvent = this.eventComposer.compose('view.model.changed', { current, previous })
