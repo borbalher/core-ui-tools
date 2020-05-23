@@ -13,9 +13,9 @@ class ComponentComposer
   }
 
   compose({
-    renderonchange = false,
     bindings       = [],
     listeners      = [],
+    renderonchange,
     parentId,
     template,
     classes,

@@ -9,15 +9,18 @@ class TextareaInputGroupGroupComposer extends ComponentComposer
   {
     super(...args)
     this.textareaInputComposer = this.locator.locate('ui/textarea-input/composer')
+    this.errorComposer         = this.locator.locate('ui/error/composer')
   }
 
   compose({
     bindings  = [],
     listeners = [],
     renderonchange,
+    errorMessage,
     placeholder,
     maxLength,
     attribute,
+    errorCode,
     required,
     disabled,
     readonly,
@@ -27,7 +30,6 @@ class TextareaInputGroupGroupComposer extends ComponentComposer
     title,
     label,
     value,
-    error,
     name,
     rows,
     big,
@@ -35,25 +37,34 @@ class TextareaInputGroupGroupComposer extends ComponentComposer
   })
   {
     const
+    error = this.errorComposer.compose({
+      id       : `${id}-error`,
+      name     : 'error',
+      classes  : 'input-group__error',
+      parentId : id,
+      message  : errorMessage,
+      code     : errorCode
+    }),
+    textareaInput = this.textareaInputComposer.compose({
+      id       : `${id}-textarea-input`,
+      name     : 'input',
+      parentId : id,
+      placeholder,
+      maxLength,
+      attribute,
+      disabled,
+      readonly,
+      required,
+      classes,
+      columns,
+      title,
+      value,
+      rows
+    }),
     textareaInputGroup = super.compose({
       template : 'textarea-input-group',
       schema   : 'entity/textarea-input-group',
-      input    : this.textareaInputComposer.compose({
-        id       : `${id}-textarea-input`,
-        name     : 'input',
-        parentId : id,
-        placeholder,
-        maxLength,
-        attribute,
-        disabled,
-        readonly,
-        required,
-        classes,
-        columns,
-        title,
-        value,
-        rows
-      }),
+      input    : textareaInput,
       bindings : [
         ...this.bindings,
         ...bindings
@@ -63,16 +74,10 @@ class TextareaInputGroupGroupComposer extends ComponentComposer
         ...listeners
       ],
       renderonchange,
-      attribute,
-      required,
-      disabled,
-      readonly,
       parentId,
       classes,
-      title,
-      label,
-      value,
       error,
+      label,
       name,
       big,
       id

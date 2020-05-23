@@ -10,13 +10,9 @@ class ValidateInputActionLocator
   locate()
   {
     const
-    store                         = this.locator.locate('core/store'),
-    radioButtonInputGroupComposer = this.locator.locate('ui/radio-button-input-group/composer')
+    store = this.locator.locate('core/store')
 
-    return new ValidateInputAction({
-      radioButtonInputGroupComposer,
-      store
-    })
+    return new ValidateInputAction(store)
   }
 }
 

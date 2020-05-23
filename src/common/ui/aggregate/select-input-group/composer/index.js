@@ -9,13 +9,16 @@ class SelectInputGroupComposer extends ComponentComposer
   {
     super(...args)
     this.selectInputComposer = this.locator.locate('ui/select-input/composer')
+    this.errorComposer       = this.locator.locate('ui/error/composer')
   }
 
   compose({
     bindings  = [],
     listeners = [],
     renderonchange,
+    errorMessage,
     attribute,
+    errorCode,
     required,
     disabled,
     readonly,
@@ -25,28 +28,36 @@ class SelectInputGroupComposer extends ComponentComposer
     items,
     label,
     value,
-    error,
     name,
     big,
     id
   })
   {
     const
+    error = this.errorComposer.compose({
+      id       : `${id}-error`,
+      name     : 'error',
+      classes  : 'input-group__error',
+      parentId : id,
+      message  : errorMessage,
+      code     : errorCode
+    }),
+    selectInput = this.selectInputComposer.compose({
+      id       : `${id}-select-input`,
+      parentId : id,
+      name     : 'input',
+      attribute,
+      required,
+      disabled,
+      readonly,
+      title,
+      items,
+      value
+    }),
     selectInputGroup = super.compose({
       template : 'select-input-group',
       schema   : 'entity/select-input-group',
-      input    : this.selectInputComposer.compose({
-        id       : `${id}-select-input`,
-        parentId : id,
-        name     : 'input',
-        attribute,
-        required,
-        disabled,
-        readonly,
-        title,
-        items,
-        value
-      }),
+      input    : selectInput,
       bindings : [
         ...this.bindings,
         ...bindings
@@ -56,15 +67,10 @@ class SelectInputGroupComposer extends ComponentComposer
         ...listeners
       ],
       renderonchange,
-      attribute,
-      required,
-      disabled,
-      readonly,
       parentId,
       classes,
-      title,
-      label,
       error,
+      label,
       name,
       big,
       id

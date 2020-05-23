@@ -4,13 +4,9 @@
 class ValidatePasswordInputAction
 {
   // TODO add dictionary
-  constructor({
-    passwordInputGroupComposer,
-    store
-  })
+  constructor(store)
   {
-    this.store                      = store
-    this.passwordInputGroupComposer = passwordInputGroupComposer
+    this.store = store
   }
 
   execute({ meta: { emitter, schema }, data: { value } }, state)

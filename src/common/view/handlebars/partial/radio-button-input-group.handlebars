@@ -1,4 +1,4 @@
-<div id="{{id}}" class='input-group'>
+<div id="{{id}}" class='input-group radio-button-input-group {{classes}}'>
   <div class='btn-group__buttons'>
     {{#each buttons as |button|}}
       <div class='btn-group__button-container'>
@@ -9,4 +9,5 @@
       </div>
     {{/each}}
   </div>
+  {{> component error}}
 </div>

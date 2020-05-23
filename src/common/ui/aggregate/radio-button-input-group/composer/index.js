@@ -9,6 +9,7 @@ class RadioButtonInputGroupComposer extends ComponentComposer
   {
     super(...args)
     this.radioButtonInputComposer = this.locator.locate('ui/radio-button-input/composer')
+    this.errorComposer            = this.locator.locate('ui/error/composer')
   }
 
   composeRadioButtons(buttons, id, value, attribute, disabled, readonly, required)
@@ -34,19 +35,29 @@ class RadioButtonInputGroupComposer extends ComponentComposer
     bindings  = [],
     buttons   = [],
     renderonchange,
+    errorMessage,
     attribute,
+    errorCode,
     disabled,
     parentId,
     readonly,
     required,
     classes,
-    title,
     value,
     name,
     id
   })
   {
-    const radioButtonInputGroup = super.compose({
+    const
+    error = this.errorComposer.compose({
+      id       : `${id}-error`,
+      name     : 'error',
+      classes  : 'input-group__error',
+      parentId : id,
+      message  : errorMessage,
+      code     : errorCode
+    }),
+    radioButtonInputGroup = super.compose({
       buttons  : this.composeRadioButtons(buttons, id, value, attribute, disabled, readonly, required),
       schema   : 'entity/radio-button-input-group',
       template : 'radio-button-input-group',
@@ -59,14 +70,9 @@ class RadioButtonInputGroupComposer extends ComponentComposer
         ...listeners
       ],
       renderonchange,
-      attribute,
-      disabled,
       parentId,
-      readonly,
-      required,
       classes,
-      title,
-      value,
+      error,
       name,
       id
     })

@@ -4,13 +4,9 @@
 class ValidateTextInputAction
 {
   // TODO add dictionary
-  constructor({
-    textareaInputGroupComposer,
-    store
-  })
+  constructor(store)
   {
-    this.store                      = store
-    this.textareaInputGroupComposer = textareaInputGroupComposer
+    this.store = store
   }
 
   execute({ meta: { emitter, schema }, data: { value } }, state)
@@ -19,24 +15,35 @@ class ValidateTextInputAction
     context = this.store.getEntityContext(schema, emitter),
     { input: { required }, label } = context
 
-    let error
+    let message, code
 
     if(required && (!value || value.trim() === ''))
     {
-      error = {
-        message : `${label} is required`,
-        code    : 'E_INPUT_REQUIRED'
-      }
+      message = `${label} is required`
+      code    = 'E_INPUT_REQUIRED'
     }
 
-    const
-    textareaInputGroup = this.textareaInputGroupComposer.compose({
-      ...context,
-      value,
-      error
-    })
-
-    return this.store.addEntityContextToState(schema, textareaInputGroup)
+    return {
+      ...state,
+      entities :
+      {
+        ...state.entities,
+        error :
+        {
+          ...state.entities.error,
+          byId :
+          {
+            ...state.entities.error.byId,
+            [context.error.id] :
+            {
+              ...state.entities.error.byId[context.error.id],
+              message,
+              code
+            }
+          }
+        }
+      }
+    }
   }
 }
 

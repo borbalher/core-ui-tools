@@ -10,12 +10,12 @@ module.exports = {
   {
     'component' :
     {
-      'text-input-group' :
+      'textarea-input-group' :
       {
         bindings :
         [
           {
-            selector       : 'input[type="text"]',
+            selector       : 'textarea',
             domEvent       : 'change',
             domEventMapper : 'ui/input/mapper/input-data-mapper',
             event          : 'validate.text.input',
