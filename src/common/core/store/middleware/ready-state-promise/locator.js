@@ -9,7 +9,8 @@ class ReadyStatePromiseMiddlewareLocator
 
   locate()
   {
-    return new ReadyStatePromiseMiddleware()
+    const actionComposer = this.locator.locate('core/action/composer')
+    return new ReadyStatePromiseMiddleware(actionComposer)
   }
 }
 
