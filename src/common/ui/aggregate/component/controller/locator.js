@@ -14,9 +14,11 @@ class ComponentFactoryLocator
     bus            = this.locator.locate('infrastructure/bus'),
     store          = this.locator.locate('core/store'),
     hbs            = this.locator.locate('view/handlebars'),
-    actionComposer = this.locator.locate('core/action/composer')
+    deepfind       = this.locator.locate('core/deepfind'),
+    actionComposer = this.locator.locate('core/action/composer'),
+    eventComposer  = this.locator.locate('core/event/composer')
 
-    return new ComponentFactory(configuration, bus, this.locator, store, hbs, actionComposer)
+    return new ComponentFactory(configuration, bus, this.locator, store, hbs, deepfind, eventComposer, actionComposer)
   }
 }
 
