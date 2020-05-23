@@ -31,7 +31,7 @@ class SchemaComposer
     {
       try
       {
-        const schema = process.PLATFORM !== 'browser' ? require(schemas[schemaName]) : require(`dist/${schemas[schemaName]}`)
+        const schema = process.env.PLATFORM !== 'browser' ? require(schemas[schemaName]) : require(`dist/${schemas[schemaName]}`)
         this.addSchema(schemaName, schema)
       }
       catch(error)
