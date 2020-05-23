@@ -3,7 +3,7 @@ module.exports = {
   {
     store :
     {
-      middleware : []
+      middleware : ['ui/page-blocker/middleware/page-blocker-flow']
     },
     reducer :
     {

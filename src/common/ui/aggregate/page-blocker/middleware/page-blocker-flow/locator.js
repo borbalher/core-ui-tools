@@ -1,6 +1,6 @@
-const ValidateInputMiddleware = require('.')
+const PageBlockerFlowMiddleware = require('.')
 
-class ValidateInputMiddlewareLocator
+class PageBlockerFlowMiddlewareLocator
 {
   constructor(locator)
   {
@@ -10,8 +10,8 @@ class ValidateInputMiddlewareLocator
   locate()
   {
     const bus = this.locator.locate('infrastructure/bus')
-    return new ValidateInputMiddleware(bus)
+    return new PageBlockerFlowMiddleware(bus)
   }
 }
 
-module.exports = ValidateInputMiddlewareLocator
+module.exports = PageBlockerFlowMiddlewareLocator

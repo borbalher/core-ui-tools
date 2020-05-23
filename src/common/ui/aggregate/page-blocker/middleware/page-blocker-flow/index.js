@@ -1,4 +1,4 @@
-class TextInputGroupFlow
+class PageBlockerFlow
 {
   constructor(bus)
   {
@@ -28,4 +28,4 @@ class TextInputGroupFlow
   }
 }
 
-module.exports = TextInputGroupFlow
+module.exports = PageBlockerFlow
