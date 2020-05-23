@@ -84,9 +84,11 @@ class ComponentController
   addComponentListener(publisherChannel, eventName, map, locator, eventMapper, dispatch)
   {
     const
-    store             = this.store,
+    // store             = this.store,
     observer          = locator      ? this.locator.locate(locator)                : undefined,
     name              = map          ? map                                         : eventName
+    // composeAction     = this.composeAction,
+    // composeEvent      = this.composeEvent
 
     this.bus.on(publisherChannel, eventName, (event) =>
     {
@@ -95,7 +97,7 @@ class ComponentController
       if(dispatch)
       {
         const action = this.composeAction(name, data)
-        store.dispatch(action)
+        this.store.dispatch(action)
       }
       else if(observer)
       {
@@ -145,7 +147,8 @@ class ComponentController
     bus               = this.bus,
     subscriberId      = this[Symbol.for('id')],
     subscriberSchema  = this[Symbol.for('schema')],
-    store             = this.store
+    store             = this.store,
+    actionComposer    = this.actionComposer
 
     domNode.addEventListener(domEvent, function(domEventObject)
     {
@@ -162,7 +165,7 @@ class ComponentController
 
       if(dispatch)
       {
-        const action = this.actionComposer.compose(name, data, { emitter: subscriberId, schema: subscriberSchema })
+        const action = actionComposer.compose(name, data, { emitter: subscriberId, schema: subscriberSchema })
         store.dispatch(action)
       }
       else
