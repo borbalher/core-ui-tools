@@ -17,7 +17,7 @@ class VirtualDOMLocator
     componentFactory     = this.locator.locate('ui/component/controller/factory'),
     treeFactory          = this.locator.locate('data-structure/tree'),
     composer             = this.locator.locate(`view-model/${id}/composer`),
-    jsonToTree           = this.locator.locate('data-structure/json-to-graph/factory').create('entity/component'),
+    jsonToTree           = this.locator.locate('data-structure/json-to-tree/factory').create('entity/component'),
     channel              = this.locator.locate('infrastructure/bus').createChannel('virtual-dom'),
     object               = this.locator.locate('core/object'),
     eventComposer        = this.locator.locate('core/event/composer')

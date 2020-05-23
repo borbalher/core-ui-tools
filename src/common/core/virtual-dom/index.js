@@ -1,4 +1,4 @@
-class Page
+class VirtualDOM
 {
   constructor({
     controllerRepository,
@@ -33,7 +33,7 @@ class Page
   createTreeFromContext(context)
   {
     const { nodes, edges, root } = this.jsonToTree.convert(context)
-    return this.treeFactory.create(nodes, edges, root)
+    return this.treeFactory.create(this[Symbol.for('id')], nodes, edges, root)
   }
 
   update(previous, current)
@@ -153,4 +153,4 @@ class Page
   }
 }
 
-module.exports = Page
+module.exports = VirtualDOM
