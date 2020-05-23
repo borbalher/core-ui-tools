@@ -10,12 +10,12 @@ class ValidateInputActionLocator
   locate()
   {
     const
-    virtualDOM             = this.locator.locate('core/virtual-dom'),
+    store                  = this.locator.locate('core/store'),
     textInputGroupComposer = this.locator.locate('ui/text-input-group/composer')
 
     return new ValidateInputAction({
       textInputGroupComposer,
-      virtualDOM
+      store
     })
   }
 }

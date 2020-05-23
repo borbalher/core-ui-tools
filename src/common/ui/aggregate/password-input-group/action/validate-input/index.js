@@ -6,12 +6,10 @@ class ValidatePasswordInputAction
   // TODO add dictionary
   constructor({
     passwordInputGroupComposer,
-    virtualDOM,
     store
   })
   {
-    this.store                  = store
-    this.virtualDOM             = virtualDOM
+    this.store                      = store
     this.passwordInputGroupComposer = passwordInputGroupComposer
   }
 
@@ -21,14 +19,12 @@ class ValidatePasswordInputAction
     conpassword = this.store.getEntityConpassword(schema, emitter),
     { input: { required, pattern, title }, label } = conpassword
 
-    let error
+    let message, code
 
     if(required && (!value || value.trim() === ''))
     {
-      error = {
-        message : `${label} is required`,
-        code    : 'E_INPUT_REQUIRED'
-      }
+      message = `${label} is required`
+      code    = 'E_INPUT_REQUIRED'
     }
     else if(pattern)
     {
@@ -38,25 +34,22 @@ class ValidatePasswordInputAction
 
       if(!match)
       {
-        error = {
-          message : title ? title : `Format invalid`,
-          code    : 'E_INPUT_FORMAT_INVALID'
-        }
+        message = title ? title : `Format invalid`
+        code    = 'E_INPUT_FORMAT_INVALID'
       }
     }
 
-    const passwordInputGroup = this.passwordInputGroupComposer.compose({
+    const passwordInputGroup = this.textInputGroupComposer.compose({
       ...context,
       error :
       {
         ...context.error,
-        ...error
+        message,
+        code
       }
     })
 
-    this.virtualDOM.setContext(passwordInputGroup)
-
-    return state
+    return this.store.addEntityContextToState(schema, passwordInputGroup)
   }
 }
 

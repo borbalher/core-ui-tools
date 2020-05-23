@@ -6,29 +6,25 @@ class ValidateTextInputAction
   // TODO add dictionary
   constructor({
     textInputGroupComposer,
-    virtualDOM,
     store
   })
   {
     this.store                  = store
-    this.virtualDOM             = virtualDOM
     this.textInputGroupComposer = textInputGroupComposer
   }
 
   execute({ meta: { emitter, schema }, data: { value } }, state)
   {
     const
-    context = this.virtualDOM.getContext(emitter),
+    context = this.store.getEntityContext(schema, emitter),
     { input: { required, pattern, title }, label } = context
 
-    let error
+    let message, code
 
     if(required && (!value || value.trim() === ''))
     {
-      error = {
-        message : `${label} is required`,
-        code    : 'E_INPUT_REQUIRED'
-      }
+      message = `${label} is required`
+      code    = 'E_INPUT_REQUIRED'
     }
     else if(pattern)
     {
@@ -38,10 +34,8 @@ class ValidateTextInputAction
 
       if(!match)
       {
-        error = {
-          message : title ? title : `Format invalid`,
-          code    : 'E_INPUT_FORMAT_INVALID'
-        }
+        message = title ? title : `Format invalid`
+        code    = 'E_INPUT_FORMAT_INVALID'
       }
     }
 
@@ -50,13 +44,12 @@ class ValidateTextInputAction
       error :
       {
         ...context.error,
-        ...error
+        message,
+        code
       }
     })
 
-    this.virtualDOM.setContext(textInputGroup)
-
-    return state
+    return this.store.addEntityContextToState(schema, textInputGroup)
   }
 }
 
