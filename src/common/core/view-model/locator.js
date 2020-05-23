@@ -12,7 +12,7 @@ class ViewModelLocator
     const
     configuration     = this.locator.locate('core/configuration').find('core.page'),
     id                = configuration['id'],
-    initialViewModel  = configuration['state'],
+    initialViewModel  = configuration['viewModel'],
     schema            = configuration['schema'],
     composer          = this.locator.locate(`view-model/${id}/composer`),
     channel           = this.locator.locate('infrastructure/bus').createChannel('view-model'),
