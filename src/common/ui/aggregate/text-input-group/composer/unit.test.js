@@ -16,6 +16,7 @@ describe('src/common/ui/composer/text-input-group', () =>
     core        = coreFactory.create([
       { name: 'common/core/schema' },
       { name: 'common/ui/aggregate/component/composer' },
+      { name: 'common/ui/aggregate/error/composer' },
       { name: 'common/ui/aggregate/text-input/composer' },
       { name: 'common/ui/aggregate/text-input-group/composer' }
     ])

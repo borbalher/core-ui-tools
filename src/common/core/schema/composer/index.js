@@ -31,7 +31,7 @@ class SchemaComposer
     {
       try
       {
-        const schema = require(`schema/${schemas[schemaName]}`)
+        const schema = require(schemas[schemaName])
         this.addSchema(schemaName, schema)
       }
       catch(error)
