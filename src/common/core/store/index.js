@@ -68,6 +68,11 @@ class Store
     return this.deepfind.find(path, this.getState())
   }
 
+  getEntityType(schemaName)
+  {
+    return this.normalizer.getEntityType(schemaName)
+  }
+
   getEntity(schemaName, id)
   {
     return this.entitySet.getEntity(schemaName, id)
