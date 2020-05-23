@@ -44,7 +44,7 @@ class EntitySet
     entity  = this.getEntity(schemaName, id),
     context = entity ? this.normalizer.denormalize(entity, schemaName, this.entities) : undefined
 
-    return context
+    return JSON.parse(JSON.stringify(context))
   }
 
   getEntityTypeSet()

@@ -47,9 +47,15 @@ class Store
     this.state  = state
 
     this.checkStatesLength()
+    this.updateEntitySet()
 
     const eventChanged = this.eventComposer.compose('state.changed', { state })
     this.channel.emit(eventChanged)
+  }
+
+  updateEntitySet()
+  {
+    this.entitySet.update(this.state.entities)
   }
 
   getState()

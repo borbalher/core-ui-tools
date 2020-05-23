@@ -18,7 +18,7 @@ module.exports = {
     {
       channels :
       {
-        'virtual-dom' :
+        'view-model' :
         {
           listeners :
           {
