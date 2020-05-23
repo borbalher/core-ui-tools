@@ -8,14 +8,19 @@ class JSONToGraph
 
   isNode(json)
   {
-    try
+    if(json && !Array.isArray(json) && typeof json === 'object')
     {
-      return this.composer.compose(this.nodeSchema, json)
+      try
+      {
+        return this.composer.compose(this.nodeSchema, json)
+      }
+      catch(error)
+      {
+        return false
+      }
     }
-    catch(error)
-    {
-      return false
-    }
+
+    return false
   }
 
   convert(json, isDirected = false)
