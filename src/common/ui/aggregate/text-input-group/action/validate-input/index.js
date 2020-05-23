@@ -18,7 +18,7 @@ class ValidateTextInputAction
   execute({ meta: { emitter, schema }, data: { value } }, state)
   {
     const
-    context = this.virtualDOM.getContext(schema, emitter),
+    context = this.virtualDOM.getContext(emitter),
     { input: { required, pattern, title }, label } = context
 
     let error
