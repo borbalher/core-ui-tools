@@ -11,7 +11,7 @@ class PageBlockerFlowMiddlewareLocator
   {
     const
     bus           = this.locator.locate('infrastructure/bus'),
-    eventComposer = this.loc.locate('core/event/composer')
+    eventComposer = this.locator.locate('core/event/composer')
     return new PageBlockerFlowMiddleware(bus, eventComposer)
   }
 }
