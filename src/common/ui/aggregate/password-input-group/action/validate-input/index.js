@@ -12,7 +12,7 @@ class ValidatePasswordInputAction
   execute({ meta: { emitter, schema }, data: { value } }, state)
   {
     const
-    context = this.store.getEntityConpassword(schema, emitter),
+    context = this.store.getEntityContext(schema, emitter),
     { input: { required, pattern, title }, label } = context
 
     let message, code
