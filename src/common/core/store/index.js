@@ -68,6 +68,17 @@ class Store
     return this.deepfind.find(path, this.getState())
   }
 
+  normalizeEntityContext(context, schemaName)
+  {
+    return this.normalizer.normalizer(context, schemaName)
+  }
+
+  addEntityContextToState(schemaName, context)
+  {
+    this.entitySet.addEntityContext(schemaName, context)
+    return { ...this.state, entities: this.entitySet.entities }
+  }
+
   getEntityType(schemaName)
   {
     return this.entitySet.getEntityType(schemaName)
@@ -115,12 +126,6 @@ class Store
 
 
     this.dispatch = dispatch
-  }
-
-  addEntityContextToState(schemaName, context)
-  {
-    this.entitySet.addEntityContext(schemaName, context)
-    return { ...this.state, entities: this.entitySet.entities }
   }
 }
 
