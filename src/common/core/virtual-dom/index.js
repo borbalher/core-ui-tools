@@ -66,10 +66,9 @@ class VirtualDOM
     let subtreePath = []
 
     const
-    component             = this.getController(componentId),
-    viewModelChangedEvent = this.eventComposer.compose('component.changed', { previous, current })
+    component = this.getController(componentId)
 
-    component.emit(viewModelChangedEvent)
+    component.emit('component.changed', { previous, current })
 
     if(data.renderonchange)
     {
