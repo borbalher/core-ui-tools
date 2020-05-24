@@ -70,7 +70,7 @@ class Store
 
   getEntityType(schemaName)
   {
-    return this.normalizer.getEntityType(schemaName)
+    return this.entitySet.getEntityType(schemaName)
   }
 
   getEntity(schemaName, id)

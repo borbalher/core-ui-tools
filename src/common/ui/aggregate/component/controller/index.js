@@ -148,7 +148,8 @@ class ComponentController
     subscriberId      = this[Symbol.for('id')],
     subscriberSchema  = this[Symbol.for('schema')],
     store             = this.store,
-    actionComposer    = this.actionComposer
+    actionComposer    = this.actionComposer,
+    eventComposer     = this.eventComposer
 
     domNode.addEventListener(domEvent, function(domEventObject)
     {
@@ -170,7 +171,8 @@ class ComponentController
       }
       else
       {
-        bus.emit(subscriberId, name, data)
+        const event = eventComposer.compose(name, data)
+        bus.emit(subscriberId, event)
       }
     })
   }

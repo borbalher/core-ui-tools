@@ -38,6 +38,11 @@ class EntitySet
     return entity
   }
 
+  getEntityType(schemaName)
+  {
+    return this.normalizer.getEntityType(schemaName)
+  }
+
   getEntityContext(schemaName, id)
   {
     const
