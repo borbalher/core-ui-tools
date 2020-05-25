@@ -46,9 +46,10 @@ class TextInputGroupComposer extends ComponentComposer
       code     : errorCode
     }),
     textInput  = this.textInputComposer.compose({
-      id       : `${id}-text-input`,
-      name     : 'input',
-      parentId : id,
+      id             : `${id}-text-input`,
+      name           : 'input',
+      parentId       : id,
+      renderonchange : false,
       autocomplete,
       placeholder,
       maxLength,

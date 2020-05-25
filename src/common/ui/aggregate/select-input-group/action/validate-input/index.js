@@ -28,6 +28,19 @@ class ValidateTextInputAction
       entities :
       {
         ...state.entities,
+        selectInput :
+        {
+          ...state.entities.selectInput,
+          byId :
+          {
+            ...state.entities.selectInput.byId,
+            [context.input.id] :
+            {
+              ...state.entities.selectInput.byId[context.input.id],
+              value
+            }
+          }
+        },
         error :
         {
           ...state.entities.error,

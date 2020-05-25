@@ -40,6 +40,19 @@ class ValidateTextInputAction
       entities :
       {
         ...state.entities,
+        textInput :
+        {
+          ...state.entities.textInput,
+          byId :
+          {
+            ...state.entities.textInput.byId,
+            [context.input.id] :
+            {
+              ...state.entities.textInput.byId[context.input.id],
+              value
+            }
+          }
+        },
         error :
         {
           ...state.entities.error,

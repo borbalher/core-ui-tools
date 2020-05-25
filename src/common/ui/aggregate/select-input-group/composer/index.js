@@ -43,9 +43,10 @@ class SelectInputGroupComposer extends ComponentComposer
       code     : errorCode
     }),
     selectInput = this.selectInputComposer.compose({
-      id       : `${id}-select-input`,
-      parentId : id,
-      name     : 'input',
+      id             : `${id}-select-input`,
+      parentId       : id,
+      name           : 'input',
+      renderonchange : false,
       attribute,
       required,
       disabled,
