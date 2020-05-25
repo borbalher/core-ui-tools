@@ -8,13 +8,10 @@ class CloseModalAction
     this.store = store
   }
 
-  execute(action, state)
+  execute({ data: { modalId, modalSchema } })
   {
-    const
-    { meta: { emitter, schema } } = action,
-    context = this.store.getEntityContext(schema, emitter)
-
-    return this.store.addEntityContextToState(schema, { ...context, isOpen: false })
+    const context = this.store.getEntityContext(modalSchema, modalId)
+    return this.store.addEntityContextToState(modalSchema, { ...context, isOpen: false })
   }
 }
 

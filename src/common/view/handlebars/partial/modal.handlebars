@@ -10,13 +10,14 @@
         {{> (lookup body 'template') body}}
     </div>
     <div class='modal-footer'>
-      <button class='modal-actions__action button button--wired' data-action="close.modal">
-        Cancel
-      </button>
       {{#each actions}}
-         <button {{#if submit}}type='submit' form="{{../body.id}}"{{/if}} class='modal-actions__action button button--filled' data-action="{{id}}">
-           {{name}}
-         </button>
+        {{#if submit}}
+          <input type='submit' form="{{../body.id}}" class='modal-actions__action button button--filled' value="{{name}}"/>
+        {{else}}
+            <button class='modal-actions__action button button--filled' data-action="{{id}}">
+              {{name}}
+            </button>
+        {{/if}}
       {{/each}}
     </div>
   </div>

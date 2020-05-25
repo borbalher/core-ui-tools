@@ -15,25 +15,12 @@ module.exports = {
         bindings :
         [
           {
-            selector       : '.modal-actions__action[data-action]',
+            selector       : '[data-action]',
             domEvent       : 'click',
             domEventMapper : 'ui/modal/mapper/modal-action',
             event          : 'dispatch.action',
+            dispatch       : true,
             preventDefault : true
-          },
-          {
-            selector       : '.close-modal__button',
-            domEvent       : 'click',
-            domEventMapper : 'ui/modal/mapper/modal-action',
-            event          : 'dispatch.action',
-            preventDefault : true
-          }
-        ],
-        listeners :
-        [
-          {
-            event   : 'dispatch.action',
-            locator : 'ui/modal/listener/on-dispatch-action'
           }
         ]
       }

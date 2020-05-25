@@ -5,6 +5,7 @@ module.exports = {
     {
       composer :
       {
+        'value/partial'                   : `${__dirname}/value-object/partial`,
         'value/edge'                      : `${__dirname}/value-object/edge`,
         'entity/error'                    : `${__dirname}/entity/error`,
         'entity/node'                     : `${__dirname}/entity/node`,
@@ -88,3 +89,4 @@ module.exports = {
     }
   }
 }
+

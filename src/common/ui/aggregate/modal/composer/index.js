@@ -14,6 +14,7 @@ class ModalComposer extends ComponentComposer
     headerText,
     parentId,
     classes,
+    schema,
     isOpen,
     name,
     body,
@@ -21,7 +22,6 @@ class ModalComposer extends ComponentComposer
   })
   {
     const modal = super.compose({
-      schema   : 'entity/modal',
       template : 'modal',
       bindings : [
         ...this.bindings,
@@ -42,6 +42,7 @@ class ModalComposer extends ComponentComposer
       parentId,
       actions,
       classes,
+      schema,
       isOpen,
       name,
       id

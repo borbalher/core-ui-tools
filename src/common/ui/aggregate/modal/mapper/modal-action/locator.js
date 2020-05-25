@@ -1,6 +1,6 @@
-const InputValueMapper = require('.')
+const ModalActionMapper = require('.')
 
-class InputValueMapperLocator
+class ModalActionMapperLocator
 {
   constructor(locator)
   {
@@ -9,8 +9,8 @@ class InputValueMapperLocator
 
   locate()
   {
-    return new InputValueMapper()
+    return new ModalActionMapper()
   }
 }
 
-module.exports = InputValueMapperLocator
+module.exports = ModalActionMapperLocator

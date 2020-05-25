@@ -1,4 +1,4 @@
-class InputValueMapper
+class ModalActionMapper
 {
   map(domEvent)
   {
@@ -8,4 +8,4 @@ class InputValueMapper
   }
 }
 
-module.exports = InputValueMapper
+module.exports = ModalActionMapper

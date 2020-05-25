@@ -5,7 +5,7 @@ module.exports = {
     {
       actions :
       {
-        'validate.textarea.input' : 'ui/text-input-group/action/validate-textarea-input'
+        'validate.textarea.input' : 'ui/textarea-input-group/action/validate-textarea-input'
       }
     },
     locator :

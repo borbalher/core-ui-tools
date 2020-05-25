@@ -36,21 +36,20 @@ module.exports = {
   headers :
   {
     type       : 'schema',
-    schema     : 'entity/component',
+    schema     : 'value/partial',
     collection : true,
     default    : []
   },
   rows :
   {
-    type       : 'schema',
-    schema     : 'entity/component',
+    type       : 'json',
     collection : true,
     default    : []
   },
   actions :
   {
     type       : 'schema',
-    schema     : 'entity/component',
+    schema     : 'value/partial',
     collection : true,
     default    : []
   },
