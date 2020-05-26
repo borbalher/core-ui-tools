@@ -7,7 +7,7 @@ describe('src/common/ui/composer/toggeable-panel', () =>
   let
   core,
   composer,
-  toggeablePanelComposer
+  toggeableFieldsetComposer
 
   before((done) =>
   {
@@ -18,13 +18,13 @@ describe('src/common/ui/composer/toggeable-panel', () =>
       { name: 'common/ui/aggregate/component/composer' },
       { name: 'common/ui/aggregate/checkbox-input/composer' },
       { name: 'common/ui/aggregate/checkbox-input-group/composer' },
-      { name: 'common/ui/aggregate/toggeable-panel/composer' }
+      { name: 'common/ui/aggregate/toggeable-fieldset/composer' }
     ])
 
     core.load().then(() =>
     {
       composer               = core.locate('core/schema/composer')
-      toggeablePanelComposer = core.locate('ui/toggeable-panel/composer')
+      toggeableFieldsetComposer = core.locate('ui/toggeable-fieldset/composer')
       done()
     })
   })
@@ -33,7 +33,7 @@ describe('src/common/ui/composer/toggeable-panel', () =>
   {
     const
     componentComposer = core.locate('ui/component/composer'),
-    toggeablePanel    = toggeablePanelComposer.compose({
+    toggeableFieldset    = toggeableFieldsetComposer.compose({
       panel : componentComposer.compose({
         template : 'component',
         classes  : 'my-class',
@@ -41,15 +41,15 @@ describe('src/common/ui/composer/toggeable-panel', () =>
         name     : 'myComponent',
         id       : 'component'
       }),
-      schema   : 'entity/my-toggeable-panel',
-      template : 'my-toggeable-panel',
-      name     : 'panel',
-      id       : 'panel'
+      schema   : 'entity/my-toggeable-fieldset',
+      template : 'my-toggeable-fieldset',
+      name     : 'fieldset',
+      id       : 'fieldset'
     })
 
     expect(() =>
     {
-      composer.compose('entity/toggeable-panel', toggeablePanel)
+      composer.compose('entity/toggeable-fieldset', toggeableFieldset)
     }).to.not.throw()
   })
 })

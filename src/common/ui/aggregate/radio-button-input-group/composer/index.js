@@ -72,6 +72,7 @@ class RadioButtonInputGroupComposer extends ComponentComposer
       renderonchange,
       parentId,
       classes,
+      value,
       error,
       name,
       id

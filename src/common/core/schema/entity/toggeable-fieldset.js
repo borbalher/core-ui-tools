@@ -18,9 +18,10 @@ module.exports  = {
     type   : 'schema',
     schema : 'entity/checkbox-input-group'
   },
-  panel :
+  formId :
   {
-    type   : 'schema',
-    schema : 'entity/component'
+    type        : 'string',
+    'not-empty' : true,
+    optional    : true
   }
 }

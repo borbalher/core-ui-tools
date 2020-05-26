@@ -3,14 +3,14 @@ module.exports = {
   {
     locator :
     {
-      'ui/toggeable-panel/composer' : __dirname
+      'ui/toggeable-fieldset/composer' : __dirname
     }
   },
   ui :
   {
     'component' :
     {
-      'toggeable-panel' :
+      'toggeable-fieldset' :
       {
         bindings :
         [
@@ -18,7 +18,7 @@ module.exports = {
             selector       : 'input[type="checkbox"]',
             domEvent       : 'change',
             domEventMapper : 'ui/checkbox-input/mapper/input-data-mapper',
-            event          : 'toggle.panel',
+            event          : 'toggle.fieldset',
             dispatch       : true
           }
         ]

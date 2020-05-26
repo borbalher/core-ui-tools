@@ -25,7 +25,7 @@ module.exports = {
         'entity/button'                   : `${__dirname}/entity/button`,
         'entity/form'                     : `${__dirname}/entity/form`,
         'entity/fieldset'                 : `${__dirname}/entity/fieldset`,
-        'entity/toggeable-panel'          : `${__dirname}/entity/toggeable-panel`,
+        'entity/toggeable-fieldset'       : `${__dirname}/entity/toggeable-fieldset`,
         'entity/input-group'              : `${__dirname}/entity/input-group`,
         'entity/input'                    : `${__dirname}/entity/input`,
         'entity/select-input'             : `${__dirname}/entity/select-input`,

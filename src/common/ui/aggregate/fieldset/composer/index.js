@@ -15,6 +15,7 @@ class FieldsetComposer extends ComponentComposer
     parentId,
     classes,
     formId,
+    schema,
     legend,
     name,
     id,
@@ -22,7 +23,6 @@ class FieldsetComposer extends ComponentComposer
   })
   {
     const fieldset = super.compose({
-      schema   : 'entity/fieldset',
       bindings : [
         ...this.bindings,
         ...bindings
@@ -36,6 +36,7 @@ class FieldsetComposer extends ComponentComposer
       parentId,
       template,
       classes,
+      schema,
       formId,
       legend,
       name,

@@ -1,9 +1,9 @@
 const ComponentComposer = require('common/ui/aggregate/component/composer')
 /**
- * ToggeablePanel composer
+ * ToggeableFieldset composer
  * @class
  */
-class ToggeablePanelComposer extends ComponentComposer
+class ToggeableFieldsetComposer extends ComponentComposer
 {
   constructor(...args)
   {
@@ -23,18 +23,16 @@ class ToggeablePanelComposer extends ComponentComposer
     showWhenToggled,
     isToggled,
     parentId,
+    template,
     classes,
     formId,
-    legend,
     schema,
-    panel,
     name,
     id
   })
   {
     const
-    toggeablePanel = super.compose({
-      template  : 'toggeable-panel',
+    toggeableFieldset = super.compose({
       isVisible : this.isVisible(isToggled, showWhenToggled),
       bindings  : [
         ...this.bindings,
@@ -52,22 +50,17 @@ class ToggeablePanelComposer extends ComponentComposer
       }),
       showWhenToggled,
       renderonchange,
+      template,
       parentId,
       classes,
       formId,
-      legend,
       schema,
-      panel : super.compose({
-        ...panel,
-        name     : 'panel',
-        parentId : id
-      }),
       name,
       id
     })
 
-    return toggeablePanel
+    return toggeableFieldset
   }
 }
 
-module.exports = ToggeablePanelComposer
+module.exports = ToggeableFieldsetComposer
