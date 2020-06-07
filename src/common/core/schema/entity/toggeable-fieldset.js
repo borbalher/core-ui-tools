@@ -13,6 +13,11 @@ module.exports  = {
     type    : 'boolean',
     default : false
   },
+  isVisible :
+  {
+    type    : 'boolean',
+    default : false
+  },
   toggle :
   {
     type   : 'schema',
