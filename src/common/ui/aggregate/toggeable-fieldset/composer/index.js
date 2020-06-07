@@ -35,6 +35,7 @@ class ToggeableFieldsetComposer extends ComponentComposer
   {
     const
     toggeableFieldset = super.compose({
+      ...args,
       isVisible : this.isVisible(isToggled, showWhenToggled),
       bindings  : [
         ...this.bindings,
@@ -60,8 +61,7 @@ class ToggeableFieldsetComposer extends ComponentComposer
       formId,
       schema,
       name,
-      id,
-      ...args
+      id
     })
 
     return toggeableFieldset
