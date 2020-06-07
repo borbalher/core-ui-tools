@@ -73,7 +73,11 @@ class TextInputGroupComposer extends ComponentComposer
         ...listeners
       ],
       renderonchange,
+      autocomplete,
+      placeholder,
+      maxLength,
       parentId,
+      pattern,
       classes,
       value,
       error,

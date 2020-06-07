@@ -74,12 +74,16 @@ class TextareaInputGroupGroupComposer extends ComponentComposer
         ...listeners
       ],
       renderonchange,
+      placeholder,
+      maxLength,
       parentId,
       classes,
+      columns,
       value,
       error,
       label,
       name,
+      rows,
       big,
       id
     })
