@@ -4,10 +4,11 @@
 class ValidateDateInputAction
 {
   // TODO add dictionary
-  constructor({ store, coreMoment })
+  constructor(store, coreMoment, dateInputGroupComposer)
   {
-    this.store      = store
-    this.coreMoment = coreMoment
+    this.store                  = store
+    this.coreMoment             = coreMoment
+    this.dateInputGroupComposer = dateInputGroupComposer
   }
 
   execute({ meta: { emitter, schema }, data: { value } }, state)
@@ -39,40 +40,47 @@ class ValidateDateInputAction
       code    = 'E_DATE_INVALID'
     }
 
-    return {
-      ...state,
-      entities :
-      {
-        ...state.entities,
-        textInput :
-        {
-          ...state.entities.textInput,
-          byId :
-          {
-            ...state.entities.textInput.byId,
-            [context.input.id] :
-            {
-              ...state.entities.textInput.byId[context.input.id],
-              value
-            }
-          }
-        },
-        error :
-        {
-          ...state.entities.error,
-          byId :
-          {
-            ...state.entities.error.byId,
-            [context.error.id] :
-            {
-              ...state.entities.error.byId[context.error.id],
-              message,
-              code
-            }
-          }
-        }
-      }
-    }
+    return this.store.addEntityContextToState(schema, this.dateInputGroupComposer.compose({
+      ...context,
+      errorMessage : message,
+      errorCode    : code,
+      value
+    }))
+
+    // return {
+    //   ...state,
+    //   entities :
+    //   {
+    //     ...state.entities,
+    //     textInput :
+    //     {
+    //       ...state.entities.textInput,
+    //       byId :
+    //       {
+    //         ...state.entities.textInput.byId,
+    //         [context.input.id] :
+    //         {
+    //           ...state.entities.textInput.byId[context.input.id],
+    //           value
+    //         }
+    //       }
+    //     },
+    //     error :
+    //     {
+    //       ...state.entities.error,
+    //       byId :
+    //       {
+    //         ...state.entities.error.byId,
+    //         [context.error.id] :
+    //         {
+    //           ...state.entities.error.byId[context.error.id],
+    //           message,
+    //           code
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
   }
 }
 

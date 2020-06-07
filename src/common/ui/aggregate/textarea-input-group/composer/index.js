@@ -76,6 +76,7 @@ class TextareaInputGroupGroupComposer extends ComponentComposer
       renderonchange,
       parentId,
       classes,
+      value,
       error,
       label,
       name,

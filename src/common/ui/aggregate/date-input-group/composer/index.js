@@ -73,6 +73,7 @@ class DateInputGroupComposer extends ComponentComposer
       parentId,
       classes,
       locale,
+      value,
       error,
       label,
       name,

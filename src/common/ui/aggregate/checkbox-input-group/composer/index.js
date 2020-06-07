@@ -68,6 +68,7 @@ class CheckboxInputGroupComposer extends ComponentComposer
       renderonchange,
       parentId,
       classes,
+      value,
       label,
       error,
       name,

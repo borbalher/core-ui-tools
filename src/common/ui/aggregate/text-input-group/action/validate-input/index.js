@@ -4,9 +4,10 @@
 class ValidateTextInputAction
 {
   // TODO add dictionary
-  constructor(store)
+  constructor(store, textInputGroupComposer)
   {
-    this.store = store
+    this.store                  = store
+    this.textInputGroupComposer = textInputGroupComposer
   }
 
   execute({ meta: { emitter, schema }, data: { value } }, state)
@@ -35,40 +36,47 @@ class ValidateTextInputAction
       }
     }
 
-    return {
-      ...state,
-      entities :
-      {
-        ...state.entities,
-        textInput :
-        {
-          ...state.entities.textInput,
-          byId :
-          {
-            ...state.entities.textInput.byId,
-            [context.input.id] :
-            {
-              ...state.entities.textInput.byId[context.input.id],
-              value
-            }
-          }
-        },
-        error :
-        {
-          ...state.entities.error,
-          byId :
-          {
-            ...state.entities.error.byId,
-            [context.error.id] :
-            {
-              ...state.entities.error.byId[context.error.id],
-              message,
-              code
-            }
-          }
-        }
-      }
-    }
+    return this.store.addEntityContextToState(schema, this.textInputGroupComposer.compose({
+      ...context,
+      errorMessage : message,
+      errorCode    : code,
+      value
+    }))
+
+    // return {
+    //   ...state,
+    //   entities :
+    //   {
+    //     ...state.entities,
+    //     textInput :
+    //     {
+    //       ...state.entities.textInput,
+    //       byId :
+    //       {
+    //         ...state.entities.textInput.byId,
+    //         [context.input.id] :
+    //         {
+    //           ...state.entities.textInput.byId[context.input.id],
+    //           value
+    //         }
+    //       }
+    //     },
+    //     error :
+    //     {
+    //       ...state.entities.error,
+    //       byId :
+    //       {
+    //         ...state.entities.error.byId,
+    //         [context.error.id] :
+    //         {
+    //           ...state.entities.error.byId[context.error.id],
+    //           message,
+    //           code
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
   }
 }
 

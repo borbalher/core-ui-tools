@@ -7,6 +7,11 @@ const dto = {
   {
     type   : 'schema',
     schema : 'entity/password-input'
+  },
+  value :
+  {
+    type     : 'string',
+    optional : true
   }
 }
 

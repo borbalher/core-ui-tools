@@ -4,9 +4,10 @@
 class ValidateInputAction
 {
   // TODO add dictionary
-  constructor(store)
+  constructor(store, checkboxInputGroupComposer)
   {
-    this.store = store
+    this.store                      = store
+    this.checkboxInputGroupComposer = checkboxInputGroupComposer
   }
 
   execute({ meta: { emitter, schema }, data: { value } }, state)
@@ -23,27 +24,34 @@ class ValidateInputAction
       code    = 'E_INPUT_REQUIRED'
     }
 
-    return {
-      ...state,
-      entities :
-      {
-        ...state.entities,
-        error :
-        {
-          ...state.entities.error,
-          byId :
-          {
-            ...state.entities.error.byId,
-            [context.error.id] :
-            {
-              ...state.entities.error.byId[context.error.id],
-              message,
-              code
-            }
-          }
-        }
-      }
-    }
+    return this.store.addEntityContextToState(schema, this.checkboxInputGroupComposer.compose({
+      ...context,
+      errorMessage : message,
+      errorCode    : code,
+      value
+    }))
+
+    // return {
+    //   ...state,
+    //   entities :
+    //   {
+    //     ...state.entities,
+    //     error :
+    //     {
+    //       ...state.entities.error,
+    //       byId :
+    //       {
+    //         ...state.entities.error.byId,
+    //         [context.error.id] :
+    //         {
+    //           ...state.entities.error.byId[context.error.id],
+    //           message,
+    //           code
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
   }
 }
 

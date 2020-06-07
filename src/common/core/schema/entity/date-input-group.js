@@ -19,6 +19,11 @@ const dto = {
     type        : 'string',
     'not-empty' : true,
     optional    : true
+  },
+  value :
+  {
+    type     : 'string',
+    optional : true
   }
 }
 

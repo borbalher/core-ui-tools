@@ -7,6 +7,13 @@ const dto = {
   {
     type   : 'schema',
     schema : 'entity/select-input'
+  },
+  value :
+  {
+    type       : 'string',
+    optional   : true,
+    collection : true,
+    default    : []
   }
 }
 

@@ -70,6 +70,7 @@ class PasswordInputGroupComposer extends ComponentComposer
       renderonchange,
       parentId,
       classes,
+      value,
       error,
       label,
       name,

@@ -7,6 +7,11 @@ const dto = {
   {
     type   : 'schema',
     schema : 'entity/checkbox-input'
+  },
+  value :
+  {
+    type    : 'boolean',
+    default : false
   }
 }
 
