@@ -42,6 +42,11 @@ class PasswordInputGroupComposer extends ComponentComposer
         ...this.listeners,
         ...listeners
       ],
+      id,
+      name,
+      parentId,
+      renderonchange,
+      classes,
       options,
       attribute,
       title,

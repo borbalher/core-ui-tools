@@ -1,4 +1,4 @@
-class TextInputGroupFlow
+class ValidateInputFlow
 {
   middleware()
   {
@@ -27,4 +27,4 @@ class TextInputGroupFlow
   }
 }
 
-module.exports = TextInputGroupFlow
+module.exports = ValidateInputFlow

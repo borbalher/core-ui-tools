@@ -8,8 +8,8 @@
             type='radio'
             id='{{button.id}}'
             value='{{button.id}}'
-            {{#if value '==' button.id}}checked{{/if}}
-            name='{{attribute}}'>
+            {{#if ../value '==' button.id}}checked{{/if}}
+            name='{{../attribute}}'>
 
       <label class='btn-group__button' for='{{button.id}}'>
         {{button.name}}

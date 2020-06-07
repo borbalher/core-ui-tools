@@ -13,7 +13,7 @@ class ValidateTextInputAction
   {
     const
     context = this.store.getEntityContext(schema, emitter),
-    { input: { required }, label } = context
+    { required, label } = context
 
     let error
 
