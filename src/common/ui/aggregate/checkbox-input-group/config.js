@@ -21,8 +21,7 @@ module.exports = {
       'checkbox-input-group' :
       {
         bindings :
-        {
-          'validate.checkbox-input.on.change' :
+        [
           {
             selector       : 'input[type="checkbox"]',
             domEvent       : 'change',
@@ -30,7 +29,7 @@ module.exports = {
             event          : 'validate.checkbox.input',
             dispatch       : true
           }
-        }
+        ]
       }
     }
   }
