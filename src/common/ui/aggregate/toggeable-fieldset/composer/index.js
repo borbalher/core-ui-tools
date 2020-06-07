@@ -60,6 +60,7 @@ class ToggeableFieldsetComposer extends ComponentComposer
       classes,
       formId,
       schema,
+      label,
       name,
       id
     })
