@@ -48,6 +48,7 @@ class ToggeableFieldsetComposer extends ComponentComposer
         id       : `${id}-checkbox-input-group`,
         value    : isToggled,
         name     : 'toggle',
+        required : false,
         parentId : this.isVisible(isToggled, showWhenToggled),
         label
       }),

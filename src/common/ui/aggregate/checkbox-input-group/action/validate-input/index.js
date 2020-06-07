@@ -17,7 +17,7 @@ class ValidateInputAction
 
     let message, code
 
-    if(required && value)
+    if(required && !value)
     {
       message = `${label} is required`
       code    = 'E_INPUT_REQUIRED'
