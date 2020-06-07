@@ -16,7 +16,6 @@ describe('src/common/ui/composer/textarea-input-group', () =>
     core        = coreFactory.create([
       { name: 'common/core/schema' },
       { name: 'common/ui/aggregate/component/composer' },
-      { name: 'common/ui/aggregate/textarea-input/composer' },
       { name: 'common/ui/aggregate/textarea-input-group/composer' }
     ])
 

@@ -5,65 +5,35 @@ const ComponentComposer = require('common/ui/aggregate/component/composer')
  */
 class TextInputGroupComposer extends ComponentComposer
 {
-  constructor(...args)
-  {
-    super(...args)
-    this.textInputComposer = this.locator.locate('ui/text-input/composer')
-    this.errorComposer     = this.locator.locate('ui/error/composer')
-  }
-
   compose({
     bindings  = [],
     listeners = [],
-    errorMessage,
-    errorCode,
+    id,
+    name,
+    parentId,
     renderonchange,
-    autocomplete,
-    placeholder,
-    maxLength,
+    classes,
+    options,
     attribute,
+    title,
+    value,
     required,
     disabled,
     readonly,
-    parentId,
-    classes,
-    pattern,
-    title,
     label,
-    value,
-    name,
+    error,
     big,
-    id
+    optional,
+    autocomplete,
+    maxLength,
+    placeholder,
+    pattern
   })
   {
     const
-    error     = this.errorComposer.compose({
-      id       : `${id}-error`,
-      name     : 'error',
-      classes  : 'input-group__error',
-      parentId : id,
-      message  : errorMessage,
-      code     : errorCode
-    }),
-    textInput  = this.textInputComposer.compose({
-      id       : `${id}-text-input`,
-      name     : 'input',
-      parentId : id,
-      autocomplete,
-      placeholder,
-      maxLength,
-      attribute,
-      disabled,
-      readonly,
-      required,
-      pattern,
-      title,
-      value
-    }),
     textInputGroup = super.compose({
       template : 'text-input-group',
       schema   : 'entity/text-input-group',
-      input    : textInput,
       bindings : [
         ...this.bindings,
         ...bindings
@@ -72,19 +42,26 @@ class TextInputGroupComposer extends ComponentComposer
         ...this.listeners,
         ...listeners
       ],
-      renderonchange,
-      autocomplete,
-      placeholder,
-      maxLength,
-      parentId,
-      pattern,
-      classes,
-      value,
-      error,
-      label,
+      id,
       name,
+      parentId,
+      renderonchange,
+      classes,
+      options,
+      attribute,
+      title,
+      value,
+      required,
+      disabled,
+      readonly,
+      label,
+      error,
       big,
-      id
+      optional,
+      autocomplete,
+      maxLength,
+      placeholder,
+      pattern
     })
 
     return textInputGroup

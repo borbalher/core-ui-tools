@@ -5,60 +5,30 @@ const ComponentComposer = require('common/ui/aggregate/component/composer')
  */
 class RadioButtonInputGroupComposer extends ComponentComposer
 {
-  constructor(...args)
-  {
-    super(...args)
-    this.radioButtonInputComposer = this.locator.locate('ui/radio-button-input/composer')
-    this.errorComposer            = this.locator.locate('ui/error/composer')
-  }
-
-  composeRadioButtons(buttons, id, value, attribute, disabled, readonly, required)
-  {
-    return buttons.map((button) =>
-    {
-      return this.radioButtonInputComposer.compose({
-        label    : button.label,
-        id       : button.id,
-        name     : 'input',
-        parentId : id,
-        attribute,
-        disabled,
-        readonly,
-        required,
-        value
-      })
-    })
-  }
-
   compose({
     listeners = [],
     bindings  = [],
-    input     = [],
-    renderonchange,
-    errorMessage,
-    attribute,
-    errorCode,
-    disabled,
-    parentId,
-    readonly,
-    required,
-    classes,
-    value,
+    id,
     name,
-    id
+    parentId,
+    renderonchange,
+    classes,
+    options,
+    attribute,
+    title,
+    value,
+    required,
+    disabled,
+    readonly,
+    label,
+    error,
+    big,
+    optional,
+    buttons
   })
   {
     const
-    error = this.errorComposer.compose({
-      id       : `${id}-error`,
-      name     : 'error',
-      classes  : 'input-group__error',
-      parentId : id,
-      message  : errorMessage,
-      code     : errorCode
-    }),
     radioButtonInputGroup = super.compose({
-      input    : this.composeRadioButtons(input, id, value, attribute, disabled, readonly, required),
       schema   : 'entity/radio-button-input-group',
       template : 'radio-button-input-group',
       bindings : [
@@ -69,13 +39,23 @@ class RadioButtonInputGroupComposer extends ComponentComposer
         ...this.listeners,
         ...listeners
       ],
-      renderonchange,
-      parentId,
-      classes,
-      value,
-      error,
+      id,
       name,
-      id
+      parentId,
+      renderonchange,
+      classes,
+      options,
+      attribute,
+      title,
+      value,
+      required,
+      disabled,
+      readonly,
+      label,
+      error,
+      big,
+      optional,
+      buttons
     })
 
     return radioButtonInputGroup

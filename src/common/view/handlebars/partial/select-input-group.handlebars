@@ -1,1 +1,26 @@
-{{> input-group this}}
+{{#> input-group}}
+
+<select id="{{id}}-input" class='input-group__input select-input'
+  {{#if required}}    required {{/if}}
+  {{#if disabled}}    disabled {{/if}}
+  {{#if multiple}}    multiple {{/if}}
+  {{#if size}}        size='{{size}}' {{/if}}
+  {{#if placeholder}} placeholder='{{placeholder}}' {{/if}}
+  {{#if attribute}}   name='{{attribute}}' {{/if}}
+  autocomplete='{{#if autocomplete}}on{{/if}}{{#unless autocomplete}}off{{/unless}}'>
+
+  {{#if placeholder}}
+    <option value="" disabled hidden>{{placeholder}}</option>
+  {{/if}}
+
+  {{#each items as |item|}}
+    {{#with item}}
+      <option value="{{id}}" class='dropdown__list-item {{#if ../value 'has' id}} --selected {{/if}} item' {{#if ../value 'has' id}}selected{{/if}}>
+        {{name}}
+      </option>
+    {{/with}}
+  {{/each}}
+
+</select>
+
+{{/input-group}}

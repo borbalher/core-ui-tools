@@ -4,10 +4,9 @@
 class ValidateInputAction
 {
   // TODO add dictionary
-  constructor(store, radioButtonInputGroupComposer)
+  constructor(store)
   {
-    this.store                         = store
-    this.radioButtonInputGroupComposer = radioButtonInputGroupComposer
+    this.store = store
   }
 
   execute({ meta: { emitter, schema }, data: { value } }, state)
@@ -16,42 +15,32 @@ class ValidateInputAction
     context = this.store.getEntityContext(schema, emitter),
     { required, label } = context
 
-    let message, code
-
+    let error
     if(required && (!value || value.trim() === ''))
-    {
-      message = `${label} is required`
-      code    = 'E_INPUT_REQUIRED'
+      error = `${label} is required`
+
+
+    return {
+      ...state,
+      entities :
+      {
+        ...state.entities,
+        radioButtonInputGroup :
+        {
+          ...state.entities.radioButtonInputGroup,
+          byId :
+          {
+            ...state.entities.radioButtonInputGroup.byId,
+            [context.id] :
+            {
+              ...state.entities.radioButtonInputGroup.byId[context.id],
+              error,
+              value
+            }
+          }
+        }
+      }
     }
-
-    return this.store.addEntityContextToState(schema, this.radioButtonInputGroupComposer.compose({
-      ...context,
-      errorMessage : message,
-      errorCode    : code,
-      value
-    }))
-
-    // return {
-    //   ...state,
-    //   entities :
-    //   {
-    //     ...state.entities,
-    //     error :
-    //     {
-    //       ...state.entities.error,
-    //       byId :
-    //       {
-    //         ...state.entities.error.byId,
-    //         [context.error.id] :
-    //         {
-    //           ...state.entities.error.byId[context.error.id],
-    //           message,
-    //           code
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
   }
 }
 

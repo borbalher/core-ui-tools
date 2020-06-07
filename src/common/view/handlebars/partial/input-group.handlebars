@@ -1,19 +1,22 @@
-<div id="{{id}}" class='input-group {{input.template}}-input-group {{#if big}}input-group--xl{{/if}} {{#if error.message}}--error{{/if}} {{classes}}'>
+<div id='{{id}}' class='input-group {{template}}-input-group {{#if big}}input-group--xl{{/if}} {{#if error}}--error{{/if}} {{classes}}'>
+
   <div class='input-group__label-wrapper'>
     {{#if label}}
-      <label class='input-group__label' for='{{input.id}}'>
+      <label class='input-group__label' for='{{id}}-input'>
         {{label}}
       </label>
     {{/if}}
-    {{#unless input.required}}
+    {{#unless required}}
       <span class='input-group__optional-label'>
-        (optional)
+        {{optional}}
       </span>
     {{/unless}}
   </div>
 
- {{> component input}}
+ {{> @partial-block }}
 
- {{> component error}}
+ <div class='input-group__error {{#if error}}--visible{{else}}--hidden{{/if}}'>
+  {{error}}
+ </div>
 
 </div>

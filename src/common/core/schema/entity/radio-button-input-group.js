@@ -7,7 +7,7 @@ module.exports = {
     type     : 'string',
     optional : true
   },
-  input :
+  buttons :
   {
     type       : 'schema',
     schema     : 'entity/radio-button-input',

@@ -5,60 +5,35 @@ const ComponentComposer = require('common/ui/aggregate/component/composer')
  */
 class PasswordInputGroupComposer extends ComponentComposer
 {
-  constructor(...args)
-  {
-    super(...args)
-
-    this.errorComposer         = this.locator.locate('ui/error/composer')
-    this.passwordInputComposer = this.locator.locate('ui/password-input/composer')
-  }
-
   compose({
     bindings  = [],
     listeners = [],
-    errorMessage,
-    errorCode,
+    id,
+    name,
+    parentId,
     renderonchange,
-    placeholder,
+    classes,
+    options,
     attribute,
+    title,
+    value,
     required,
     disabled,
     readonly,
-    parentId,
-    classes,
-    title,
     label,
-    value,
-    name,
+    error,
     big,
-    id
+    optional,
+    autocomplete,
+    maxLength,
+    placeholder,
+    pattern
   })
   {
     const
-    error     = this.errorComposer.compose({
-      id       : `${id}-error`,
-      name     : 'error',
-      classes  : 'input-group__error',
-      parentId : id,
-      message  : errorMessage,
-      code     : errorCode
-    }),
-    passwordInput = this.passwordInputComposer.compose({
-      id       : `${id}-password-input`,
-      name     : 'input',
-      parentId : id,
-      placeholder,
-      attribute,
-      required,
-      disabled,
-      readonly,
-      title,
-      value
-    }),
     passwordInputGroup = super.compose({
       schema   : 'entity/password-input-group',
       template : 'password-input-group',
-      input    : passwordInput,
       bindings : [
         ...this.bindings,
         ...bindings
@@ -67,15 +42,21 @@ class PasswordInputGroupComposer extends ComponentComposer
         ...this.listeners,
         ...listeners
       ],
-      renderonchange,
-      parentId,
-      classes,
+      options,
+      attribute,
+      title,
       value,
-      error,
+      required,
+      disabled,
+      readonly,
       label,
-      name,
+      error,
       big,
-      id
+      optional,
+      autocomplete,
+      maxLength,
+      placeholder,
+      pattern
     })
 
     return passwordInputGroup

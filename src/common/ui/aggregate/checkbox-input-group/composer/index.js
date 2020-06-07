@@ -6,57 +6,31 @@ const ComponentComposer = require('common/ui/aggregate/component/composer')
  */
 class CheckboxInputGroupComposer extends ComponentComposer
 {
-  constructor(...args)
-  {
-    super(...args)
-    this.checkboxInputComposer = this.locator.locate('ui/checkbox-input/composer')
-    this.errorComposer         = this.locator.locate('ui/error/composer')
-  }
-
   compose({
     bindings  = [],
     listeners = [],
+    id,
+    name,
+    parentId,
     renderonchange,
-    errorMessage,
+    classes,
+    options,
     attribute,
-    errorCode,
+    title,
+    value,
     required,
     disabled,
     readonly,
-    parentId,
-    classes,
-    title,
     label,
-    value,
-    name,
+    error,
     big,
-    id
+    optional
   })
   {
     const
-    error = this.errorComposer.compose({
-      id       : `${id}-error`,
-      name     : 'error',
-      classes  : 'input-group__error',
-      parentId : id,
-      message  : errorMessage,
-      code     : errorCode
-    }),
-    checkboxInput = this.checkboxInputComposer.compose({
-      id       : `${id}-checkbox-input`,
-      name     : 'input',
-      parentId : id,
-      attribute,
-      required,
-      disabled,
-      readonly,
-      title,
-      value
-    }),
     checkboxInputGroup = super.compose({
       schema   : 'entity/checkbox-input-group',
       template : 'checkbox-input-group',
-      input    : checkboxInput,
       bindings : [
         ...this.bindings,
         ...bindings
@@ -65,15 +39,22 @@ class CheckboxInputGroupComposer extends ComponentComposer
         ...this.listeners,
         ...listeners
       ],
-      renderonchange,
+      id,
+      name,
       parentId,
+      renderonchange,
       classes,
+      options,
+      attribute,
+      title,
       value,
+      required,
+      disabled,
+      readonly,
       label,
       error,
-      name,
       big,
-      id
+      optional
     })
 
     return  checkboxInputGroup

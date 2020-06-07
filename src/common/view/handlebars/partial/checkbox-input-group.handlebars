@@ -1,10 +1,19 @@
-<div id="{{id}}" class='input-group {{template}} {{classes}} {{#if error.message}}--error{{/if}}'>
+<div id='{{id}}' class='input-group {{template}}-input-group {{#if big}}input-group--xl{{/if}} {{#if error}}--error{{/if}} {{classes}}'>
 
   <label class='checkbox'>
     {{label}}
-    {{> checkbox-input input}}
+    <input
+      id='{{id}}'
+      {{#if required}}  required        {{/if}}
+      {{#if checked}}   checked         {{/if}}
+      {{#if disabled}}  disabled        {{/if}}
+      {{#if attribute}} name='{{attribute}}' {{/if}}
+      {{#if value}}     checked         {{/if}}
+      class='checkbox__input' type='checkbox'>
     <span class='checkbox__checkmark'></span>
   </label>
 
-  {{> component error}}
+  <div class='input-group__error {{#if error}}--visible{{else}}--hidden{{/if}}'>
+    {{error}}
+  </div>
 </div>

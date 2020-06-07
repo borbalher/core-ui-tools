@@ -3,11 +3,6 @@ const dto = {
   {
     extends : 'entity/input-group'
   },
-  input :
-  {
-    type   : 'schema',
-    schema : 'entity/text-input'
-  },
   value :
   {
     type     : 'string',

@@ -15,10 +15,7 @@ describe('src/common/ui/composer/date-input-group', () =>
 
     core        = coreFactory.create([
       { name: 'common/core/schema' },
-      { name: 'common/core/moment' },
       { name: 'common/ui/aggregate/component/composer' },
-      { name: 'common/ui/aggregate/error/composer' },
-      { name: 'common/ui/aggregate/text-input/composer' },
       { name: 'common/ui/aggregate/date-input-group/composer' }
     ])
 
@@ -37,9 +34,8 @@ describe('src/common/ui/composer/date-input-group', () =>
       disabled  : true,
       readonly  : true,
       required  : true,
-      locale    : 'es',
       title     : 'Date input title',
-      value     : '25/02/1991',
+      value     : '1991-02-05',
       name      : 'dateInputGroup',
       id        : 'my-date-input-group'
     })

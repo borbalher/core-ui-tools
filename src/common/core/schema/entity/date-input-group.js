@@ -3,24 +3,17 @@ const dto = {
   {
     extends : 'entity/input-group'
   },
-  input :
+  autocomplete :
   {
-    type   : 'schema',
-    schema : 'entity/text-input'
+    type    : 'boolean',
+    default : false
   },
-  afterDate :
+  max :
   {
-    type        : 'string',
-    'not-empty' : true,
-    optional    : true
+    type     : 'string',
+    optional : true
   },
-  locale :
-  {
-    type        : 'string',
-    'not-empty' : true,
-    optional    : true
-  },
-  value :
+  min :
   {
     type     : 'string',
     optional : true

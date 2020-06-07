@@ -4,54 +4,43 @@
 class ValidateInputAction
 {
   // TODO add dictionary
-  constructor(store, checkboxInputGroupComposer)
+  constructor(store)
   {
-    this.store                      = store
-    this.checkboxInputGroupComposer = checkboxInputGroupComposer
+    this.store = store
   }
 
   execute({ meta: { emitter, schema }, data: { value } }, state)
   {
     const
     context = this.store.getEntityContext(schema, emitter),
-    { input: { required }, label } = context
+    { required, label } = context
 
-    let message, code
+    let error
 
     if(required && !value)
-    {
-      message = `${label} is required`
-      code    = 'E_INPUT_REQUIRED'
+      error = `${label} is required`
+
+    return {
+      ...state,
+      entities :
+      {
+        ...state.entities,
+        checkboxInputGroup :
+        {
+          ...state.entities.checkboxInputGroup,
+          byId :
+          {
+            ...state.entities.checkboxInputGroup.byId,
+            [context.id] :
+            {
+              ...state.entities.checkboxInputGroup.byId[context.id],
+              error,
+              value
+            }
+          }
+        }
+      }
     }
-
-    return this.store.addEntityContextToState(schema, this.checkboxInputGroupComposer.compose({
-      ...context,
-      errorMessage : message,
-      errorCode    : code,
-      value
-    }))
-
-    // return {
-    //   ...state,
-    //   entities :
-    //   {
-    //     ...state.entities,
-    //     error :
-    //     {
-    //       ...state.entities.error,
-    //       byId :
-    //       {
-    //         ...state.entities.error.byId,
-    //         [context.error.id] :
-    //         {
-    //           ...state.entities.error.byId[context.error.id],
-    //           message,
-    //           code
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
   }
 }
 

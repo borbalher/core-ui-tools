@@ -15,7 +15,6 @@ describe('src/common/ui/composer/password-input-group', () =>
 
     core        = coreFactory.create([
       { name: 'common/core/schema' },
-      { name: 'common/ui/aggregate/password-input/composer' },
       { name: 'common/ui/aggregate/password-input-group/composer' }
     ])
 

@@ -1,57 +1,47 @@
 /**
  * @implements {common/core/reducer/action}
  */
-class ValidateTextInputAction
+class ValidateTextareaInputAction
 {
   // TODO add dictionary
-  constructor(store, textareaInputGroupComposer)
+  constructor(store)
   {
-    this.store                      = store
-    this.textareaInputGroupComposer = textareaInputGroupComposer
+    this.store = store
   }
 
   execute({ meta: { emitter, schema }, data: { value } }, state)
   {
     const
     context = this.store.getEntityContext(schema, emitter),
-    { input: { required }, label } = context
+    { required, label } = context
 
-    let message, code
+    let error
 
     if(required && (!value || value.trim() === ''))
-    {
-      message = `${label} is required`
-      code    = 'E_INPUT_REQUIRED'
-    }
+      error = `${label} is required`
 
-    return this.store.addEntityContextToState(schema, this.textareaInputGroupComposer.compose({
-      ...context,
-      errorMessage : message,
-      errorCode    : code,
-      value
-    }))
-    // return {
-    //   ...state,
-    //   entities :
-    //   {
-    //     ...state.entities,
-    //     error :
-    //     {
-    //       ...state.entities.error,
-    //       byId :
-    //       {
-    //         ...state.entities.error.byId,
-    //         [context.error.id] :
-    //         {
-    //           ...state.entities.error.byId[context.error.id],
-    //           message,
-    //           code
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
+    return {
+      ...state,
+      entities :
+      {
+        ...state.entities,
+        textareaInputGroup :
+        {
+          ...state.entities.textareaInputGroup,
+          byId :
+          {
+            ...state.entities.textareaInputGroup.byId,
+            [context.id] :
+            {
+              ...state.entities.textareaInputGroup.byId[context.id],
+              error,
+              value
+            }
+          }
+        }
+      }
+    }
   }
 }
 
-module.exports = ValidateTextInputAction
+module.exports = ValidateTextareaInputAction

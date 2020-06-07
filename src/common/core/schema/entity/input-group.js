@@ -3,16 +3,11 @@ const dto = {
   {
     extends : 'entity/input'
   },
-  input :
+  optional :
   {
-    type   : 'schema',
-    schema : 'entity/input'
-  },
-  error :
-  {
-    type     : 'schema',
-    schema   : 'entity/error',
-    optional : true
+    type        : 'string',
+    optional    : true,
+    'not-empty' : true
   },
   label :
   {
@@ -20,13 +15,7 @@ const dto = {
     optional    : true,
     'not-empty' : true
   },
-  errorMessage :
-  {
-    type        : 'string',
-    optional    : true,
-    'not-empty' : true
-  },
-  errorCode :
+  error :
   {
     type        : 'string',
     optional    : true,

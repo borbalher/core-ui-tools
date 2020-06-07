@@ -10,10 +10,9 @@ class ValidateInputActionLocator
   locate()
   {
     const
-    store                      = this.locator.locate('core/store'),
-    checkboxInputGroupComposer = this.locator.locate('ui/checkbox-input-group/composer')
+    store = this.locator.locate('core/store')
 
-    return new ValidateInputAction(store, checkboxInputGroupComposer)
+    return new ValidateInputAction(store)
   }
 }
 
