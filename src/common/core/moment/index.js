@@ -1,34 +1,75 @@
+const moment = require('moment')
+
 class CoreMoment
 {
-  constructor(moment, locale = 'es')
+  constructor()
   {
-    this.moment = moment
-    this.setLocale(locale)
+    moment.locale('en')
   }
 
-  getMomentDate(value)
+  getMomentDate(value, locale)
   {
-    return this.moment(value, this.getDateOnlyPlaceholder())
+    if(locale)
+    {
+      const localizedMoment = moment().locale(locale)
+      return localizedMoment(value, this.getDateOnlyPlaceholder(locale))
+    }
+    else
+    {
+      return moment(value, this.getDateOnlyPlaceholder())
+    }
   }
 
-  formatDate(value, valueFormat, isStrict, format)
+  formatDate(value, valueFormat, isStrict, format, locale)
   {
-    return this.moment(value, valueFormat, isStrict).format(format)
+    if(locale)
+    {
+      const localizedMoment = moment().locale(locale)
+      return localizedMoment(value, valueFormat, isStrict).format(format)
+    }
+    else
+    {
+      return moment(value, valueFormat, isStrict).format(format)
+    }
   }
 
-  getDateOnlyPlaceholder()
+  getDateOnlyPlaceholder(locale)
   {
-    return this.moment()._locale._longDateFormat.L
+    if(locale)
+    {
+      const localizedMoment = moment().locale(locale)
+      return localizedMoment._locale._longDateFormat.L
+    }
+    else
+    {
+      return moment()._locale._longDateFormat.L
+    }
   }
 
-  isDateValid(value, valueFormat)
+  isValid(value, valueFormat, locale)
   {
-    return this.moment(value, valueFormat, true).isValid()
+    if(locale)
+    {
+      const localizedMoment = moment().locale(locale)
+      return localizedMoment(value, valueFormat, true).isValid()
+    }
+    else
+    {
+      return moment(value, valueFormat, true).isValid()
+    }
   }
 
-  setLocale(locale)
+  isAfter(date, afterDate, locale)
   {
-    this.moment.locale(locale)
+    if(locale)
+    {
+      const localizedMoment = moment().locale(locale)
+      return localizedMoment(date).isAfter(localizedMoment(afterDate))
+    }
+    else
+    {
+      return moment(date).isAfter(moment(afterDate))
+    }
   }
 }
 

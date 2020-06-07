@@ -20,6 +20,7 @@ class ToggeableFieldsetComposer extends ComponentComposer
     listeners = [],
     bindings  = [],
     renderonchange,
+    label,
     showWhenToggled,
     isToggled,
     parentId,
@@ -28,7 +29,8 @@ class ToggeableFieldsetComposer extends ComponentComposer
     formId,
     schema,
     name,
-    id
+    id,
+    ...args
   })
   {
     const
@@ -46,7 +48,8 @@ class ToggeableFieldsetComposer extends ComponentComposer
         id       : `${id}-checkbox-input-group`,
         value    : isToggled,
         name     : 'toggle',
-        parentId : id
+        parentId : this.isVisible(isToggled, showWhenToggled),
+        label
       }),
       showWhenToggled,
       renderonchange,
@@ -56,7 +59,8 @@ class ToggeableFieldsetComposer extends ComponentComposer
       formId,
       schema,
       name,
-      id
+      id,
+      ...args
     })
 
     return toggeableFieldset

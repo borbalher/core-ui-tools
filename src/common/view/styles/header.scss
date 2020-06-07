@@ -6,16 +6,22 @@
   margin: 0 auto;
   position: relative;
 
-  .header__title{
+  &__title{
     font-size:3em;
     position: absolute;
     top: 50%;
     transform: translateY(-50%)
   }
+
   .logo{
-    text-align: right;
     text-decoration: none;
+    text-align: right;
     
+    &__wrapper{
+      width: 9rem;
+      float: right;
+    }
+
     &__svg svg{
       fill: map-get($palette, color-primary);
       width: 9rem;
@@ -26,7 +32,16 @@
       text-transform: uppercase;
       color: map-get($palette, color-primary);
       font-weight: bold;
+      padding-right: .25rem;
     }
+  }
+  
+  &--floating{
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    padding: 0;
+    z-index: 5;
   }
 
   &.--negative .logo{

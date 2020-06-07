@@ -40,7 +40,8 @@ module.exports = {
         'entity/text-input-group'         : `${__dirname}/entity/text-input-group`,
         'entity/textarea-input-group'     : `${__dirname}/entity/textarea-input-group`,
         'entity/radio-button-input-group' : `${__dirname}/entity/radio-button-input-group`,
-        'entity/checkbox-input-group'     : `${__dirname}/entity/checkbox-input-group`
+        'entity/checkbox-input-group'     : `${__dirname}/entity/checkbox-input-group`,
+        'entity/date-input-group'         : `${__dirname}/entity/date-input-group`
       },
       filter :
       {
