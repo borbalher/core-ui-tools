@@ -36,6 +36,8 @@ class DateInputGroupComposer extends ComponentComposer
       bindings  : [...this.bindings, ...bindings],
       listeners : [...this.listeners, ...listeners],
       value     : value ? new Date(value).toISOString().split('T')[0] : undefined,
+      max       : max   ? new Date(max).toISOString().split('T')[0] : undefined,
+      min       : min   ? new Date(min).toISOString().split('T')[0] : undefined,
       id,
       name,
       parentId,
@@ -51,9 +53,7 @@ class DateInputGroupComposer extends ComponentComposer
       error,
       big,
       optional,
-      autocomplete,
-      max,
-      min
+      autocomplete
     })
 
     return dateInputGroup
