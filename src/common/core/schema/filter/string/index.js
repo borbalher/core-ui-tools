@@ -6,8 +6,8 @@ class SchemaFilterString
   filter(options, data)
   {
     return options.collection
-    ? this.filterCollection(options, data)
-    : this.filterSingle(options, data)
+      ? this.filterCollection(options, data)
+      : this.filterSingle(options, data)
   }
 
   filterCollection(options, data)
