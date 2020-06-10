@@ -15,7 +15,7 @@ class ValidatePasswordInputAction
   execute({ meta: { emitter, schema }, data: { value } })
   {
     const
-    context        = this.store.getEntityConpassword(schema, emitter),
+    context        = this.store.getEntityContext(schema, emitter),
     newConpassword = this.passwordInputGroupComposer.compose({
       ...context,
       value
