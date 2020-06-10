@@ -3,55 +3,25 @@
  */
 class ValidateTextInputAction
 {
-  // TODO add dictionary
-  constructor(store)
+  constructor({
+    textInputGroupComposer,
+    store
+  })
   {
-    this.store = store
+    this.store                  = store
+    this.textInputGroupComposer = textInputGroupComposer
   }
 
-  execute({ meta: { emitter, schema }, data: { value } }, state)
+  execute({ meta: { emitter, schema }, data: { value } })
   {
     const
-    context = this.store.getEntityContext(schema, emitter),
-    { required, pattern, title, label } = context
+    context    = this.store.getEntityContext(schema, emitter),
+    newContext = this.textInputGroupComposer.compose({
+      ...context,
+      value
+    })
 
-    let error
-
-    if(required && (!value || value.trim() === ''))
-    {
-      error = `${label} is required`
-    }
-    else if(pattern)
-    {
-      const
-      regexp = new RegExp(pattern),
-      match  = regexp.exec(value)
-
-      if(!match)
-        error = title ? title : `Format invalid`
-    }
-
-    return {
-      ...state,
-      entities :
-      {
-        ...state.entities,
-        textInputGroup :
-        {
-          ...state.entities.textInputGroup,
-          byId :
-          {
-            ...state.entities.textInputGroup.byId,
-            [context.id] :
-            {
-              ...state.entities.textInputGroup.byId[context.id],
-              error,
-              value
-            }
-          }
-        }
-      }
-    }
+    return  this.store.addEntityContextToState(schema, newContext)
   }
 }
 

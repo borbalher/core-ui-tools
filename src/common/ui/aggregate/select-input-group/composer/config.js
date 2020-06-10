@@ -17,9 +17,15 @@ module.exports = {
           {
             selector       : 'select',
             domEvent       : 'change',
-            domEventMapper : 'ui/select-input/mapper/selected-options-to-data',
-            event          : 'validate.select.input',
-            dispatch       : true
+            domEventMapper : 'ui/select-input/mapper/selected-options-to-data'
+          }
+        ],
+        listeners :
+        [
+          {
+            event    : 'change',
+            map      : 'validate.select.input',
+            dispatch : true
           }
         ]
       }

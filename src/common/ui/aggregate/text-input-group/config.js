@@ -1,6 +1,10 @@
 module.exports = {
   core :
   {
+    store :
+    {
+      middlewares : ['ui/text-input-group/middleware/text-input-group-flow']
+    },
     reducer :
     {
       actions :
@@ -10,8 +14,8 @@ module.exports = {
     },
     locator :
     {
-      'ui/text-input-group/action/validate-text-input' : `${__dirname}/action/validate-input`,
-      'ui/text-input-group/composer'                   : `${__dirname}/composer`
+      'ui/text-input-group/middleware/text-input-group-flow' : `${__dirname}/middleware/text-input-group`,
+      'ui/text-input-group/action/validate-text-input'       : `${__dirname}/action/validate-input`
     }
   }
 }

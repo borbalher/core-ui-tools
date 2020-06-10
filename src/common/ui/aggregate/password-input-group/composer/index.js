@@ -5,63 +5,72 @@ const ComponentComposer = require('common/ui/aggregate/component/composer')
  */
 class PasswordInputGroupComposer extends ComponentComposer
 {
+  validate(required, value, pattern, title, label)
+  {
+    if(required && (!value || value.trim() === ''))
+      return `${label} is required`
+
+    if(pattern)
+    {
+      const
+      regexp = new RegExp(pattern),
+      match  = regexp.exec(value)
+
+      if(!match)
+        return title ? title : `Format invalid`
+    }
+  }
+
   compose({
     bindings  = [],
     listeners = [],
-    id,
-    name,
-    parentId,
     renderonchange,
+    autocomplete,
+    placeholder,
+    attribute,
+    maxLength,
+    disabled,
+    optional,
+    parentId,
+    readonly,
+    required,
     classes,
     options,
-    attribute,
+    pattern,
+    label,
     title,
     value,
-    required,
-    disabled,
-    readonly,
-    label,
-    error,
+    name,
     big,
-    optional,
-    autocomplete,
-    maxLength,
-    placeholder,
-    pattern
+    id
   })
   {
     const
     passwordInputGroup = super.compose({
-      schema   : 'entity/password-input-group',
-      template : 'password-input-group',
-      bindings : [
-        ...this.bindings,
-        ...bindings
-      ],
-      listeners : [
-        ...this.listeners,
-        ...listeners
-      ],
-      id,
-      name,
-      parentId,
+      schema    : 'entity/password-input-group',
+      template  : 'password-input-group',
+      bindings  : [ ...this.bindings, ...bindings ],
+      listeners : [ ...this.listeners, ...listeners ],
+      error     : this.validate(required, value, pattern, title, label),
       renderonchange,
+      autocomplete,
+      placeholder,
+      attribute,
+      maxLength,
+      disabled,
+      optional,
+      parentId,
+      readonly,
+      required,
       classes,
       options,
-      attribute,
+      pattern,
+      label,
       title,
       value,
-      required,
-      disabled,
-      readonly,
-      label,
-      error,
+      name,
       big,
-      optional,
-      autocomplete,
-      maxLength,
-      placeholder,
-      pattern
+      id
     })
 
     return passwordInputGroup

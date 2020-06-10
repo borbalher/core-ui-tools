@@ -3,44 +3,25 @@
  */
 class ValidateDateInputAction
 {
-  // TODO add dictionary
-  constructor(store)
+  constructor({
+    dateInputGroupComposer,
+    store
+  })
   {
-    this.store = store
+    this.store                  = store
+    this.dateInputGroupComposer = dateInputGroupComposer
   }
 
-  execute({ meta: { emitter, schema }, data: { value } }, state)
+  execute({ meta: { emitter, schema }, data: { value } })
   {
     const
-    context = this.store.getEntityContext(schema, emitter),
-    { required, label } = context
+    context    = this.store.getEntityContext(schema, emitter),
+    newContext = this.dateInputGroupComposer.compose({
+      ...context,
+      value
+    })
 
-    let error
-
-    if(required && (!value || value.trim() === ''))
-      error = `${label} is required`
-
-    return {
-      ...state,
-      entities :
-      {
-        ...state.entities,
-        dateInputGroup :
-        {
-          ...state.entities.dateInputGroup,
-          byId :
-          {
-            ...state.entities.dateInputGroup.byId,
-            [context.id] :
-            {
-              ...state.entities.dateInputGroup.byId[context.id],
-              value,
-              error
-            }
-          }
-        }
-      }
-    }
+    return  this.store.addEntityContextToState(schema, newContext)
   }
 }
 

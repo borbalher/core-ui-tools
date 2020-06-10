@@ -17,9 +17,15 @@ module.exports = {
           {
             selector       : 'input[type="radio"]',
             domEvent       : 'change',
-            domEventMapper : 'ui/input/mapper/input-data-mapper',
-            event          : 'validate.radio.button.input',
-            dispatch       : true
+            domEventMapper : 'ui/input/mapper/input-data-mapper'
+          }
+        ],
+        listeners :
+        [
+          {
+            event    : 'change',
+            map      : 'validate.radio-button.input',
+            dispatch : true
           }
         ]
       }

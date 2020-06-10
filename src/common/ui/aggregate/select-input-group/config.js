@@ -15,8 +15,7 @@ module.exports = {
     locator :
     {
       'ui/select-input-group/middleware/select-input-group-flow' : `${__dirname}/middleware/select-input-group`,
-      'ui/select-input-group/action/validate-select-input'       : `${__dirname}/action/validate-input`,
-      'ui/select-input-group/composer'                           : `${__dirname}/composer`
+      'ui/select-input-group/action/validate-select-input'       : `${__dirname}/action/validate-input`
     }
   }
 }

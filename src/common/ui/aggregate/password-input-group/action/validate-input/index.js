@@ -3,55 +3,25 @@
  */
 class ValidatePasswordInputAction
 {
-  // TODO add dictionary
-  constructor(store)
+  constructor({
+    passwordInputGroupComposer,
+    store
+  })
   {
-    this.store = store
+    this.store                      = store
+    this.passwordInputGroupComposer = passwordInputGroupComposer
   }
 
-  execute({ meta: { emitter, schema }, data: { value } }, state)
+  execute({ meta: { emitter, schema }, data: { value } })
   {
     const
-    context = this.store.getEntityContext(schema, emitter),
-    { required, pattern, title, label } = context
+    context        = this.store.getEntityConpassword(schema, emitter),
+    newConpassword = this.passwordInputGroupComposer.compose({
+      ...context,
+      value
+    })
 
-    let error
-
-    if(required && (!value || value.trim() === ''))
-    {
-      error = `${label} is required`
-    }
-    else if(pattern)
-    {
-      const
-      regexp = new RegExp(pattern),
-      match  = regexp.exec(value)
-
-      if(!match)
-        error = title ? title : `Format invalid`
-    }
-
-    return {
-      ...state,
-      entities :
-      {
-        ...state.entities,
-        passwordInputGroup :
-        {
-          ...state.entities.passwordInputGroup,
-          byId :
-          {
-            ...state.entities.passwordInputGroup.byId,
-            [context.id] :
-            {
-              ...state.entities.passwordInputGroup.byId[context.id],
-              error,
-              value
-            }
-          }
-        }
-      }
-    }
+    return  this.store.addEntityConpasswordToState(schema, newConpassword)
   }
 }
 

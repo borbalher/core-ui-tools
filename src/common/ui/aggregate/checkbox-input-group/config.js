@@ -1,6 +1,10 @@
 module.exports = {
   core :
   {
+    store :
+    {
+      middlewares : ['ui/checkbox-input-group/middleware/checkbox-input-group-flow']
+    },
     reducer :
     {
       actions :
@@ -10,27 +14,10 @@ module.exports = {
     },
     locator :
     {
-      'ui/checkbox-input-group/action/validate-checkbox-input' : `${__dirname}/action/validate-input`,
-      'ui/checkbox-input-group/composer'                       : `${__dirname}/composer`
-    }
-  },
-  ui :
-  {
-    'component' :
-    {
-      'checkbox-input-group' :
-      {
-        bindings :
-        [
-          {
-            selector       : 'input[type="checkbox"]',
-            domEvent       : 'change',
-            domEventMapper : 'ui/checkbox-input/mapper/input-data-mapper',
-            event          : 'validate.checkbox.input',
-            dispatch       : true
-          }
-        ]
-      }
+
+      'ui/checkbox-input-group/mapper/input-data-mapper'             : `${__dirname}/mapper/input-data-mapper`,
+      'ui/checkbox-input-group/middleware/checkbox-input-group-flow' : `${__dirname}/middleware/checkbox-input-group`,
+      'ui/checkbox-input-group/action/validate-checkbox-input'       : `${__dirname}/action/validate-input`
     }
   }
 }

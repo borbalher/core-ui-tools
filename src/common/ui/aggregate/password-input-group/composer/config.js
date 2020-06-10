@@ -17,9 +17,15 @@ module.exports = {
           {
             selector       : 'input[type="password"]',
             domEvent       : 'change',
-            domEventMapper : 'ui/input/mapper/input-data-mapper',
-            event          : 'validate.password.input',
-            dispatch       : true
+            domEventMapper : 'ui/input/mapper/input-data-mapper'
+          }
+        ],
+        listeners :
+        [
+          {
+            event    : 'change',
+            map      : 'validate.password.input',
+            dispatch : true
           }
         ]
       }

@@ -23,14 +23,8 @@ class FieldsetComposer extends ComponentComposer
   })
   {
     const fieldset = super.compose({
-      bindings : [
-        ...this.bindings,
-        ...bindings
-      ],
-      listeners : [
-        ...this.listeners,
-        ...listeners
-      ],
+      bindings  : [ ...this.bindings, ...bindings ],
+      listeners : [ ...this.listeners, ...listeners ],
       renderonchange,
       disabled,
       parentId,

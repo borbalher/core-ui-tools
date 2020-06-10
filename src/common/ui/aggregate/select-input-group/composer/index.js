@@ -5,65 +5,64 @@ const ComponentComposer = require('common/ui/aggregate/component/composer')
  */
 class SelectInputGroupComposer extends ComponentComposer
 {
+  validate(required, value, label)
+  {
+    if(required && (!value || value.length === 0))
+      return `${label} is required`
+  }
+
   compose({
     bindings  = [],
     listeners = [],
-    id,
-    name,
-    parentId,
     renderonchange,
+    autocomplete,
+    placeholder,
+    attribute,
+    disabled,
+    multiple,
+    optional,
+    parentId,
+    readonly,
+    required,
     classes,
     options,
-    attribute,
+    items,
+    label,
     title,
     value,
-    required,
-    disabled,
-    readonly,
-    label,
-    error,
-    big,
-    optional,
-    autocomplete,
+    name,
     size,
-    multiple,
-    items,
-    placeholder
+    big,
+    id
   })
   {
     const
     selectInputGroup = super.compose({
-      template : 'select-input-group',
-      schema   : 'entity/select-input-group',
-      bindings : [
-        ...this.bindings,
-        ...bindings
-      ],
-      listeners : [
-        ...this.listeners,
-        ...listeners
-      ],
-      id,
-      name,
-      parentId,
+      template  : 'select-input-group',
+      schema    : 'entity/select-input-group',
+      bindings  : [ ...this.bindings, ...bindings ],
+      listeners : [ ...this.listeners, ...listeners ],
+      error     : this.validate(required, value, label),
       renderonchange,
+      autocomplete,
+      placeholder,
+      attribute,
+      disabled,
+      multiple,
+      optional,
+      parentId,
+      readonly,
+      required,
       classes,
       options,
-      attribute,
+      items,
+      label,
       title,
       value,
-      required,
-      disabled,
-      readonly,
-      label,
-      error,
-      big,
-      optional,
-      autocomplete,
+      name,
       size,
-      multiple,
-      items,
-      placeholder
+      big,
+      id
     })
 
     return selectInputGroup

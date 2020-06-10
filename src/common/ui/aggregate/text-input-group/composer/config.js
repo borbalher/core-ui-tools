@@ -17,9 +17,15 @@ module.exports = {
           {
             selector       : 'input[type="text"]',
             domEvent       : 'change',
-            domEventMapper : 'ui/input/mapper/input-data-mapper',
-            event          : 'validate.text.input',
-            dispatch       : true
+            domEventMapper : 'ui/input/mapper/input-data-mapper'
+          }
+        ],
+        listeners :
+        [
+          {
+            event    : 'change',
+            map      : 'validate.text.input',
+            dispatch : true
           }
         ]
       }

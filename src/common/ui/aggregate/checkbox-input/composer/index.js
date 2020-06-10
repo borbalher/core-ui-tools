@@ -24,16 +24,10 @@ class CheckboxInputComposer extends ComponentComposer
   {
     const
     checkboxInput = super.compose({
-      template : 'checkbox-input',
-      schema   : 'entity/checkbox-input',
-      bindings : [
-        ...this.bindings,
-        ...bindings
-      ],
-      listeners : [
-        ...this.listeners,
-        ...listeners
-      ],
+      template  : 'checkbox-input',
+      schema    : 'entity/checkbox-input',
+      bindings  : [ ...this.bindings, ...bindings ],
+      listeners : [ ...this.listeners, ...listeners ],
       renderonchange,
       attribute,
       disabled,

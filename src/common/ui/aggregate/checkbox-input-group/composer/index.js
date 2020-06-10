@@ -6,55 +6,54 @@ const ComponentComposer = require('common/ui/aggregate/component/composer')
  */
 class CheckboxInputGroupComposer extends ComponentComposer
 {
+  validate(required, value, label)
+  {
+    if(required && !value)
+      return `${label} is required`
+  }
+
   compose({
     bindings  = [],
     listeners = [],
-    id,
-    name,
-    parentId,
     renderonchange,
+    attribute,
+    disabled,
+    optional,
+    parentId,
+    readonly,
+    required,
     classes,
     options,
-    attribute,
+    label,
     title,
     value,
-    required,
-    disabled,
-    readonly,
-    label,
-    error,
+    name,
     big,
-    optional
+    id
   })
   {
     const
     checkboxInputGroup = super.compose({
-      schema   : 'entity/checkbox-input-group',
-      template : 'checkbox-input-group',
-      bindings : [
-        ...this.bindings,
-        ...bindings
-      ],
-      listeners : [
-        ...this.listeners,
-        ...listeners
-      ],
-      id,
-      name,
-      parentId,
+      schema    : 'entity/checkbox-input-group',
+      template  : 'checkbox-input-group',
+      bindings  : [ ...this.bindings, ...bindings ],
+      listeners : [ ...this.listeners, ...listeners ],
+      error     : this.validate(required, value, label),
       renderonchange,
+      attribute,
+      disabled,
+      optional,
+      parentId,
+      readonly,
+      required,
       classes,
       options,
-      attribute,
+      label,
       title,
       value,
-      required,
-      disabled,
-      readonly,
-      label,
-      error,
+      name,
       big,
-      optional
+      id
     })
 
     return  checkboxInputGroup

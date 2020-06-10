@@ -39,14 +39,8 @@ class FormComposer extends ComponentComposer
 
     const
     form    = super.compose({
-      bindings : [
-        ...this.bindings,
-        ...bindings
-      ],
-      listeners : [
-        ...this.listeners,
-        ...listeners
-      ],
+      bindings  : [ ...this.bindings, ...bindings ],
+      listeners : [ ...this.listeners, ...listeners ],
       renderonchange,
       disabled,
       parentId,

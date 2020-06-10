@@ -3,8 +3,7 @@ module.exports = {
   {
     locator :
     {
-      'ui/checkbox-input/composer'                 : `${__dirname}/composer`,
-      'ui/checkbox-input/mapper/input-data-mapper' : `${__dirname}/mapper/input-data-mapper`
+      'ui/checkbox-input/composer' : `${__dirname}/composer`
     }
   }
 }

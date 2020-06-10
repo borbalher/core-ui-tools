@@ -10,9 +10,10 @@ class ValidateInputActionLocator
   locate()
   {
     const
-    store = this.locator.locate('core/store')
+    store                    = this.locator.locate('core/store'),
+    selectInputGroupComposer = this.locator.locate('ui/select-input-group/composer')
 
-    return new ValidateInputAction(store)
+    return new ValidateInputAction({ selectInputGroupComposer, store })
   }
 }
 

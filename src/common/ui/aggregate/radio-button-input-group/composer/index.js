@@ -1,61 +1,61 @@
 const ComponentComposer = require('common/ui/aggregate/component/composer')
+
 /**
  * RadioButtonInputGroup composer
  * @class
  */
 class RadioButtonInputGroupComposer extends ComponentComposer
 {
+  validate(required, value, label)
+  {
+    if(required && !value)
+      return `${label} is required`
+  }
+
   compose({
     listeners = [],
     bindings  = [],
-    id,
-    name,
-    parentId,
     renderonchange,
+    attribute,
+    disabled,
+    optional,
+    parentId,
+    readonly,
+    required,
+    buttons,
     classes,
     options,
-    attribute,
+    label,
     title,
     value,
-    required,
-    disabled,
-    readonly,
-    label,
-    error,
+    name,
     big,
-    optional,
-    buttons
+    id
   })
   {
     const
     radioButtonInputGroup = super.compose({
-      schema   : 'entity/radio-button-input-group',
-      template : 'radio-button-input-group',
-      bindings : [
-        ...this.bindings,
-        ...bindings
-      ],
-      listeners : [
-        ...this.listeners,
-        ...listeners
-      ],
-      id,
-      name,
-      parentId,
+      schema    : 'entity/radio-button-input-group',
+      template  : 'radio-button-input-group',
+      bindings  : [ ...this.bindings, ...bindings ],
+      listeners : [ ...this.listeners, ...listeners ],
+      error     : this.validate(required, value, label),
       renderonchange,
+      attribute,
+      disabled,
+      optional,
+      parentId,
+      readonly,
+      required,
+      buttons,
       classes,
       options,
-      attribute,
+      label,
       title,
       value,
-      required,
-      disabled,
-      readonly,
-      label,
-      error,
+      name,
       big,
-      optional,
-      buttons
+      id
     })
 
     return radioButtonInputGroup

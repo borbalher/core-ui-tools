@@ -1,47 +1,28 @@
 /**
  * @implements {common/core/reducer/action}
  */
-class ValidateInputAction
+class ValidateRadioButtonInputAction
 {
-  // TODO add dictionary
-  constructor(store)
+  constructor({
+    radioButtonInputGroupComposer,
+    store
+  })
   {
-    this.store = store
+    this.store                         = store
+    this.radioButtonInputGroupComposer = radioButtonInputGroupComposer
   }
 
-  execute({ meta: { emitter, schema }, data: { value } }, state)
+  execute({ meta: { emitter, schema }, data: { value } })
   {
     const
-    context = this.store.getEntityContext(schema, emitter),
-    { required, label } = context
+    context    = this.store.getEntityContext(schema, emitter),
+    newContext = this.radioButtonInputGroupComposer.compose({
+      ...context,
+      value
+    })
 
-    let error
-    if(required && (!value || value.trim() === ''))
-      error = `${label} is required`
-
-
-    return {
-      ...state,
-      entities :
-      {
-        ...state.entities,
-        radioButtonInputGroup :
-        {
-          ...state.entities.radioButtonInputGroup,
-          byId :
-          {
-            ...state.entities.radioButtonInputGroup.byId,
-            [context.id] :
-            {
-              ...state.entities.radioButtonInputGroup.byId[context.id],
-              error,
-              value
-            }
-          }
-        }
-      }
-    }
+    return  this.store.addEntityContextToState(schema, newContext)
   }
 }
 
-module.exports = ValidateInputAction
+module.exports = ValidateRadioButtonInputAction

@@ -1,6 +1,10 @@
 module.exports = {
   core :
   {
+    store :
+    {
+      middlewares : ['ui/date-input-group/middleware/date-input-group-flow']
+    },
     reducer :
     {
       actions :
@@ -10,8 +14,8 @@ module.exports = {
     },
     locator :
     {
-      'ui/date-input-group/action/validate-date-input' : `${__dirname}/action/validate-input`,
-      'ui/date-input-group/composer'                   : `${__dirname}/composer`
+      'ui/date-input-group/middleware/date-input-group-flow' : `${__dirname}/middleware/date-input-group`,
+      'ui/date-input-group/action/validate-date-input'       : `${__dirname}/action/validate-input`
     }
   }
 }
