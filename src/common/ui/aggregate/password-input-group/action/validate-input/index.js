@@ -15,13 +15,13 @@ class ValidatePasswordInputAction
   execute({ meta: { emitter, schema }, data: { value } })
   {
     const
-    context        = this.store.getEntityContext(schema, emitter),
-    newConpassword = this.passwordInputGroupComposer.compose({
+    context    = this.store.getEntityContext(schema, emitter),
+    newContext = this.passwordInputGroupComposer.compose({
       ...context,
       value
     })
 
-    return  this.store.addEntityConpasswordToState(schema, newConpassword)
+    return  this.store.addEntityConpasswordToState(schema, newContext)
   }
 }
 
