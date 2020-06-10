@@ -21,7 +21,7 @@ class ValidatePasswordInputAction
       value
     })
 
-    return  this.store.addEntityConpasswordToState(schema, newContext)
+    return  this.store.addEntityContextToState(schema, newContext)
   }
 }
 

@@ -51,7 +51,7 @@ class PasswordInputGroupComposer extends ComponentComposer
       template  : 'password-input-group',
       bindings  : [ ...this.bindings, ...bindings ],
       listeners : [ ...this.listeners, ...listeners ],
-      error     : this.validate(required, value, pattern, title, label),
+      error     : process.env.platform === 'browser' ? this.validate(required, value, pattern, title, label) : undefined,
       renderonchange,
       autocomplete,
       placeholder,
