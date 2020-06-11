@@ -39,7 +39,7 @@ class RadioButtonInputGroupComposer extends ComponentComposer
       template  : 'radio-button-input-group',
       bindings  : [ ...this.bindings, ...bindings ],
       listeners : [ ...this.listeners, ...listeners ],
-      error     : process.env.platform === 'browser' ? this.validate(required, value, label) : undefined,
+      error     : process.env.PLATFORM === 'browser' ? this.validate(required, value, label) : undefined,
       renderonchange,
       attribute,
       disabled,

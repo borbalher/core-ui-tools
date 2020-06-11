@@ -42,7 +42,7 @@ class SelectInputGroupComposer extends ComponentComposer
       schema    : 'entity/select-input-group',
       bindings  : [ ...this.bindings, ...bindings ],
       listeners : [ ...this.listeners, ...listeners ],
-      error     : process.env.platform === 'browser' ? this.validate(required, value, label) : undefined,
+      error     : process.env.PLATFORM === 'browser' ? this.validate(required, value, label) : undefined,
       renderonchange,
       autocomplete,
       placeholder,

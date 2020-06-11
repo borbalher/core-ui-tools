@@ -56,7 +56,7 @@ class DateInputGroupComposer extends ComponentComposer
       value     : value ? new Date(value).toISOString().split('T')[0] : undefined,
       max       : max   ? new Date(max).toISOString().split('T')[0]   : undefined,
       min       : min   ? new Date(min).toISOString().split('T')[0]   : undefined,
-      error     : process.env.platform === 'browser' ?  this.validate(required, value, max, min, label) : undefined,
+      error     : process.env.PLATFORM === 'browser' ?  this.validate(required, value, max, min, label) : undefined,
       renderonchange,
       autocomplete,
       attribute,

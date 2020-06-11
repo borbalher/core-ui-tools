@@ -41,7 +41,7 @@ class TextareaInputGroupGroupComposer extends ComponentComposer
       schema    : 'entity/textarea-input-group',
       bindings  : [ ...this.bindings, ...bindings ],
       listeners : [ ...this.listeners, ...listeners ],
-      error     : process.env.platform === 'browser' ? this.validate(required, value, label) : undefined,
+      error     : process.env.PLATFORM === 'browser' ? this.validate(required, value, label) : undefined,
       renderonchange,
       placeholder,
       attribute,
