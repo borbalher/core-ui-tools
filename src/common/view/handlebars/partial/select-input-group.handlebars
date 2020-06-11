@@ -10,7 +10,7 @@
   autocomplete='{{#if autocomplete}}on{{/if}}{{#unless autocomplete}}off{{/unless}}'>
 
   {{#if placeholder}}
-    <option value="" disabled hidden>{{placeholder}}</option>
+    <option value="" hidden>{{placeholder}}</option>
   {{/if}}
 
   {{#each items as |item|}}
