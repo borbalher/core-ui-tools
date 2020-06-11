@@ -17,7 +17,7 @@ module.exports = {
           {
             selector       : 'input[type="checkbox"]',
             domEvent       : 'change',
-            domEventMapper : 'ui/checkbox-input/mapper/input-data-mapper',
+            domEventMapper : 'ui/checkbox-input-group/mapper/input-data-mapper',
             event          : 'toggle.fieldset',
             dispatch       : true
           }

@@ -10,7 +10,7 @@ class ToggleFieldsetAction
     this.toggeableFieldsetComposer = toggeableFieldsetComposer
   }
 
-  execute({ meta: { emitter, schema }, data: { value } }, state)
+  execute({ meta: { emitter, schema }, data: { value } })
   {
     const context = this.store.getEntityContext(schema, emitter)
     return this.store.addEntityContextToState(schema, this.toggeableFieldsetComposer.compose({ ...context, isToggled: value }))
