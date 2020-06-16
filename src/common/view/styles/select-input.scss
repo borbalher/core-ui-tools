@@ -4,8 +4,20 @@
 	display: block;
 	-moz-appearance: none;
 	-webkit-appearance: none;
-	appearance: none;
+  appearance: none;
   
+  &:after {
+    font-family: 'Font Awesome 5 Free';
+    content: "\f078";
+    font-weight: 900; 
+    // //font-family: "Font Awesome 5 Free";
+    // content: "\f078";
+    // position:absolute;
+    // font-weight: 900;
+    // right: 1.5rem;
+    // bottom:.375rem;
+ }
+
   &::-ms-expand {
     display: none;
   }

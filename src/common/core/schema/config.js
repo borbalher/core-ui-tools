@@ -23,6 +23,7 @@ module.exports = {
         'entity/pagination'               : `${__dirname}/entity/pagination`,
         'entity/table'                    : `${__dirname}/entity/table`,
         'entity/button'                   : `${__dirname}/entity/button`,
+        'entity/radio-fieldset'           : `${__dirname}/entity/radio-fieldset`,
         'entity/form'                     : `${__dirname}/entity/form`,
         'entity/fieldset'                 : `${__dirname}/entity/fieldset`,
         'entity/toggeable-fieldset'       : `${__dirname}/entity/toggeable-fieldset`,

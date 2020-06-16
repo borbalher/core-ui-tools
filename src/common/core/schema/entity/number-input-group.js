@@ -1,7 +1,7 @@
 const dto = {
   '@meta' :
   {
-    extends : 'entity/input'
+    extends : 'entity/input-group'
   },
   value :
   {

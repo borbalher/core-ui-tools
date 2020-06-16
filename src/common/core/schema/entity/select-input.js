@@ -1,5 +1,6 @@
 module.exports = {
-  '@meta' : {
+  '@meta' :
+  {
     extends : 'entity/input'
   },
   autocomplete :

@@ -1,0 +1,39 @@
+<div id='{{id}}' class='input-group {{template}} {{#if big}}input-group--xl{{/if}} {{#if error}}--error{{/if}} {{classes}}'>
+
+  <div class='input-group__label-wrapper'>
+    {{#if label}}
+      <label class='input-group__label' for='{{id}}-input'>
+        {{label}}
+      </label>
+    {{/if}}
+    {{#unless required}}
+      <span class='input-group__optional-label'>
+        {{optional}}
+      </span>
+    {{/unless}}
+  </div>
+
+  <input class='input-group__input number-input'
+      {{#if id}}          id='{{id}}-input'             {{/if}}
+      {{#if required}}    required                      {{/if}}
+      {{#if disabled}}    disabled                      {{/if}}
+      {{#if readOnly}}    readonly                      {{/if}}
+      {{#if placeholder}} placeholder='{{placeholder}}' {{/if}}
+      {{#if max}}         max='{{max}}'                 {{/if}}
+      {{#if min}}         min='{{min}}'                 {{/if}}
+      {{#if step}}        step='{{step}}'               {{/if}}
+      {{#if attribute}}   name='{{attribute}}'          {{/if}}
+      {{#if value}}       value='{{value}}'             {{/if}}
+      type='number'>
+
+  {{#if unit}}
+    <span class='number-input-group__unit'>
+      {{unit}}
+    </span>
+  {{/if}}
+
+ <div class='input-group__error {{#if error}}--visible{{else}}--hidden{{/if}}'>
+  {{error}}
+ </div>
+
+</div>

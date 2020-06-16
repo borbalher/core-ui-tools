@@ -61,5 +61,5 @@
     "browser": "src/browser",
     "node": "src/node"
   },
-  "version": "1.2.70"
+  "version": "1.2.71"
 }

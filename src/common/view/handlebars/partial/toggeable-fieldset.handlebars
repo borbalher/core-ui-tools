@@ -2,7 +2,7 @@
 
   {{> component toggle}}
 
-  <fieldset formId="{{id}}" {{#unless isVisible}}disabled="{{disabled}}"{{/unless}} class="{{#if isVisible}}--visible{{else}}--hidden{{/if}}">
+  <fieldset formId="{{formId}}" {{#unless isVisible}}disabled="{{disabled}}"{{/unless}} class="{{#if isVisible}}--visible{{else}}--hidden{{/if}}">
     {{> @partial-block }}
   </fieldset>
 

@@ -1,5 +1,14 @@
 @import '_colors.scss';
 
+button{
+  -webkit-appearance: none;
+  border: 0;
+  padding: 0;
+  background: none;
+  outline: 0;
+  cursor: pointer;
+}
+
 .button{
   text-transform: uppercase;
   text-decoration: none;

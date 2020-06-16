@@ -1,14 +1,14 @@
-<div id='{{id}}' class='input-group {{template}}-input-group {{#if big}}input-group--xl{{/if}} {{#if error}}--error{{/if}} {{classes}}'>
+<div id='{{id}}' class='input-group {{template}} {{#if big}}input-group--xl{{/if}} {{#if error}}--error{{/if}} {{classes}}'>
 
   <label class='checkbox'>
     {{label}}
     <input
-      id='{{id}}'
-      {{#if required}}  required        {{/if}}
-      {{#if checked}}   checked         {{/if}}
-      {{#if disabled}}  disabled        {{/if}}
+      id='{{id}}-input'
+      {{#if required}}  required             {{/if}}
+      {{#if checked}}   checked              {{/if}}
+      {{#if disabled}}  disabled             {{/if}}
       {{#if attribute}} name='{{attribute}}' {{/if}}
-      {{#if value}}     checked         {{/if}}
+      {{#if value}}     checked              {{/if}}
       class='checkbox__input' type='checkbox'>
     <span class='checkbox__checkmark'></span>
   </label>

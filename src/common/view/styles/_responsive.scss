@@ -2,10 +2,16 @@
   max-width: 1440px;
   width : 100%;
   margin: 0 auto;
+  padding: 1rem .5rem;
+  position: relative;
+  height: 100%;
+
   &--fluid{
     max-width: 100%;
     margin: 0;
+    padding: 0;
   }
+
   &:before,
   &:after {
       content: '';
