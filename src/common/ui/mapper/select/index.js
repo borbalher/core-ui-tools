@@ -1,4 +1,4 @@
-class SelectedOptionsToDataMapper
+class SelectMapper
 {
   map(domEvent)
   {
@@ -15,4 +15,4 @@ class SelectedOptionsToDataMapper
   }
 }
 
-module.exports = SelectedOptionsToDataMapper
+module.exports = SelectMapper

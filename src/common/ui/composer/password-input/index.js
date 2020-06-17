@@ -1,4 +1,4 @@
-const ComponentComposer = require('common/ui/aggregate/component/composer')
+const ComponentComposer = require('common/ui/composer/component')
 
 /**
  * PasswordInput composer

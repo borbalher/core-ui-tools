@@ -25,7 +25,6 @@ class PaginationFlowMiddleware
         const
         { selectedPage } = store.getEntity(schema, emitter),
         pageChangedEvent = this.eventComposer.compose('page.changed', { page: selectedPage })
-
         this.bus.emit(emitter, pageChangedEvent)
         break
       }

@@ -22,11 +22,11 @@ class PasswordInputGroupFlowMiddleware
 
       switch(name)
       {
-      case 'validate.password.input':
+      case 'validate.password.input.group':
       {
         const
         { value }                   = data,
-        passwordInputValidatedEvent = this.eventComposer.compose('password.input.validated', { value })
+        passwordInputValidatedEvent = this.eventComposer.compose('password.input.group.validated', { value })
         this.bus.emit(emitter, passwordInputValidatedEvent)
         break
       }

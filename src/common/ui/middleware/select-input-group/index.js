@@ -22,11 +22,11 @@ class SelectInputGroupFlowMiddleware
 
       switch(name)
       {
-      case 'validate.select.input':
+      case 'validate.select.input.group':
       {
         const
         { value }                 = data,
-        selectInputValidatedEvent = this.eventComposer.compose('select.input.validated', { value })
+        selectInputValidatedEvent = this.eventComposer.compose('select.input.group.validated', { value })
         this.bus.emit(emitter, selectInputValidatedEvent)
         break
       }

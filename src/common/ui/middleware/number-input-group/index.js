@@ -22,11 +22,11 @@ class NumberInputGroupFlowMiddleware
 
       switch(name)
       {
-      case 'validate.number.input':
+      case 'validate.number.input.group':
       {
         const
         { value }                 = data,
-        numberInputValidatedEvent = this.eventComposer.compose('number.input.validated', { value })
+        numberInputValidatedEvent = this.eventComposer.compose('number.input.group.validated', { value })
         this.bus.emit(emitter, numberInputValidatedEvent)
         break
       }

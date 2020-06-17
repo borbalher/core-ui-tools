@@ -25,7 +25,7 @@ class TextareaInputGroupFlowMiddleware
       case 'validate.textarea.input.group':
       {
         const
-        { value }                 = data,
+        { value }                   = data,
         textareaInputValidatedEvent = this.eventComposer.compose('textarea.input.group.validated', { value })
         this.bus.emit(emitter, textareaInputValidatedEvent)
         break

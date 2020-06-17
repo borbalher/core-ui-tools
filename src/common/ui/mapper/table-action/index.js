@@ -1,4 +1,4 @@
-class ActionClickedMapper
+class TableActionMapper
 {
   map(domEvent)
   {
@@ -9,4 +9,4 @@ class ActionClickedMapper
   }
 }
 
-module.exports = ActionClickedMapper
+module.exports = TableActionMapper

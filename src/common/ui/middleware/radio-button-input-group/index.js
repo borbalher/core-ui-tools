@@ -22,11 +22,11 @@ class RadioButtonInputGroupFlowMiddleware
 
       switch(name)
       {
-      case 'validate.radio-button.input':
+      case 'validate.radio.button.input.group':
       {
         const
         { value }                      = data,
-        radioButtonInputValidatedEvent = this.eventComposer.compose('radio-button.input.validated', { value })
+        radioButtonInputValidatedEvent = this.eventComposer.compose('radio.button.input.group.validated', { value })
         this.bus.emit(emitter, radioButtonInputValidatedEvent)
         break
       }

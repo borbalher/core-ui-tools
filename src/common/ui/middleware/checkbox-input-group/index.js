@@ -22,11 +22,11 @@ class CheckboxInputGroupFlowMiddleware
 
       switch(name)
       {
-      case 'validate.checkbox.input':
+      case 'validate.checkbox.input.group':
       {
         const
         { value }                   = data,
-        checkboxInputValidatedEvent = this.eventComposer.compose('checkbox.input.validated', { value })
+        checkboxInputValidatedEvent = this.eventComposer.compose('checkbox.input.group.validated', { value })
         this.bus.emit(emitter, checkboxInputValidatedEvent)
         break
       }

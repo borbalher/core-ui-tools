@@ -1,6 +1,6 @@
-const SelectedOptionsToDataMapper = require('.')
+const SelectMapper = require('.')
 
-class SelectedOptionsToDataMapperLocator
+class SelectMapperLocator
 {
   constructor(locator)
   {
@@ -9,8 +9,8 @@ class SelectedOptionsToDataMapperLocator
 
   locate()
   {
-    return new SelectedOptionsToDataMapper()
+    return new SelectMapper()
   }
 }
 
-module.exports = SelectedOptionsToDataMapperLocator
+module.exports = SelectMapperLocator

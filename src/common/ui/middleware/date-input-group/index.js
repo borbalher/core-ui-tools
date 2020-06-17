@@ -22,11 +22,11 @@ class DateInputGroupFlowMiddleware
 
       switch(name)
       {
-      case 'validate.date.input':
+      case 'validate.date.input.group':
       {
         const
         { value }               = data,
-        dateInputValidatedEvent = this.eventComposer.compose('date.input.validated', { value })
+        dateInputValidatedEvent = this.eventComposer.compose('date.input.group.validated', { value })
         this.bus.emit(emitter, dateInputValidatedEvent)
         break
       }
