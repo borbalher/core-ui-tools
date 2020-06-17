@@ -48,9 +48,8 @@ const dto = {
   },
   lastPage :
   {
-    type     : 'integer',
-    min      : 1,
-    optional : true
+    type : 'integer',
+    min  : 1
   },
   leftOverflow :
   {

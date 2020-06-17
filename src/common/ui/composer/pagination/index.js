@@ -114,7 +114,7 @@ class PaginationComposer extends ComponentComposer
     pages         = this.getPages(offset, selectedPage, totalPages),
     leftOverflow  = this.hasLeftOverflow(pages),
     rightOverflow = this.hasRightOverflow(pages, totalPages),
-    lastPage      = totalPages > 1 ? totalPages : undefined
+    lastPage      = totalPages > 1 ? totalPages : 1
 
     return super.compose({
       schema   : 'entity/pagination',
