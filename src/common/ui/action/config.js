@@ -43,7 +43,6 @@ module.exports = {
       'ui/action/redirect'                          : `${__dirname}/redirect`,
       'ui/action/reload'                            : `${__dirname}/reload`,
       'ui/action/show-alert'                        : `${__dirname}/show-alert`,
-      'ui/action/toggle-blocker'                    : `${__dirname}/toggle-blocker`,
       'ui/action/toggle-fieldset'                   : `${__dirname}/toggle-fieldset`,
       'ui/action/toggle-radio-fieldset'             : `${__dirname}/toggle-radio-fieldset`,
       'ui/action/unblock-page'                      : `${__dirname}/unblock-page`,

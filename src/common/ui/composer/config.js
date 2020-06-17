@@ -104,6 +104,17 @@ module.exports = {
           }
         ]
       },
+      'page-blocker' :
+      {
+        listeners :
+        [
+          {
+            channel  : 'ui',
+            event    : 'toggle.blocker',
+            dispatch : true
+          }
+        ]
+      },
       'pagination' :
       {
         bindings :
@@ -225,7 +236,7 @@ module.exports = {
         [
           {
             event    : 'change',
-            map      : 'validate.textarea.input.group',
+            map      : 'validate.text.input.group',
             dispatch : true
           }
         ]
