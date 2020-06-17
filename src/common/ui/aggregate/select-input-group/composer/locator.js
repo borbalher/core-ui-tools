@@ -1,6 +1,6 @@
-const SelectInputComposer = require('.')
+const SelectInputGroupComposer = require('.')
 
-class SelectInputComposerLocator
+class SelectInputGroupComposerLocator
 {
   constructor(locator)
   {
@@ -9,8 +9,9 @@ class SelectInputComposerLocator
 
   locate()
   {
-    return new SelectInputComposer(this.locator)
+    const configuration = this.locator.locate('core/configuration')
+    return new SelectInputGroupComposer(configuration)
   }
 }
 
-module.exports = SelectInputComposerLocator
+module.exports = SelectInputGroupComposerLocator

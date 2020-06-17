@@ -9,7 +9,8 @@ class SelectInputComposerLocator
 
   locate()
   {
-    return new SelectInputComposer(this.locator)
+    const configuration = this.locator.locate('core/configuration')
+    return new SelectInputComposer(configuration)
   }
 }
 

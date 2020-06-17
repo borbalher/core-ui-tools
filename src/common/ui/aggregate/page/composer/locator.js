@@ -9,7 +9,8 @@ class PageComposerLocator
 
   locate()
   {
-    return new PageComposer(this.locator)
+    const configuration = this.locator.locate('core/configuration')
+    return new PageComposer(configuration)
   }
 }
 

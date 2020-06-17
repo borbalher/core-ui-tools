@@ -9,7 +9,8 @@ class PageBlockerComposerLocator
 
   locate()
   {
-    return new PageBlockerComposer(this.locator)
+    const configuration = this.locator.locate('core/configuration')
+    return new PageBlockerComposer(configuration)
   }
 }
 

@@ -9,7 +9,8 @@ class FieldsetComposerLocator
 
   locate()
   {
-    return new FieldsetComposer(this.locator)
+    const configuration = this.locator.locate('core/configuration')
+    return new FieldsetComposer(configuration)
   }
 }
 

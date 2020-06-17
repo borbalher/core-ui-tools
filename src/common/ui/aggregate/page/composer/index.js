@@ -1,52 +1,36 @@
+const ComponentComposer = require('common/ui/aggregate/component/composer')
 /**
- * Page composer
+ * NumberInpuPageComposertGroup composer
  * @class
  */
-class PageComposer
+class PageComposer extends ComponentComposer
 {
-  constructor(locator, configuration)
-  {
-    this.locator       = locator
-    this.configuration = configuration
-  }
-
-  getPageOptions(id)
-  {
-    const options = this.configuration.find(`ui.component.${id}`)
-
-    return {
-      css       : options && options.css       ? options.css       : [],
-      scripts   : options && options.scripts   ? options.scripts   : [],
-      bindings  : options && options.bindings  ? options.bindings  : [],
-      listeners : options && options.listeners ? options.listeners : []
-    }
-  }
-
   compose({
     renderonchange,
     template,
     classes,
     schema,
+    title,
     name,
     id,
     ...args
   })
   {
     const
-    options = this.getPageOptions(id),
-    page    = {
-      scripts   : options.scripts,
-      css       : options.css,
-      bindings  : options.bindings,
-      listeners : options.listeners,
+    options                    = this.configuration.find(`ui.component.${id}`) || {},
+    { css = [], scripts = [] } = options,
+    page                       = super.compose({
       renderonchange,
       template,
       classes,
+      scripts,
       schema,
+      title,
       name,
+      css,
       id,
       ...args
-    }
+    })
 
     return page
   }

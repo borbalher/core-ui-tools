@@ -15,13 +15,8 @@ class CoreHandlebarsHelperTranslateLocator
    */
   locate()
   {
-    const
-    configuration = this.locator.locate('core/configuration'),
-    fallbackLang  = configuration.find('core.handlebars.translate.fallbackLang'),
-    dictionaries  = configuration.find('core.handlebars.translate.dictionaries'),
-    lang          = configuration.find('core.handlebars.translate.lang')
-
-    return new CoreHandlebarsHelperTranslate(fallbackLang, dictionaries, lang)
+    const dictionary = this.locator.locate('core/dictionary')
+    return new CoreHandlebarsHelperTranslate(dictionary)
   }
 }
 

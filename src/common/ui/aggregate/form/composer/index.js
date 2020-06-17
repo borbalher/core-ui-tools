@@ -20,8 +20,6 @@ class FormComposer extends ComponentComposer
     ...args
   })
   {
-    this.getFormOptions(template)
-
     const
     form    = super.compose({
       renderonchange,

@@ -1,20 +1,10 @@
 class Dictionary
 {
-  constructor(fallbackLang, dictionaries, lang)
+  constructor(fallbackLang, dictionaries, store)
   {
     this.fallbackLang = fallbackLang
     this.dictionaries = dictionaries
-    this.lang         = lang
-  }
-
-  setLang(lang)
-  {
-    this.lang = lang
-  }
-
-  getLang()
-  {
-    return this.lang ? this.lang : this.fallbackLang
+    this.store        = store
   }
 
   getDictionary(lang)
@@ -40,12 +30,16 @@ class Dictionary
     this.dictionaries[lang][key] = value
   }
 
-  translate(lang, key)
+  translate(key)
   {
-    if(!lang)
-      lang = this.getLang()
-
-    const dictionary = this.getDictionary(lang)
+    const
+    {
+      domain :
+      {
+        lang = this.fallbackLang
+      }
+    }           = this.getState(),
+    dictionary  = this.getDictionary(lang)
 
     if(dictionary && dictionary[key])
       return dictionary[key]

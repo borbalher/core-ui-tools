@@ -9,7 +9,8 @@ class TableComposerLocator
 
   locate()
   {
-    return new TableComposer(this.locator)
+    const configuration = this.locator.locate('core/configuration')
+    return new TableComposer(configuration)
   }
 }
 

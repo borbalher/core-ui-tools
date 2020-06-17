@@ -9,7 +9,8 @@ class NumberInputGroupComposerLocator
 
   locate()
   {
-    return new NumberInputGroupComposer(this.locator)
+    const configuration = this.locator.locate('core/configuration')
+    return new NumberInputGroupComposer(configuration)
   }
 }
 

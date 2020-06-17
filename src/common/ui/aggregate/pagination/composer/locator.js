@@ -9,7 +9,8 @@ class PaginationComposerLocator
 
   locate()
   {
-    return new PaginationComposer(this.locator)
+    const configuration = this.locator.locate('core/configuration')
+    return new PaginationComposer(configuration)
   }
 }
 

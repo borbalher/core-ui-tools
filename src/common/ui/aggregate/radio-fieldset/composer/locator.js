@@ -9,7 +9,8 @@ class RadioFieldsetComposerLocator
 
   locate()
   {
-    return new RadioFieldsetComposer(this.locator)
+    const configuration = this.locator.locate('core/configuration')
+    return new RadioFieldsetComposer(configuration)
   }
 }
 

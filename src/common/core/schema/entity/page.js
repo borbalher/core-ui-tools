@@ -3,11 +3,15 @@ module.exports = {
   {
     extends : 'entity/component'
   },
+  title :
+  {
+    type        : 'string',
+    'not-empty' : true
+  },
   lang :
   {
     type        : 'string',
-    'not-empty' : true,
-    default     : 'en'
+    'not-empty' : true
   },
   script :
   {

@@ -9,7 +9,8 @@ class PasswordInputComposerLocator
 
   locate()
   {
-    return new PasswordInputComposer(this.locator)
+    const configuration = this.locator.locate('core/configuration')
+    return new PasswordInputComposer(configuration)
   }
 }
 

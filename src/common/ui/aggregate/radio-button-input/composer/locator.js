@@ -9,7 +9,8 @@ class RadioButtonInputComposerLocator
 
   locate()
   {
-    return new RadioButtonInputComposer(this.locator)
+    const configuration = this.locator.locate('core/configuration')
+    return new RadioButtonInputComposer(configuration)
   }
 }
 

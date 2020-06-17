@@ -1,6 +1,6 @@
-const PasswordInputComposer = require('.')
+const PasswordInputGroupComposer = require('.')
 
-class PasswordInputComposerLocator
+class PasswordInputGroupComposerLocator
 {
   constructor(locator)
   {
@@ -9,8 +9,9 @@ class PasswordInputComposerLocator
 
   locate()
   {
-    return new PasswordInputComposer(this.locator)
+    const configuration = this.locator.locate('core/configuration')
+    return new PasswordInputGroupComposer(configuration)
   }
 }
 
-module.exports = PasswordInputComposerLocator
+module.exports = PasswordInputGroupComposerLocator

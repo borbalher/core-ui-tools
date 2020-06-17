@@ -9,7 +9,8 @@ class RadioButtonInputGroupComposerLocator
 
   locate()
   {
-    return new RadioButtonInputGroupComposer(this.locator)
+    const configuration = this.locator.locate('core/configuration')
+    return new RadioButtonInputGroupComposer(configuration)
   }
 }
 

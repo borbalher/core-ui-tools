@@ -12,9 +12,9 @@ class DictionaryLocator
     const
     configuration = this.locator.locate('core/configuration'),
     options       = configuration.find('core.dictionary'),
-    { fallbackLang, dictionaries, lang } = options
+    { fallbackLang, dictionaries } = options
 
-    return new Dictionary(fallbackLang, dictionaries, lang)
+    return new Dictionary(fallbackLang, dictionaries)
   }
 }
 

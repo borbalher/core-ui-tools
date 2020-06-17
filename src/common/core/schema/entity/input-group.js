@@ -3,12 +3,6 @@ const dto = {
   {
     extends : 'entity/input'
   },
-  optional :
-  {
-    type        : 'string',
-    optional    : true,
-    'not-empty' : true
-  },
   label :
   {
     type        : 'string',

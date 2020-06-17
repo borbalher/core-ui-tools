@@ -9,7 +9,8 @@ class FormComposerLocator
 
   locate()
   {
-    return new FormComposer(this.locator)
+    const configuration = this.locator.locate('core/configuration')
+    return new FormComposer(configuration)
   }
 }
 
