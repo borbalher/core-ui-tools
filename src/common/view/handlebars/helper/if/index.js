@@ -10,6 +10,7 @@ class CoreHandlebarsHelperIf
       switch(operator)
       {
       case '==' : case 'eq' : return (a === b)        ? options.fn(this) : options.inverse(this)
+      case '!=' : case 'neq': return (a !== b)        ? options.fn(this) : options.inverse(this)
       case '<'  : case 'lt' : return (a <  b)         ? options.fn(this) : options.inverse(this)
       case '<=' : case 'lte': return (a <= b)         ? options.fn(this) : options.inverse(this)
       case '>'  : case 'gt' : return (a >  b)         ? options.fn(this) : options.inverse(this)
