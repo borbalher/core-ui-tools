@@ -9,11 +9,7 @@ class DateInputGroupComposerLocator
 
   locate()
   {
-    const
-    configuration = this.locator.locate('core/configuration'),
-    options       = configuration.find('ui.component.date-input-group')
-
-    return new DateInputGroupComposer(this.locator, options)
+    return new DateInputGroupComposer(this.locator)
   }
 }
 

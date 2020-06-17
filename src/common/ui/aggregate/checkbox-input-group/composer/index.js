@@ -13,8 +13,6 @@ class CheckboxInputGroupComposer extends ComponentComposer
   }
 
   compose({
-    bindings  = [],
-    listeners = [],
     renderonchange,
     attribute,
     disabled,
@@ -34,11 +32,9 @@ class CheckboxInputGroupComposer extends ComponentComposer
   {
     const
     checkboxInputGroup = super.compose({
-      schema    : 'entity/checkbox-input-group',
-      template  : 'checkbox-input-group',
-      bindings  : [ ...this.bindings, ...bindings ],
-      listeners : [ ...this.listeners, ...listeners ],
-      error     : process.env.PLATFORM === 'browser' ? this.validate(required, value, label) : undefined,
+      schema   : 'entity/checkbox-input-group',
+      template : 'checkbox-input-group',
+      error    : process.env.PLATFORM === 'browser' ? this.validate(required, value, label) : undefined,
       renderonchange,
       attribute,
       disabled,

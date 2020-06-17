@@ -13,8 +13,6 @@ class RadioButtonInputGroupComposer extends ComponentComposer
   }
 
   compose({
-    listeners = [],
-    bindings  = [],
     renderonchange,
     attribute,
     disabled,
@@ -35,11 +33,9 @@ class RadioButtonInputGroupComposer extends ComponentComposer
   {
     const
     radioButtonInputGroup = super.compose({
-      schema    : 'entity/radio-button-input-group',
-      template  : 'radio-button-input-group',
-      bindings  : [ ...this.bindings, ...bindings ],
-      listeners : [ ...this.listeners, ...listeners ],
-      error     : process.env.PLATFORM === 'browser' ? this.validate(required, value, label) : undefined,
+      schema   : 'entity/radio-button-input-group',
+      template : 'radio-button-input-group',
+      error    : process.env.PLATFORM === 'browser' ? this.validate(required, value, label) : undefined,
       renderonchange,
       attribute,
       disabled,

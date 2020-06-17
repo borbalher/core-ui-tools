@@ -4,20 +4,24 @@
  */
 class ComponentComposer
 {
-  constructor(locator, options = {})
+  constructor(locator)
   {
-    this.locator   = locator
-    this.options   = options
-    this.bindings  = options.bindings  ? options.bindings  : []
-    this.listeners = options.listeners ? options.listeners : []
+    this.locator = locator
+  }
+
+  getOptions(template)
+  {
+    this.options   = this.configuration.find(`ui.component.${template}`) || {}
+    this.bindings  = this.options.bindings  ? this.options.bindings  : []
+    this.listeners = this.options.listeners ? this.options.listeners : []
   }
 
   compose({
-    bindings       = [],
-    listeners      = [],
     renderonchange,
+    listeners,
     parentId,
     template,
+    bindings,
     classes,
     schema,
     name,
@@ -25,12 +29,14 @@ class ComponentComposer
     ...args
   })
   {
+    this.getOptions(template)
+
     const component = {
       ...args,
-      options : this.options,
+      options   : this.options,
+      listeners : this.listeners,
+      bindings  : this.bindings,
       renderonchange,
-      listeners,
-      bindings,
       parentId,
       template,
       classes,

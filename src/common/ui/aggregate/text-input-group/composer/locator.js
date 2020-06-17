@@ -9,11 +9,7 @@ class TextInputGroupComposerLocator
 
   locate()
   {
-    const
-    configuration = this.locator.locate('core/configuration'),
-    options       = configuration.find('ui.component.text-input-group')
-
-    return new TextInputGroupComposer(this.locator, options)
+    return new TextInputGroupComposer(this.locator)
   }
 }
 

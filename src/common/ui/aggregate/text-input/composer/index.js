@@ -6,8 +6,6 @@ const ComponentComposer = require('common/ui/aggregate/component/composer')
 class TextInputComposer extends ComponentComposer
 {
   compose({
-    listeners = [],
-    bindings  = [],
     renderonchange,
     autocomplete,
     placeholder,
@@ -28,14 +26,6 @@ class TextInputComposer extends ComponentComposer
     const textInput = super.compose({
       template : 'text-input',
       schema   : 'entity/text-input',
-      bindings : [
-        ...this.bindings,
-        ...bindings
-      ],
-      listeners : [
-        ...this.listeners,
-        ...listeners
-      ],
       renderonchange,
       autocomplete,
       placeholder,

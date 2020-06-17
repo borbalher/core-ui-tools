@@ -25,8 +25,6 @@ class DateInputGroupComposer extends ComponentComposer
   }
 
   compose({
-    bindings  = [],
-    listeners = [],
     renderonchange,
     autocomplete,
     attribute,
@@ -49,14 +47,12 @@ class DateInputGroupComposer extends ComponentComposer
   {
     const
     dateInputGroup = super.compose({
-      template  : 'date-input-group',
-      schema    : 'entity/date-input-group',
-      bindings  : [...this.bindings, ...bindings],
-      listeners : [...this.listeners, ...listeners],
-      value     : value ? new Date(value).toISOString().split('T')[0] : undefined,
-      max       : max   ? new Date(max).toISOString().split('T')[0]   : undefined,
-      min       : min   ? new Date(min).toISOString().split('T')[0]   : undefined,
-      error     : process.env.PLATFORM === 'browser' ?  this.validate(required, value, max, min, label) : undefined,
+      template : 'date-input-group',
+      schema   : 'entity/date-input-group',
+      value    : value ? new Date(value).toISOString().split('T')[0] : undefined,
+      max      : max   ? new Date(max).toISOString().split('T')[0]   : undefined,
+      min      : min   ? new Date(min).toISOString().split('T')[0]   : undefined,
+      error    : process.env.PLATFORM === 'browser' ?  this.validate(required, value, max, min, label) : undefined,
       renderonchange,
       autocomplete,
       attribute,

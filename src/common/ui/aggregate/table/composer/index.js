@@ -28,8 +28,6 @@ class TableComposer extends ComponentComposer
   }
 
   compose({
-    bindings  = [],
-    listeners = [],
     headers   = [],
     actions   = [],
     panels    = [],
@@ -45,16 +43,8 @@ class TableComposer extends ComponentComposer
   })
   {
     const table = super.compose({
-      schema   : 'entity/table',
-      template : 'table',
-      bindings : [
-        ...this.bindings,
-        ...bindings
-      ],
-      listeners : [
-        ...this.listeners,
-        ...listeners
-      ],
+      schema       : 'entity/table',
+      template     : 'table',
       panelColspan : this.getPanelColspan(headers, actions, panels),
       hasActions   : this.hasActions(actions, panels),
       isExpandable : this.isExpandable(panels),

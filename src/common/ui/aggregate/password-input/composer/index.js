@@ -7,8 +7,6 @@ const ComponentComposer = require('common/ui/aggregate/component/composer')
 class PasswordInputComposer extends ComponentComposer
 {
   compose({
-    listeners = [],
-    bindings  = [],
     renderonchange,
     placeholder,
     attribute,
@@ -26,14 +24,6 @@ class PasswordInputComposer extends ComponentComposer
     const passwordInput = super.compose({
       template : 'password-input',
       schema   : 'entity/password-input',
-      bindings : [
-        ...this.bindings,
-        ...bindings
-      ],
-      listeners : [
-        ...this.listeners,
-        ...listeners
-      ],
       renderonchange,
       placeholder,
       attribute,

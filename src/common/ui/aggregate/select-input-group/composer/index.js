@@ -12,8 +12,6 @@ class SelectInputGroupComposer extends ComponentComposer
   }
 
   compose({
-    bindings  = [],
-    listeners = [],
     renderonchange,
     autocomplete,
     placeholder,
@@ -38,11 +36,9 @@ class SelectInputGroupComposer extends ComponentComposer
   {
     const
     selectInputGroup = super.compose({
-      template  : 'select-input-group',
-      schema    : 'entity/select-input-group',
-      bindings  : [ ...this.bindings, ...bindings ],
-      listeners : [ ...this.listeners, ...listeners ],
-      error     : process.env.PLATFORM === 'browser' ? this.validate(required, value, label) : undefined,
+      template : 'select-input-group',
+      schema   : 'entity/select-input-group',
+      error    : process.env.PLATFORM === 'browser' ? this.validate(required, value, label) : undefined,
       renderonchange,
       autocomplete,
       placeholder,

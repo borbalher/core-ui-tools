@@ -7,8 +7,6 @@ const ComponentComposer = require('common/ui/aggregate/component/composer')
 class ModalComposer extends ComponentComposer
 {
   compose({
-    listeners = [],
-    bindings  = [],
     actions   = [],
     renderonchange,
     headerText,
@@ -23,15 +21,7 @@ class ModalComposer extends ComponentComposer
   {
     const modal = super.compose({
       template : 'modal',
-      bindings : [
-        ...this.bindings,
-        ...bindings
-      ],
-      listeners : [
-        ...this.listeners,
-        ...listeners
-      ],
-      body : super.compose({
+      body     : super.compose({
         ...body,
         id       : `${id}-body`,
         name     : 'body',

@@ -9,11 +9,7 @@ class RadioFieldsetComposerLocator
 
   locate()
   {
-    const
-    configuration = this.locator.locate('core/configuration'),
-    options       = configuration.find('ui.component.radio-fieldset')
-
-    return new RadioFieldsetComposer(this.locator, options)
+    return new RadioFieldsetComposer(this.locator)
   }
 }
 

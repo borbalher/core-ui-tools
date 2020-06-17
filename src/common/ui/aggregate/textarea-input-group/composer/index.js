@@ -12,8 +12,6 @@ class TextareaInputGroupGroupComposer extends ComponentComposer
   }
 
   compose({
-    bindings  = [],
-    listeners = [],
     renderonchange,
     placeholder,
     attribute,
@@ -37,11 +35,9 @@ class TextareaInputGroupGroupComposer extends ComponentComposer
   {
     const
     textareaInputGroup = super.compose({
-      template  : 'textarea-input-group',
-      schema    : 'entity/textarea-input-group',
-      bindings  : [ ...this.bindings, ...bindings ],
-      listeners : [ ...this.listeners, ...listeners ],
-      error     : process.env.PLATFORM === 'browser' ? this.validate(required, value, label) : undefined,
+      template : 'textarea-input-group',
+      schema   : 'entity/textarea-input-group',
+      error    : process.env.PLATFORM === 'browser' ? this.validate(required, value, label) : undefined,
       renderonchange,
       placeholder,
       attribute,

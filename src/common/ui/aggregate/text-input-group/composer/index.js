@@ -22,8 +22,6 @@ class TextInputGroupComposer extends ComponentComposer
   }
 
   compose({
-    bindings  = [],
-    listeners = [],
     renderonchange,
     autocomplete,
     placeholder,
@@ -47,11 +45,9 @@ class TextInputGroupComposer extends ComponentComposer
   {
     const
     textInputGroup = super.compose({
-      template  : 'text-input-group',
-      schema    : 'entity/text-input-group',
-      bindings  : [ ...this.bindings, ...bindings ],
-      listeners : [ ...this.listeners, ...listeners ],
-      error     : process.env.PLATFORM === 'browser' ? this.validate(required, value, pattern, title, label) : undefined,
+      template : 'text-input-group',
+      schema   : 'entity/text-input-group',
+      error    : process.env.PLATFORM === 'browser' ? this.validate(required, value, pattern, title, label) : undefined,
       renderonchange,
       autocomplete,
       placeholder,

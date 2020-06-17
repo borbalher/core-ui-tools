@@ -86,8 +86,6 @@ class NumberInputGroupComposer extends ComponentComposer
   }
 
   compose({
-    bindings  = [],
-    listeners = [],
     acceptNegatives,
     acceptDecimals,
     renderonchange,
@@ -115,11 +113,9 @@ class NumberInputGroupComposer extends ComponentComposer
   {
     const
     numberInputGroup = super.compose({
-      template  : 'number-input-group',
-      schema    : 'entity/number-input-group',
-      bindings  : [ ...this.bindings, ...bindings ],
-      listeners : [ ...this.listeners, ...listeners ],
-      error     : process.env.PLATFORM === 'browser' ? this.validate(required, value, acceptDecimals, acceptNegatives, maxDecimals, min, max, label) : undefined,
+      template : 'number-input-group',
+      schema   : 'entity/number-input-group',
+      error    : process.env.PLATFORM === 'browser' ? this.validate(required, value, acceptDecimals, acceptNegatives, maxDecimals, min, max, label) : undefined,
       acceptNegatives,
       acceptDecimals,
       renderonchange,

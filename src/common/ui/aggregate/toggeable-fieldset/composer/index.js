@@ -17,17 +17,15 @@ class ToggeableFieldsetComposer extends ComponentComposer
   }
 
   compose({
-    listeners = [],
-    bindings  = [],
-    renderonchange,
-    label,
     showWhenToggled,
+    renderonchange,
     isToggled,
     parentId,
     template,
     classes,
     formId,
     schema,
+    label,
     name,
     id,
     ...args
@@ -37,15 +35,7 @@ class ToggeableFieldsetComposer extends ComponentComposer
     toggeableFieldset = super.compose({
       ...args,
       isVisible : this.isVisible(isToggled, showWhenToggled),
-      bindings  : [
-        ...this.bindings,
-        ...bindings
-      ],
-      listeners : [
-        ...this.listeners,
-        ...listeners
-      ],
-      toggle : this.checkboxInputGroupComposer.compose({
+      toggle    : this.checkboxInputGroupComposer.compose({
         id       : `${id}-checkbox-input-group`,
         value    : isToggled,
         name     : 'toggle',

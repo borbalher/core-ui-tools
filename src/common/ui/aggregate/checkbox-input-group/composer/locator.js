@@ -9,11 +9,7 @@ class CheckboxInputGroupComposerLocator
 
   locate()
   {
-    const
-    configuration = this.locator.locate('core/configuration'),
-    options       = configuration.find('ui.component.checkbox-input-group')
-
-    return new CheckboxInputGroupComposer(this.locator, options)
+    return new CheckboxInputGroupComposer(this.locator)
   }
 }
 

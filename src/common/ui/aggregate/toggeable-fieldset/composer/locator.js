@@ -9,11 +9,7 @@ class ToggeableFieldsetComposerLocator
 
   locate()
   {
-    const
-    configuration = this.locator.locate('core/configuration'),
-    options       = configuration.find('ui.component.toggeable-fieldset')
-
-    return new ToggeableFieldsetComposer(this.locator, options)
+    return new ToggeableFieldsetComposer(this.locator)
   }
 }
 

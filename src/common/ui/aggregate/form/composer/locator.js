@@ -9,11 +9,7 @@ class FormComposerLocator
 
   locate()
   {
-    const
-    configuration = this.locator.locate('core/configuration'),
-    options       = configuration.find('ui.component.form')
-
-    return new FormComposer(this.locator, options)
+    return new FormComposer(this.locator)
   }
 }
 

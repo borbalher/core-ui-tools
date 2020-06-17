@@ -6,8 +6,6 @@ const ComponentComposer = require('common/ui/aggregate/component/composer')
 class RadioFieldsetComposer extends ComponentComposer
 {
   compose({
-    listeners = [],
-    bindings  = [],
     selectedFieldset,
     defaultFieldset,
     renderonchange,
@@ -26,8 +24,6 @@ class RadioFieldsetComposer extends ComponentComposer
     const
     radioFieldset = super.compose({
       ...args,
-      bindings  : [ ...this.bindings, ...bindings ],
-      listeners : [ ...this.listeners, ...listeners ],
       selectedFieldset,
       defaultFieldset,
       renderonchange,

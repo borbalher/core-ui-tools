@@ -23,10 +23,6 @@ class PageComposer
   }
 
   compose({
-    listeners = [],
-    bindings  = [],
-    css       = [],
-    scripts   = [],
     renderonchange,
     template,
     classes,
@@ -39,22 +35,10 @@ class PageComposer
     const
     options = this.getPageOptions(id),
     page    = {
-      scripts : [
-        ...options.scripts,
-        ...scripts
-      ],
-      css : [
-        ...options.css,
-        ...css
-      ],
-      bindings : [
-        ...options.bindings,
-        ...bindings
-      ],
-      listeners : [
-        ...options.listeners,
-        ...listeners
-      ],
+      scripts   : options.scripts,
+      css       : options.css,
+      bindings  : options.bindings,
+      listeners : options.listeners,
       renderonchange,
       template,
       classes,

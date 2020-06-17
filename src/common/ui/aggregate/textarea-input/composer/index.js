@@ -6,8 +6,6 @@ const ComponentComposer = require('common/ui/aggregate/component/composer')
 class TextareaInputComposer extends ComponentComposer
 {
   compose({
-    listeners = [],
-    bindings  = [],
     renderonchange,
     placeholder,
     maxLength,
@@ -28,14 +26,6 @@ class TextareaInputComposer extends ComponentComposer
     const textareaInput = super.compose({
       template : 'textarea-input',
       schema   : 'entity/textarea-input',
-      bindings : [
-        ...this.bindings,
-        ...bindings
-      ],
-      listeners : [
-        ...this.listeners,
-        ...listeners
-      ],
       renderonchange,
       placeholder,
       maxLength,

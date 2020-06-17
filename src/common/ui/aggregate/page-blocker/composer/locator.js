@@ -9,11 +9,7 @@ class PageBlockerComposerLocator
 
   locate()
   {
-    const
-    configuration = this.locator.locate('core/configuration'),
-    options       = configuration.find('ui.component.page-blocker')
-
-    return new PageBlockerComposer(this.locator, options)
+    return new PageBlockerComposer(this.locator)
   }
 }
 

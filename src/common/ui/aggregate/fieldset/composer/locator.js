@@ -9,11 +9,7 @@ class FieldsetComposerLocator
 
   locate()
   {
-    const
-    configuration = this.locator.locate('core/configuration'),
-    options       = configuration.find('ui.component.fieldset')
-
-    return new FieldsetComposer(this.locator, options)
+    return new FieldsetComposer(this.locator)
   }
 }
 

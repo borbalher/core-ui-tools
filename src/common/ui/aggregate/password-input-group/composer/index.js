@@ -22,8 +22,6 @@ class PasswordInputGroupComposer extends ComponentComposer
   }
 
   compose({
-    bindings  = [],
-    listeners = [],
     renderonchange,
     autocomplete,
     placeholder,
@@ -47,11 +45,9 @@ class PasswordInputGroupComposer extends ComponentComposer
   {
     const
     passwordInputGroup = super.compose({
-      schema    : 'entity/password-input-group',
-      template  : 'password-input-group',
-      bindings  : [ ...this.bindings, ...bindings ],
-      listeners : [ ...this.listeners, ...listeners ],
-      error     : process.env.PLATFORM === 'browser' ? this.validate(required, value, pattern, title, label) : undefined,
+      schema   : 'entity/password-input-group',
+      template : 'password-input-group',
+      error    : process.env.PLATFORM === 'browser' ? this.validate(required, value, pattern, title, label) : undefined,
       renderonchange,
       autocomplete,
       placeholder,
