@@ -18,6 +18,19 @@ module.exports = {
   {
     'component' :
     {
+      'select-input-group' :
+      {
+        bindings :
+        [
+          {
+            selector       : 'select',
+            domEvent       : 'change',
+            domEventMapper : 'ui/mapper/select-input',
+            map            : 'validate.select.input.group',
+            dispatch       : true
+          }
+        ]
+      },
       'date-input-group' :
       {
         bindings :
