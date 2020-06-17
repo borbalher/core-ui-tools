@@ -1,26 +1,22 @@
 @import '_colors.scss';
 
 .header{
-  padding: 1.5rem;
   max-width: 1440px;
   margin: 0 auto;
   position: relative;
-
+  
   &__title{
+    padding: 1.5rem;
     font-size:3em;
     position: absolute;
     top: 50%;
-    transform: translateY(-50%)
+    transform: translateY(-50%);
+    width: calc(100% - 20rem);
   }
-
+  
   .logo{
     text-decoration: none;
     text-align: right;
-    
-    &__wrapper{
-      width: 9rem;
-      float: right;
-    }
 
     &__svg svg{
       fill: map-get($palette, color-primary);
@@ -35,22 +31,32 @@
       padding-right: .25rem;
     }
   }
-  
-  &--floating{
-    position: absolute;
-    right: 1.5rem;
-    top: 1.5rem;
-    padding: 0;
+    
+  .logo__wrapper{
+    padding: 1.5rem;
+    max-width: 20rem;
     z-index: 5;
+    position: absolute;
+    right: 1rem;
+    top: 0;
+    text-align: right;
+  }
+  
+  &--fluid{
+    max-width: 100%;
+    margin: 0;
   }
 
-  &.--negative .logo{
-    &__svg svg{
-      fill: $body-light;
-    }
-    
-    &__caption{
-      color: $body-light;
+  &.--negative {
+    .logo{
+      &__svg svg{
+        fill: $body-light;
+      }
+      
+      &__caption{
+        color: $body-light;
+      }
     }
   }
+
 }

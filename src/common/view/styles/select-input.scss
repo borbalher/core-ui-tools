@@ -6,16 +6,10 @@
 	-webkit-appearance: none;
   appearance: none;
   
-  &:after {
-    font-family: 'Font Awesome 5 Free';
+  &::before {
+    font-family:'Font Awesome 5 Free';
     content: "\f078";
-    font-weight: 900; 
-    // //font-family: "Font Awesome 5 Free";
-    // content: "\f078";
-    // position:absolute;
-    // font-weight: 900;
-    // right: 1.5rem;
-    // bottom:.375rem;
+    font-weight: 900;
  }
 
   &::-ms-expand {
@@ -30,21 +24,19 @@
   // display: none;
   padding: 1rem;
   cursor: pointer;
-  &.hover{
-    background-color: map-get($palette, color-primary_L1);
+  
+  &:hover{
+    background-color: map-get($palette, color-primary);
+    color: $body-light;
+    font-weight: 700;
   }
+
   &.--selected,
   &:checked{
-    background-color: map-get($palette, color-primary);
+    background-color: map-get($palette, color-primary_L4);
+    color: $body-copy;
   }
-  // &.--display{
-  //   display: block;
-  // }
-  &:checked,
-  &.--selected{
-    font-weight: 700;
-    color: $body-light;
-  }
+  
   &:not(.--selected){
     font-weight: 400;
   }
