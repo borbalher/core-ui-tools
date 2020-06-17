@@ -32,7 +32,7 @@
       </button>
     </span>
   {{/if}}
-  {{#if lastPage}}
+  {{#if lastPage '!=' firstPage}}
     <span class='pagination__page pagination__page--last'>
       <button
       class='pagination__page__number {{#if lastPage '==' selectedPage}}pagination__page__number--selected{{/if}}'
