@@ -7,9 +7,10 @@ class CoreHandlebarsHelperTranslate
 
   create()
   {
+    const dictionary = this.dictionary
     return function(key)
     {
-      return this.dictionary.translate(key)
+      return dictionary.translate(key)
     }
   }
 }
