@@ -24,7 +24,7 @@ class PrevPagesClickedActionAction
       selectedPage : newSelectedPage
     })
 
-    return  this.store.addEntityContextToState(newContext)
+    return  this.store.addEntityContextToState(schema, newContext)
   }
 }
 

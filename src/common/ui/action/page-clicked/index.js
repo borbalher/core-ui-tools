@@ -18,7 +18,7 @@ class PageClickedActionAction
       selectedPage : page
     })
 
-    return  this.store.addEntityContextToState(newContext)
+    return  this.store.addEntityContextToState(schema, newContext)
   }
 }
 
