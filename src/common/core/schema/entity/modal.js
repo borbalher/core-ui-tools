@@ -19,11 +19,6 @@ const dto = {
     schema     : 'entity/modal-action',
     collection : true,
     default    : []
-  },
-  body :
-  {
-    type   : 'schema',
-    schema : 'entity/component'
   }
 }
 

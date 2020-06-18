@@ -10,26 +10,22 @@ class ModalComposer extends ComponentComposer
     actions   = [],
     renderonchange,
     headerText,
+    template,
     parentId,
     classes,
     schema,
     isOpen,
     name,
-    body,
-    id
+    id,
+    ...args
   })
   {
     const modal = super.compose({
-      template : 'modal',
-      body     : super.compose({
-        ...body,
-        id       : `${id}-body`,
-        name     : 'body',
-        parentId : id
-      }),
+      ...args,
       renderonchange,
       headerText,
       parentId,
+      template,
       actions,
       classes,
       schema,
