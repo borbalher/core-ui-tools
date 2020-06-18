@@ -8,6 +8,12 @@ const dto = {
     type     : 'string',
     optional : true
   },
+  formId :
+  {
+    type        : 'string',
+    'not-empty' : true,
+    optional    : true
+  },
   isOpen :
   {
     type    : 'boolean',

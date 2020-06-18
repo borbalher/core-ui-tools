@@ -12,7 +12,7 @@
     <div class='modal-footer'>
       {{#each actions}}
         {{#if submit}}
-          <input type='submit' form="{{../body.id}}" class='modal-actions__action button button--filled' value="{{name}}"/>
+          <input type='submit' form="{{../formId}}" class='modal-actions__action button button--filled' value="{{name}}"/>
         {{else}}
             <button class='modal-actions__action button button--filled' data-action="{{id}}">
               {{name}}

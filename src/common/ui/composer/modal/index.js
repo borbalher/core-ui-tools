@@ -13,6 +13,7 @@ class ModalComposer extends ComponentComposer
     template,
     parentId,
     classes,
+    formId,
     schema,
     isOpen,
     name,
@@ -29,6 +30,7 @@ class ModalComposer extends ComponentComposer
       actions,
       classes,
       schema,
+      formId,
       isOpen,
       name,
       id
