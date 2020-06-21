@@ -4,10 +4,9 @@ class CoreHandlebarsHelperSwitch
   {
     return function(value, options)
     {
-      this._switchValue = value
-      const result = options.fn(this)
-      delete this._switchValue
-      return result
+      this.switch_value = value
+      this.switch_break = false
+      return options.fn(this)
     }
   }
 }

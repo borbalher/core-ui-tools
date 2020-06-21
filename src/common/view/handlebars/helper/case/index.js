@@ -2,13 +2,13 @@ class CoreHandlebarsHelperCase
 {
   create()
   {
-    return function(...args)
+    return function(value, options)
     {
-      const options = args.pop()
-
-      return args.includes(this._switchValue)
-        ? options.fn(this)
-        : ''
+      if(value === this.switch_value)
+      {
+        this.switch_break = true
+        return options.fn(this)
+      }
     }
   }
 }
