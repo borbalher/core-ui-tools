@@ -50,40 +50,74 @@ body{
 }
 
 .grid-container{
+
   .header-form{
     position: relative;
-    top: 0;
-    left: 0;
     width:calc(100% - 20rem + 1px);
     background-color: $body-light;
     padding: .75rem 1.5rem;
+    margin-top: -7.25rem;
+    z-index: 5;
+
+  }
+  
+  &.grid-container--fluid{
+    .main{
+      padding: 0;
+    }
+
+    .sidebar,
+    .header-form{
+      margin-top: 0;
+    }
+
   }
 
-  .main{
-    position: relative;
-    left: 0;
-    width:100%;
+  &:not(.grid-container--fluid) {
+    .sidebar + .main{
+      width: calc(100% - 20rem);
+      padding: 8.25rem 1.5rem 1rem;
+      display: table-cell;
 
-    section{
-      margin-bottom: 4.5rem;
-      display: block;
-      width: 100%;
-      clear: both;
-      padding: 0 1.5rem;
-
-      &-buttons{
-        text-align: right;
+      .header-form{
+        margin-top: -12.5rem;
+        padding-left: 0;
+        padding-right: 2.5rem;
+        position: fixed;
+        max-width: calc(1440px - 21.5rem);
+        z-index: 5;
       }
     }
   }
 
-  .sidebar{
-    position: fixed;
-    right: 0;
-    width: 20rem;
+  .main{
+    left: 0;
+    width:100%;
+    padding: 8.25rem 0 1rem;
 
-    & + .main{
-      width: calc(100% - 20rem);
+    section{
+      margin-bottom: 3.5rem;
+      display: block;
+      width: 100%;
+      clear: both;
+    }
+    
+    &-buttons{
+      text-align: right;
+    }
+  }
+
+  .sidebar{
+    float: right;
+    width: 20rem;
+    bottom: 0vh;
+    top: 7.25rem;
+    position: absolute;
+
+    @supports (position: sticky) {
+      position: sticky;
+      margin-top: 7.25rem;
+      bottom: 0;
     }
   }
 }
