@@ -122,7 +122,19 @@ class VirtualDOM
 
   getController(componentId)
   {
-    return this.controllers.getController(componentId)
+    let controller = this.controllers.getController(componentId)
+
+    if(!controller)
+    {
+      const data = this.getData(componentId)
+
+      controller = this.componentFactory.create(data)(this)
+
+      this.controllers.setController(componentId, controller)
+    }
+
+
+    return controller
   }
 
   setData(component)
