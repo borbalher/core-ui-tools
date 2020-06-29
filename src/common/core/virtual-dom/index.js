@@ -78,21 +78,7 @@ class VirtualDOM
       for(const componentId of subtreePath)
       {
         const subtreeComponent = this.getController(componentId)
-
-        if(!subtreeComponent)
-        {
-          const
-          data      = this.getData(componentId),
-          component = this.componentFactory.create(data)(this)
-
-          this.controllers.setController(componentId, component)
-
-          component.bind()
-        }
-        else
-        {
-          subtreeComponent.bind()
-        }
+        subtreeComponent.bind()
       }
     }
 
