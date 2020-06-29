@@ -97,7 +97,7 @@ class ComponentController
       if(dispatch)
       {
         const action = this.composeAction(name, data)
-        this.store.dispatch(action)
+        this.store.dispatch(action, data)
       }
       else if(observer)
       {
