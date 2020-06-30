@@ -68,6 +68,9 @@ class DeepAssign
   {
     const { name, position } = this.getArrayPropertyIndex(key)
 
+    if(!obj[name])
+      obj[name] = []
+
     if(!this.isAssignableObject(obj[name][position]) && !this.isLastKey(keys, index))
       throw new NotAnObjectError(`Expected and object for assigning properties: ${this.getPath(keys, index)}`)
     else if(this.isLastKey(keys, index))

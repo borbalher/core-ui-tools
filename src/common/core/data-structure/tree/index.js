@@ -4,10 +4,11 @@ NodeNotExist = require('../graph/error/node-not-exists')
 
 class Tree extends Graph
 {
-  constructor(id, nodes, edges, isDirected, queue, root, deepassign)
+  constructor(id, nodes, edges, isDirected, queue, root, deepassign, deepfind)
   {
     super(id, nodes, edges, isDirected, queue)
     this.deepassign = deepassign
+    this.deepfind   = deepfind
     if(root) this.setRoot(root)
   }
 
@@ -40,11 +41,12 @@ class Tree extends Graph
     const bfs = this.bfs(start)
 
     let json = {}
-    bfs.forEach((nodeId, nodeIndex) =>
+
+    bfs.forEach((nodeId) => // ['a', 'b' 'c', 'd']
     {
       const
       node      = this.nodes.getItem(nodeId),
-      jsonPath  = this.getJSONPath(nodeId, nodeIndex, bfs, node.name)
+      jsonPath  = this.getJSONPath(nodeId, bfs, node.name, json)
 
       if(flattened)
         json[jsonPath] = { ...node }
@@ -65,42 +67,66 @@ class Tree extends Graph
     }
   }
 
-  getJSONPath(nodeId, nodeIndex, path, jsonPath)
+  getJSONPath(nodeId, path, jsonPath, json)
   {
-    const previousIndex = nodeIndex - 1
+    // lets get the direct parent to the relevant node to beable to find relative nodes, that should be grouped as an array
+    const parent  = this.getParent(nodeId)
+    // fetching the node information used to compare if it's an array aor not
 
-    let parent
-    for(let i = previousIndex; i >= 0; i--)
-    {
-      const
-      previousNodeId    = path[i],
-      previousNodeEdges = this.edges.getItem(previousNodeId)
+    // TODO cleanup, remove outcommented code if passing test
+    // const previousIndex = nodeIndex - 1
+    // let parent
+    // for(let i = previousIndex; i >= 0; i--)
+    // {
+    //   const
+    //   previousNodeId    = path[i],
+    //   previousNodeEdges = this.edges.getItem(previousNodeId)
 
-      if(previousNodeEdges)
-      {
-        const currentNodeEdge = previousNodeEdges.find((previousNodeEdge) =>
-        {
-          return previousNodeEdge.target === nodeId
-        })
+    //   if(previousNodeEdges)
+    //   {
+    //     const currentNodeEdge = previousNodeEdges.find((previousNodeEdge) =>
+    //     {
+    //       return previousNodeEdge.target === nodeId
+    //     })
 
-        if(currentNodeEdge)
-        {
-          parent = previousNodeId
-          break
-        }
-      }
-    }
+    //     if(currentNodeEdge)
+    //     {
+    //       parent = previousNodeId
+    //       break
+    //     }
+    //   }
+    // }
+
+    // make unit test for tree get json (shared name for checking arrays)
+    // make unit test for normalizer module (check that it adds the entities correctly)
 
     if(parent)
     {
       const
-      parentNode  = this.nodes.getItem(parent),
-      parentIndex = path.findIndex((element) =>
+      node      = this.nodes.getItem(nodeId),    // lets get all the parent children
+      children  = this.getAdjacentNodes(parent),
+      siblings  = children.filter((child) =>    // lets check if there are shared name, then it's an array in the tree-path, if more then one
       {
-        return element === parent
-      })
+        const childNode = this.nodes.getItem(child)
+        return node.name === childNode.name
+      }),
+      parentNode  = this.nodes.getItem(parent)
 
-      return this.getJSONPath(parent, parentIndex, path, `${parentNode.name}.${jsonPath}`)
+      if(siblings.length > 1)
+      {
+        const index = siblings.findIndex((siblingId) =>
+        {
+          return siblingId === nodeId
+        }),
+        parentPath = this.getJSONPath(parent, path, `${parentNode.name}`, json)
+
+        return `${parentPath}.${jsonPath}[${index}]`
+      }
+      else
+      {
+        const parentPath = this.getJSONPath(parent, path, `${parentNode.name}`, json)
+        return `${parentPath}.${jsonPath}`
+      }
     }
     else
     {

@@ -304,6 +304,89 @@ describe('data-structure/tree', () =>
     })
   })
 
+  it.only('Can get a JSON tree with array', () =>
+  {
+    const tree = factory.create(
+      'my-tree',
+      [
+        {
+          id   : 'a',
+          name : 'a'
+        },
+        {
+          id   : 'b',
+          name : 'array'
+        },
+        {
+          id   : 'c',
+          name : 'array'
+        },
+        {
+          id   : 'd',
+          name : 'array'
+        },
+        {
+          id   : 'e',
+          name : 'array'
+        }
+      ],
+      [
+        {
+          source  : 'a',
+          target  : 'b',
+          payload : {}
+        },
+        {
+          source  : 'a',
+          target  : 'c',
+          payload : {}
+        },
+        {
+          source  : 'c',
+          target  : 'd',
+          payload : {}
+        },
+        {
+          source  : 'c',
+          target  : 'e',
+          payload : {}
+        }
+      ],
+      'a'
+    ),
+    treeJSON = tree.getJSON(undefined, false)
+
+    expect(treeJSON).to.deep.equal({
+      a :
+      {
+        id    : 'a',
+        name  : 'a',
+        array :
+        [
+          {
+            id   : 'b',
+            name : 'array'
+          },
+          {
+            array :
+            [
+              {
+                id   : 'd',
+                name : 'array'
+              },
+              {
+                id   : 'e',
+                name : 'array'
+              }
+            ],
+            id   : 'c',
+            name : 'array'
+          }
+        ]
+      }
+    })
+  })
+
   it('Should return the proper string tag ', async () =>
   {
     const tree = factory.create(

@@ -8,11 +8,30 @@ class JSONToGraph
 
   isNode(json)
   {
-    if(json && !Array.isArray(json) && typeof json === 'object')
+    if(json && !Array.isArray(json) && typeof json === 'object') // ENTITY/COMPONENT
     {
       try
       {
-        return this.composer.compose(this.nodeSchema, json)
+        this.composer.compose(this.nodeSchema, json)
+        return true
+      }
+      catch(error)
+      {
+        return false
+      }
+    }
+
+    return false
+  }
+
+  isNodeCollection(collection)
+  {
+    if(Array.isArray(collection))
+    {
+      try
+      {
+        collection.forEach((item) => this.composer.compose(this.nodeSchema, item))
+        return true
       }
       catch(error)
       {
@@ -56,6 +75,17 @@ class JSONToGraph
         nodes.push(childNode)
 
         edges.push({ source: element.id, target: childNode.id, payload: {} })
+      }
+      else if(this.isNodeCollection(element[key]))
+      {
+        for(const node of element[key])
+        {
+          const childNode = this.mapNode(node, nodes, edges, isDirected, id)
+
+          nodes.push(childNode)
+
+          edges.push({ source: element.id, target: childNode.id, payload: {} })
+        }
       }
       else
       {
