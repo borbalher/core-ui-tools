@@ -328,6 +328,38 @@ describe('data-structure/tree', () =>
         {
           id   : 'e',
           name : 'array'
+        },
+        {
+          id   : 'f',
+          name : 'array'
+        },
+        {
+          id   : 'g',
+          name : 'array'
+        },
+        {
+          id   : 'h',
+          name : 'array'
+        },
+        {
+          id   : 'i',
+          name : 'array'
+        },
+        {
+          id   : 'j',
+          name : 'array'
+        },
+        {
+          id   : 'k',
+          name : 'array'
+        },
+        {
+          id   : 'l',
+          name : 'array'
+        },
+        {
+          id   : 'm',
+          name : 'array'
         }
       ],
       [
@@ -350,6 +382,46 @@ describe('data-structure/tree', () =>
           source  : 'c',
           target  : 'e',
           payload : {}
+        },
+        {
+          source  : 'd',
+          target  : 'f',
+          payload : {}
+        },
+        {
+          source  : 'd',
+          target  : 'g',
+          payload : {}
+        },
+        {
+          source  : 'g',
+          target  : 'h',
+          payload : {}
+        },
+        {
+          source  : 'g',
+          target  : 'i',
+          payload : {}
+        },
+        {
+          source  : 'i',
+          target  : 'j',
+          payload : {}
+        },
+        {
+          source  : 'i',
+          target  : 'k',
+          payload : {}
+        },
+        {
+          source  : 'k',
+          target  : 'l',
+          payload : {}
+        },
+        {
+          source  : 'k',
+          target  : 'm',
+          payload : {}
         }
       ],
       'a'
@@ -371,8 +443,48 @@ describe('data-structure/tree', () =>
             array :
             [
               {
-                id   : 'd',
-                name : 'array'
+                id    : 'd',
+                name  : 'array',
+                array : [
+                  {
+                    id   : 'f',
+                    name : 'array'
+                  },
+                  {
+                    id    : 'g',
+                    name  : 'array',
+                    array : [
+                      {
+                        id   : 'h',
+                        name : 'array'
+                      },
+                      {
+                        id    : 'i',
+                        name  : 'array',
+                        array : [
+                          {
+                            id   : 'j',
+                            name : 'array'
+                          },
+                          {
+                            id    : 'k',
+                            name  : 'array',
+                            array : [
+                              {
+                                id   : 'l',
+                                name : 'array'
+                              },
+                              {
+                                id   : 'm',
+                                name : 'array'
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
               },
               {
                 id   : 'e',
