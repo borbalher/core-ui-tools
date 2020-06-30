@@ -94,4 +94,131 @@ describe('core/common/normalizer', () =>
     reconstructedGraph = normalizer.denormalize(entities['graph'].byId['my-graph'], 'entity/graph', entities)
     expect(graph).to.be.deep.equal(reconstructedGraph)
   })
+
+  it('Can normalize a json and get the json back', () =>
+  {
+    const
+    graph = composer.compose('entity/graph', {
+      id    : 'my-graph',
+      nodes : [
+        {
+          id   : 'a',
+          name : 'a'
+        },
+        {
+          id   : 'b',
+          name : 'array'
+        },
+        {
+          id   : 'c',
+          name : 'array'
+        },
+        {
+          id   : 'd',
+          name : 'array'
+        },
+        {
+          id   : 'e',
+          name : 'array'
+        },
+        {
+          id   : 'f',
+          name : 'array'
+        },
+        {
+          id   : 'g',
+          name : 'array'
+        },
+        {
+          id   : 'h',
+          name : 'array'
+        },
+        {
+          id   : 'i',
+          name : 'array'
+        },
+        {
+          id   : 'j',
+          name : 'array'
+        },
+        {
+          id   : 'k',
+          name : 'array'
+        },
+        {
+          id   : 'l',
+          name : 'array'
+        },
+        {
+          id   : 'm',
+          name : 'array'
+        }
+      ],
+      edges : [
+        {
+          source  : 'a',
+          target  : 'b',
+          payload : {}
+        },
+        {
+          source  : 'a',
+          target  : 'c',
+          payload : {}
+        },
+        {
+          source  : 'c',
+          target  : 'd',
+          payload : {}
+        },
+        {
+          source  : 'c',
+          target  : 'e',
+          payload : {}
+        },
+        {
+          source  : 'd',
+          target  : 'f',
+          payload : {}
+        },
+        {
+          source  : 'd',
+          target  : 'g',
+          payload : {}
+        },
+        {
+          source  : 'g',
+          target  : 'h',
+          payload : {}
+        },
+        {
+          source  : 'g',
+          target  : 'i',
+          payload : {}
+        },
+        {
+          source  : 'i',
+          target  : 'j',
+          payload : {}
+        },
+        {
+          source  : 'i',
+          target  : 'k',
+          payload : {}
+        },
+        {
+          source  : 'k',
+          target  : 'l',
+          payload : {}
+        },
+        {
+          source  : 'k',
+          target  : 'm',
+          payload : {}
+        }
+      ]
+    }),
+    entities           = normalizer.normalize(graph, 'entity/graph'),
+    reconstructedGraph = normalizer.denormalize(entities['graph'].byId['my-graph'], 'entity/graph', entities)
+    expect(graph).to.be.deep.equal(reconstructedGraph)
+  })
 })

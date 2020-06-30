@@ -23,6 +23,24 @@ class JSONToGraph
     return false
   }
 
+  isNodeCollection(collection)
+  {
+    if(Array.isArray(collection))
+    {
+      try
+      {
+        collection.forEach((item) => this.composer.compose(this.nodeSchema, item))
+        return true
+      }
+      catch(error)
+      {
+        return false
+      }
+    }
+
+    return false
+  }
+
   convert(json, isDirected = false)
   {
     const
@@ -57,6 +75,20 @@ class JSONToGraph
 
         if(!this.isDirected)
           edges.push({ source: childNode.id, target: element.id, payload: {} })
+      }
+      else if(this.isNodeCollection(element[key]))
+      {
+        for(const node of element[key])
+        {
+          const childNode = this.mapNode(node, nodes, edges, isDirected, id)
+
+          nodes.push(childNode)
+
+          edges.push({ source: element.id, target: childNode.id, payload: {} })
+
+          if(!this.isDirected)
+            edges.push({ source: childNode.id, target: element.id, payload: {} })
+        }
       }
       else
       {
