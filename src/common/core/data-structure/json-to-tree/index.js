@@ -26,7 +26,7 @@ class JSONToGraph
 
   isNodeCollection(collection)
   {
-    if(Array.isArray(collection))
+    if(Array.isArray(collection) && collection.length)
     {
       try
       {
