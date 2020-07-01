@@ -46,7 +46,7 @@ class Tree extends Graph
     {
       const
       node      = this.nodes.getItem(nodeId),
-      jsonPath  = this.getJSONPath(nodeId, bfs, node.name, json)
+      jsonPath  = this.getJSONPath(nodeId, node.name, json)
 
       if(flattened)
         json[jsonPath] = { ...node }
@@ -67,38 +67,10 @@ class Tree extends Graph
     }
   }
 
-  getJSONPath(nodeId, path, jsonPath, json)
+  getJSONPath(nodeId, jsonPath, json)
   {
-    // lets get the direct parent to the relevant node to beable to find relative nodes, that should be grouped as an array
+    // lets get the direct parent to the relevant node to be able to find relative nodes, that should be grouped as an array
     const parent  = this.getParent(nodeId)
-    // fetching the node information used to compare if it's an array aor not
-
-    // TODO cleanup, remove outcommented code if passing test
-    // const previousIndex = nodeIndex - 1
-    // let parent
-    // for(let i = previousIndex; i >= 0; i--)
-    // {
-    //   const
-    //   previousNodeId    = path[i],
-    //   previousNodeEdges = this.edges.getItem(previousNodeId)
-
-    //   if(previousNodeEdges)
-    //   {
-    //     const currentNodeEdge = previousNodeEdges.find((previousNodeEdge) =>
-    //     {
-    //       return previousNodeEdge.target === nodeId
-    //     })
-
-    //     if(currentNodeEdge)
-    //     {
-    //       parent = previousNodeId
-    //       break
-    //     }
-    //   }
-    // }
-
-    // make unit test for tree get json (shared name for checking arrays)
-    // make unit test for normalizer module (check that it adds the entities correctly)
 
     if(parent)
     {
@@ -118,13 +90,13 @@ class Tree extends Graph
         {
           return siblingId === nodeId
         }),
-        parentPath = this.getJSONPath(parent, path, `${parentNode.name}`, json)
+        parentPath = this.getJSONPath(parent, `${parentNode.name}`, json)
 
         return `${parentPath}.${jsonPath}[${index}]`
       }
       else
       {
-        const parentPath = this.getJSONPath(parent, path, `${parentNode.name}`, json)
+        const parentPath = this.getJSONPath(parent, `${parentNode.name}`, json)
         return `${parentPath}.${jsonPath}`
       }
     }

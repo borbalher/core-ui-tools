@@ -8,6 +8,7 @@ class VirtualDOM
     treeFactory,
     jsonToTree,
     composer,
+    deepfind,
     channel,
     object,
     schema,
@@ -22,6 +23,7 @@ class VirtualDOM
     this.controllers            = controllerRepository
     this.jsonToTree             = jsonToTree
     this.composer               = composer
+    this.deepfind               = deepfind
     this.channel                = channel
     this.object                 = object
     this.store                  = store
@@ -151,9 +153,10 @@ class VirtualDOM
   {
     const
     { name } = this.getData(componentId),
-    json     = this.tree.getJSON(componentId, false)
+    json     = this.tree.getJSON(componentId, false),
+    context  = this.deepfind(this.tree.getJSONPath(componentId, name, json), json)
 
-    return json[name]
+    return context
   }
 
   emit(event)

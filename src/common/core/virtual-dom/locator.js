@@ -20,7 +20,8 @@ class VirtualDOMLocator
     jsonToTree           = this.locator.locate('data-structure/json-to-tree/factory').create('entity/component'),
     channel              = this.locator.locate('infrastructure/bus').createChannel('virtual-dom'),
     object               = this.locator.locate('core/object'),
-    eventComposer        = this.locator.locate('core/event/composer')
+    eventComposer        = this.locator.locate('core/event/composer'),
+    deepfind             = this.locator.locate('core/deepfind')
 
     return new VirtualDOM({
       controllerRepository,
@@ -30,6 +31,7 @@ class VirtualDOMLocator
       treeFactory,
       jsonToTree,
       composer,
+      deepfind,
       channel,
       object,
       schema,
