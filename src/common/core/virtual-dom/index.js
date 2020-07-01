@@ -154,7 +154,7 @@ class VirtualDOM
     const
     { name } = this.getData(componentId),
     json     = this.tree.getJSON(componentId, false),
-    context  = this.deepfind(this.tree.getJSONPath(componentId, name, json), json)
+    context  = this.deepfind.find(this.tree.getJSONPath(componentId, name, json), json)
 
     return context
   }
