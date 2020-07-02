@@ -151,12 +151,8 @@ class VirtualDOM
 
   getContext(componentId)
   {
-    const
-    { name } = this.getData(componentId),
-    json     = this.tree.getJSON(componentId, false),
-    context  = this.deepfind.find(this.tree.getJSONPath(componentId, name, json), json)
-
-    return context
+    const { schema } = this.getData(componentId)
+    return this.store.getEntityContext(schema, componentId)
   }
 
   emit(event)

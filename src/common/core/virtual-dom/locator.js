@@ -21,7 +21,8 @@ class VirtualDOMLocator
     channel              = this.locator.locate('infrastructure/bus').createChannel('virtual-dom'),
     object               = this.locator.locate('core/object'),
     eventComposer        = this.locator.locate('core/event/composer'),
-    deepfind             = this.locator.locate('core/deepfind')
+    deepfind             = this.locator.locate('core/deepfind'),
+    store                = this.locator.locate('core/store')
 
     return new VirtualDOM({
       controllerRepository,
@@ -35,6 +36,7 @@ class VirtualDOMLocator
       channel,
       object,
       schema,
+      store,
       id
     })
   }

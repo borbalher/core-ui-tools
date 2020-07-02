@@ -171,73 +171,73 @@ describe('data-structure/tree', () =>
     expect(leaves).to.deep.equal(['b', 'c'])
   })
 
-  it('Can get a JSON tree flattened', () =>
-  {
-    const tree = factory.create(
-      'my-tree',
-      [
-        {
-          id   : 'a',
-          name : 'a'
-        },
-        {
-          id   : 'b',
-          name : 'b'
-        },
-        {
-          id   : 'c',
-          name : 'c'
-        },
-        {
-          id   : 'd',
-          name : 'd'
-        }
-      ],
-      [
-        {
-          source  : 'a',
-          target  : 'b',
-          payload : {}
-        },
-        {
-          source  : 'a',
-          target  : 'c',
-          payload : {}
-        },
-        {
-          source  : 'c',
-          target  : 'd',
-          payload : {}
-        }
-      ],
-      'a'
-    ),
-    treeJSON = tree.getJSON(undefined, true)
+  // it('Can get a JSON tree flattened', () =>
+  // {
+  //   const tree = factory.create(
+  //     'my-tree',
+  //     [
+  //       {
+  //         id   : 'a',
+  //         name : 'a'
+  //       },
+  //       {
+  //         id   : 'b',
+  //         name : 'b'
+  //       },
+  //       {
+  //         id   : 'c',
+  //         name : 'c'
+  //       },
+  //       {
+  //         id   : 'd',
+  //         name : 'd'
+  //       }
+  //     ],
+  //     [
+  //       {
+  //         source  : 'a',
+  //         target  : 'b',
+  //         payload : {}
+  //       },
+  //       {
+  //         source  : 'a',
+  //         target  : 'c',
+  //         payload : {}
+  //       },
+  //       {
+  //         source  : 'c',
+  //         target  : 'd',
+  //         payload : {}
+  //       }
+  //     ],
+  //     'a'
+  //   ),
+  //   treeJSON = tree.getJSON(undefined, true)
 
-    expect(treeJSON).to.deep.equal({
-      'a' : {
-        id   : 'a',
-        name : 'a'
-      },
-      'a.b' : {
-        id   : 'b',
-        name : 'b'
-      },
-      'a.c' : {
-        id   : 'c',
-        name : 'c'
-      },
-      'a.c.d' : {
-        id   : 'd',
-        name : 'd'
-      }
-    })
+  //   expect(treeJSON).to.deep.equal({
+  //     'a' : {
+  //       id   : 'a',
+  //       name : 'a'
+  //     },
+  //     'a.b' : {
+  //       id   : 'b',
+  //       name : 'b'
+  //     },
+  //     'a.c' : {
+  //       id   : 'c',
+  //       name : 'c'
+  //     },
+  //     'a.c.d' : {
+  //       id   : 'd',
+  //       name : 'd'
+  //     }
+  //   })
 
-    expect(() =>
-    {
-      tree.getJSON({ node: 'not-exists' })
-    }).to.throw()
-  })
+  //   expect(() =>
+  //   {
+  //     tree.getJSON({ node: 'not-exists' })
+  //   }).to.throw()
+  // })
 
   it('Can get a JSON tree', () =>
   {

@@ -33,33 +33,29 @@ class Tree extends Graph
     return leaves
   }
 
-  getJSON(start = this.root, flattened = false) // TODO add schema, there is an error in siblings when its only one element but in the schema is an array
-  {
-    if(!this.nodes.getItem(start))
-      throw new NodeNotExist(`Node ${start} does not exists`)
+  // getJSON(start = this.root, flattened = false)
+  // {
+  //   if(!this.nodes.getItem(start))
+  //     throw new NodeNotExist(`Node ${start} does not exists`)
 
-    const bfs = this.bfs(this.root)
+  //   const bfs = this.bfs(start)
 
-    bfs.splice(bfs.findIndex((nodeId) => {
-      return nodeId === start
-    }) + 1)
+  //   let json = {}
 
-    let json = {}
+  //   bfs.forEach((nodeId) => // ['a', 'b' 'c', 'd']
+  //   {
+  //     const
+  //     node      = this.nodes.getItem(nodeId),
+  //     jsonPath  = this.getJSONPath(nodeId, node.name, json)
 
-    bfs.forEach((nodeId) => // ['a', 'b' 'c', 'd']
-    {
-      const
-      node      = this.nodes.getItem(nodeId),
-      jsonPath  = this.getJSONPath(nodeId, node.name, json)
+  //     if(flattened)
+  //       json[jsonPath] = { ...node }
+  //     else
+  //       json = this.deepassign.assign(json, jsonPath, { ...node })
+  //   })
 
-      if(flattened)
-        json[jsonPath] = { ...node }
-      else
-        json = this.deepassign.assign(json, jsonPath, { ...node })
-    })
-
-    return json
-  }
+  //   return json
+  // }
 
   getParent(nodeId)
   {
@@ -71,44 +67,44 @@ class Tree extends Graph
     }
   }
 
-  getJSONPath(nodeId, jsonPath, json)
-  {
-    // lets get the direct parent to the relevant node to be able to find relative nodes, that should be grouped as an array
-    const parent  = this.getParent(nodeId)
+  // getJSONPath(nodeId, jsonPath, json)
+  // {
+  //   // lets get the direct parent to the relevant node to be able to find relative nodes, that should be grouped as an array
+  //   const parent  = this.getParent(nodeId)
 
-    if(parent)
-    {
-      const
-      node      = this.nodes.getItem(nodeId),    // lets get all the parent children
-      children  = this.getAdjacentNodes(parent),
-      siblings  = children.filter((child) =>    // lets check if there are shared name, then it's an array in the tree-path, if more then one
-      {
-        const childNode = this.nodes.getItem(child)
-        return node.name === childNode.name
-      }),
-      parentNode  = this.nodes.getItem(parent)
+  //   if(parent)
+  //   {
+  //     const
+  //     node      = this.nodes.getItem(nodeId),    // lets get all the parent children
+  //     children  = this.getAdjacentNodes(parent),
+  //     siblings  = children.filter((child) =>    // lets check if there are shared name, then it's an array in the tree-path, if more then one
+  //     {
+  //       const childNode = this.nodes.getItem(child)
+  //       return node.name === childNode.name
+  //     }),
+  //     parentNode  = this.nodes.getItem(parent)
 
-      if(siblings.length > 1)
-      {
-        const index = siblings.findIndex((siblingId) =>
-        {
-          return siblingId === nodeId
-        }),
-        parentPath = this.getJSONPath(parent, `${parentNode.name}`, json)
+  //     if(siblings.length > 1)
+  //     {
+  //       const index = siblings.findIndex((siblingId) =>
+  //       {
+  //         return siblingId === nodeId
+  //       }),
+  //       parentPath = this.getJSONPath(parent, `${parentNode.name}`, json)
 
-        return `${parentPath}.${jsonPath}[${index}]`
-      }
-      else
-      {
-        const parentPath = this.getJSONPath(parent, `${parentNode.name}`, json)
-        return `${parentPath}.${jsonPath}`
-      }
-    }
-    else
-    {
-      return jsonPath
-    }
-  }
+  //       return `${parentPath}.${jsonPath}[${index}]`
+  //     }
+  //     else
+  //     {
+  //       const parentPath = this.getJSONPath(parent, `${parentNode.name}`, json)
+  //       return `${parentPath}.${jsonPath}`
+  //     }
+  //   }
+  //   else
+  //   {
+  //     return jsonPath
+  //   }
+  // }
 
   get [Symbol.toStringTag]()
   {
