@@ -33,12 +33,16 @@ class Tree extends Graph
     return leaves
   }
 
-  getJSON(start = this.root, flattened = false)
+  getJSON(start = this.root, flattened = false) // TODO add schema, there is an error in siblings when its only one element but in the schema is an array
   {
     if(!this.nodes.getItem(start))
       throw new NodeNotExist(`Node ${start} does not exists`)
 
-    const bfs = this.bfs(start)
+    const bfs = this.bfs(this.root)
+
+    bfs.splice(bfs.findIndex((nodeId) => {
+      return nodeId === start
+    }) + 1)
 
     let json = {}
 
