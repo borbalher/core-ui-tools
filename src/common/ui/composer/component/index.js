@@ -9,8 +9,13 @@ class ComponentComposer
     this.configuration = configuration
   }
 
+  getComponentOptions(template)
+  {
+    this.options = this.configuration.find(`ui.component.${template}`) || {}
+  }
+
   compose({
-    renderonchange,
+    renderonchange = true,
     parentId,
     template,
     classes,
@@ -20,17 +25,21 @@ class ComponentComposer
     ...args
   })
   {
+    this.getComponentOptions(template)
+
     const
-    options                           = this.configuration.find(`ui.component.${template}`) || {},
-    { bindings = [], listeners = [] } = options,
-    component                         = {
+    {
+      bindings  = [],
+      listeners = []
+    }         = this.options,
+    component = {
       ...args,
+      options : this.options,
       renderonchange,
       listeners,
       bindings,
       parentId,
       template,
-      options,
       classes,
       schema,
       name,
