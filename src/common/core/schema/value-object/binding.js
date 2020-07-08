@@ -41,9 +41,8 @@ const dto = {
   stopPropagation :
   {
     type    : 'boolean',
-    default : true
+    default : false
   }
-  // emitTo
 }
 
 module.exports = dto

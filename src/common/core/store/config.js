@@ -9,6 +9,7 @@ module.exports = {
       },
       middlewares : [
         'core/store/middleware/crash-report',
+        'core/store/middleware/thunk',
         'core/store/middleware/logger',
         'core/store/middleware/ready-state-promise',
         'core/store/middleware/delayer'
@@ -20,6 +21,7 @@ module.exports = {
       'core/store/middleware/crash-report'        : `${__dirname}/middleware/crash-report`,
       'core/store/middleware/logger'              : `${__dirname}/middleware/logger`,
       'core/store/middleware/delayer'             : `${__dirname}/middleware/delayer`,
+      'core/store/middleware/thunk'               : `${__dirname}/middleware/thunk`,
       'core/store/middleware/ready-state-promise' : `${__dirname}/middleware/ready-state-promise`,
       'core/store'                                : __dirname
     }
