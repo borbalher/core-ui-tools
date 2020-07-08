@@ -7,6 +7,9 @@
   {{#if size}}        size='{{size}}' {{/if}}
   {{#if placeholder}} placeholder='{{placeholder}}' {{/if}}
   {{#if attribute}}   name='{{attribute}}' {{/if}}
+  {{#each attributes as |attribute|}}
+    {{#with attribute}}data-{{name}}="{{value}}"{{/with}}
+  {{/each}}
   autocomplete='{{#if autocomplete}}on{{/if}}{{#unless autocomplete}}off{{/unless}}'>
 
   {{#if placeholder}}

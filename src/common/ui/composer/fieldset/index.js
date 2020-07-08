@@ -8,6 +8,7 @@ class FieldsetComposer extends ComponentComposer
 {
   compose({
     renderonchange,
+    attributes,
     template,
     disabled,
     parentId,
@@ -22,6 +23,7 @@ class FieldsetComposer extends ComponentComposer
   {
     const fieldset = super.compose({
       renderonchange,
+      attributes,
       disabled,
       parentId,
       template,

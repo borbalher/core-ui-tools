@@ -14,6 +14,7 @@ class CheckboxInputGroupComposer extends ComponentComposer
 
   compose({
     renderonchange,
+    attributes,
     attribute,
     disabled,
     parentId,
@@ -35,6 +36,7 @@ class CheckboxInputGroupComposer extends ComponentComposer
       template : 'checkbox-input-group',
       error    : process.env.PLATFORM === 'browser' ? this.validate(required, value, label) : undefined,
       renderonchange,
+      attributes,
       attribute,
       disabled,
       parentId,

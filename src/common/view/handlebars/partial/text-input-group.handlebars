@@ -1,18 +1,22 @@
 {{#> input-group}}
 
-<input  class='input-group__input text-input'
-  {{#if id}}          id='{{id}}-input'             {{/if}}
-  {{#if attribute}}   name='{{attribute}}'          {{/if}}
-  {{#if value}}       value='{{value}}'             {{/if}}
-  {{#if required}}    required                      {{/if}}
-  {{#if disabled}}    disabled                      {{/if}}
-  {{#if readonly}}    readonly                      {{/if}}
-  {{#if maxLength}}   maxlength='{{maxLength}}'     {{/if}}
-  {{#if minLength}}   minlength='{{minLength}}'     {{/if}}
-  {{#if placeholder}} placeholder='{{placeholder}}' {{/if}}
-  {{#if pattern}}     pattern='{{pattern}}'         {{/if}}
-  {{#if title}}       title='{{title}}'             {{/if}}
-  autocomplete='{{#if autocomplete}}on{{/if}}{{#unless autocomplete}}off{{/unless}}'
-  type='text'>
+  <input
+    class='input-group__input text-input'
+    {{#if id}}          id='{{id}}-input'             {{/if}}
+    {{#if attribute}}   name='{{attribute}}'          {{/if}}
+    {{#if value}}       value='{{value}}'             {{/if}}
+    {{#if required}}    required                      {{/if}}
+    {{#if disabled}}    disabled                      {{/if}}
+    {{#if readonly}}    readonly                      {{/if}}
+    {{#if maxLength}}   maxlength='{{maxLength}}'     {{/if}}
+    {{#if minLength}}   minlength='{{minLength}}'     {{/if}}
+    {{#if placeholder}} placeholder='{{placeholder}}' {{/if}}
+    {{#if pattern}}     pattern='{{pattern}}'         {{/if}}
+    {{#if title}}       title='{{title}}'             {{/if}}
+    {{#each attributes as |attribute|}}
+      {{#with attribute}}data-{{name}}="{{value}}"{{/with}}
+    {{/each}}
+    autocomplete='{{#if autocomplete}}on{{/if}}{{#unless autocomplete}}off{{/unless}}'
+    type='text'>
 
 {{/input-group}}

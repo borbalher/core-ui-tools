@@ -16,6 +16,7 @@ class ComponentComposer
 
   compose({
     renderonchange = true,
+    attributes     = [],
     parentId,
     template,
     classes,

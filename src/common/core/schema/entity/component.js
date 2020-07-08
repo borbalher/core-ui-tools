@@ -42,5 +42,12 @@ module.exports = {
   {
     type     : 'json',
     optional : true
+  },
+  datasets :
+  {
+    type       : 'schema',
+    schema     : 'value-object/dataset',
+    collection : true,
+    default    : []
   }
 }
