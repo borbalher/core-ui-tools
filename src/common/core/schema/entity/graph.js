@@ -19,7 +19,7 @@ module.exports = {
   edges :
   {
     type       : 'schema',
-    schema     : 'value/edge',
+    schema     : 'value-object/edge',
     collection : true,
     default    : []
   }

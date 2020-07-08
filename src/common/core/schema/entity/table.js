@@ -36,7 +36,7 @@ module.exports = {
   headers :
   {
     type       : 'schema',
-    schema     : 'value/partial',
+    schema     : 'value-object/partial',
     collection : true,
     default    : []
   },
@@ -49,7 +49,7 @@ module.exports = {
   actions :
   {
     type       : 'schema',
-    schema     : 'value/partial',
+    schema     : 'value-object/partial',
     collection : true,
     default    : []
   },
