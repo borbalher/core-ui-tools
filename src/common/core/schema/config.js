@@ -5,9 +5,9 @@ module.exports = {
     {
       composer :
       {
-        'value/dataset'                   : `${__dirname}/value-object/dataset`,
-        'value/partial'                   : `${__dirname}/value-object/partial`,
-        'value/edge'                      : `${__dirname}/value-object/edge`,
+        'value-object/dataset'            : `${__dirname}/value-object/dataset`,
+        'value-object/partial'            : `${__dirname}/value-object/partial`,
+        'value-object/edge'               : `${__dirname}/value-object/edge`,
         'entity/error'                    : `${__dirname}/entity/error`,
         'entity/node'                     : `${__dirname}/entity/node`,
         'entity/tree-node'                : `${__dirname}/entity/tree-node`,
