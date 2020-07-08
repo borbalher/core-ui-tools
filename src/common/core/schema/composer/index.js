@@ -190,7 +190,7 @@ class SchemaComposer
     if(options.type === 'schema' && data === undefined)
       data = this.compose(options.schema, {})
 
-    // Filtering attributes if a filter has been defined for the type
+    // Filtering datasets if a filter has been defined for the type
     if(options.type in this.filters)
     {
       const filter = this.filters[options.type]

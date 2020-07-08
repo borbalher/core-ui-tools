@@ -13,8 +13,8 @@
     {{#if placeholder}} placeholder='{{placeholder}}' {{/if}}
     {{#if pattern}}     pattern='{{pattern}}'         {{/if}}
     {{#if title}}       title='{{title}}'             {{/if}}
-    {{#each attributes as |attribute|}}
-      {{#with attribute}}data-{{name}}="{{value}}"{{/with}}
+    {{#each datasets as |dataset|}}
+      {{#with dataset}}data-{{name}}="{{value}}"{{/with}}
     {{/each}}
     autocomplete='{{#if autocomplete}}on{{/if}}{{#unless autocomplete}}off{{/unless}}'
     type='text'>

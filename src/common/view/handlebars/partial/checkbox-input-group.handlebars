@@ -9,8 +9,8 @@
       {{#if disabled}}  disabled             {{/if}}
       {{#if attribute}} name='{{attribute}}' {{/if}}
       {{#if value}}     checked              {{/if}}
-      {{#each attributes as |attribute|}}
-        {{#with attribute}}data-{{name}}="{{value}}"{{/with}}
+      {{#each datasets as |dataset|}}
+        {{#with dataset}}data-{{name}}="{{value}}"{{/with}}
       {{/each}}
       class='checkbox__input' type='checkbox'>
     <span class='checkbox__checkmark'></span>

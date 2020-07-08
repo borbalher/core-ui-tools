@@ -16,7 +16,7 @@ class ComponentComposer
 
   compose({
     renderonchange = true,
-    attributes     = [],
+    datasets     = [],
     parentId,
     template,
     classes,
@@ -37,6 +37,7 @@ class ComponentComposer
       ...args,
       options : this.options,
       renderonchange,
+      datasets,
       listeners,
       bindings,
       parentId,

@@ -2,8 +2,8 @@
   {{#if name}}name="{{name}}"{{/if}}
   {{#if formId}}form="{{formId}}"{{/if}}
   {{#if disabled}}disabled{{/if}}
-  {{#each attributes as |attribute|}}
-    {{#with attribute}}data-{{name}}="{{value}}"{{/with}}
+  {{#each datasets as |dataset|}}
+    {{#with dataset}}data-{{name}}="{{value}}"{{/with}}
   {{/each}}>
 
   {{#if legend}}
