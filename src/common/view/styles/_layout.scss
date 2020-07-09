@@ -1,0 +1,109 @@
+.grid-container {
+  max-width: 1440px;
+  min-height: 100%;
+  width : 100%;
+  margin: 0 auto;
+  //padding: 1rem .5rem;
+  position: relative;
+
+  &--fluid{
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  &:before,
+  &:after {
+      content: '';
+      display: table;
+      clear: both;
+  }
+
+  .header-form{
+    position: relative;
+    width:calc(100% - 20rem + 1px);
+    background-color: $body-light;
+    padding: .75rem 1.5rem;
+    margin-top: -7.25rem;
+    z-index: 5;
+
+    .header__prev-button{
+      font-size: 2rem;
+      line-height: 2rem;
+      color: map-get($palette, color-secondary);
+      display: inline;
+      padding-right: 1.5rem;
+
+      & + *{
+        width: calc(100% - 3.375rem);
+        display: inline-block;
+      }
+    }
+
+  }
+  
+  &.grid-container--fluid{
+    .main{
+      padding: 0;
+    }
+
+    .sidebar,
+    .header-form{
+      margin-top: 0;
+    }
+
+  }
+
+  &:not(.grid-container--fluid) {
+    .sidebar + .main{
+      width: calc(100% - 20rem);
+      padding: 8.25rem 1.5rem 1rem;
+      display: table-cell;
+
+      .header-form{
+        margin-top: -12.5rem;
+        position: fixed;
+        max-width: calc(1440px - 21.5rem);
+        z-index: 5;
+      }
+    }
+  }
+
+  .main{
+    left: 0;
+    width:100%;
+    padding: 8.25rem 0 1rem;
+
+    @supports (display: flex) {
+      display: flex;
+      align-items: stretch;
+      flex-wrap: wrap;
+    }
+
+    .main__block{
+      margin-bottom: 3.5rem;
+    }
+    
+    &-buttons{
+      text-align: right;
+    }
+  }
+
+  .sidebar{
+    float: right;
+    width: 20rem;
+    bottom: 0vh;
+    top: 7.25rem;
+    position: absolute;    
+
+    @supports (display: flex) {
+      display: flex;
+    }
+
+    @supports (position: sticky) {
+      position: sticky;
+      margin-top: 7.25rem;
+      bottom: 0;
+    }
+  }
+}
