@@ -1,32 +1,16 @@
 .grid-container {
-  max-width: 1440px;
-  min-height: 100%;
-  width : 100%;
-  margin: 0 auto;
-  //padding: 1rem .5rem;
-  position: relative;
-
-  &--fluid{
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-  }
-
-  &:before,
-  &:after {
-      content: '';
-      display: table;
-      clear: both;
-  }
   [class*='rsp'] {
     float: left;
+    flex-wrap: wrap;
 
     &[class*='__centered']{
       text-align: center;
+
     }
      
     &[class*='__right']{
       float: right;
+
     }
   }
   [class*='rsp'] {
@@ -39,6 +23,10 @@
 
           &[class*='__centered']{
           margin-left: 12.5%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
       &[class*='__xs66'] {
@@ -46,6 +34,10 @@
  
         &[class*='__centered']{
           margin-left: 16.666666665%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
       &[class*='__xs50'] {
@@ -53,6 +45,10 @@
         
         &[class*='__centered']{
           margin-left: 25%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
       &[class*='__xs33'] {
@@ -60,6 +56,10 @@
         
         &[class*='__centered']{
           margin-left: 33.33333333%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
       &[class*='__xs25'] {
@@ -67,12 +67,14 @@
         
         &[class*='__centered']{
           margin-left: 37.5%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
-      &[class*='__xsauto'] {
-        width: auto;
-      }
     }
+
     @media screen and (min-width: 768px) {
       &[class*='__sm100'] {
         width: 100%;
@@ -82,6 +84,10 @@
 
         &[class*='__centered']{
           margin-left: 12.5%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
       &[class*='__sm66'] {
@@ -89,6 +95,10 @@
 
         &[class*='__centered']{
           margin-left: 16.666666665%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
       &[class*='__sm50'] {
@@ -96,6 +106,10 @@
         
         &[class*='__centered']{
           margin-left: 25%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
       &[class*='__sm33'] {
@@ -103,6 +117,10 @@
         
         &[class*='__centered']{
           margin-left: 33.33333333%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
       &[class*='__sm25'] {
@@ -110,12 +128,14 @@
         
         &[class*='__centered']{
           margin-left: 37.5%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
-      &[class*='__smauto'] {
-        width: auto;
-      }
     }
+
     @media screen and (min-width: 992px) {
       &[class*='__md100'] {
         width: 100%;
@@ -125,6 +145,10 @@
 
         &[class*='__centered']{
           margin-left: 12.5%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
       &[class*='__md66'] {
@@ -132,6 +156,10 @@
 
         &[class*='__centered']{
           margin-left: 16.666666665%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
       &[class*='__md50'] {
@@ -139,6 +167,10 @@
         
         &[class*='__centered']{
           margin-left: 25%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
       &[class*='__md33'] {
@@ -146,6 +178,10 @@
         
         &[class*='__centered']{
           margin-left: 33.33333333%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
       &[class*='__md25'] {
@@ -153,12 +189,14 @@
         
         &[class*='__centered']{
           margin-left: 37.5%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
-      &[class*='__mdauto'] {
-        width: auto;
-      }
     }
+
     @media screen and (min-width: 1200px) {
       &[class*='__lg100'] {
         width: 100%;
@@ -168,6 +206,10 @@
 
         &[class*='__centered']{
           margin-left: 12.5%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
       &[class*='__lg66'] {
@@ -175,6 +217,10 @@
 
         &[class*='__centered']{
           margin-left: 16.666666665%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
       &[class*='__lg50'] {
@@ -182,6 +228,10 @@
         
         &[class*='__centered']{
           margin-left: 25%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
       &[class*='__lg33'] {
@@ -189,6 +239,10 @@
         
         &[class*='__centered']{
           margin-left: 33.33333333%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
       &[class*='__lg25'] {
@@ -196,12 +250,14 @@
         
         &[class*='__centered']{
           margin-left: 37.5%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
-      &[class*='__lgauto'] {
-        width: auto;
-      }
     }
+
     @media screen and (min-width: 1440px) {
       &[class*='__xl100'] {
         width: 100%;
@@ -211,6 +267,10 @@
 
         &[class*='__centered']{
           margin-left: 12.5%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
       &[class*='__xl66'] {
@@ -218,6 +278,10 @@
 
         &[class*='__centered']{
           margin-left: 16.666666665%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
       &[class*='__xl50'] {
@@ -225,6 +289,10 @@
         
         &[class*='__centered']{
           margin-left: 25%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
       &[class*='__xl33'] {
@@ -232,6 +300,10 @@
         
         &[class*='__centered']{
           margin-left: 33.33333333%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
       &[class*='__xl25'] {
@@ -239,59 +311,13 @@
         
         &[class*='__centered']{
           margin-left: 37.5%;
+
+          @supports (display: flex) {
+            margin-left: 0;
+          }
         }
       }
-      &[class*='__xlauto'] {
-        width: auto;
-      }
     }
+
   }
-
-
-  // [class*='col-'] {
-  //   float: left;
-  //   min-height: 0.063em;
-  //   padding: 0 16px;
-  //   box-sizing: border-box;
-  // }
-  // .col-{
-  //   $base-width: 100% / 12;
-  //   &1{
-  //     width: $base-width;
-  //   }
-  //   &2{
-  //     width: $base-width * 2;
-  //   }
-  //   &3{
-  //     width: $base-width * 3;
-  //   }
-  //   &4{
-  //     width: $base-width * 4;
-  //   }
-  //   &5{
-  //     width: $base-width * 5;
-  //   }
-  //   &6{
-  //     width: $base-width * 6;
-  //   }
-  //   &7{
-  //     width: $base-width * 7;
-  //   }
-  //   &8{
-  //     width: $base-width * 8;
-  //   }
-  //   &9{
-  //     width: $base-width * 9;
-  //   }
-  //   &10{
-  //     width: $base-width * 10;
-  //   }
-  //   &11
-  //   {
-  //     width: $base-width * 11;
-  //   }
-  //   &12{
-  //     width: $base-width * 12;
-  //   }
-  // }
 }

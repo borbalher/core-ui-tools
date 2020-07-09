@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 @import '_colors.scss';
+@import '_layout.scss';
 @import '_responsive.scss';
 
 $font-family: 'Lato', sans-serif;
@@ -42,86 +43,11 @@ body{
   font-family: $font-family;
   overflow-y: auto;
   position: relative;
-  overflow-x: hidden;
 }
 #page-wrapper{
   white-space: nowrap;
   display:block;
 }
-
-.grid-container{
-
-  .header-form{
-    position: relative;
-    width:calc(100% - 20rem + 1px);
-    background-color: $body-light;
-    padding: .75rem 1.5rem;
-    margin-top: -7.25rem;
-    z-index: 5;
-
-  }
-  
-  &.grid-container--fluid{
-    .main{
-      padding: 0;
-    }
-
-    .sidebar,
-    .header-form{
-      margin-top: 0;
-    }
-
-  }
-
-  &:not(.grid-container--fluid) {
-    .sidebar + .main{
-      width: calc(100% - 20rem);
-      padding: 8.25rem 1.5rem 1rem;
-      display: table-cell;
-
-      .header-form{
-        margin-top: -12.5rem;
-        padding-left: 0;
-        padding-right: 2.5rem;
-        position: fixed;
-        max-width: calc(1440px - 21.5rem);
-        z-index: 5;
-      }
-    }
-  }
-
-  .main{
-    left: 0;
-    width:100%;
-    padding: 8.25rem 0 1rem;
-
-    section{
-      margin-bottom: 3.5rem;
-      display: block;
-      width: 100%;
-      clear: both;
-    }
-    
-    &-buttons{
-      text-align: right;
-    }
-  }
-
-  .sidebar{
-    float: right;
-    width: 20rem;
-    bottom: 0vh;
-    top: 7.25rem;
-    position: absolute;
-
-    @supports (position: sticky) {
-      position: sticky;
-      margin-top: 7.25rem;
-      bottom: 0;
-    }
-  }
-}
-
 
 .input-error{
   color: map-get($palette, color-primary);
