@@ -56,7 +56,8 @@
 
   &:not(.grid-container--fluid) {
     .sidebar + .main{
-      width: calc(100% - 20rem);
+      width: calc(100vw - 20rem);
+      max-width: calc(1440px - 20rem);
       padding: 8.25rem 1.5rem 1rem;
       display: table-cell;
 
@@ -84,7 +85,7 @@
       margin-bottom: 3.5rem;
     }
     
-    &-buttons{
+    &__buttons{
       text-align: right;
     }
   }

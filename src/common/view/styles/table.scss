@@ -139,8 +139,12 @@
   }
 }
 
-@media (min-width: 480px) {
+@media (min-width: 768px) {
   .table__wrapper{
+    @supports(display:flex){
+      display:flex;
+    }
+
     .table__cell-action{
       button {
         border-radius: 0;
@@ -153,7 +157,7 @@
       display: table;
       border-spacing: 0;
       box-sizing: border-box;
-      border-collapse: collapse;
+      border-collapse: collapse;      
 
       &__panel{
         &-row{
