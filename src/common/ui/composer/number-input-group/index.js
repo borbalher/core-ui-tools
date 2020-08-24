@@ -5,6 +5,12 @@ const ComponentComposer = require('common/ui/composer/component')
  */
 class NumberInputGroupComposer extends ComponentComposer
 {
+  constructor(configuration, dictionary)
+  {
+    super(configuration)
+    this.dictionary    = dictionary
+  }
+
   getRegexp(acceptDecimals, maxDecimals, acceptNegatives)
   {
     const
@@ -33,25 +39,23 @@ class NumberInputGroupComposer extends ComponentComposer
   getRange(min, max)
   {
     if(min && max)
-      return ` between ${min} and ${max} `
+      return this.dictionary.translate('BETWEEN_MIN_MAX').replace(/##MIN##/gi, min).replace(/##MAX##/gi, max)
     else if(min)
-      return ` bigger or equal than ${min} `
+      return this.dictionary.translate('BIGGER_OR_EQUAL').replace(/##MIN##/gi, min)
     else if(max)
-      return ` lesser or equal than ${max} `
-    else
-      return ' '
+      return this.dictionary.translate('LESSER_OR_EQUAL').replace(/##MAX##/gi, max)
   }
 
   getSet(acceptDecimals, acceptNegatives, maxDecimals)
   {
     if(!acceptDecimals && !acceptNegatives)
-      return `natural numbers`
+      return this.dictionary.translate('NATURAL_NUMBERS')
     else if(!acceptDecimals)
-      return `integer numbers`
+      return this.dictionary.translate('INTEGER_NUMBERS')
     else if(acceptDecimals && maxDecimals)
-      return `rational numbers up to ${maxDecimals} decimals`
-    else if(acceptDecimals)
-      return `rational numbers`
+      return this.dictionary.translate('RATIONAL_NUMBERS_UP_TO_MAX_DECIMALS').replace(/##MAX_DECIMALS##/gi, maxDecimals)
+
+    return this.dictionary.translate('RATIONAL_NUMBERS')
   }
 
   getFormatError(acceptDecimals, acceptNegatives, maxDecimals, min, max)
@@ -60,27 +64,23 @@ class NumberInputGroupComposer extends ComponentComposer
     range = this.getRange(min, max),
     set   = this.getSet(acceptDecimals, acceptNegatives, maxDecimals)
 
-    if(!acceptDecimals && !acceptNegatives)
-      return `Only ${set}${range}are allowed`
-    else if(!acceptDecimals)
-      return `Only ${set}${range}are allowed`
-    else if(acceptDecimals && maxDecimals)
-      return `Only ${set}${range}are allowed`
-    else if(acceptDecimals)
-      return `Only ${set}${range}are allowed`
+    if(range)
+      return this.dictionary.translate('ONLY_SET_ALLOWED').replace(/##SET##/gi, `${set} ${range}`)
+
+    return this.dictionary.translate('ONLY_SET_ALLOWED').replace(/##SET##/gi, set)
   }
 
   validate(required, value, acceptDecimals, acceptNegatives, maxDecimals, min, max, label)
   {
     if(required && (!value || value.trim() === ''))
-      return `${label} is required`
+      return this.dictionary.translate('IS_REQUIRED').replace(/##LABEL##/gi, label)
 
     const regexp = this.getRegexp(acceptDecimals, maxDecimals, acceptNegatives)
 
     if(min && Number(value) < Number(min))
-      return `Minimum value is ${min}`
+      return this.dictionary.translate('MINIMUN_VALUE_IS').replace(/##MIN##/gi, min)
     else if(max && Number(value) > Number(max))
-      return `Maximum value is ${max}`
+      return this.dictionary.translate('MAXIMUM_VALUE_IS').replace(/##MAX##/gi, max)
     else if(!regexp.exec(value))
       return this.getFormatError(acceptDecimals, acceptNegatives, maxDecimals, min, max)
   }

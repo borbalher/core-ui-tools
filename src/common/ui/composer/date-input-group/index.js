@@ -5,23 +5,29 @@ const ComponentComposer = require('common/ui/composer/component')
  */
 class DateInputGroupComposer extends ComponentComposer
 {
-  validate(required, value, max, min, label) // TODO add min max validation
+  constructor(configuration, dictionary)
+  {
+    super(configuration)
+    this.dictionary    = dictionary
+  }
+
+  validate(required, value, max, min, label)
   {
     if(required && !value)
-      return `${label} is required`
+      return this.dictionary.translate('IS_REQUIRED').replace(/##LABEL##/gi, label)
 
     const currentDate = new Date(value)
 
     if(isNaN(currentDate.getTime()))
-      return `${label} is not a date`
+      return this.dictionary.translate('IS_NOT_A_DATE').replace(/##LABEL##/gi, label)
 
     const maxDate = new Date(max)
     if(max && currentDate.getTime() > maxDate.getTime())
-      return `Date must be before ${max}`
+      return this.dictionary.translate('DATE_MUST_BE_BEFORE').replace(/##DATE##/gi, max)
 
     const minDate = new Date(min)
     if(min && currentDate.getTime() < minDate.getTime())
-      return `Date must be after ${min}`
+      return this.dictionary.translate('DATE_MUST_BE_AFTER').replace(/##DATE##/gi, min)
   }
 
   compose({

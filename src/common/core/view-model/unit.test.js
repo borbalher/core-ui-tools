@@ -20,7 +20,7 @@
 //       { name: 'node/core/schema/bootstrap' },
 //       { name: 'common/core/view-model' },
 //       { name: 'common/core/listener' },
-//       { name: 'common/ui/aggregate/page' },
+//       { name: 'common/ui/composer/page' },
 //       { name: 'common/infrastructure/bus' },
 //       { name: 'common/core/normalizer' },
 //       { name: 'common/core/view-model/test' }

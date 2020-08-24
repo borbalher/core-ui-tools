@@ -14,9 +14,9 @@ describe('src/common/ui/composer/page-blocker', () =>
     const coreFactory = new CoreFactory()
 
     core = coreFactory.create([
+      { name: 'common/core/dictionary' },
       { name: 'common/core/schema' },
-      { name: 'common/ui/aggregate/component/composer' },
-      { name: 'common/ui/aggregate/page-blocker/composer' }
+      { name: 'common/ui/composer' }
     ])
 
     core.load().then(() =>

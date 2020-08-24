@@ -6,10 +6,16 @@ const ComponentComposer = require('common/ui/composer/component')
  */
 class CheckboxInputGroupComposer extends ComponentComposer
 {
+  constructor(configuration, dictionary)
+  {
+    super(configuration)
+    this.dictionary    = dictionary
+  }
+
   validate(required, value, label)
   {
     if(required && !value)
-      return `${label} is required`
+      return this.dictionary.translate('IS_REQUIRED').replace(/##LABEL##/gi, label)
   }
 
   compose({

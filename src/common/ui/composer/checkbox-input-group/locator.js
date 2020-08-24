@@ -9,8 +9,11 @@ class CheckboxInputGroupComposerLocator
 
   locate()
   {
-    const configuration = this.locator.locate('core/configuration')
-    return new CheckboxInputGroupComposer(configuration)
+    const
+    configuration = this.locator.locate('core/configuration'),
+    dictionary    = this.locator.locate('core/dictionary')
+
+    return new CheckboxInputGroupComposer(configuration, dictionary)
   }
 }
 

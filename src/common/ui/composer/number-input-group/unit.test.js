@@ -14,9 +14,9 @@ describe('src/common/ui/composer/number-input-group', () =>
     const coreFactory = new CoreFactory()
 
     core        = coreFactory.create([
+      { name: 'common/core/dictionary' },
       { name: 'common/core/schema' },
-      { name: 'common/ui/aggregate/component/composer' },
-      { name: 'common/ui/aggregate/number-input-group/composer' }
+      { name: 'common/ui/composer' }
     ])
 
     core.load().then(() =>
@@ -34,8 +34,10 @@ describe('src/common/ui/composer/number-input-group', () =>
       disabled  : true,
       readonly  : true,
       required  : true,
+      min       : '1',
+      max       : '10',
       title     : 'Number input title',
-      value     : 42,
+      value     : '42',
       name      : 'number',
       id        : 'number-input-group'
     })

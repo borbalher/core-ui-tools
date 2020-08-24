@@ -14,9 +14,9 @@ describe('src/common/ui/composer/page', () =>
     const coreFactory = new CoreFactory()
 
     core = coreFactory.create([
+      { name: 'common/core/dictionary' },
       { name: 'common/core/schema' },
-      { name: 'common/ui/aggregate/component/composer' },
-      { name: 'common/ui/aggregate/page/composer' }
+      { name: 'common/ui/composer' }
     ])
 
     core.load().then(() =>
@@ -33,7 +33,9 @@ describe('src/common/ui/composer/page', () =>
       id       : 'page',
       name     : 'myPage',
       template : 'my-page',
-      schema   : 'entity/my-page'
+      schema   : 'entity/my-page',
+      title    : 'My page',
+      lang     : 'es'
     })
 
     expect(() =>

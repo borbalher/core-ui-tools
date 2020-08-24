@@ -14,9 +14,9 @@ describe('src/common/ui/composer/password-input', () =>
     const coreFactory = new CoreFactory()
 
     core        = coreFactory.create([
+      { name: 'common/core/dictionary' },
       { name: 'common/core/schema' },
-      { name: 'common/ui/aggregate/component/composer' },
-      { name: 'common/ui/aggregate/password-input/composer' }
+      { name: 'common/ui/composer' }
     ])
 
     core.load().then(() =>

@@ -14,8 +14,9 @@ describe('src/common/ui/composer/password-input-group', () =>
     const coreFactory = new CoreFactory()
 
     core        = coreFactory.create([
+      { name: 'common/core/dictionary' },
       { name: 'common/core/schema' },
-      { name: 'common/ui/aggregate/password-input-group/composer' }
+      { name: 'common/ui/composer' }
     ])
 
     core.load().then(() =>

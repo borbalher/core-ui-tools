@@ -1,6 +1,48 @@
 module.exports = {
   core :
   {
+    dictionary :
+    {
+      dictionaries :
+      {
+        'en-gb' :
+        {
+          'IS_REQUIRED'                         : '##LABEL## is required',
+          'DATE_MUST_BE_AFTER'                  : 'Date must be after ##DATE##',
+          'DATE_MUST_BE_BEFORE'                 : 'Date must be before ##DATE##',
+          'IS_NOT_A_DATE'                       : '##LABEL## is not a date',
+          'ONLY_SET_ALLOWED'                    : 'Only ##SET## allowed',
+          'RATIONAL_NUMBERS'                    : 'rational numbers',
+          'RATIONAL_NUMBERS_UP_TO_MAX_DECIMALS' : 'rational numbers up to ##MAX_DECIMALS## decimals',
+          'INTEGER_NUMBERS'                     : 'integer numbers',
+          'NATURAL_NUMBERS'                     : 'natural numbers',
+          'BETWEEN_MIN_MAX'                     : 'between ##MIN## and ##MAX##',
+          'BIGGER_OR_EQUAL'                     : 'bigger or equal ##MIN##',
+          'LESSER_OR_EQUAL'                     : 'lesser or equal ##MAX##',
+          'INVALID_FORMAT'                      : 'Invalid format',
+          'MINIMUN_VALUE_IS'                    : 'Minimum value is ##MIN##',
+          'MAXIMUM_VALUE_IS'                    : 'Maximum value is ##MAX##'
+        },
+        'es' :
+        {
+          'IS_REQUIRED'                         : '##LABEL## es obligatorio',
+          'DATE_MUST_BE_AFTER'                  : 'La fecha debe ser posterior a ##DATE##',
+          'DATE_MUST_BE_BEFORE'                 : 'La fecha debe ser anterior a ##DATE##',
+          'IS_NOT_A_DATE'                       : '##LABEL## no es una fecha',
+          'ONLY_SET_ALLOWED'                    : 'Solamente se permite ##SET##',
+          'RATIONAL_NUMBERS'                    : 'números racionales',
+          'RATIONAL_NUMBERS_UP_TO_MAX_DECIMALS' : 'números racionales de hasta ##MAX_DECIMALS## decimales',
+          'INTEGER_NUMBERS'                     : 'números enteros',
+          'NATURAL_NUMBERS'                     : 'números naturales',
+          'BETWEEN_MIN_MAX'                     : 'entre ##MIN## y ##MAX##',
+          'BIGGER_OR_EQUAL'                     : 'mayor o igual ##MIN##',
+          'LESSER_OR_EQUAL'                     : 'menor o igual ##MAX##',
+          'INVALID_FORMAT'                      : 'Formato inválido',
+          'MINIMUN_VALUE_IS'                    : 'El valor mínimo es ##MIN##',
+          'MAXIMUM_VALUE_IS'                    : 'El valor máximo es ##MAX##'
+        }
+      }
+    },
     locator :
     {
       'ui/checkbox-input/composer'           : `${__dirname}/checkbox-input`,

@@ -7,24 +7,22 @@ describe('src/common/ui/composer/modal', () =>
   let
   core,
   composer,
-  modalComposer,
-  componentComposer
+  modalComposer
 
   before((done) =>
   {
     const coreFactory = new CoreFactory()
 
     core        = coreFactory.create([
+      { name: 'common/core/dictionary' },
       { name: 'common/core/schema' },
-      { name: 'common/ui/aggregate/component/composer' },
-      { name: 'common/ui/aggregate/modal/composer' }
+      { name: 'common/ui/composer' }
     ])
 
     core.load().then(() =>
     {
-      composer          = core.locate('core/schema/composer')
-      componentComposer = core.locate('ui/component/composer')
-      modalComposer     = core.locate('ui/modal/composer')
+      composer      = core.locate('core/schema/composer')
+      modalComposer = core.locate('ui/modal/composer')
       done()
     })
   })
@@ -35,11 +33,9 @@ describe('src/common/ui/composer/modal', () =>
       headerText : 'Header',
       isOpen     : false,
       name       : 'modal',
-      body       : componentComposer.compose({
-        template : 'component',
-        schema   : 'entity/component'
-      }),
-      id : 'modal'
+      template   : 'component',
+      schema     : 'component',
+      id         : 'modal'
     })
 
     expect(() =>

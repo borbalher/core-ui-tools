@@ -5,10 +5,16 @@ const ComponentComposer = require('common/ui/composer/component')
  */
 class PasswordInputGroupComposer extends ComponentComposer
 {
+  constructor(configuration, dictionary)
+  {
+    super(configuration)
+    this.dictionary    = dictionary
+  }
+
   validate(required, value, pattern, title, label)
   {
     if(required && (!value || value.trim() === ''))
-      return `${label} is required`
+      return this.dictionary.translate('IS_REQUIRED').replace(/##LABEL##/gi, label)
 
     if(pattern)
     {
@@ -17,7 +23,7 @@ class PasswordInputGroupComposer extends ComponentComposer
       match  = regexp.exec(value)
 
       if(!match)
-        return title ? title : `Format invalid`
+        return title ? title : this.dictionary.translate('INVALID_FORMAT')
     }
   }
 

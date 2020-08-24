@@ -239,265 +239,265 @@ describe('data-structure/tree', () =>
   //   }).to.throw()
   // })
 
-  it('Can get a JSON tree', () =>
-  {
-    const tree = factory.create(
-      'my-tree',
-      [
-        {
-          id   : 'a',
-          name : 'a'
-        },
-        {
-          id   : 'b',
-          name : 'b'
-        },
-        {
-          id   : 'c',
-          name : 'c'
-        },
-        {
-          id   : 'd',
-          name : 'd'
-        }
-      ],
-      [
-        {
-          source  : 'a',
-          target  : 'b',
-          payload : {}
-        },
-        {
-          source  : 'a',
-          target  : 'c',
-          payload : {}
-        },
-        {
-          source  : 'c',
-          target  : 'd',
-          payload : {}
-        }
-      ],
-      'a'
-    ),
-    treeJSON = tree.getJSON(undefined, false)
+  // it('Can get a JSON tree', () =>
+  // {
+  //   const tree = factory.create(
+  //     'my-tree',
+  //     [
+  //       {
+  //         id   : 'a',
+  //         name : 'a'
+  //       },
+  //       {
+  //         id   : 'b',
+  //         name : 'b'
+  //       },
+  //       {
+  //         id   : 'c',
+  //         name : 'c'
+  //       },
+  //       {
+  //         id   : 'd',
+  //         name : 'd'
+  //       }
+  //     ],
+  //     [
+  //       {
+  //         source  : 'a',
+  //         target  : 'b',
+  //         payload : {}
+  //       },
+  //       {
+  //         source  : 'a',
+  //         target  : 'c',
+  //         payload : {}
+  //       },
+  //       {
+  //         source  : 'c',
+  //         target  : 'd',
+  //         payload : {}
+  //       }
+  //     ],
+  //     'a'
+  //   ),
+  //   treeJSON = tree.getJSON(undefined, false)
 
-    expect(treeJSON).to.deep.equal({
-      a : {
-        id   : 'a',
-        name : 'a',
-        b    :
-        {
-          id   : 'b',
-          name : 'b'
-        },
-        c :
-        {
-          id   : 'c',
-          name : 'c',
-          d    : {
-            id   : 'd',
-            name : 'd'
-          }
-        }
-      }
-    })
-  })
+  //   expect(treeJSON).to.deep.equal({
+  //     a : {
+  //       id   : 'a',
+  //       name : 'a',
+  //       b    :
+  //       {
+  //         id   : 'b',
+  //         name : 'b'
+  //       },
+  //       c :
+  //       {
+  //         id   : 'c',
+  //         name : 'c',
+  //         d    : {
+  //           id   : 'd',
+  //           name : 'd'
+  //         }
+  //       }
+  //     }
+  //   })
+  // })
 
-  it.only('Can get a JSON tree with array', () =>
-  {
-    const tree = factory.create(
-      'my-tree',
-      [
-        {
-          id   : 'a',
-          name : 'a'
-        },
-        {
-          id   : 'b',
-          name : 'array'
-        },
-        {
-          id   : 'c',
-          name : 'array'
-        },
-        {
-          id   : 'd',
-          name : 'array'
-        },
-        {
-          id   : 'e',
-          name : 'array'
-        },
-        {
-          id   : 'f',
-          name : 'array'
-        },
-        {
-          id   : 'g',
-          name : 'array'
-        },
-        {
-          id   : 'h',
-          name : 'array'
-        },
-        {
-          id   : 'i',
-          name : 'array'
-        },
-        {
-          id   : 'j',
-          name : 'array'
-        },
-        {
-          id   : 'k',
-          name : 'array'
-        },
-        {
-          id   : 'l',
-          name : 'array'
-        },
-        {
-          id   : 'm',
-          name : 'array'
-        }
-      ],
-      [
-        {
-          source  : 'a',
-          target  : 'b',
-          payload : {}
-        },
-        {
-          source  : 'a',
-          target  : 'c',
-          payload : {}
-        },
-        {
-          source  : 'c',
-          target  : 'd',
-          payload : {}
-        },
-        {
-          source  : 'c',
-          target  : 'e',
-          payload : {}
-        },
-        {
-          source  : 'd',
-          target  : 'f',
-          payload : {}
-        },
-        {
-          source  : 'd',
-          target  : 'g',
-          payload : {}
-        },
-        {
-          source  : 'g',
-          target  : 'h',
-          payload : {}
-        },
-        {
-          source  : 'g',
-          target  : 'i',
-          payload : {}
-        },
-        {
-          source  : 'i',
-          target  : 'j',
-          payload : {}
-        },
-        {
-          source  : 'i',
-          target  : 'k',
-          payload : {}
-        },
-        {
-          source  : 'k',
-          target  : 'l',
-          payload : {}
-        },
-        {
-          source  : 'k',
-          target  : 'm',
-          payload : {}
-        }
-      ],
-      'a'
-    ),
-    treeJSON = tree.getJSON(undefined, false)
+  // it.only('Can get a JSON tree with array', () =>
+  // {
+  //   const tree = factory.create(
+  //     'my-tree',
+  //     [
+  //       {
+  //         id   : 'a',
+  //         name : 'a'
+  //       },
+  //       {
+  //         id   : 'b',
+  //         name : 'array'
+  //       },
+  //       {
+  //         id   : 'c',
+  //         name : 'array'
+  //       },
+  //       {
+  //         id   : 'd',
+  //         name : 'array'
+  //       },
+  //       {
+  //         id   : 'e',
+  //         name : 'array'
+  //       },
+  //       {
+  //         id   : 'f',
+  //         name : 'array'
+  //       },
+  //       {
+  //         id   : 'g',
+  //         name : 'array'
+  //       },
+  //       {
+  //         id   : 'h',
+  //         name : 'array'
+  //       },
+  //       {
+  //         id   : 'i',
+  //         name : 'array'
+  //       },
+  //       {
+  //         id   : 'j',
+  //         name : 'array'
+  //       },
+  //       {
+  //         id   : 'k',
+  //         name : 'array'
+  //       },
+  //       {
+  //         id   : 'l',
+  //         name : 'array'
+  //       },
+  //       {
+  //         id   : 'm',
+  //         name : 'array'
+  //       }
+  //     ],
+  //     [
+  //       {
+  //         source  : 'a',
+  //         target  : 'b',
+  //         payload : {}
+  //       },
+  //       {
+  //         source  : 'a',
+  //         target  : 'c',
+  //         payload : {}
+  //       },
+  //       {
+  //         source  : 'c',
+  //         target  : 'd',
+  //         payload : {}
+  //       },
+  //       {
+  //         source  : 'c',
+  //         target  : 'e',
+  //         payload : {}
+  //       },
+  //       {
+  //         source  : 'd',
+  //         target  : 'f',
+  //         payload : {}
+  //       },
+  //       {
+  //         source  : 'd',
+  //         target  : 'g',
+  //         payload : {}
+  //       },
+  //       {
+  //         source  : 'g',
+  //         target  : 'h',
+  //         payload : {}
+  //       },
+  //       {
+  //         source  : 'g',
+  //         target  : 'i',
+  //         payload : {}
+  //       },
+  //       {
+  //         source  : 'i',
+  //         target  : 'j',
+  //         payload : {}
+  //       },
+  //       {
+  //         source  : 'i',
+  //         target  : 'k',
+  //         payload : {}
+  //       },
+  //       {
+  //         source  : 'k',
+  //         target  : 'l',
+  //         payload : {}
+  //       },
+  //       {
+  //         source  : 'k',
+  //         target  : 'm',
+  //         payload : {}
+  //       }
+  //     ],
+  //     'a'
+  //   ),
+  //   treeJSON = tree.getJSON(undefined, false)
 
-    expect(treeJSON).to.deep.equal({
-      a :
-      {
-        id    : 'a',
-        name  : 'a',
-        array :
-        [
-          {
-            id   : 'b',
-            name : 'array'
-          },
-          {
-            array :
-            [
-              {
-                id    : 'd',
-                name  : 'array',
-                array : [
-                  {
-                    id   : 'f',
-                    name : 'array'
-                  },
-                  {
-                    id    : 'g',
-                    name  : 'array',
-                    array : [
-                      {
-                        id   : 'h',
-                        name : 'array'
-                      },
-                      {
-                        id    : 'i',
-                        name  : 'array',
-                        array : [
-                          {
-                            id   : 'j',
-                            name : 'array'
-                          },
-                          {
-                            id    : 'k',
-                            name  : 'array',
-                            array : [
-                              {
-                                id   : 'l',
-                                name : 'array'
-                              },
-                              {
-                                id   : 'm',
-                                name : 'array'
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                id   : 'e',
-                name : 'array'
-              }
-            ],
-            id   : 'c',
-            name : 'array'
-          }
-        ]
-      }
-    })
-  })
+  //   expect(treeJSON).to.deep.equal({
+  //     a :
+  //     {
+  //       id    : 'a',
+  //       name  : 'a',
+  //       array :
+  //       [
+  //         {
+  //           id   : 'b',
+  //           name : 'array'
+  //         },
+  //         {
+  //           array :
+  //           [
+  //             {
+  //               id    : 'd',
+  //               name  : 'array',
+  //               array : [
+  //                 {
+  //                   id   : 'f',
+  //                   name : 'array'
+  //                 },
+  //                 {
+  //                   id    : 'g',
+  //                   name  : 'array',
+  //                   array : [
+  //                     {
+  //                       id   : 'h',
+  //                       name : 'array'
+  //                     },
+  //                     {
+  //                       id    : 'i',
+  //                       name  : 'array',
+  //                       array : [
+  //                         {
+  //                           id   : 'j',
+  //                           name : 'array'
+  //                         },
+  //                         {
+  //                           id    : 'k',
+  //                           name  : 'array',
+  //                           array : [
+  //                             {
+  //                               id   : 'l',
+  //                               name : 'array'
+  //                             },
+  //                             {
+  //                               id   : 'm',
+  //                               name : 'array'
+  //                             }
+  //                           ]
+  //                         }
+  //                       ]
+  //                     }
+  //                   ]
+  //                 }
+  //               ]
+  //             },
+  //             {
+  //               id   : 'e',
+  //               name : 'array'
+  //             }
+  //           ],
+  //           id   : 'c',
+  //           name : 'array'
+  //         }
+  //       ]
+  //     }
+  //   })
+  // })
 
   it('Should return the proper string tag ', async () =>
   {

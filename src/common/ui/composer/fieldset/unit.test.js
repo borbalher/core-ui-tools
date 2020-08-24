@@ -14,9 +14,9 @@ describe('src/common/ui/composer/fieldset', () =>
     const coreFactory = new CoreFactory()
 
     core        = coreFactory.create([
+      { name: 'common/core/dictionary' },
       { name: 'common/core/schema' },
-      { name: 'common/ui/aggregate/component/composer' },
-      { name: 'common/ui/aggregate/fieldset/composer' }
+      { name: 'common/ui/composer' }
     ])
 
     core.load().then(() =>
@@ -31,6 +31,7 @@ describe('src/common/ui/composer/fieldset', () =>
   {
     const fieldset = fieldsetComposer.compose({
       template : 'my-fieldset',
+      schema   : 'my-fieldset',
       formId   : 'form-id',
       legend   : 'Fieldset',
       name     : 'fieldset',

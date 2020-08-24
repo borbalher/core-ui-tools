@@ -9,6 +9,7 @@
     "@superhero/request": "2.1.0",
     "cookies": "0.7.3",
     "dateformat": "3.0.3",
+    "dotenv": "8.2.0",
     "handlebars": "4.5.2",
     "js-base64": "2.5.2",
     "jwk-to-pem": "2.0.1",
@@ -52,7 +53,7 @@
     "generate-doc-tests": "mocha view/**/*.test.js core/**/*.test.js test/**/*.test.js --reporter mochawesome --reporter-options reportDir=doc/tests,reportFilename=index,showHooks=always",
     "linter": "eslint core/**/**.js view/**/**.js",
     "linter-and-fix": "eslint core/**/**.js view/**/**.js --fix",
-    "test": "mocha 'src/**/*.test.js' --config .mocharc.json"
+    "test": "mocha 'src/**/composer/**/*.test.js' --config .mocharc.json"
   },
   "_moduleAliases": {
     "~root": ".",
@@ -61,5 +62,5 @@
     "browser": "src/browser",
     "node": "src/node"
   },
-  "version": "1.3.17-beta"
+  "version": "1.3.18-beta"
 }

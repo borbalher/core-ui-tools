@@ -14,10 +14,9 @@ describe('src/common/ui/composer/radio-button-input-group', () =>
     const coreFactory = new CoreFactory()
 
     core        = coreFactory.create([
+      { name: 'common/core/dictionary' },
       { name: 'common/core/schema' },
-      { name: 'common/ui/aggregate/component/composer' },
-      { name: 'common/ui/aggregate/radio-button-input/composer' },
-      { name: 'common/ui/aggregate/radio-button-input-group/composer' }
+      { name: 'common/ui/composer' }
     ])
 
     core.load().then(() =>
