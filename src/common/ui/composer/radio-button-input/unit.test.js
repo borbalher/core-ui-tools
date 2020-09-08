@@ -14,7 +14,7 @@ describe('src/common/ui/composer/radio-button-input', () =>
     const coreFactory = new CoreFactory()
 
     core        = coreFactory.create([
-      { name: 'common/core/dictionary' },
+      { name: 'node/core/dictionary' },
       { name: 'common/core/schema' },
       { name: 'common/ui/composer' }
     ])

@@ -1,11 +1,13 @@
 <div id='{{id}}' class='input-group {{template}} {{#if big}}input-group--xl{{/if}} {{#if error}}--error{{/if}} {{classes}}'>
 
   <div class='input-group__label-wrapper'>
+
     {{#if label}}
       <label class='input-group__label' for='{{id}}-input'>
         {{label}}
       </label>
     {{/if}}
+
     {{#unless required}}
       <span class='input-group__optional-label'>
         {{translate 'OPTIONAL'}}
@@ -13,10 +15,10 @@
     {{/unless}}
   </div>
 
- {{> @partial-block }}
+  {{> @partial-block }}
 
- <div class='input-group__error {{#if error}}--visible{{else}}--hidden{{/if}}'>
-  {{error}}
- </div>
+  <div class='input-group__error {{#if error}}--visible{{else}}--hidden{{/if}}'>
+    {{error}}
+  </div>
 
 </div>
