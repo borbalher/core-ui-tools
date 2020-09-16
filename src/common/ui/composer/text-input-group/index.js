@@ -14,9 +14,10 @@ class TextInputGroupComposer extends ComponentComposer
   validate(required, value, pattern, title, label)
   {
     if(required && (!value || value.trim() === ''))
+    {
       return this.dictionary.translate('IS_REQUIRED').replace(/##LABEL##/gi, label)
-
-    if(pattern)
+    }
+    else if(value && pattern)
     {
       const
       regexp = new RegExp(pattern),
