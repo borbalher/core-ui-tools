@@ -100,14 +100,14 @@ module.exports = {
         [
           {
             selector       : 'input[type="date"]',
-            domEvent       : 'change',
+            domEvent       : 'blur',
             domEventMapper : 'ui/mapper/input'
           }
         ],
         listeners :
         [
           {
-            event    : 'change',
+            event    : 'blur',
             map      : 'validate.date.input.group',
             dispatch : true
           }
