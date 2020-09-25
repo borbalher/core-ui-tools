@@ -11,11 +11,11 @@ class DictionaryLocator
   {
     const
     configuration                      = this.locator.locate('core/configuration'),
-    localStorage                       = this.locator.locate('infrastructure/local-storage/gateway'),
+    cookies                            = this.locator.locate('infrastructure/cookies'),
     options                            = configuration.find('core.dictionary'),
     { fallBackLanguage, dictionaries } = options
 
-    return new Dictionary(localStorage, fallBackLanguage, dictionaries)
+    return new Dictionary(cookies, fallBackLanguage, dictionaries)
   }
 }
 

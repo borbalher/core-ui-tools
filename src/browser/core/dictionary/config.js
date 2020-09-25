@@ -3,8 +3,7 @@ module.exports = {
   {
     dictionary :
     {
-      fallBackLanguage : 'en-gb',
-      dictionaries     : { }
+      dictionaries : { }
     },
     locator :
     {

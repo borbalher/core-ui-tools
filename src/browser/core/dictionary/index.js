@@ -1,17 +1,17 @@
 class Dictionary
 {
-  constructor(localStorage, fallbackLang, dictionaries)
+  constructor(cookies, fallbackLang, dictionaries)
   {
     this.fallbackLang = fallbackLang
     this.dictionaries = dictionaries
-    this.localStorage = localStorage
+    this.cookies      = cookies
 
-    this.loadLangFromLocalStorage()
+    this.loadLangFromCookie()
   }
 
-  loadLangFromLocalStorage()
+  loadLangFromCookie()
   {
-    const lang = this.localStorage.getItem('LANG')
+    const lang = this.cookies.getCookie('LANG')
 
     if(lang)
       this.setLang(lang)
