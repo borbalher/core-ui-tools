@@ -15,9 +15,9 @@ class HandlebarsHelperComponentLocator
    */
   locate()
   {
-    const locator = this.locator
+    const templateFactory = this.locator.locate('view/template/factory')
 
-    return new HandlebarsHelperComponent(locator)
+    return new HandlebarsHelperComponent({ templateFactory })
   }
 }
 

@@ -1868,7 +1868,7 @@ Handlebars.partials['table'] = template({"1":function(container,depth0,helpers,p
     + "      </tbody>\n    </table>\n  </div>\n</div>";
 },"usePartial":true,"useData":true,"useDepths":true,"useBlockParams":true});
 Handlebars.partials['text-input-group-page'] = template({"1":function(container,depth0,helpers,partials,data) {
-    var lookupProperty = container.lookupProperty || function(parent, propertyName) {
+    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
           return parent[propertyName];
         }
@@ -1876,7 +1876,7 @@ Handlebars.partials['text-input-group-page'] = template({"1":function(container,
     };
 
   return "  <div class=\"grid-container grid-container--fluid\">\n    <main class=\"main\">\n      <section class=\"rsp__xs75__md66__xl50__centered main__block text-input-group-container\">\n        "
-    + container.escapeExpression((lookupProperty(helpers,"component")||(depth0 && lookupProperty(depth0,"component"))||container.hooks.helperMissing).call(depth0 != null ? depth0 : (container.nullContext || {}),"text-input-group",(depth0 != null ? lookupProperty(depth0,"textInputGroup") : depth0),{"name":"component","hash":{},"data":data,"loc":{"start":{"line":5,"column":8},"end":{"line":5,"column":55}}}))
+    + container.escapeExpression((lookupProperty(helpers,"component")||(depth0 && lookupProperty(depth0,"component"))||container.hooks.helperMissing).call(depth0 != null ? depth0 : (container.nullContext || {}),((stack1 = (depth0 != null ? lookupProperty(depth0,"children") : depth0)) != null ? lookupProperty(stack1,"0") : stack1),{"name":"component","hash":{},"data":data,"loc":{"start":{"line":5,"column":8},"end":{"line":5,"column":34}}}))
     + "\n      </section>\n    </main>\n  </div>\n";
 },"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {

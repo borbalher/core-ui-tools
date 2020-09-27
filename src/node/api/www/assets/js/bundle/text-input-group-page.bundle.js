@@ -1145,6 +1145,14 @@ var map = {
 	"./src/common/ui/controller/password-input-group/index.js": "./src/common/ui/controller/password-input-group/index.js",
 	"./src/common/ui/controller/password-input-group/locator": "./src/common/ui/controller/password-input-group/locator.js",
 	"./src/common/ui/controller/password-input-group/locator.js": "./src/common/ui/controller/password-input-group/locator.js",
+	"./src/common/ui/controller/template": "./src/common/ui/controller/template/index.js",
+	"./src/common/ui/controller/template/": "./src/common/ui/controller/template/index.js",
+	"./src/common/ui/controller/template/factory": "./src/common/ui/controller/template/factory.js",
+	"./src/common/ui/controller/template/factory.js": "./src/common/ui/controller/template/factory.js",
+	"./src/common/ui/controller/template/index": "./src/common/ui/controller/template/index.js",
+	"./src/common/ui/controller/template/index.js": "./src/common/ui/controller/template/index.js",
+	"./src/common/ui/controller/template/locator": "./src/common/ui/controller/template/locator.js",
+	"./src/common/ui/controller/template/locator.js": "./src/common/ui/controller/template/locator.js",
 	"./src/common/ui/controller/text-input-group": "./src/common/ui/controller/text-input-group/index.js",
 	"./src/common/ui/controller/text-input-group/": "./src/common/ui/controller/text-input-group/index.js",
 	"./src/common/ui/controller/text-input-group/bootstrap": "./src/common/ui/controller/text-input-group/bootstrap/index.js",
@@ -1674,6 +1682,7 @@ var map = {
 	"./src/common/ui/composer/toggeable-fieldset/locator.js": "./src/common/ui/composer/toggeable-fieldset/locator.js",
 	"./src/common/ui/controller/locator.js": "./src/common/ui/controller/locator.js",
 	"./src/common/ui/controller/password-input-group/locator.js": "./src/common/ui/controller/password-input-group/locator.js",
+	"./src/common/ui/controller/template/locator.js": "./src/common/ui/controller/template/locator.js",
 	"./src/common/ui/controller/text-input-group/bootstrap/locator.js": "./src/common/ui/controller/text-input-group/bootstrap/locator.js",
 	"./src/common/ui/mapper/checkbox/locator.js": "./src/common/ui/mapper/checkbox/locator.js",
 	"./src/common/ui/mapper/form/locator.js": "./src/common/ui/mapper/form/locator.js",
@@ -25956,7 +25965,17 @@ var Component = function Component(_ref) {
       key: "selectAll",
       value: function selectAll(selector) {
         return this.shadowRoot ? this.shadowRoot.querySelectorAll(selector) : this.querySelectorAll(selector);
-      }
+      } // static get observedAttributes()
+      // {
+      //   return ['attribute']
+      // }
+      // attributeChangedCallback(name, oldValue, newValue)
+      // {
+      //   if(oldValue === newValue)
+      //     return
+      //   console.log(`The attribute ${name} has changed`)
+      // }
+
     }]);
 
     return _class;
@@ -25984,7 +26003,8 @@ module.exports = {
     },
     locator: {
       'ui/text-input-group/bootstrap': "".concat(__dirname, "/text-input-group/bootstrap"),
-      'ui/controller/factory': __dirname
+      // 'ui/controller/factory'         : __dirname,
+      'ui/template/factory': "".concat(__dirname, "/template")
     }
   }
 };
@@ -26230,6 +26250,206 @@ module.exports = PasswordInputGroupLocator;
 
 /***/ }),
 
+/***/ "./src/common/ui/controller/template/factory.js":
+/*!******************************************************!*\
+  !*** ./src/common/ui/controller/template/factory.js ***!
+  \******************************************************/
+/*! unknown exports (runtime-defined) */
+/*! exports [maybe provided (runtime-defined)] [maybe used (runtime-defined)] */
+/*! runtime requirements: module */
+/***/ ((module) => {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var TemplateFactory = /*#__PURE__*/function () {
+  function TemplateFactory(_ref) {
+    var handlebars = _ref.handlebars,
+        Template = _ref.Template;
+
+    _classCallCheck(this, TemplateFactory);
+
+    this.handlebars = handlebars;
+    this.Template = Template;
+  }
+
+  _createClass(TemplateFactory, [{
+    key: "create",
+    value: function create(tag) {
+      return new this.Template({
+        tag: tag,
+        handlebars: this.handlebars
+      });
+    }
+  }]);
+
+  return TemplateFactory;
+}();
+
+module.exports = TemplateFactory;
+
+/***/ }),
+
+/***/ "./src/common/ui/controller/template/index.js":
+/*!****************************************************!*\
+  !*** ./src/common/ui/controller/template/index.js ***!
+  \****************************************************/
+/*! unknown exports (runtime-defined) */
+/*! exports [maybe provided (runtime-defined)] [maybe used (runtime-defined)] */
+/*! runtime requirements: module */
+/***/ ((module) => {
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+// const Template = ({
+//   handlebars,
+//   tag,
+// }) =>
+// {
+//   const
+//   getSafeString = (html) =>
+//   {
+//     return new handlebars.SafeString(html)
+//   },
+//   wrapComponent = (props, template) =>
+//   {
+//     return `<${tag} ${Object.entries(props).map(([name, value]) => { return `${name}="${value}"` })}>${template}</${tag}>`
+//   },
+//   compilePartial = (props) =>
+//   {
+//     return handlebars.compilePartial(tag, props)
+//   }
+//   return class
+//   {
+//     render(props)
+//     {
+//       const
+//       template            = compilePartial(props),
+//       wrappedTemplate     = wrapComponent(props, template),
+//       safeStringTemplate  = getSafeString(wrappedTemplate)
+//       return safeStringTemplate
+//     }
+//   }
+// }
+// module.exports = Template
+var Template = /*#__PURE__*/function () {
+  function Template(_ref) {
+    var handlebars = _ref.handlebars,
+        tag = _ref.tag;
+
+    _classCallCheck(this, Template);
+
+    this.handlebars = handlebars;
+    this.tag = tag;
+  }
+
+  _createClass(Template, [{
+    key: "getSafeString",
+    value: function getSafeString(html) {
+      return new this.handlebars.SafeString(html);
+    }
+  }, {
+    key: "wrapComponent",
+    value: function wrapComponent(props, template) {
+      return "<".concat(this.tag, " ").concat(Object.entries(props).map(function (_ref2) {
+        var _ref3 = _slicedToArray(_ref2, 2),
+            name = _ref3[0],
+            value = _ref3[1];
+
+        return "".concat(name, "=\"").concat(value, "\"");
+      }), ">").concat(template, "</").concat(this.tag, ">");
+    }
+  }, {
+    key: "compilePartial",
+    value: function compilePartial(props) {
+      return this.handlebars.compilePartial(this.tag, props);
+    }
+  }, {
+    key: "render",
+    value: function render(props) {
+      var template = this.compilePartial(props),
+          wrappedTemplate = this.wrapComponent(props, template),
+          safeStringTemplate = this.getSafeString(wrappedTemplate);
+      return safeStringTemplate;
+    }
+  }]);
+
+  return Template;
+}();
+
+module.exports = Template;
+
+/***/ }),
+
+/***/ "./src/common/ui/controller/template/locator.js":
+/*!******************************************************!*\
+  !*** ./src/common/ui/controller/template/locator.js ***!
+  \******************************************************/
+/*! unknown exports (runtime-defined) */
+/*! exports [maybe provided (runtime-defined)] [maybe used (runtime-defined)] */
+/*! runtime requirements: module, __webpack_require__ */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+/**
+ * @implements {superhero/core/locator/constituent}
+ */
+var TemplateLocatorLocator = /*#__PURE__*/function () {
+  function TemplateLocatorLocator(locator) {
+    _classCallCheck(this, TemplateLocatorLocator);
+
+    this.locator = locator;
+  }
+  /**
+   * @returns {TemplateLocator}
+   */
+
+
+  _createClass(TemplateLocatorLocator, [{
+    key: "locate",
+    value: function locate() {
+      var handlebars = this.locator.locate('view/handlebars'),
+          Template = __webpack_require__(/*! . */ "./src/common/ui/controller/template/index.js"),
+          TemplateFactory = __webpack_require__(/*! ./factory */ "./src/common/ui/controller/template/factory.js");
+
+      return new TemplateFactory({
+        handlebars: handlebars,
+        Template: Template
+      });
+    }
+  }]);
+
+  return TemplateLocatorLocator;
+}();
+
+module.exports = TemplateLocatorLocator;
+
+/***/ }),
+
 /***/ "./src/common/ui/controller/text-input-group/bootstrap/index.js":
 /*!**********************************************************************!*\
   !*** ./src/common/ui/controller/text-input-group/bootstrap/index.js ***!
@@ -26263,7 +26483,11 @@ var TextInputGroupBootstrap = /*#__PURE__*/function () {
           deepfind = this.locator.locate('core/deepfind'),
           eventComposer = this.locator.locate('core/event/composer'),
           hbs = this.locator.locate('view/handlebars'),
-          store = this.locator.locate('core/store');
+          store = this.locator.locate('core/store'),
+          templateFactory = this.locator.locate('ui/template/factory'),
+          template = templateFactory.create({
+        tag: 'text-input-group'
+      });
       customElements.define('text-input-group', TextInputGroup({
         actionComposer: actionComposer,
         bus: bus,
@@ -26273,7 +26497,8 @@ var TextInputGroupBootstrap = /*#__PURE__*/function () {
         hbs: hbs,
         schema: 'entity/text-input-group',
         store: store,
-        tag: 'text-input-group'
+        tag: 'text-input-group',
+        template: template
       }));
     }
   }]);
@@ -26350,6 +26575,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
@@ -26380,6 +26609,69 @@ var Component = __webpack_require__(/*! ../component */ "./src/common/ui/control
 
       return _super.apply(this, arguments);
     }
+
+    _createClass(_class, [{
+      key: "connectedCallback",
+      value: function connectedCallback() {
+        this.shadowRoot.querySelector('input[type="text"]').addEventListener('change', this.handleOnChange.bind(this));
+      } // constructor({ ...args })
+      // {
+      //   super({ ...args })
+      //   this.channel.on('component.rendered', (event) =>
+      //   {
+      //     this.addOnChangeListener()
+      //   })
+      // }
+
+    }, {
+      key: "addOnChangeListener",
+      value: function addOnChangeListener() {
+        this.node.querySelector('input[type="text"]').addEventListener('change', this.handleOnChange.bind(this));
+      }
+    }, {
+      key: "handleOnChange",
+      value: function handleOnChange(event) {
+        this.dispatch('validate.text.input.group', {
+          value: event.target.value
+        }); // const {
+        //   label,
+        //   pattern,
+        //   required,
+        //   title
+        // } = this.getState()
+        // this.validate({
+        //   label,
+        //   pattern,
+        //   required,
+        //   title,
+        //   value : event.target.value,
+        // })
+      }
+    }, {
+      key: "validate",
+      value: function validate(_ref2) {
+        var label = _ref2.label,
+            pattern = _ref2.pattern,
+            required = _ref2.required,
+            title = _ref2.title,
+            value = _ref2.value;
+
+        if (required && (!value || value.trim() === '')) {
+          this.setState({
+            error: this.dictionary.translate('IS_REQUIRED').replace(/##LABEL##/gi, label)
+          });
+        } else if (value && pattern) {
+          var regexp = new RegExp(pattern),
+              match = regexp.exec(value);
+
+          if (!match) {
+            this.setState({
+              error: title ? this.dictionary.translate(title) : this.dictionary.translate('INVALID_FORMAT')
+            });
+          }
+        }
+      }
+    }]);
 
     return _class;
   }(Component(_objectSpread({}, args)));
@@ -28811,9 +29103,11 @@ var HandlebarsHelperComponent = /*#__PURE__*/function () {
     value: function create() {
       var _this = this;
 
-      return function (tag, props) {
+      return function (component) {
         try {
-          var handlebars = _this.locator.locate('view/handlebars'),
+          var tag = component.tag,
+              props = component.props,
+              handlebars = _this.locator.locate('view/handlebars'),
               template = handlebars.compilePartial(tag, props),
               wrappedComponent = _this.wrapComponent(tag, props, template),
               safeStringView = _this.getSafeString(wrappedComponent);
@@ -30678,10 +30972,15 @@ var TextInputGroupViewModelComposer = /*#__PURE__*/function () {
       var lang = _ref2.lang;
       return {
         id: 'text-input-group-page',
+        title: 'Text input group page',
         lang: lang,
-        textInputGroup: {
-          value: 'huhu'
-        }
+        children: [{
+          tag: 'text-input-group',
+          props: {
+            value: 'huhu',
+            'data-bind': 'data'
+          }
+        }]
       };
     }
   }]);
@@ -37486,7 +37785,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   });
   Handlebars.partials['text-input-group-page'] = template({
     "1": function _(container, depth0, helpers, partials, data) {
-      var lookupProperty = container.lookupProperty || function (parent, propertyName) {
+      var stack1,
+          lookupProperty = container.lookupProperty || function (parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
           return parent[propertyName];
         }
@@ -37494,7 +37794,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         return undefined;
       };
 
-      return "  <div class=\"grid-container grid-container--fluid\">\n    <main class=\"main\">\n      <section class=\"rsp__xs75__md66__xl50__centered main__block text-input-group-container\">\n        " + container.escapeExpression((lookupProperty(helpers, "component") || depth0 && lookupProperty(depth0, "component") || container.hooks.helperMissing).call(depth0 != null ? depth0 : container.nullContext || {}, "text-input-group", depth0 != null ? lookupProperty(depth0, "textInputGroup") : depth0, {
+      return "  <div class=\"grid-container grid-container--fluid\">\n    <main class=\"main\">\n      <section class=\"rsp__xs75__md66__xl50__centered main__block text-input-group-container\">\n        " + container.escapeExpression((lookupProperty(helpers, "component") || depth0 && lookupProperty(depth0, "component") || container.hooks.helperMissing).call(depth0 != null ? depth0 : container.nullContext || {}, (stack1 = depth0 != null ? lookupProperty(depth0, "children") : depth0) != null ? lookupProperty(stack1, "0") : stack1, {
         "name": "component",
         "hash": {},
         "data": data,
@@ -37505,7 +37805,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           },
           "end": {
             "line": 5,
-            "column": 55
+            "column": 34
           }
         }
       })) + "\n      </section>\n    </main>\n  </div>\n";

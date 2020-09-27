@@ -133,6 +133,18 @@ const Component = ({
     {
       return this.shadowRoot ? this.shadowRoot.querySelectorAll(selector) : this.querySelectorAll(selector)
     }
+
+    // static get observedAttributes()
+    // {
+    //   return ['attribute']
+    // }
+
+    // attributeChangedCallback(name, oldValue, newValue)
+    // {
+    //   if(oldValue === newValue)
+    //     return
+    //   console.log(`The attribute ${name} has changed`)
+    // }
   }
 }
 

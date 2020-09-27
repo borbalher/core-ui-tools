@@ -22,6 +22,7 @@ app         = new Application([
   { name: 'common/core/entity-set' },
   { name: 'common/core/listener' },
   { name: 'common/view/handlebars' },
+  { name: 'common/view/template' },
   { name: 'common/core/normalizer' },
   { name: 'common/core/schema' },
   { name: 'common/core/event/composer' },

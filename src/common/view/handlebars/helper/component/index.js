@@ -3,35 +3,19 @@ const ComponentHelperError = require('./error/component-helper-error')
 
 class HandlebarsHelperComponent
 {
-  constructor(locator)
+  constructor({ templateFactory })
   {
-    this.locator = locator
-  }
-
-  getSafeString(html)
-  {
-    const hbs = this.locator.locate('view/handlebars').handlebars
-    return new hbs.SafeString(html)
-  }
-
-  wrapComponent(tag, props, template)
-  {
-    return `<${tag} ${Object.entries(props).map(([name, value]) => `${name}="${value}"`)}>${template}</${tag}>`
+    this.templateFactory = templateFactory
   }
 
   create()
   {
-    return (tag, props) =>
+    return (component) =>
     {
       try
       {
-        const
-        handlebars        = this.locator.locate('view/handlebars'),
-        template          = handlebars.compilePartial(tag, props),
-        wrappedComponent  = this.wrapComponent(tag, props, template),
-        safeStringView    = this.getSafeString(wrappedComponent)
-
-        return safeStringView
+        const { tag, props } = component
+        return this.templateFactory.create({ tag }).render({ props })
       }
       catch(error)
       {

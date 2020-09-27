@@ -8,7 +8,6 @@ module.exports = {
     locator :
     {
       'ui/text-input-group/bootstrap' : `${__dirname}/text-input-group/bootstrap`,
-      'ui/controller/factory'         : __dirname
     }
   }
 }

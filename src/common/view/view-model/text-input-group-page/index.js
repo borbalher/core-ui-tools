@@ -16,12 +16,19 @@ class TextInputGroupViewModelComposer
   })
   {
     return {
-      id             : 'text-input-group-page',
+      id       : 'text-input-group-page',
+      title    : 'Text input group page',
       lang,
-      textInputGroup :
-      {
-        value : 'huhu'
-      }
+      children : [
+        {
+          tag   : 'text-input-group',
+          props : {
+            value       : 'huhu',
+            'data-bind' : 'data'
+          }
+        }
+      ]
+
     }
   }
 }
