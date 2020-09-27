@@ -5,7 +5,7 @@ module.exports = {
     {
       composer :
       {
-        'value-object/dataset'            : `${__dirname}/value-object/dataset`,
+        'value-object/props'              : `${__dirname}/value-object/props`,
         'value-object/partial'            : `${__dirname}/value-object/partial`,
         'value-object/edge'               : `${__dirname}/value-object/edge`,
         'entity/error'                    : `${__dirname}/entity/error`,
@@ -45,7 +45,8 @@ module.exports = {
         'entity/textarea-input-group'     : `${__dirname}/entity/textarea-input-group`,
         'entity/radio-button-input-group' : `${__dirname}/entity/radio-button-input-group`,
         'entity/checkbox-input-group'     : `${__dirname}/entity/checkbox-input-group`,
-        'entity/date-input-group'         : `${__dirname}/entity/date-input-group`
+        'entity/date-input-group'         : `${__dirname}/entity/date-input-group`,
+        'entity/text-input-group-page'    : `${__dirname}/entity/text-input-group-page`,
       },
       filter :
       {

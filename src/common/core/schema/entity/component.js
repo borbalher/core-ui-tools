@@ -13,41 +13,53 @@ module.exports = {
     type        : 'string',
     'not-empty' : true
   },
-  renderonchange :
+  state :
   {
-    type    : 'boolean',
-    default : true
+    type    : 'json',
+    default : {}
   },
-  classes :
+  wrapper :
   {
-    optional    : true,
     type        : 'string',
-    'not-empty' : true
+    'not-empty' : true,
+    default     : 'div'
   },
-  bindings : // TODO
+  props :
   {
     type       : 'schema',
-    collection : true,
-    default    : [],
-    schema     : 'value-object/binding'
-  },
-  listeners :
-  {
-    type       : 'schema',
-    collection : true,
-    default    : [],
-    schema     : 'value-object/listener'
-  },
-  options :
-  {
-    type     : 'json',
-    optional : true
-  },
-  datasets :
-  {
-    type       : 'schema',
-    schema     : 'value-object/dataset',
+    schema     : 'value-object/props',
     collection : true,
     default    : []
-  }
+  },
+
+  // renderonchange :
+  // {
+  //   type    : 'boolean',
+  //   default : true
+  // },
+  // attribute :
+  // {
+  //   optional    : true,
+  //   type        : 'string',
+  //   'not-empty' : true
+  // },
+  // bindings : // TODO
+  // {
+  //   type       : 'schema',
+  //   collection : true,
+  //   default    : [],
+  //   schema     : 'value-object/binding'
+  // },
+  // listeners :
+  // {
+  //   type       : 'schema',
+  //   collection : true,
+  //   default    : [],
+  //   schema     : 'value-object/listener'
+  // },
+  // options :
+  // {
+  //   type     : 'json',
+  //   optional : true
+  // },
 }

@@ -1,5 +1,5 @@
-const ComponentController = require('./component')
-class ComponentControllerFactory
+const Component = require('./component')
+class ComponentFactory
 {
   constructor(configuration, bus, locator, store, hbs, deepfind, eventComposer, actionComposer)
   {
@@ -18,7 +18,7 @@ class ComponentControllerFactory
     return this.bus.createChannel(id)
   }
 
-  getControllerClass(template)
+  getComponentClass(template)
   {
     try
     {
@@ -27,25 +27,31 @@ class ComponentControllerFactory
     catch(error)
     {
       console.warn(`Using basic controller instead ${template} controller`)
-      return ComponentController
+      return Component
     }
   }
 
-  create(component)
+  create(initialState)
   {
     const
     {
       template,
       id
-    } = component,
-    channel    = this.createBusChannel(id),
-    Controller = this.getControllerClass(template)
+    } = initialState,
+    channel   = this.createBusChannel(id),
+    Component = this.getComponentClass(template)
 
-    return (virtualDOM) =>
-    {
-      return new Controller(component, this.bus, this.store, this.hbs,  channel, this.locator, virtualDOM, this.actionComposer, this.eventComposer)
-    }
+    return Component({
+      actionComposer : this.actionComposer,
+      bus            : this.bus,
+      channel,
+      eventComposer  : this.eventComposer,
+      hbs            : this.hbs,
+      initialState,
+      locator        : this.locator,
+      store          : this.store,
+    })
   }
 }
 
-module.exports = ComponentControllerFactory
+module.exports = ComponentFactory

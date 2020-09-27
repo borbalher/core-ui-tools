@@ -14,30 +14,27 @@ class HandlebarsHelperComponent
     return new hbs.SafeString(html)
   }
 
-  wrapComponent(component, template)
+  wrapComponent(tag, props, template)
   {
-    const { wrapper, schema, id, classList } = component
-
-    return `<${wrapper} id="${id}" class="${classList.join(' ')}" data-component="${schema}">${template}</${wrapper}>`
+    return `<${tag} ${Object.entries(props).map(([name, value]) => `${name}="${value}"`)}>${template}</${tag}>`
   }
 
   create()
   {
-    return (component, desc) =>
+    return (tag, props) =>
     {
       try
       {
         const
         handlebars        = this.locator.locate('view/handlebars'),
-        template          = handlebars.compileTemplate(component.template, component),
-        wrappedComponent  = this.wrapComponent(component, template),
+        template          = handlebars.compilePartial(tag, props),
+        wrappedComponent  = this.wrapComponent(tag, props, template),
         safeStringView    = this.getSafeString(wrappedComponent)
 
         return safeStringView
       }
       catch(error)
       {
-        console.log(desc)
         throw new ComponentHelperError(`Error while mounting the component: ${error.message}`)
       }
     }

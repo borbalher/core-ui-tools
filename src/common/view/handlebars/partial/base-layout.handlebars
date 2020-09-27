@@ -1,0 +1,56 @@
+{{#with viewModel}}
+  <!DOCTYPE html>
+  <html lang="{{lang}}">
+    <head>
+      <title>{{title}}</title>
+
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+      <link rel="stylesheet" href="/assets/css/app.bundle.css">
+
+      {{#> head-block}}
+        {{!-- Custom <head> content per page could be added. --}}
+      {{/head-block}}
+
+      <script type="text/javascript">
+        const perfEntries = performance.getEntriesByType('navigation')
+
+        if(perfEntries[0].type === 'back_forward')
+          location.reload(true)
+
+      </script>
+    </head>
+
+    <body id="{{id}}" class="page-wrapper">
+
+      {{#> header-block}}
+        {{!-- The 'header' partial is the default content, but can be overridden. --}}
+      {{/header-block}}
+
+      {{> @partial-block }}
+
+      {{#> footer-block}}
+        {{!-- The 'footer' partial is the default content, but can be overridden. --}}
+      {{/footer-block}}
+
+      {{#> scripts-block}}
+        {{!-- Custom scripts per page can be added. --}}
+      {{/scripts-block}}
+
+      <script id="on-init-load" type="text/javascript">
+        window.localStorage.setItem('initial-view-model', JSON.stringify({{{jsonStringify this}}}))
+        window.localStorage.setItem('initial-state', JSON.stringify({{{jsonStringify ../state}}}))
+        document.getElementById('on-init-load').remove()
+      </script>
+    </body>
+
+    <script type="text/javascript" src="/assets/js/bundle/vendors.bundle.js"></script>
+    <script type="text/javascript" src="/assets/js/bundle/commons.bundle.js"></script>
+    <script type="text/javascript" src="/assets/js/bundle/polyfills.bundle.js"></script>
+    <script type="text/javascript" src="/assets/js/bundle/{{id}}.bundle.js"></script>
+
+  </html>
+{{/with}}

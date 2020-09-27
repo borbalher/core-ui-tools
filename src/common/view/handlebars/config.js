@@ -7,6 +7,7 @@ module.exports = {
       {
         'calculate'      : 'view/handlebars/helper/calculate',
         'case'           : 'view/handlebars/helper/case',
+        'component'      : 'view/handlebars/helper/component',
         'concat'         : 'view/handlebars/helper/concat',
         'dateformat'     : 'view/handlebars/helper/dateformat',
         'default'        : 'view/handlebars/helper/default',

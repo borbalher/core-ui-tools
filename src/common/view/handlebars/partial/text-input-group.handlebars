@@ -1,9 +1,24 @@
-{{#> input-group}}
+<div class='input-group {{#if big}}input-group--xl{{/if}} {{#if error}}--error{{/if}}'>
+
+  <div class='input-group__label-wrapper'>
+
+    {{#if label}}
+      <label class='input-group__label' for='text-input'>
+        {{translate label}}
+      </label>
+    {{/if}}
+
+    {{#unless required}}
+      <span class='input-group__optional-label'>
+        {{translate 'OPTIONAL'}}
+      </span>
+    {{/unless}}
+  </div>
 
   <input
     class='input-group__input text-input'
-    {{#if id}}          id='{{id}}-input'             {{/if}}
-    {{#if attribute}}   name='{{attribute}}'          {{/if}}
+    id='text-input'
+    {{#if name}}        name='{{name}}'               {{/if}}
     {{#if value}}       value='{{value}}'             {{/if}}
     {{#if required}}    required                      {{/if}}
     {{#if disabled}}    disabled                      {{/if}}
@@ -13,10 +28,12 @@
     {{#if placeholder}} placeholder='{{placeholder}}' {{/if}}
     {{#if pattern}}     pattern='{{pattern}}'         {{/if}}
     {{#if title}}       title='{{title}}'             {{/if}}
-    {{#each datasets as |dataset|}}
-      {{#with dataset}}data-{{name}}="{{value}}"{{/with}}
-    {{/each}}
     autocomplete='{{#if autocomplete}}on{{/if}}{{#unless autocomplete}}off{{/unless}}'
+    data-bind="data"
     type='text'>
 
-{{/input-group}}
+  <div class='input-group__error {{#if error}}--visible{{else}}--hidden{{/if}}'>
+    {{translate error}}
+  </div>
+
+</div>

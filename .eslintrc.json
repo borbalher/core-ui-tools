@@ -6,6 +6,7 @@
     "mocha": true
   },
   "rules": {
+    "comma-dangle": ["error", "only-multiline"],
     "indent": [
       "error",
       2,
@@ -13,11 +14,7 @@
         "VariableDeclarator": 0
       }
     ],
-    "curly": [
-      "error",
-      "multi-or-nest",
-      "consistent"
-    ],
+    "curly": ["error", "multi-or-nest", "consistent"],
     "no-multi-str": "off",
     "brace-style": [
       "error",
@@ -26,25 +23,16 @@
         "allowSingleLine": true
       }
     ],
-    "eol-last": [
-      "error",
-      "always"
-    ],
+    "eol-last": ["error", "always"],
     "no-multiple-empty-lines": [
       "error",
       {
         "max": 2
       }
     ],
-    "one-var": [
-      "error",
-      "consecutive"
-    ],
+    "one-var": ["error", "consecutive"],
     "no-multi-spaces": "off",
-    "padded-blocks": [
-      "error",
-      "never"
-    ],
+    "padded-blocks": ["error", "never"],
     "key-spacing": [
       "error",
       {
@@ -66,10 +54,7 @@
         "defaultAssignment": true
       }
     ],
-    "no-return-assign": [
-      "error",
-      "except-parens"
-    ],
+    "no-return-assign": ["error", "except-parens"],
     "prefer-promise-reject-errors": "warn",
     "space-before-function-paren": [
       "error",

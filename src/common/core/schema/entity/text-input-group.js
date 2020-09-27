@@ -27,6 +27,11 @@ const dto = {
   {
     type     : 'string',
     optional : true
+  },
+  data :
+  {
+    type     : 'string',
+    optional : true
   }
 }
 

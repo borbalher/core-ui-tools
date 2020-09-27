@@ -1,202 +1,140 @@
-class ComponentController
+const Component = ({
+  actionComposer,
+  bus,
+  eventComposer,
+  composer,
+  hbs,
+  props = {},
+  schema,
+  store,
+  tag,
+}) =>
 {
-  constructor(component, bus, store, hbs, channel, locator, virtualDOM, actionComposer, eventComposer)
+  return class extends HTMLElement
   {
-    this.bus                   = bus
-    this.store                 = store
-    this.hbs                   = hbs
-    this.actionComposer        = actionComposer
-    this.eventComposer         = eventComposer
-    this.channel               = channel
-    this.locator               = locator
-    this.virtualDOM            = virtualDOM
-
-    const { bindings, listeners, options, schema, id } = component
-
-    this.bindings              = bindings
-    this.listeners             = listeners
-    this.options               = options
-    this[Symbol.for('id')]     = id
-    this[Symbol.for('schema')] = schema
-
-    this.bind()
-    this.listen()
-  }
-
-  getContext()
-  {
-    return this.virtualDOM.getContext(this[Symbol.for('id')])
-  }
-
-  composeAction(name, data, meta = {})
-  {
-    return this.actionComposer.compose(name, data, { ...meta, emitter: this[Symbol.for('id')], schema: this[Symbol.for('schema')] })
-  }
-
-  composeEvent(name, data, meta = {})
-  {
-    return this.eventComposer.compose(name, data, { ...meta, emitter: this[Symbol.for('id')], schema: this[Symbol.for('schema')] })
-  }
-
-  dispatch(name, data, meta = {})
-  {
-    const action = this.composeAction(name, data, meta)
-    this.store.dispatch(action)
-    this.emit('action.dispatched', { action })
-  }
-
-  getChildrenController(name)
-  {
-    const childrenId = this.getChildrenId(name)
-
-    if(childrenId) // TODO WE NEED TO ENSURE THAT THIS IS CORRECT
-      return this.virtualDOM.controllers.getController(childrenId)
-  }
-
-  getChildrenContext(name)
-  {
-    const context = this.virtualDOM.getContext(this[Symbol.for('id')])
-    if(context[name] && context[name].id) // TODO WE NEED TO ENSURE THAT THIS IS CORRECT
-      return this.virtualDOM.getContext(context[name].id)
-  }
-
-  getChildrenId(name)
-  {
-    const context = this.virtualDOM.getContext(this[Symbol.for('id')])
-    if(context[name] && context[name].id) // TODO WE NEED TO ENSURE THAT THIS IS CORRECT
-      return context[name].id
-  }
-
-  render()
-  {
-    const
-    context                   = this.getContext(),
-    renderedComponentTemplate = this.hbs.compilePartial(context.template, context),
-    wrapper                   = document.createElement('div')
-
-    wrapper.innerHTML = renderedComponentTemplate.trim()
-
-    document.getElementById(this[Symbol.for('id')]).replaceWith(wrapper.firstChild)
-
-    this.emit('component.rendered', { context })
-  }
-
-  addComponentListener(publisherChannel, eventName, map, locator, eventMapper, dispatch)
-  {
-    const
-    // store             = this.store,
-    observer          = locator      ? this.locator.locate(locator)                : undefined,
-    name              = map          ? map                                         : eventName
-    // composeAction     = this.composeAction,
-    // composeEvent      = this.composeEvent
-
-    this.bus.on(publisherChannel, eventName, (event) =>
+    constructor()
     {
-      const data = eventMapper  ? locator.locate(eventMapper).map(event.data) : event.data
+      super()
 
-      if(dispatch)
-      {
-        const action = this.composeAction(name, data)
-        this.store.dispatch(action, data)
-      }
-      else if(observer)
-      {
-        const event = this.composeEvent(name, data)
-        observer.execute(event)
-      }
-      else
-      {
-        this.emit(name, data)
-      }
-    })
-  }
-
-  getChildrenChannel(channel)
-  {
-    const context = this.virtualDOM.getContext(this[Symbol.for('id')])
-
-    if(context[channel] && context[channel].id) // TODO WE NEED TO ENSURE THAT THIS IS CORRECT
-      return context[channel].id
-  }
-
-  listen()
-  {
-    for(const listener of this.listeners)
-    {
-      const
-      { channel, event, map, locator, eventMapper, dispatch }  = listener
-
-      let publisherChannel
-      if(!channel)
-        publisherChannel = this[Symbol.for('id')]
-      else if(channel && this.getChildrenChannel(channel))
-        publisherChannel  = this.getChildrenChannel(channel)
-      else
-        publisherChannel = channel
-
-      this.addComponentListener(publisherChannel, event, map, locator, eventMapper, dispatch)
+      this.initialState = {}
+      this.attachShadow({ mode: 'open' })
+      this.state = this.mapPropsToState()
+      this.render()
     }
 
-    this.emit('listeners.added', { listeners: this.listeners })
-  }
-
-  addDOMBinding(domEvent, event, preventDefault, stopPropagation, domEventMapper, dispatch, domNode)
-  {
-    const
-    locator           = this.locator,
-    bus               = this.bus,
-    subscriberId      = this[Symbol.for('id')],
-    subscriberSchema  = this[Symbol.for('schema')],
-    store             = this.store,
-    actionComposer    = this.actionComposer,
-    eventComposer     = this.eventComposer
-
-    domNode.addEventListener(domEvent, function(domEventObject)
+    mapPropsToState()
     {
-      if(preventDefault)
-        domEventObject.preventDefault()
-
-      if(stopPropagation)
-        domEventObject.stopPropagation()
-
       const
-      name        = event           ? event                                 : domEvent,
-      eventMapper = domEventMapper  ? locator.locate(domEventMapper)        : undefined,
-      data        = domEventMapper  ? eventMapper.map(domEventObject, this) : { event, node: this }
+      attributes = this.attributes,
+      state      = { }
 
-      if(dispatch)
+      for(const attribute of attributes)
       {
-        const action = actionComposer.compose(name, data, { emitter: subscriberId, schema: subscriberSchema })
-        store.dispatch(action)
+        const { name, value } = attribute
+        state[name] = value
       }
-      else
+
+      return state // composer.compose(schema, { ...state })
+    }
+
+    render()
+    {
+      this.template           = document.createElement('template')
+      this.template.innerHTML = hbs.compilePartial(tag, this.state)
+      this.shadowRoot.innerHTML = ''
+      this.shadowRoot.appendChild(this.template.content.cloneNode(true))
+    }
+
+    isCustomElement(element)
+    {
+      return Object.getPrototypeOf(customElements.get(element.tagName.toLowerCase())).name === 'CustomElement'
+    }
+
+    updateBindings(prop, value = '')
+    {
+      const bindings = [...this.selectAll(`[data-bind$="${prop}"]`)]
+
+      bindings.forEach((node) =>
       {
-        const event = eventComposer.compose(name, data)
-        bus.emit(subscriberId, event)
-      }
-    })
-  }
+        const
+        dataProp      = node.dataset.bind,
+        bindProp      = dataProp.includes(':') ? dataProp.split(':').shift()                                    : dataProp,
+        bindValue     = dataProp.includes('.') ? dataProp.split('.').slice(1).reduce((obj, p) => obj[p], value) : value,
+        target        = [...this.selectAll(node.tagName)].find(el => el === node),
+        isStateUpdate = dataProp.includes(':') && this.isCustomElement(target)
 
-  addDOMBindings({ selector, domEvent, event, dispatch, preventDefault, stopPropagation, domEventMapper })
-  {
-    const nodes = document.querySelectorAll(`#${this[Symbol.for('id')]}${selector ? ` ${selector}` : ''}`)
-    if(nodes)
-      nodes.forEach(this.addDOMBinding.bind(this, domEvent, event, preventDefault, stopPropagation, domEventMapper, dispatch))
-  }
+        if(isStateUpdate)
+        {
+          target.setState({ [`${bindProp}`]: bindValue })
+        }
+        else if(this.isArray(bindValue))
+        {
+          target[bindProp] = bindValue
+        }
+        else
+        {
+          const nodeName = target.nodeName ? target.nodeName.toLowerCase() : undefined
 
-  bind()
-  {
-    for(const key of Object.keys(this.bindings))
-      this.addDOMBindings(this.bindings[key])
+          switch(nodeName)
+          {
+          case 'input':
+          {
+            node.value = bindValue.toString()
+            break
+          }
+          default:
+          {
+            node.textContent = bindValue.toString()
+            break
+          }
+          }
+        }
+      })
+    }
 
-    this.emit('bindings.added', { bindings: this.bindings })
-  }
+    setState(newState)
+    {
+      Object.entries(newState).forEach(([key, value]) =>
+      {
+        this.state[key] = this.isObject(this.state[key]) && this.isObject(value) ? { ...this.state[key], ...value } : value
 
-  emit(name, data)
-  {
-    const event = this.composeEvent(name, data)
-    this.channel.emit(event)
+        const
+        bindKey  = this.isObject(value)  ? this.getBindKey(key, value) : key,
+        bindKeys = this.isArray(bindKey) ? bindKey                     : [bindKey]
+
+        bindKeys.forEach((key) =>
+        {
+          this.updateBindings(key, value)
+        })
+      })
+    }
+
+    getBindKey(key, obj)
+    {
+      return Object.keys(obj).map(k => this.isObject(obj[k]) ? `${key}.${this.getBindKey(k, obj[k])}` : `${key}.${k}`)
+    }
+
+    isArray(arr)
+    {
+      return Array.isArray(arr)
+    }
+
+    isObject(obj)
+    {
+      return Object.prototype.toString.call(obj) === '[object Object]'
+    }
+
+    select(selector)
+    {
+      return this.shadowRoot ? this.shadowRoot.querySelector(selector) : this.querySelector(selector)
+    }
+
+    selectAll(selector)
+    {
+      return this.shadowRoot ? this.shadowRoot.querySelectorAll(selector) : this.querySelectorAll(selector)
+    }
   }
 }
 
-module.exports = ComponentController
+
+module.exports = Component
