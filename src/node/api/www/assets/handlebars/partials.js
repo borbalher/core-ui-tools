@@ -12,10 +12,10 @@ Handlebars.partials['base-layout'] = template({"1":function(container,depth0,hel
     + alias4(((helper = (helper = lookupProperty(helpers,"lang") || (depth0 != null ? lookupProperty(depth0,"lang") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"lang","hash":{},"data":data,"loc":{"start":{"line":3,"column":14},"end":{"line":3,"column":22}}}) : helper)))
     + "\">\n    <head>\n      <title>"
     + alias4(((helper = (helper = lookupProperty(helpers,"title") || (depth0 != null ? lookupProperty(depth0,"title") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data,"loc":{"start":{"line":5,"column":13},"end":{"line":5,"column":22}}}) : helper)))
-    + "</title>\n\n      <meta charset=\"utf-8\">\n      <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\n\n      <link rel=\"stylesheet\" href=\"/assets/css/app.bundle.css\">\n\n"
+    + "</title>\n\n      <meta charset=\"utf-8\">\n      <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\n      <link rel=\"stylesheet\" href=\"/assets/css/app.bundle.css\">\n\n"
     + ((stack1 = container.invokePartial(lookupProperty(partials,"head-block"),depth0,{"name":"head-block","fn":container.program(2, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
     + "\n      <script type=\"text/javascript\">\n        const perfEntries = performance.getEntriesByType('navigation')\n\n        if(perfEntries[0].type === 'back_forward')\n          location.reload(true)\n\n      </script>\n    </head>\n\n    <body id=\""
-    + alias4(((helper = (helper = lookupProperty(helpers,"id") || (depth0 != null ? lookupProperty(depth0,"id") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data,"loc":{"start":{"line":27,"column":14},"end":{"line":27,"column":20}}}) : helper)))
+    + alias4(((helper = (helper = lookupProperty(helpers,"id") || (depth0 != null ? lookupProperty(depth0,"id") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data,"loc":{"start":{"line":26,"column":14},"end":{"line":26,"column":20}}}) : helper)))
     + "\" class=\"page-wrapper\">\n\n"
     + ((stack1 = container.invokePartial(lookupProperty(partials,"header-block"),depth0,{"name":"header-block","fn":container.program(2, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
     + "\n"
@@ -25,11 +25,11 @@ Handlebars.partials['base-layout'] = template({"1":function(container,depth0,hel
     + "\n"
     + ((stack1 = container.invokePartial(lookupProperty(partials,"scripts-block"),depth0,{"name":"scripts-block","fn":container.program(2, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
     + "\n      <script id=\"on-init-load\" type=\"text/javascript\">\n        window.localStorage.setItem('initial-view-model', JSON.stringify("
-    + ((stack1 = (lookupProperty(helpers,"jsonStringify")||(depth0 && lookupProperty(depth0,"jsonStringify"))||alias2).call(alias1,depth0,{"name":"jsonStringify","hash":{},"data":data,"loc":{"start":{"line":44,"column":73},"end":{"line":44,"column":97}}})) != null ? stack1 : "")
+    + ((stack1 = (lookupProperty(helpers,"jsonStringify")||(depth0 && lookupProperty(depth0,"jsonStringify"))||alias2).call(alias1,depth0,{"name":"jsonStringify","hash":{},"data":data,"loc":{"start":{"line":43,"column":73},"end":{"line":43,"column":97}}})) != null ? stack1 : "")
     + "))\n        window.localStorage.setItem('initial-state', JSON.stringify("
-    + ((stack1 = (lookupProperty(helpers,"jsonStringify")||(depth0 && lookupProperty(depth0,"jsonStringify"))||alias2).call(alias1,(depths[1] != null ? lookupProperty(depths[1],"state") : depths[1]),{"name":"jsonStringify","hash":{},"data":data,"loc":{"start":{"line":45,"column":68},"end":{"line":45,"column":96}}})) != null ? stack1 : "")
-    + "))\n        document.getElementById('on-init-load').remove()\n      </script>\n    </body>\n\n    <script type=\"text/javascript\" src=\"/assets/js/bundle/vendors.bundle.js\"></script>\n    <script type=\"text/javascript\" src=\"/assets/js/bundle/commons.bundle.js\"></script>\n    <script type=\"text/javascript\" src=\"/assets/js/bundle/polyfills.bundle.js\"></script>\n    <script type=\"text/javascript\" src=\"/assets/js/bundle/"
-    + alias4(((helper = (helper = lookupProperty(helpers,"id") || (depth0 != null ? lookupProperty(depth0,"id") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data,"loc":{"start":{"line":53,"column":58},"end":{"line":53,"column":64}}}) : helper)))
+    + ((stack1 = (lookupProperty(helpers,"jsonStringify")||(depth0 && lookupProperty(depth0,"jsonStringify"))||alias2).call(alias1,(depths[1] != null ? lookupProperty(depths[1],"state") : depths[1]),{"name":"jsonStringify","hash":{},"data":data,"loc":{"start":{"line":44,"column":68},"end":{"line":44,"column":96}}})) != null ? stack1 : "")
+    + "))\n        document.getElementById('on-init-load').remove()\n      </script>\n    </body>\n\n    <script type=\"text/javascript\" src=\"/assets/js/bundle/vendors.bundle.js\"></script>\n    <script type=\"text/javascript\" src=\"/assets/js/bundle/polyfills.bundle.js\"></script>\n    <script type=\"text/javascript\" src=\"/assets/js/bundle/"
+    + alias4(((helper = (helper = lookupProperty(helpers,"id") || (depth0 != null ? lookupProperty(depth0,"id") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data,"loc":{"start":{"line":52,"column":58},"end":{"line":52,"column":64}}}) : helper)))
     + ".bundle.js\"></script>\n\n  </html>\n";
 },"2":function(container,depth0,helpers,partials,data) {
     return "";
@@ -41,7 +41,7 @@ Handlebars.partials['base-layout'] = template({"1":function(container,depth0,hel
         return undefined
     };
 
-  return ((stack1 = lookupProperty(helpers,"with").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"viewModel") : depth0),{"name":"with","hash":{},"fn":container.program(1, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":1,"column":0},"end":{"line":56,"column":9}}})) != null ? stack1 : "");
+  return ((stack1 = lookupProperty(helpers,"with").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"viewModel") : depth0),{"name":"with","hash":{},"fn":container.program(1, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":1,"column":0},"end":{"line":55,"column":9}}})) != null ? stack1 : "");
 },"usePartial":true,"useData":true,"useDepths":true});
 Handlebars.partials['checkbox-input-group'] = template({"1":function(container,depth0,helpers,partials,data) {
     return "input-group--xl";
@@ -175,25 +175,6 @@ Handlebars.partials['checkbox-input'] = template({"1":function(container,depth0,
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"value") : depth0),{"name":"if","hash":{},"fn":container.program(9, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":7,"column":4},"end":{"line":7,"column":45}}})) != null ? stack1 : "")
     + "\n    class='checkbox__input' type='checkbox'>";
 },"useData":true});
-Handlebars.partials['component'] = template({"1":function(container,depth0,helpers,partials,data) {
-    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
-          return parent[propertyName];
-        }
-        return undefined
-    };
-
-  return ((stack1 = container.invokePartial(lookupProperty(helpers,"lookup").call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,"template",{"name":"lookup","hash":{},"data":data,"loc":{"start":{"line":2,"column":6},"end":{"line":2,"column":30}}}),depth0,{"data":data,"indent":"  ","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
-},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
-          return parent[propertyName];
-        }
-        return undefined
-    };
-
-  return ((stack1 = lookupProperty(helpers,"if").call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":1,"column":0},"end":{"line":3,"column":7}}})) != null ? stack1 : "");
-},"usePartial":true,"useData":true});
 Handlebars.partials['date-input-group'] = template({"1":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : (container.nullContext || {}), lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
@@ -596,9 +577,9 @@ Handlebars.partials['input-group'] = template({"1":function(container,depth0,hel
 
   return "      <label class='input-group__label' for='"
     + alias4(((helper = (helper = lookupProperty(helpers,"id") || (depth0 != null ? lookupProperty(depth0,"id") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data,"loc":{"start":{"line":6,"column":45},"end":{"line":6,"column":51}}}) : helper)))
-    + "-input'>\r\n        "
+    + "-input'>\n        "
     + alias4(((helper = (helper = lookupProperty(helpers,"label") || (depth0 != null ? lookupProperty(depth0,"label") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"label","hash":{},"data":data,"loc":{"start":{"line":7,"column":8},"end":{"line":7,"column":17}}}) : helper)))
-    + "\r\n      </label>\r\n";
+    + "\n      </label>\n";
 },"7":function(container,depth0,helpers,partials,data) {
     var lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
@@ -607,9 +588,9 @@ Handlebars.partials['input-group'] = template({"1":function(container,depth0,hel
         return undefined
     };
 
-  return "      <span class='input-group__optional-label'>\r\n        "
+  return "      <span class='input-group__optional-label'>\n        "
     + container.escapeExpression((lookupProperty(helpers,"translate")||(depth0 && lookupProperty(depth0,"translate"))||container.hooks.helperMissing).call(depth0 != null ? depth0 : (container.nullContext || {}),"OPTIONAL",{"name":"translate","hash":{},"data":data,"loc":{"start":{"line":13,"column":8},"end":{"line":13,"column":32}}}))
-    + "\r\n      </span>\r\n";
+    + "\n      </span>\n";
 },"9":function(container,depth0,helpers,partials,data) {
     return "--visible";
 },"11":function(container,depth0,helpers,partials,data) {
@@ -630,17 +611,17 @@ Handlebars.partials['input-group'] = template({"1":function(container,depth0,hel
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"error") : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":1,"column":71},"end":{"line":1,"column":98}}})) != null ? stack1 : "")
     + " "
     + alias4(((helper = (helper = lookupProperty(helpers,"classes") || (depth0 != null ? lookupProperty(depth0,"classes") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"classes","hash":{},"data":data,"loc":{"start":{"line":1,"column":99},"end":{"line":1,"column":110}}}) : helper)))
-    + "'>\r\n\r\n  <div class='input-group__label-wrapper'>\r\n\r\n"
+    + "'>\n\n  <div class='input-group__label-wrapper'>\n\n"
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"label") : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":5,"column":4},"end":{"line":9,"column":11}}})) != null ? stack1 : "")
-    + "\r\n"
+    + "\n"
     + ((stack1 = lookupProperty(helpers,"unless").call(alias1,(depth0 != null ? lookupProperty(depth0,"required") : depth0),{"name":"unless","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":11,"column":4},"end":{"line":15,"column":15}}})) != null ? stack1 : "")
-    + "  </div>\r\n\r\n"
+    + "  </div>\n\n"
     + ((stack1 = container.invokePartial(lookupProperty(partials,"@partial-block"),depth0,{"name":"@partial-block","data":data,"indent":"  ","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
-    + "\r\n  <div class='input-group__error "
+    + "\n  <div class='input-group__error "
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"error") : depth0),{"name":"if","hash":{},"fn":container.program(9, data, 0),"inverse":container.program(11, data, 0),"data":data,"loc":{"start":{"line":20,"column":33},"end":{"line":20,"column":78}}})) != null ? stack1 : "")
-    + "'>\r\n    "
+    + "'>\n    "
     + alias4(((helper = (helper = lookupProperty(helpers,"error") || (depth0 != null ? lookupProperty(depth0,"error") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"error","hash":{},"data":data,"loc":{"start":{"line":21,"column":4},"end":{"line":21,"column":13}}}) : helper)))
-    + "\r\n  </div>\r\n\r\n</div>";
+    + "\n  </div>\n\n</div>";
 },"usePartial":true,"useData":true});
 Handlebars.partials['modal'] = template({"1":function(container,depth0,helpers,partials,data) {
     return "--visible";
@@ -1868,7 +1849,7 @@ Handlebars.partials['table'] = template({"1":function(container,depth0,helpers,p
     + "      </tbody>\n    </table>\n  </div>\n</div>";
 },"usePartial":true,"useData":true,"useDepths":true,"useBlockParams":true});
 Handlebars.partials['text-input-group-page'] = template({"1":function(container,depth0,helpers,partials,data) {
-    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+    var lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
           return parent[propertyName];
         }
@@ -1876,7 +1857,7 @@ Handlebars.partials['text-input-group-page'] = template({"1":function(container,
     };
 
   return "  <div class=\"grid-container grid-container--fluid\">\n    <main class=\"main\">\n      <section class=\"rsp__xs75__md66__xl50__centered main__block text-input-group-container\">\n        "
-    + container.escapeExpression((lookupProperty(helpers,"component")||(depth0 && lookupProperty(depth0,"component"))||container.hooks.helperMissing).call(depth0 != null ? depth0 : (container.nullContext || {}),((stack1 = (depth0 != null ? lookupProperty(depth0,"children") : depth0)) != null ? lookupProperty(stack1,"0") : stack1),{"name":"component","hash":{},"data":data,"loc":{"start":{"line":5,"column":8},"end":{"line":5,"column":34}}}))
+    + container.escapeExpression((lookupProperty(helpers,"component")||(depth0 && lookupProperty(depth0,"component"))||container.hooks.helperMissing).call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"component","hash":{"required":"true","tag":"text-input-group"},"data":data,"loc":{"start":{"line":5,"column":8},"end":{"line":5,"column":60}}}))
     + "\n      </section>\n    </main>\n  </div>\n";
 },"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
@@ -1900,9 +1881,9 @@ Handlebars.partials['text-input-group'] = template({"1":function(container,depth
         return undefined
     };
 
-  return "      <label class='input-group__label' for='text-input'>\r\n        "
+  return "      <label class='input-group__label' for='text-input'>\n        "
     + container.escapeExpression((lookupProperty(helpers,"translate")||(depth0 && lookupProperty(depth0,"translate"))||container.hooks.helperMissing).call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"label") : depth0),{"name":"translate","hash":{},"data":data,"loc":{"start":{"line":7,"column":8},"end":{"line":7,"column":27}}}))
-    + "\r\n      </label>\r\n";
+    + "\n      </label>\n";
 },"7":function(container,depth0,helpers,partials,data) {
     var lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
@@ -1911,9 +1892,9 @@ Handlebars.partials['text-input-group'] = template({"1":function(container,depth
         return undefined
     };
 
-  return "      <span class='input-group__optional-label'>\r\n        "
+  return "      <span class='input-group__optional-label'>\n        "
     + container.escapeExpression((lookupProperty(helpers,"translate")||(depth0 && lookupProperty(depth0,"translate"))||container.hooks.helperMissing).call(depth0 != null ? depth0 : (container.nullContext || {}),"OPTIONAL",{"name":"translate","hash":{},"data":data,"loc":{"start":{"line":13,"column":8},"end":{"line":13,"column":32}}}))
-    + "\r\n      </span>\r\n";
+    + "\n      </span>\n";
 },"9":function(container,depth0,helpers,partials,data) {
     var helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
@@ -2017,38 +1998,38 @@ Handlebars.partials['text-input-group'] = template({"1":function(container,depth
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"big") : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":1,"column":24},"end":{"line":1,"column":57}}})) != null ? stack1 : "")
     + " "
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"error") : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":1,"column":58},"end":{"line":1,"column":85}}})) != null ? stack1 : "")
-    + "'>\r\n\r\n  <div class='input-group__label-wrapper'>\r\n\r\n"
+    + "'>\n\n  <div class='input-group__label-wrapper'>\n\n"
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"label") : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":5,"column":4},"end":{"line":9,"column":11}}})) != null ? stack1 : "")
-    + "\r\n"
+    + "\n"
     + ((stack1 = lookupProperty(helpers,"unless").call(alias1,(depth0 != null ? lookupProperty(depth0,"required") : depth0),{"name":"unless","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":11,"column":4},"end":{"line":15,"column":15}}})) != null ? stack1 : "")
-    + "  </div>\r\n\r\n  <input\r\n    class='input-group__input text-input'\r\n    id='text-input'\r\n    "
+    + "  </div>\n\n  <input\n    class='input-group__input text-input'\n    id='text-input'\n    "
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"name") : depth0),{"name":"if","hash":{},"fn":container.program(9, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":21,"column":4},"end":{"line":21,"column":61}}})) != null ? stack1 : "")
-    + "\r\n    "
+    + "\n    "
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"value") : depth0),{"name":"if","hash":{},"fn":container.program(11, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":22,"column":4},"end":{"line":22,"column":61}}})) != null ? stack1 : "")
-    + "\r\n    "
+    + "\n    "
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"required") : depth0),{"name":"if","hash":{},"fn":container.program(13, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":23,"column":4},"end":{"line":23,"column":61}}})) != null ? stack1 : "")
-    + "\r\n    "
+    + "\n    "
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"disabled") : depth0),{"name":"if","hash":{},"fn":container.program(15, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":24,"column":4},"end":{"line":24,"column":61}}})) != null ? stack1 : "")
-    + "\r\n    "
+    + "\n    "
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"readonly") : depth0),{"name":"if","hash":{},"fn":container.program(17, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":25,"column":4},"end":{"line":25,"column":61}}})) != null ? stack1 : "")
-    + "\r\n    "
+    + "\n    "
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"maxLength") : depth0),{"name":"if","hash":{},"fn":container.program(19, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":26,"column":4},"end":{"line":26,"column":61}}})) != null ? stack1 : "")
-    + "\r\n    "
+    + "\n    "
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"minLength") : depth0),{"name":"if","hash":{},"fn":container.program(21, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":27,"column":4},"end":{"line":27,"column":61}}})) != null ? stack1 : "")
-    + "\r\n    "
+    + "\n    "
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"placeholder") : depth0),{"name":"if","hash":{},"fn":container.program(23, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":28,"column":4},"end":{"line":28,"column":61}}})) != null ? stack1 : "")
-    + "\r\n    "
+    + "\n    "
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"pattern") : depth0),{"name":"if","hash":{},"fn":container.program(25, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":29,"column":4},"end":{"line":29,"column":61}}})) != null ? stack1 : "")
-    + "\r\n    "
+    + "\n    "
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"title") : depth0),{"name":"if","hash":{},"fn":container.program(27, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":30,"column":4},"end":{"line":30,"column":61}}})) != null ? stack1 : "")
-    + "\r\n    autocomplete='"
+    + "\n    autocomplete='"
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"autocomplete") : depth0),{"name":"if","hash":{},"fn":container.program(29, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":31,"column":18},"end":{"line":31,"column":47}}})) != null ? stack1 : "")
     + ((stack1 = lookupProperty(helpers,"unless").call(alias1,(depth0 != null ? lookupProperty(depth0,"autocomplete") : depth0),{"name":"unless","hash":{},"fn":container.program(31, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":31,"column":47},"end":{"line":31,"column":85}}})) != null ? stack1 : "")
-    + "'\r\n    data-bind=\"data\"\r\n    type='text'>\r\n\r\n  <div class='input-group__error "
+    + "'\n    data-bind=\"data\"\n    type='text'>\n\n  <div class='input-group__error "
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"error") : depth0),{"name":"if","hash":{},"fn":container.program(33, data, 0),"inverse":container.program(35, data, 0),"data":data,"loc":{"start":{"line":35,"column":33},"end":{"line":35,"column":78}}})) != null ? stack1 : "")
-    + "'>\r\n    "
+    + "'>\n    "
     + container.escapeExpression((lookupProperty(helpers,"translate")||(depth0 && lookupProperty(depth0,"translate"))||container.hooks.helperMissing).call(alias1,(depth0 != null ? lookupProperty(depth0,"error") : depth0),{"name":"translate","hash":{},"data":data,"loc":{"start":{"line":36,"column":4},"end":{"line":36,"column":23}}}))
-    + "\r\n  </div>\r\n\r\n</div>";
+    + "\n  </div>\n\n</div>";
 },"useData":true});
 Handlebars.partials['text-input'] = template({"1":function(container,depth0,helpers,partials,data) {
     var helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {

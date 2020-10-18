@@ -7,6 +7,7 @@ module.exports = [
   { name: 'src/common/core/store' },
   { name: 'src/common/view/handlebars' },
   { name: 'src/browser/view/handlebars/bootstrap' },
+  { name: 'src/common/view/template' },
   { name: 'src/common/core/listener' },
   { name: 'src/common/core/normalizer' },
   { name: 'src/common/core/entity-set' },

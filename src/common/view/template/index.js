@@ -49,7 +49,16 @@ class Template
 
   wrapComponent(props, template)
   {
-    return `<${this.tag} ${Object.entries(props).map(([name, value]) => { return `${name}="${value}"` })}>${template}</${this.tag}>`
+    let wrappedComponent = `<${this.tag}`
+
+    Object.entries(props).forEach(([name, value]) =>
+    {
+      wrappedComponent += ` ${name}="${value}" `
+    })
+
+    wrappedComponent += `>${template}</${this.tag}>`
+
+    return wrappedComponent
   }
 
   compilePartial(props)
@@ -57,7 +66,7 @@ class Template
     return this.handlebars.compilePartial(this.tag, props)
   }
 
-  render(props)
+  render({ props })
   {
     const
     template            = this.compilePartial(props),

@@ -22,6 +22,7 @@ const Component = ({
       this.render()
     }
 
+
     mapPropsToState()
     {
       const

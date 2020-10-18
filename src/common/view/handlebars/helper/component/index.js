@@ -10,11 +10,33 @@ class HandlebarsHelperComponent
 
   create()
   {
-    return (component) =>
+    return (component, options) =>
     {
+      const isOptions = !options
+
       try
       {
-        const { tag, props } = component
+        let
+        tag,
+        props
+
+        if(isOptions)
+        {
+          const
+          { hash } = component
+
+          tag      = hash.tag
+
+          delete component.hash.tag
+
+          props = component.hash
+        }
+        else
+        {
+          tag   = component.tag
+          props = component.props
+        }
+
         return this.templateFactory.create({ tag }).render({ props })
       }
       catch(error)

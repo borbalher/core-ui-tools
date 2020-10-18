@@ -11,9 +11,10 @@ app         = new Application([
   { name: 'common/core/listener' },
   { name: 'common/core/object' },
   { name: 'common/core/string' },
+
   { name: 'common/core/data-structure' },
   { name: 'common/infrastructure/bus' },
-  { name: 'common/core/moment' },
+
   { name: 'common/core/base64' },
   { name: 'node/core/dictionary' },
 
@@ -30,7 +31,7 @@ app         = new Application([
   { name: 'common/view/view-model/text-input-group-page' },
   { name: 'common/view/state/text-input-group-page' },
 
-
+  // { name: 'common/view/preact' },
 ])
 
 app.run(process.env.HTTP_PORT)

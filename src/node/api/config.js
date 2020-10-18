@@ -31,12 +31,14 @@ module.exports = {
           },
           'text-input-group' :
           {
-            url      : '/text-input-group',
-            method   : 'get',
             endpoint : 'node/api/endpoint/page/text-input-group',
-            view     : 'view/handlebars',
+            input    : false,
+            method   : 'get',
+            // component : 'App',
             template : 'text-input-group-page',
-            input    : false
+            url      : '/text-input-group',
+            // view      : 'view/preact',
+            view     : 'view/handlebars',
           }
         }
       }

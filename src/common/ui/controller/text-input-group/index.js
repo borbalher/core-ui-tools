@@ -1,39 +1,38 @@
-const
-Component = require('../component'),
-TextInputGroup = ({ ...args }) =>
+const Component = require('../component')
+
+module.exports = ({ ...args }) =>
 {
   return class extends Component({ ...args })
   {
+    constructor({ ...args })
+    {
+      super({ ...args })
+
+      // this.channel.on('component.rendered', (event) =>
+      // {
+      //   this.addOnChangeListener()
+      // })
+    }
+
     connectedCallback()
+    {
+      console.log('Connected')
+      this.shadowRoot.querySelector('input[type="text"]').addEventListener('change', this.handleOnChange.bind(this))
+    }
+
+    disconnectedCallback()
+    {
+      console.log('Disconnected')
+      this.shadowRoot.querySelector('input[type="text"]').removeEventListener('change', this.handleOnChange.bind(this))
+    }
+
+    addOnChangeListener()
     {
       this.shadowRoot.querySelector('input[type="text"]').addEventListener('change', this.handleOnChange.bind(this))
     }
 
-    // constructor({ ...args })
-    // {
-    //   super({ ...args })
-
-    //   this.channel.on('component.rendered', (event) =>
-    //   {
-    //     this.addOnChangeListener()
-    //   })
-    // }
-
-    addOnChangeListener()
-    {
-      this.node.querySelector('input[type="text"]').addEventListener('change', this.handleOnChange.bind(this))
-    }
-
     handleOnChange(event)
     {
-      this.dispatch('validate.text.input.group', { value: event.target.value })
-      // const {
-      //   label,
-      //   pattern,
-      //   required,
-      //   title
-      // } = this.getState()
-
       // this.validate({
       //   label,
       //   pattern,
@@ -41,6 +40,9 @@ TextInputGroup = ({ ...args }) =>
       //   title,
       //   value : event.target.value,
       // })
+
+      this.render()
+      console.log(event)
     }
 
     validate({
@@ -73,5 +75,3 @@ TextInputGroup = ({ ...args }) =>
     }
   }
 }
-
-module.exports = TextInputGroup

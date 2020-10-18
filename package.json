@@ -12,11 +12,13 @@
     "dateformat": "3.0.3",
     "dotenv": "8.2.0",
     "handlebars": "^4.7.6",
+    "htm": "3.0.4",
     "js-base64": "2.5.2",
     "jwk-to-pem": "2.0.1",
     "link-module-alias": "1.2.0",
     "lodash.isequal": "4.5.0",
     "moment": "2.24.0",
+    "preact": "10.5.3",
     "text-encoder-lite": "2.0.0",
     "uuid": "3.3.2"
   },
