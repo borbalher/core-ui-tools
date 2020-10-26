@@ -7,13 +7,13 @@
       &__input,
       &__label,
       &__optional-label{
-        color: map-get($palette, color-error);
-        border-color: map-get($palette, color-error);
+        color: $secondary-pink1;
+        border-color: $secondary-pink1;
       }
     }
     & + .input-group__error {
       display: block;
-      color: map-get($palette, color-error);
+      color: $secondary-pink1;
       margin-bottom: 1rem;
       padding-left: 0.25rem;
     }
@@ -33,7 +33,7 @@
     padding: 2rem 1.5rem .5rem .75rem;
     box-sizing: border-box;
     width: 100%;
-    color: $body-copy;
+    color: $black;
     &[disabled], [disabled] + .number-input__label{
       color: map-get($palette, color-grey);
     }

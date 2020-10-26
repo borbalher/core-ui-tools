@@ -20,7 +20,7 @@
 /* Modal Content */
 .modal-content {
   position: absolute;
-  background-color: $body-light;
+  background-color: $white;
   margin: auto;
   padding: 0;
   top: 0;
@@ -40,7 +40,7 @@
   .modal-header {
     position: relative;
     background-color: map-get($palette, color-primary);
-    color: $body-light;
+    color: $white;
     font-weight: 400;
     text-transform:  uppercase;
     padding: .25rem;
@@ -96,7 +96,7 @@
       border-radius: 2px;
       width: 100%;
       top: 50%;
-      background: $body-light;
+      background: $white;
     }
     &::before {
       transform: rotate(45deg);

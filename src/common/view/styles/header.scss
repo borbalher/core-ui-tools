@@ -1,7 +1,7 @@
 @import '_colors.scss';
 
 .header{
-  background-color: $body-light;
+  background-color: $white;
   position: fixed;
   height: 7.25rem;
   width: 100%;
@@ -56,11 +56,11 @@
   &.--negative {
     .logo{
       &__svg svg{
-        fill: $body-light;
+        fill: $white;
       }
       
       &__caption{
-        color: $body-light;
+        color: $white;
       }
     }
   }

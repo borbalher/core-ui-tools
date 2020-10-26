@@ -9,7 +9,7 @@
   overflow-y: hidden;
   overflow-x: auto;
   width:100%;
-  color: $body-copy;
+  color: $black;
   margin-bottom: 1rem;
 
   &__cell{
@@ -74,7 +74,7 @@
 
         // &:after{
         //   content: "*";
-        //   color: $body-copy;
+        //   color: $black;
         // }
       }
 
@@ -102,7 +102,7 @@
 
           &:hover{
             background: map-get($palette, color-primary_L1);
-            color: $body-light;
+            color: $white;
             box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.15);
           }
         }
@@ -114,7 +114,7 @@
         }
         &--expand,
         &--view{
-          color: $body-copy;
+          color: $black;
         }
       }
       [data-component]{
@@ -257,7 +257,7 @@
         }
         &__header,
         &__header-action{
-          color: $body-light;
+          color: $white;
           background: map-get($palette, color-primary_L1);
           border: 0px;
         }

@@ -2,6 +2,7 @@
 @import '_gutters.scss';
 
 h1,h2,h3,h4,h5,h6{
+  font-family: $font-title;
   line-height: inherit;
   padding: 0;
 }

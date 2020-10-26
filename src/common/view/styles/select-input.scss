@@ -26,15 +26,15 @@
   cursor: pointer;
   
   &:hover{
-    background-color: map-get($palette, color-primary);
-    color: $body-light;
-    font-weight: 700;
+    background-color: $secondary-green1;
+    color: $white;
   }
-
+  
   &.--selected,
   &:checked{
-    background-color: map-get($palette, color-primary_L4);
-    color: $body-copy;
+    background-color: $primary-green;
+    color: $white;
+    font-weight: 700;
   }
   
   &:not(.--selected){
