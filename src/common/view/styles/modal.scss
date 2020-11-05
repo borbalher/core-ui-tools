@@ -30,20 +30,19 @@
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
   animation-name: animatetop;
   animation-duration: 0.6s;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  border: 3px solid $primary-orange;
+  border-top-right-radius: 2rem;
   max-height: 100vh;
   border-top: 0px;
   overflow: auto;
   /* Modal Header */
   .modal-header {
     position: relative;
-    background-color: $primary-orange;
-    color: $white;
+    color: $black;
+    font-family: $font-title;
     font-weight: 400;
     text-transform:  uppercase;
-    padding: .25rem;
+    padding: 1rem;
+    font-size: 1.75rem;
   }
 
   /* Modal Body */
@@ -71,11 +70,14 @@
 
 .close-modal{
   transition: 0.5s;
+  background-color: $white;
+  border-radius: 50%;
+  padding: .375rem;
 
   &__button{
     position: absolute;
     top: 50%;
-    right: .25rem;
+    right:  -.75rem;
     transform: translateY(-50%);
     display: inline-block;
     width: 1.25rem;
