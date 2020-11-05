@@ -14,31 +14,37 @@ h1{
 }
 
 h2{
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  border-bottom: .25rem solid map-get($palette, color-grey_L2);
+  color: $black;
+  font-size: 3rem;
+  font-weight: 800;
   margin-bottom: 2rem;
-
-  & span {
-    border-bottom: .25rem solid map-get($palette, color-primary);
-    padding-bottom: .23rem;  //.23rem to match with H2 line
-  }
+  
+  // & span {
+  //   color: $white;
+  //   font-size: 2rem;
+  //   font-weight: 800;
+  // }
 }
 
 h3{
   font-size: 1.5rem;
   font-weight: 700;
-  color: map-get($palette, color-primary);
+  color: $primary-orange;
   margin: 1.5rem .5rem .25rem;
 }
 
 h4{
-  font-size: 1rem;
-  font-weight: 700;
-  margin: 1.5rem .5rem .25rem;
-  color: map-get($palette, color-grey_L2);
+  color: $black;
+  font-size: 1.25rem;
   text-transform: uppercase;
+  border-bottom: 4px solid $grey-dark;
+  font-weight: 700;
+  margin-bottom: 1rem;
+
+  span{
+    border-bottom: 4px solid $primary-orange;
+    padding: 0 .25rem 1px;
+  }
 }
 
 h5{

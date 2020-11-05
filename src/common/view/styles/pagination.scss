@@ -10,7 +10,7 @@
   }
   white-space: normal;
   font-size: .875rem;
-  color: map-get($palette, color-secondary);
+  color: $primary-blue2;
   text-align: center;
   margin: 0 0 .75rem;
   &__prev-page{
@@ -22,7 +22,7 @@
   &__prev-page,
   &__next-page{
     font-size: 18px;
-    color: map-get($palette, color-secondary_D2);
+    color: $grey-dark;
   }
   &__prev-pages,
   &__next-pages{
@@ -53,11 +53,11 @@
   &__page__number{
     &--selected{
       color: $white;
-      background: map-get($palette, color-primary) !important;
+      background: $black !important;
       font-weight: 700;
     }
     &:not(&--selected):hover{
-      background: map-get($palette, color-primary_L1);
+      background: $primary-blue2;
       font-weight: 700;
       color: $white
     }

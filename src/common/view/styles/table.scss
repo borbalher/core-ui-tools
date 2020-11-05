@@ -13,21 +13,21 @@
   margin-bottom: 1rem;
 
   &__cell{
-    //border-left: 1px solid map-get($palette, color-grey_L2);
-    //border-right: 1px solid map-get($palette, color-grey_L2);
+    //border-left: 1px solid $grey-light;
+    //border-right: 1px solid $grey-light;
 
     &:first-child{
       border-top-left-radius: .5rem;
       border-top-right-radius: .5rem;
-      //border-top: 1px solid map-get($palette, color-grey_L2);
+      //border-top: 1px solid $grey-light;
     }
     &:last-child{
       border-bottom-left-radius: .5rem;
       border-bottom-right-radius: .5rem;
-      //border-bottom: 1px solid map-get($palette, color-grey_L2);
+      //border-bottom: 1px solid $grey-light;
     }
     &-title{
-      color:  map-get($palette, color-primary);
+      color:  $primary-orange;
     }
   }
 
@@ -70,7 +70,7 @@
 
       .exceptional-price {
         font-weight: 900;
-        color: map-get($palette, color-primary);
+        color: $primary-orange;
 
         // &:after{
         //   content: "*";
@@ -107,10 +107,10 @@
           }
         }
         &--edit{
-          color: map-get($palette, color-secondary);
+          color: $primary-blue2;
         }
         &--delete{
-          color: map-get($palette, color-primary);
+          color: $primary-orange;
         }
         &--expand,
         &--view{
@@ -130,7 +130,6 @@
 
 .table__footer{
   margin-top: 1rem;
-  text-align: right;
 }
 
 .--expandable + .--expanded{
@@ -162,7 +161,7 @@
       &__panel{
         &-row{
           border-radius: 0;
-          border: 1px solid map-get($palette, color-grey_L2);
+          border: 1px solid $grey-light;
 
           &.--expanded{
             display: table-row;
@@ -247,18 +246,18 @@
     .--formatted{
       .table{
         &__row{
-          border: 1px solid map-get($palette, color-grey_L2);
+          border: 1px solid $grey-light;
           border-top: none;
 
-          &:nth-child(2n),
+          &:nth-child(2n-1),
           &.--expandable:nth-child(4n-1) {
-            background: map-get($palette, color-primary_L4);
+            background: rgba(252, 122, 0, .3);
           }
         }
         &__header,
         &__header-action{
           color: $white;
-          background: map-get($palette, color-primary_L1);
+          background: $black;
           border: 0px;
         }
         &__cell{

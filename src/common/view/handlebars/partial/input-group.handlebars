@@ -1,5 +1,7 @@
 <div id='{{id}}' class='input-group {{template}} {{#if big}}input-group--xl{{/if}} {{#if error}}--error{{/if}} {{classes}}'>
 
+  {{> @partial-block }}
+
   <div class='input-group__label-wrapper'>
 
     {{#if label}}
@@ -14,8 +16,6 @@
       </span>
     {{/unless}}
   </div>
-
-  {{> @partial-block }}
 
   <div class='input-group__error {{#if error}}--visible{{else}}--hidden{{/if}}'>
     {{error}}

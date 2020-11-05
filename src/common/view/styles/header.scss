@@ -24,14 +24,14 @@
     text-align: right;
 
     &__svg svg{
-      fill: map-get($palette, color-primary);
+      fill: $primary-orange;
       width: 9rem;
       height: 3.375rem;
     }
 
     &__caption{
       text-transform: uppercase;
-      color: map-get($palette, color-primary);
+      color: $primary-orange;
       font-weight: bold;
       padding-right: .25rem;
     }

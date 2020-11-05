@@ -1,78 +1,79 @@
 @import './_colors.scss';
 //@import './_gutters.scss';
 
-.input-group:not(){
+.input-group{
   margin: 0 .5rem 1rem;
   outline: none;
   position: relative;
-  text-align: left;
-  border-radius: 0;
-  height: 100%;
-  border: 2px solid $black;
   box-shadow: none;
   cursor: pointer;
-  transition: all 100ms ease 0s;
-
-  &__input {
+  
+  &__input{
+    transition: all 300ms ease 0s;
     font-size: 1.125rem;
     line-height: 1.375rem;
     padding: .5rem 1rem;
     box-sizing: border-box;
+    height: 4rem;
     width: 100%;
     color: $black;
+    border: 2px solid $black;
 
-    &:not(select):focus,
-    &:not(select):not(:placeholder-shown){
+    &:focus,
+    &:not(:placeholder-shown){
       border: 4px solid $black;
       padding-top: 1.5rem;
 
-      & + .input-group__label {
+      & + .input-group__label-wrapper .input-group__label {
         transform: translateY(-110%);
-        font-size: .875rem;
+        font-size: .75rem;
         opacity: .75;
+        color: $black;
+        top: 1.5rem;
       }
+    }
+
+    &::placeholder{
+      color: transparent;
     }
   }
 
   &__optional-label,
   &__label{
-    font-size: .875rem;
-    line-height: 1rem;
+    font-size: 0.75rem;
+    line-height: .75rem;
+    position: absolute;
   }
-
-  &__label{
-    margin-bottom: .5rem;
-    color: $black;
+  
+  &:not(select) .input-group__label{
+    top: 1.75rem;
+    left: 1rem;
+    color: $grey;
+    font-size: 1.125rem;
+    transition: all 300ms ease 0s;
   }
-
+  
   &__optional-label{
-    color: map-get($palette, color-primary);
+    color: $primary-orange;
     text-transform: uppercase;
-    float: right;
-    padding-right: .125rem;
+    top: .75rem;
+    right: 1rem;
   }
 
   &[disabled], [disabled]{
-    background-color: $secondary-bg;
+    background-color: $grey-light;
+    color: $grey-dark;
+    cursor: not-allowed;
+    pointer-events: none;
 
-    &:hover:focus{
-      border-color: map-get($palette, color-primary);
-      box-shadow: 0 .25rem .5rem 0 rgba(0,0,0,0.15);
+    &:focus,
+    &:not(:placeholder-shown){
+      border-width: 2px;
     }
 
-    & + .input-group__input{
-      color: map-get($palette, color-grey);
-      font-style: italic;
+    & + .input-group__label-wrapper .input-group__optional-label{
+      color: $black;
     }
-  }
-
-  &:hover{
-    border-width: 4px;
-  }
-
-  &::placeholder {
-    color: map-get($palette, color-grey);
-    font-style: italic;
   }
 
   &__input:required + .input-group__label + .input-group__optional-label{
@@ -88,7 +89,6 @@
 
     .input-group{
       &__input,
-      &__label,
       &__optional-label{
         color: $secondary-pink1;
         border-color: $secondary-pink1;
@@ -96,13 +96,20 @@
     }
     & .input-group__error {
       display: block;
-      color: $secondary-pink1;
+      color: $secondary-pink2;
+      text-align: left;
       margin-bottom: 1rem;
       padding-left: 0.25rem;
     }
   }
 
+  .textarea-input,
+  .date-input{
+    font-family: $font-body;
+  }
+
   .textarea-input{
+    height: 8rem;
     max-width: 100%;
     min-width: 100%;
   }
@@ -114,14 +121,24 @@
     .input-group__input {
       font-size: 1.75rem;
       line-height: 2rem;
-      border-radius: .75rem;
-      padding: 1rem 1.5rem;
+      padding: 1.5rem 1rem 0;
+      height: 5rem;
+
+      &:focus,
+      &:not(:placeholder-shown){
+        padding-top: 1.5rem;
+  
+        & + .input-group__label-wrapper .input-group__label {
+          top: 2.25rem;
+          font-size: 1rem;
+        }
+      }
     }
   
     .input-group__optional-label,
     .input-group__label{
-      font-size: 1.375rem;
-      line-height: 1.5rem;
+      font-size: 1.75rem;
+      line-height: 1.75rem;
     }
   
     .input-group__label{

@@ -15,8 +15,8 @@
   &:hover{
     .checkbox__input:not(:disabled) {
       & ~ .checkbox__checkmark {
-        background-color: map-get($palette, color-primary_L1);
-        border-color: map-get($palette, color-primary_L1);
+        background-color: $grey-dark;
+        border-color: $black;
       }
     }
   }
@@ -29,9 +29,9 @@
     &:disabled {
       & ~ .checkbox__checkmark {
         border: 2px solid map-get($palette, color-grey);
-        background: map-get($palette, color-grey_L2);
+        background: $grey-light;
         &:after {
-          border-color: map-get($palette, color-grey_L2);
+          border-color: $grey-light;
         }
       }
       &:checked {
@@ -46,8 +46,8 @@
     }
     &:checked {
       &~ .checkbox__checkmark {
-        background-color: map-get($palette, color-primary);
-        border-color: map-get($palette, color-primary);
+        background-color: $black;
+        border-color: $black;
         &:after {
           display: block;
         }
@@ -60,13 +60,13 @@
     left: 0;
     height: 1.25rem;
     width: 1.25rem;
-    border: 2px solid map-get($palette, color-primary);
+    border: 2px solid $black;
     background: $white;
     border-radius: 2px;
     box-sizing: border-box;
     &:after {
       -webkit-transform: rotate(45deg);
-      border: solid #fff;
+      border: solid $white;
       border-width: 0 2px 2px 0;
       content: "";
       height: 1rem;

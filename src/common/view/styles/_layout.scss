@@ -23,14 +23,14 @@
     position: relative;
     width:calc(100% - 20rem + 1px);
     background-color: $white;
-    padding: .75rem 1.5rem .75rem 0;
-    margin-top: -7.25rem;
+    padding: .75rem 1.5rem .75rem;
+    margin-top: -5.25rem;
     z-index: 5;
 
     .header__prev-button{
       font-size: 2rem;
       line-height: 2rem;
-      color: map-get($palette, color-secondary);
+      color: $primary-blue2;
       display: inline-block;
       padding-right: 1.5rem;
 
@@ -67,7 +67,7 @@
       display: table-cell;
 
       .header-form{
-        margin-top: -12.5rem;
+        margin-top: -11.5rem;
         position: fixed;
         max-width: calc(1440px - 21.5rem);
         z-index: 5;
@@ -99,7 +99,7 @@
     float: right;
     width: 20rem;
     bottom: 0vh;
-    top: 7.25rem;
+    top: 6.25rem;
     position: absolute;    
 
     @supports (display: flex) {
@@ -108,7 +108,7 @@
 
     @supports (position: sticky) {
       position: sticky;
-      margin-top: 7.25rem;
+      margin-top: 6.25rem;
       bottom: 0;
     }
   }

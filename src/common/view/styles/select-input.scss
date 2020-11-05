@@ -6,18 +6,34 @@
 	-webkit-appearance: none;
   appearance: none;
   
-  &::before {
-    font-family:'Font Awesome 5 Free';
-    content: "\f078";
-    font-weight: 900;
- }
+  &:focus,
+  &:not(:placeholder-shown){
+    border-width: 2px;
+  }
 
   &::-ms-expand {
     display: none;
   }
-  & option {
+  
+  option {
     font-weight:normal;
-  } 
+  }
+  
+  &-group .input-group__label-wrapper .input-group__label{
+    font-size: .75rem;
+    top: .75rem;
+    color: $black;
+    opacity: .65;
+  }
+
+  &__append{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1.25rem 1rem;
+    cursor: pointer;
+    border-left: 2px solid $black;
+  }
 }
 
 .dropdown__list-item{
@@ -28,6 +44,7 @@
   &:hover{
     background-color: $secondary-green1;
     color: $white;
+    border-width: 1px;
   }
   
   &.--selected,

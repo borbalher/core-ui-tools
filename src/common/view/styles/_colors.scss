@@ -1,8 +1,8 @@
 $font-body: 'Open Sans', sans-serif;
 $font-title: 'Monserrat', serif;
 
-$column-gutter: 0.750em;
-$border-radius: 0.5em;
+$column-gutter: 0.75rem;
+$border-radius: 0.5rem;
 
 $palette: (
   color-primary: #ec6907,
@@ -17,10 +17,13 @@ $palette: (
 
 $black: #000;
 $white: #fff;
+$grey-light: #dadada;
+$grey-dark: #495057;
 
 $primary-orange: #fc7a00;
 $primary-green: #1cb261;
 $primary-blue: #00c7ff;
+$primary-blue2: #3f9fca;
 $primary-purple: #734fd9;
 $primary-pink: #fa6199;
 $primary-yellow: #ffb500;
@@ -33,6 +36,8 @@ $secondary-blue: #00e8ff;
 $secondary-purple: #6661f0;
 $secondary-pink1: #f53663;
 $secondary-pink2: #b14f83;
+
+$corporate-gradient: radial-gradient(102.6% 213.01% at -1.67% 90.17%,#1cb261 0,#1cb261 .01%,#00c7ff 32.29%,#734fd9 67.71%,#fa6199 100%);
 
 $body-copy: #333;
 $body-light: #fff;
@@ -71,4 +76,3 @@ $secondary-gradient-inverse: linear-gradient(90deg, rgba(163,44,223,1) 0%, rgba(
 };
 
 $palette: delta-shades($palette);
-
