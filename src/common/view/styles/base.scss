@@ -45,6 +45,18 @@ body{
   display:block;
 }
 
+a{
+  color: $primary-orange;
+
+  &:hover{
+    text-decoration: underline;
+  }
+
+  &.--negative{
+    color: $white;
+  }
+}
+
 .input-error{
   color: $secondary-pink1;
   padding: 0 .5rem;

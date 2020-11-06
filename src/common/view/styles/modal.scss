@@ -39,10 +39,9 @@
     position: relative;
     color: $black;
     font-family: $font-title;
-    font-weight: 400;
-    text-transform:  uppercase;
-    padding: 1rem;
-    font-size: 1.75rem;
+    font-weight: 700;
+    padding: 1.5rem 1.5rem 1rem;
+    font-size: 2.25rem;
   }
 
   /* Modal Body */
@@ -73,6 +72,9 @@
   background-color: $white;
   border-radius: 50%;
   padding: .375rem;
+  position: absolute;
+  top: 1.5rem;
+  right: 2.5rem;
 
   &__button{
     position: absolute;
@@ -88,7 +90,7 @@
     outline: none;
     &:hover {
       &::before, &::after {
-        background: map-get($palette, color-grey_L3);
+        background: $color-grey;
       }
     }
     &::before, &::after {
@@ -98,7 +100,7 @@
       border-radius: 2px;
       width: 100%;
       top: 50%;
-      background: $white;
+      background: $black;
     }
     &::before {
       transform: rotate(45deg);
