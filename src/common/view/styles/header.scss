@@ -19,15 +19,22 @@
     width: calc(100% - 20rem);
   }
   
-  .logo{
+  .logo__wrapper{
     text-decoration: none;
     text-align: right;
 
-    &__svg svg{
-      fill: $primary-orange;
-      width: 9rem;
-      height: 3.375rem;
+    .adamo-logo{
+      background-image: url(../img/logo_big_black.png);
+      height: 2.25rem;
+      width: 8.5rem;
+      z-index: 4;
+      background-size: cover;
+      padding: 0 .5rem;
+      right: 1.5rem;
+      position: absolute;
+      top: 1.25rem;
     }
+    
 
     &__caption{
       text-transform: uppercase;
