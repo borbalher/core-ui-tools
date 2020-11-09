@@ -90,7 +90,7 @@
     outline: none;
     &:hover {
       &::before, &::after {
-        background: $color-grey;
+        background: $grey-light;
       }
     }
     &::before, &::after {
