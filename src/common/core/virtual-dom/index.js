@@ -67,23 +67,22 @@ class VirtualDOM
 
     let subtreePath = []
 
-    const
-    component = this.getController(componentId)
-
-    component.emit('component.changed', { previous, current })
+    const { controller: rootComponent } = this.getController(componentId)
 
     if(data.renderonchange)
     {
-      component.render()
+      rootComponent.render()
 
       subtreePath = this.tree.bfs(componentId)
 
       for(const componentId of subtreePath.reverse())
       {
-        const subtreeComponent = this.getController(componentId)
-        subtreeComponent.bind()
+        const { controller: childComponent, bind } = this.getController(componentId)
+        if(bind) childComponent.bind()
       }
     }
+
+    rootComponent.emit('component.changed', { previous, current })
 
     return subtreePath
   }
@@ -120,10 +119,13 @@ class VirtualDOM
       controller = this.componentFactory.create(data)(this)
 
       this.controllers.setController(componentId, controller)
+
+      return { controller, bind: false }
     }
-
-
-    return controller
+    else
+    {
+      return { controller, bind: true }
+    }
   }
 
   setData(component)
