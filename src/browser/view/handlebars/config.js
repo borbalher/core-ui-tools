@@ -7,7 +7,7 @@ module.exports = {
     },
     locator :
     {
-      'core/handlebars/bootstrap' : `${__dirname}/bootstrap`
+      'core/handlebars/bootstrap' : require(`${__dirname}/bootstrap/locator`)
     }
   }
 }

@@ -14,24 +14,20 @@ Configuration       = require('common/core/configuration'),
 Metrics             = require('common/core/metrics'),
 Timer               = require('common/core/timer'),
 EventEmitterFactory = require('common/core/event-emitter/factory'),
-ConfigFetcher       = require('./config-fetcher'),
-ServiceLoader       = require('./service-loader'),
 consoleDefaults     = require('./console/defaults'),
 ConsoleFactory      = require('./console/factory'),
 Path                = require('./path')
 
 class CoreFactory
 {
-  create(components)
+  create(configurations)
   {
     const
-    locator       = this.createLocator(),
-    configFetcher = new ConfigFetcher(locator),
-    serviceLoader = new ServiceLoader(locator),
-    core          = new Core(locator, configFetcher, serviceLoader)
-
-    for(const component of components)
-      core.add(component.name, component.path)
+    locator = this.createLocator(),
+    core    = new Core({
+      locator,
+      configurations,
+    })
 
     return core
   }

@@ -8,12 +8,16 @@ class MultipleAssociativeArray extends AssociativeArray
     this.object = object
   }
 
-  setItem(key, value)
+  setItem(key, value, prepend = false)
   {
     if(super.getItem(key))
     {
       const elements = super.getItem(key)
-      elements.push(value)
+
+      if(prepend)
+        elements.unshift(value)
+      else
+        elements.push(value)
 
       super.setItem(key, elements)
     }

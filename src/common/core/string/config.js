@@ -3,7 +3,7 @@ module.exports = {
   {
     locator :
     {
-      'core/string' : __dirname
+      'core/string' : require(`${__dirname}/locator`)
     }
   }
 }

@@ -9,28 +9,25 @@ describe('common/core/event-emitter/factory', () =>
   factory,
   eventComposer
 
-  before((done) =>
+  before(async (done) =>
   {
     const coreFactory = new CoreFactory()
 
-    core        = coreFactory.create([
-      { name: 'common/core/bootstrap' },
-      { name: 'common/core/listener' },
-      { name: 'common/core/schema' },
-      { name: 'common/core/string' },
-      { name: 'common/core/event/composer' },
-      { name: 'common/core/data-structure' }
-    ])
-
-    core.load().then(() =>
-    {
-      core.locate('core/bootstrap').bootstrap().then(() =>
-      {
-        factory       = core.locate('core/event-emitter/factory')
-        eventComposer = core.locate('core/event/composer')
-        done()
-      })
+    core        = coreFactory.create({
+      'common/core/bootstrap/config'      : require('common/core/bootstrap/config'),
+      'common/core/listener/config'       : require('common/core/listener/config'),
+      'schema/config'                     : require('schema/config'),
+      'common/core/string/config'         : require('common/core/string/config'),
+      'common/core/event/composer/config' : require('common/core/event/composer/config'),
+      'common/core/data-structure/config' : require('common/core/data-structure/config'),
     })
+
+    await core.locate('core/bootstrap').bootstrap()
+
+    factory       = core.locate('core/event-emitter/factory')
+    eventComposer = core.locate('core/event/composer')
+
+    done()
   })
 
   it('Can create an event emitter', () =>

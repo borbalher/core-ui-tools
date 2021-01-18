@@ -34,7 +34,7 @@ describe('core/common/normalizer', () =>
     type = normalizer.getEntityType('entity/node')
     expect(type).to.be.equal('node')
 
-    type = normalizer.getEntityType('value-object/edge')
+    type = normalizer.getEntityType('value/edge')
     expect(type).to.be.equal(undefined)
   })
 
@@ -45,7 +45,7 @@ describe('core/common/normalizer', () =>
     isEntity = normalizer.isEntity('entity/node')
     expect(isEntity).to.be.equal(true)
 
-    isEntity = normalizer.isEntity('value-object/edge')
+    isEntity = normalizer.isEntity('value/edge')
     expect(isEntity).to.be.equal(false)
   })
 

@@ -1,26 +1,14 @@
 class Reducer
 {
-  constructor(actions, locator)
+  reduce({ action, state, ...args })
   {
-    this.actions = actions
-    this.locator = locator
-  }
+    const { meta: { name } } = action
 
-  getReducer(action)
-  {
-    const service = this.actions[action]
-
-    if(service)
-      return this.locator.locate(service)
-  }
-
-  apply(action, state)
-  {
-    const
-    { meta: { name } } = action,
-    reducer            = this.getReducer(name),
-    newState           = reducer ? reducer.execute(action, state) : state
-    return newState
+    switch(name)
+    {
+    default:
+      return state
+    }
   }
 }
 
