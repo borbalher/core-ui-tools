@@ -7,8 +7,8 @@ module.exports = {
     },
     locator :
     {
-      'core/process'           : require(`${__dirname}/locator`),
-      'core/process/bootstrap' : require(`${__dirname}/bootstrap/locator`),
+      'core/process'           : __dirname,
+      'core/process/bootstrap' : `${__dirname}/bootstrap`
     }
   }
 }

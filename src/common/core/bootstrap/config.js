@@ -3,7 +3,7 @@ const dto = {
   {
     locator :
     {
-      'core/bootstrap' : require(`${__dirname}/locator`)
+      'core/bootstrap' : __dirname
     }
   }
 }

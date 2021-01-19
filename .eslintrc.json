@@ -13,10 +13,6 @@
         "VariableDeclarator": 0
       }
     ],
-    "comma-dangle": [
-      "warning",
-      "only-multiline"
-    ],
     "curly": [
       "error",
       "multi-or-nest",

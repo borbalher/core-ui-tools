@@ -11,7 +11,8 @@ class Configuration
 
   extend(config)
   {
-    this.config = this.deepmerge.merge(this.config, { ...config })
+    const clone = this.deepclone.clone(config)
+    this.config = this.deepmerge.merge(this.config, clone)
   }
 
   find(path)

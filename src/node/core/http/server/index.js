@@ -5,19 +5,9 @@ class HttpServer
   /**
    * @param {http.Server} server
    */
-  constructor({
-    bus,
-    configuration,
-    dispatcherChain,
-    dispatcherCollectionBuilder,
-    domainFactory,
-    eventComposer,
-    locator,
-    requestBuilder,
-    routeBuilder,
-    server,
-    sessionBuilder,
-  })
+  constructor(server, requestBuilder, sessionBuilder, routeBuilder,
+    dispatcherCollectionBuilder, dispatcherChain, configuration,
+    locator, bus, domainFactory, eventComposer)
   {
     this.server                       = server
     this.requestBuilder               = requestBuilder
@@ -32,15 +22,9 @@ class HttpServer
     this.eventComposer                = eventComposer
   }
 
-  listen({
-    port,
-    hostname,
-    backlog,
-    callback
-  })
+  listen(...args)
   {
-    console.log(`Listening on port ${port}...`)
-    this.server.listen(port, hostname, backlog, callback)
+    this.server.listen(...args)
   }
 
   onListening(done)
@@ -73,17 +57,7 @@ class HttpServer
     output.on('timeout',  this.onTimeout.bind(this, output))
     output.on('finish',   this.onFinish.bind(this, input, output, domain))
 
-    domain.run(() =>
-    {
-      try
-      {
-        this.dispatch(input, output, domain)
-      }
-      catch(error)
-      {
-        throw error
-      }
-    })
+    domain.run(() => this.dispatch(input, output, domain))
   }
 
   onAborted(output)

@@ -10,18 +10,16 @@
     "cookies": "0.7.3",
     "dateformat": "3.0.3",
     "dotenv": "8.2.0",
-    "handlebars": "4.7.6",
-    "htm": "3.0.4",
+    "handlebars": "^4.7.6",
     "js-base64": "2.5.2",
     "jwk-to-pem": "2.0.1",
     "link-module-alias": "1.2.0",
     "lodash.isequal": "4.5.0",
     "moment": "2.24.0",
-    "preact": "10.5.10",
-    "preact-render-to-string": "5.1.12",
     "text-encoder-lite": "2.0.0",
     "uuid": "3.3.2"
   },
+  "deprecated": false,
   "description": "Core UI Tools",
   "devDependencies": {
     "chai": "4.2.0",
@@ -36,16 +34,7 @@
     "mocha": "8.1.1",
     "mochawesome": "5.0.0",
     "nyc": "14.1.1",
-    "tui-jsdoc-template": "1.2.2",
-    "dotenv-webpack": "1.7.0",
-    "@babel/cli": "7.1.5",
-    "@babel/core": "7.1.6",
-    "@babel/plugin-transform-modules-commonjs": "7.2.0",
-    "@babel/polyfill": "7.6.0",
-    "@babel/preset-env": "7.1.6",
-    "webpack": "5.0.0-beta.16",
-    "webpack-cli": "3.3.11",
-    "babel-loader": "8.0.6"
+    "tui-jsdoc-template": "1.2.2"
   },
   "homepage": "https://github.com/borbalher/core-ui-tools#readme",
   "license": "MIT",
@@ -64,13 +53,11 @@
     "generate-doc-tests": "mocha view/**/*.test.js core/**/*.test.js test/**/*.test.js --reporter mochawesome --reporter-options reportDir=doc/tests,reportFilename=index,showHooks=always",
     "linter": "eslint core/**/**.js view/**/**.js",
     "linter-and-fix": "eslint core/**/**.js view/**/**.js --fix",
-    "test": "mocha 'src/**/composer/**/*.test.js' --config .mocharc.json",
-    "webpack": "webpack --progress --profile --display-error-details"
+    "test": "mocha 'src/**/composer/**/*.test.js' --config .mocharc.json"
   },
   "_moduleAliases": {
     "~root": ".",
-    "schema": "src/schema",
-    "server": "src/server",
+    "schema": "src/common/core/schema",
     "common": "src/common",
     "browser": "src/browser",
     "node": "src/node"

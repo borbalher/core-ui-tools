@@ -3,7 +3,7 @@ module.exports = {
   {
     locator :
     {
-      'core/event/composer' : require(`${__dirname}/locator`)
+      'core/event/composer' : __dirname
     }
   }
 }

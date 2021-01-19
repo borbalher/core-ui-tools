@@ -1,8 +1,10 @@
 const
 dateformat          = require('dateformat'),
 Core                = require('common/core'),
+ConfigFetcher       = require('browser/core/config-fetcher'),
 consoleDefaults     = require('browser/core/console/defaults'),
 ConsoleFactory      = require('browser/core/console/factory'),
+ServiceLoader       = require('browser/core/service-loader'),
 Locator             = require('common/core/locator'),
 Deepclone           = require('common/core/deepclone'),
 Deepfreeze          = require('common/core/deepfreeze'),
@@ -20,11 +22,13 @@ class CoreFactory
   create(components)
   {
     const
-    locator = this.createLocator(),
-    core    = new Core({
-      locator,
-      components
-    })
+    locator       = this.createLocator(),
+    configFetcher = new ConfigFetcher(locator),
+    serviceLoader = new ServiceLoader(locator),
+    core          = new Core(locator, configFetcher, serviceLoader)
+
+    for(const component of components)
+      core.add(component.name, component.path)
 
     return core
   }

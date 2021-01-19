@@ -7,8 +7,8 @@ module.exports = {
     },
     locator :
     {
-      'infrastructure/bus/bootstrap' : require(`${__dirname}/bootstrap/locator`),
-      'infrastructure/bus'           : require(`${__dirname}/locator`)
+      'infrastructure/bus/bootstrap' : `${__dirname}/bootstrap`,
+      'infrastructure/bus'           : __dirname
     }
   },
   infrastructure :
