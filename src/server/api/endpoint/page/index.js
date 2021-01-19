@@ -19,7 +19,7 @@ class IndexPage extends Dispatcher
       charset : 'utf-8',
       content : 'width=device-width, initial-scale=.85',
       id      : 'index',
-      hash    : process.env.COMPILATION_HASH || 'HASH'
+      hash    : process.env.COMPILATION_HASH || 'HAasfSH'
     })
   }
 }

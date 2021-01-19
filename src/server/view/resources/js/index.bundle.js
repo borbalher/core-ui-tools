@@ -1,233 +1,14 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/common/view/components/clock.js":
-/*!*********************************************!*\
-  !*** ./src/common/view/components/clock.js ***!
-  \*********************************************/
-/*! unknown exports (runtime-defined) */
-/*! exports [maybe provided (runtime-defined)] [maybe used (runtime-defined)] */
-/*! runtime requirements: module, __webpack_require__ */
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["<span>", "</span>"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var _require = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
-    html = _require.html,
-    Component = _require.Component;
-
-var Clock = /*#__PURE__*/function (_Component) {
-  _inherits(Clock, _Component);
-
-  var _super = _createSuper(Clock);
-
-  function Clock() {
-    var _this;
-
-    _classCallCheck(this, Clock);
-
-    _this = _super.call(this);
-    _this.state = {
-      time: Date.now()
-    };
-    return _this;
-  } // Lifecycle: Called whenever our component is created
-
-
-  _createClass(Clock, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      // update time every second
-      this.timer = setInterval(function () {
-        _this2.setState({
-          time: Date.now()
-        });
-      }, 1000);
-    } // Lifecycle: Called just before our component will be destroyed
-
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      // stop when not renderable
-      clearInterval(this.timer);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var time = new Date(this.state.time).toLocaleTimeString();
-      return html(_templateObject(), time);
-    }
-  }]);
-
-  return Clock;
-}(Component);
-
-module.exports = Clock;
-
-/***/ }),
-
-/***/ "./src/common/view/components/counter.js":
-/*!***********************************************!*\
-  !*** ./src/common/view/components/counter.js ***!
-  \***********************************************/
-/*! unknown exports (runtime-defined) */
-/*! exports [maybe provided (runtime-defined)] [maybe used (runtime-defined)] */
-/*! runtime requirements: module, __webpack_require__ */
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["<li>", "</li>"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n      <form onSubmit=", ">\n          <input type=\"text\" value=", " onInput=", "/>\n          <button type=\"submit\">Add</button>\n          <ul>\n              ", "\n          </ul>\n      </form>"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var _require = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
-    html = _require.html,
-    Component = _require.Component;
-
-var Counter = /*#__PURE__*/function (_Component) {
-  _inherits(Counter, _Component);
-
-  var _super = _createSuper(Counter);
-
-  function Counter(props) {
-    var _this;
-
-    _classCallCheck(this, Counter);
-
-    _this = _super.call(this, props);
-    _this.props = props;
-    _this.state = {
-      todos: [{
-        text: 'a'
-      }],
-      text: ''
-    };
-    return _this;
-  }
-
-  _createClass(Counter, [{
-    key: "setText",
-    value: function setText(event) {
-      this.setState({
-        text: event.target.value
-      });
-    }
-  }, {
-    key: "addTodo",
-    value: function addTodo() {
-      var _this$state = this.state,
-          todos = _this$state.todos,
-          text = _this$state.text;
-      todos = todos.concat({
-        text: text
-      });
-      this.setState({
-        todos: todos,
-        text: ''
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return html(_templateObject(), this.addTodo, this.state.text, this.setText, this.state.todos.map(function (todo) {
-        return html(_templateObject2(), todo.text);
-      }));
-    }
-  }]);
-
-  return Counter;
-}(Component);
-
-module.exports = Counter;
-
-/***/ }),
-
 /***/ "./src/common/view/components/index.js":
 /*!*********************************************!*\
   !*** ./src/common/view/components/index.js ***!
   \*********************************************/
-/*! unknown exports (runtime-defined) */
-/*! exports [maybe provided (runtime-defined)] [maybe used (runtime-defined)] */
-/*! runtime requirements: module, __webpack_require__ */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["<", "/><", "/>"]);
+  var data = _taggedTemplateLiteral(["\n  <div>\n    <p>Count: ", "</p>\n    <button onClick=", ">Increment</button>\n    <button onClick=", ">Decrement</button>\n  </div>"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -238,54 +19,44 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+var _require = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js"),
+    useState = _require.useState,
+    _require2 = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
+    html = _require2.html;
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+var Counter = function Counter() {
+  var _useState = useState(0),
+      _useState2 = _slicedToArray(_useState, 2),
+      count = _useState2[0],
+      setCount = _useState2[1];
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+  var increment = function increment() {
+    return setCount(count + 1);
+  }; // You can also pass a callback to the setter
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-var _require = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
-    html = _require.html,
-    Component = _require.Component,
-    Clock = __webpack_require__(/*! common/view/components/clock */ "./src/common/view/components/clock.js"),
-    Counter = __webpack_require__(/*! common/view/components/counter */ "./src/common/view/components/counter.js");
+  var decrement = function decrement() {
+    return setCount(function (currentCount) {
+      return currentCount - 1;
+    });
+  };
 
-var Index = /*#__PURE__*/function (_Component) {
-  _inherits(Index, _Component);
+  return html(_templateObject(), count, increment, decrement);
+};
 
-  var _super = _createSuper(Index);
-
-  function Index() {
-    _classCallCheck(this, Index);
-
-    return _super.apply(this, arguments);
-  }
-
-  _createClass(Index, [{
-    key: "render",
-    value: function render() {
-      return html(_templateObject(), Clock, Counter);
-    }
-  }]);
-
-  return Index;
-}(Component);
-
-module.exports = Index;
+module.exports = Counter;
 
 /***/ }),
 
@@ -293,16 +64,18 @@ module.exports = Index;
 /*!**********************************************!*\
   !*** ./src/server/view/entrypoints/index.js ***!
   \**********************************************/
-/*! namespace exports */
-/*! exports [not provided] [unused] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_require__.* */
-/***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
-/* harmony import */ var htm_preact__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js");
-/* harmony import */ var common_view_components_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! common/view/components/index */ "./src/common/view/components/index.js");
-/* harmony import */ var common_view_components_index__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(common_view_components_index__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_stable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/stable */ "./node_modules/core-js/stable/index.js");
+/* harmony import */ var core_js_stable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_stable__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! regenerator-runtime/runtime */ "./node_modules/regenerator-runtime/runtime.js");
+/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var htm_preact__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js");
+/* harmony import */ var common_view_components_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! common/view/components/index */ "./src/common/view/components/index.js");
+/* harmony import */ var common_view_components_index__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(common_view_components_index__WEBPACK_IMPORTED_MODULE_4__);
 function _templateObject() {
   var data = _taggedTemplateLiteral(["<", "/>"]);
 
@@ -318,7 +91,10 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
-(0,preact__WEBPACK_IMPORTED_MODULE_0__.hydrate)((0,htm_preact__WEBPACK_IMPORTED_MODULE_1__.html)(_templateObject(), (common_view_components_index__WEBPACK_IMPORTED_MODULE_2___default())), document.getElementById('index'));
+
+
+console.log('HUEHUE');
+(0,preact__WEBPACK_IMPORTED_MODULE_0__.hydrate)((0,htm_preact__WEBPACK_IMPORTED_MODULE_3__.html)(_templateObject(), (common_view_components_index__WEBPACK_IMPORTED_MODULE_4___default())), document.getElementById('index'));
 
 /***/ })
 
@@ -353,6 +129,9 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = __webpack_modules__;
 /******/ 	
+/******/ 	// the startup function
+/******/ 	// It's empty as some runtime module handles the default behavior
+/******/ 	__webpack_require__.x = x => {}
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -376,6 +155,18 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 /******/ 				}
 /******/ 			}
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
@@ -405,6 +196,8 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 /******/ 	
 /******/ 	/* webpack/runtime/jsonp chunk loading */
 /******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
 /******/ 		// object to store loaded and loading chunks
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// Promise = chunk loading, 0 = chunk loaded
@@ -425,47 +218,11 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 /******/ 		
 /******/ 		// no HMR manifest
 /******/ 		
-/******/ 		var checkDeferredModules = () => {
-/******/ 		
-/******/ 		};
-/******/ 		function checkDeferredModulesImpl() {
-/******/ 			var result;
-/******/ 			for(var i = 0; i < deferredModules.length; i++) {
-/******/ 				var deferredModule = deferredModules[i];
-/******/ 				var fulfilled = true;
-/******/ 				for(var j = 1; j < deferredModule.length; j++) {
-/******/ 					var depId = deferredModule[j];
-/******/ 					if(installedChunks[depId] !== 0) fulfilled = false;
-/******/ 				}
-/******/ 				if(fulfilled) {
-/******/ 					deferredModules.splice(i--, 1);
-/******/ 					result = __webpack_require__(__webpack_require__.s = deferredModule[0]);
-/******/ 				}
-/******/ 			}
-/******/ 			if(deferredModules.length === 0) {
-/******/ 				__webpack_require__.x();
-/******/ 				__webpack_require__.x = () => {
-/******/ 		
-/******/ 				}
-/******/ 			}
-/******/ 			return result;
-/******/ 		}
-/******/ 		__webpack_require__.x = () => {
-/******/ 			// reset startup function so it can be called again when more startup code is added
-/******/ 			__webpack_require__.x = () => {
-/******/ 		
-/******/ 			}
-/******/ 			jsonpArray = jsonpArray.slice();
-/******/ 			for(var i = 0; i < jsonpArray.length; i++) webpackJsonpCallback(jsonpArray[i]);
-/******/ 			return (checkDeferredModules = checkDeferredModulesImpl)();
-/******/ 		};
+/******/ 		var checkDeferredModules = x => {};
 /******/ 		
 /******/ 		// install a JSONP callback for chunk loading
-/******/ 		function webpackJsonpCallback(data) {
-/******/ 			var chunkIds = data[0];
-/******/ 			var moreModules = data[1];
-/******/ 			var executeModules = data[2];
-/******/ 			var runtime = data[3];
+/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
+/******/ 			var [chunkIds, moreModules, runtime, executeModules] = data;
 /******/ 			// add "moreModules" to the modules object,
 /******/ 			// then flag all "chunkIds" as loaded and fire callback
 /******/ 			var moduleId, chunkId, i = 0, resolves = [];
@@ -482,7 +239,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 /******/ 				}
 /******/ 			}
 /******/ 			if(runtime) runtime(__webpack_require__);
-/******/ 			if(parentJsonpFunction) parentJsonpFunction(data);
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
 /******/ 			while(resolves.length) {
 /******/ 				resolves.shift()();
 /******/ 			}
@@ -492,17 +249,43 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 /******/ 		
 /******/ 			// run deferred modules when all chunks ready
 /******/ 			return checkDeferredModules();
-/******/ 		};
+/******/ 		}
 /******/ 		
-/******/ 		var jsonpArray = window["webpackJsonpcore_ui_tools"] = window["webpackJsonpcore_ui_tools"] || [];
-/******/ 		var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
-/******/ 		jsonpArray.push = webpackJsonpCallback;
-/******/ 		var parentJsonpFunction = oldJsonpFunction;
+/******/ 		var chunkLoadingGlobal = self["webpackChunkcore_ui_tools"] = self["webpackChunkcore_ui_tools"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 		
+/******/ 		function checkDeferredModulesImpl() {
+/******/ 			var result;
+/******/ 			for(var i = 0; i < deferredModules.length; i++) {
+/******/ 				var deferredModule = deferredModules[i];
+/******/ 				var fulfilled = true;
+/******/ 				for(var j = 1; j < deferredModule.length; j++) {
+/******/ 					var depId = deferredModule[j];
+/******/ 					if(installedChunks[depId] !== 0) fulfilled = false;
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferredModules.splice(i--, 1);
+/******/ 					result = __webpack_require__(__webpack_require__.s = deferredModule[0]);
+/******/ 				}
+/******/ 			}
+/******/ 			if(deferredModules.length === 0) {
+/******/ 				__webpack_require__.x();
+/******/ 				__webpack_require__.x = x => {};
+/******/ 			}
+/******/ 			return result;
+/******/ 		}
+/******/ 		var startup = __webpack_require__.x;
+/******/ 		__webpack_require__.x = () => {
+/******/ 			// reset startup function so it can be called again when more startup code is added
+/******/ 			__webpack_require__.x = startup || (x => {});
+/******/ 			return (checkDeferredModules = checkDeferredModulesImpl)();
+/******/ 		};
 /******/ 	})();
 /******/ 	
 /************************************************************************/
 /******/ 	// run startup
-/******/ 	return __webpack_require__.x();
+/******/ 	__webpack_require__.x();
 /******/ })()
 ;
 //# sourceMappingURL=index.bundle.js.map

@@ -8,6 +8,7 @@
   "dependencies": {
     "@superhero/request": "2.1.0",
     "cookies": "0.7.3",
+    "core-js": "3.8.3",
     "dateformat": "3.0.3",
     "dotenv": "8.2.0",
     "handlebars": "4.7.6",
@@ -19,6 +20,7 @@
     "moment": "2.24.0",
     "preact": "10.5.10",
     "preact-render-to-string": "5.1.12",
+    "regenerator-runtime": "0.13.7",
     "text-encoder-lite": "2.0.0",
     "uuid": "3.3.2"
   },
@@ -38,13 +40,12 @@
     "nyc": "14.1.1",
     "tui-jsdoc-template": "1.2.2",
     "dotenv-webpack": "1.7.0",
-    "@babel/cli": "7.1.5",
-    "@babel/core": "7.1.6",
-    "@babel/plugin-transform-modules-commonjs": "7.2.0",
-    "@babel/polyfill": "7.6.0",
-    "@babel/preset-env": "7.1.6",
-    "webpack": "5.0.0-beta.16",
-    "webpack-cli": "3.3.11",
+    "@babel/cli": "7.12.10",
+    "@babel/core": "7.12.10",
+    "@babel/plugin-transform-modules-commonjs": "7.12.1",
+    "@babel/preset-env": "7.12.11",
+    "webpack": "5.16.0",
+    "webpack-cli": "4.4.0",
     "babel-loader": "8.0.6"
   },
   "homepage": "https://github.com/borbalher/core-ui-tools#readme",
@@ -65,7 +66,8 @@
     "linter": "eslint core/**/**.js view/**/**.js",
     "linter-and-fix": "eslint core/**/**.js view/**/**.js --fix",
     "test": "mocha 'src/**/composer/**/*.test.js' --config .mocharc.json",
-    "webpack": "webpack --progress --profile --display-error-details"
+    "webpack": "webpack --progress --profile",
+    "watchpack": "webpack --watch --progress --profile"
   },
   "_moduleAliases": {
     "~root": ".",

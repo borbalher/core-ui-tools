@@ -6,8 +6,7 @@ Dotenv = require('dotenv-webpack')
 module.exports = {
   entry :
   {
-    'polyfills' : '@babel/polyfill',
-    'index'     : path.resolve(__dirname, 'src/server/view/entrypoints/index'),
+    'index' : path.resolve(__dirname, 'src/server/view/entrypoints/index'),
   },
   output :
   {
@@ -36,7 +35,6 @@ module.exports = {
     all          : true,
     assets       : true,
     modules      : true,
-    maxModules   : 0,
     performance  : true,
     timings      : true,
     moduleTrace  : true,

@@ -1,41 +1,19 @@
-const { html, Component } = require('htm/preact')
+const
+{ useState } = require('preact/hooks'),
+{ html }     = require('htm/preact')
 
-class Counter extends Component
-{
-  constructor(props)
-  {
-    super(props)
-    this.props = props
-    this.state = { todos: [{ text: 'a' }], text: '' }
-  }
+const Counter = () => {
+  const [count, setCount] = useState(0);
+  const increment = () => setCount(count + 1);
+  // You can also pass a callback to the setter
+  const decrement = () => setCount((currentCount) => currentCount - 1);
 
-  setText(event)
-  {
-    this.setState({ text: event.target.value })
-  }
-
-  addTodo()
-  {
-    let { todos, text } = this.state
-    todos = todos.concat({ text })
-    this.setState({ todos, text: '' })
-  }
-
-  render()
-  {
-    return html`
-      <form onSubmit=${this.addTodo}>
-          <input type="text" value=${this.state.text} onInput=${this.setText}/>
-          <button type="submit">Add</button>
-          <ul>
-              ${this.state.todos.map((todo) =>
-              {
-                return html`<li>${todo.text}</li>`
-              })}
-          </ul>
-      </form>`
-  }
+  return html`
+  <div>
+    <p>Count: ${count}</p>
+    <button onClick=${increment}>Increment</button>
+    <button onClick=${decrement}>Decrement</button>
+  </div>`
 }
-
 
 module.exports = Counter
