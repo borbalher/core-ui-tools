@@ -1,4 +1,5 @@
 import { hydrate } from 'preact'
+import { html } from 'htm/preact'
 import Index from 'common/view/components/index'
 
-hydrate(Index(), document.getElementById('index'))
+hydrate(html`<${Index}/>`, document.getElementById('index'))

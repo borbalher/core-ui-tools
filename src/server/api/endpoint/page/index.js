@@ -12,17 +12,15 @@ class IndexPage extends Dispatcher
 {
   async dispatch()
   {
-    // this.view.body  = document({
-    //   body    : html`<${Index}/>`,
-    //   lang    : 'en',
-    //   title   : 'Index',
-    //   charset : 'utf-8',
-    //   content : 'width=device-width, initial-scale=.85',
-    //   id      : 'app',
-    //   hash    : process.env.COMPILATION_HASH
-    // })
-
-    this.view.body = html`<${Index}/>`
+    this.view.body  = document({
+      body    : html`<${Index}/>`,
+      lang    : 'en',
+      title   : 'Index',
+      charset : 'utf-8',
+      content : 'width=device-width, initial-scale=.85',
+      id      : 'index',
+      hash    : process.env.COMPILATION_HASH || 'HASH'
+    })
   }
 }
 
