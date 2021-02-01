@@ -16,18 +16,21 @@ class DateInputGroupComposer extends ComponentComposer
     if(required && !value)
       return this.dictionary.translate('IS_REQUIRED').replace(/##LABEL##/gi, label)
 
-    const currentDate = new Date(value)
+    if(value)
+    {
+      const currentDate = new Date(value)
 
-    if(isNaN(currentDate.getTime()))
-      return this.dictionary.translate('IS_NOT_A_DATE').replace(/##LABEL##/gi, label)
+      if(isNaN(currentDate.getTime()))
+        return this.dictionary.translate('IS_NOT_A_DATE').replace(/##LABEL##/gi, label)
 
-    const maxDate = new Date(max)
-    if(max && currentDate.getTime() > maxDate.getTime())
-      return this.dictionary.translate('DATE_MUST_BE_BEFORE').replace(/##DATE##/gi, max)
+      const maxDate = new Date(max)
+      if(max && currentDate.getTime() > maxDate.getTime())
+        return this.dictionary.translate('DATE_MUST_BE_BEFORE').replace(/##DATE##/gi, max)
 
-    const minDate = new Date(min)
-    if(min && currentDate.getTime() < minDate.getTime())
-      return this.dictionary.translate('DATE_MUST_BE_AFTER').replace(/##DATE##/gi, min)
+      const minDate = new Date(min)
+      if(min && currentDate.getTime() < minDate.getTime())
+        return this.dictionary.translate('DATE_MUST_BE_AFTER').replace(/##DATE##/gi, min)
+    }
   }
 
   compose({
