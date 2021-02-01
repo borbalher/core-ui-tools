@@ -3,7 +3,6 @@ html           = require('htm/preact').html,
 renderToString = require('preact-render-to-string')
 
 module.exports = ({
-  lang,
   title,
   charset = 'utf-8',
   body,
@@ -14,6 +13,7 @@ module.exports = ({
 {
   return html`
   <head>
+
   </head>
 
   <body id="${id}" class="page-wrapper">

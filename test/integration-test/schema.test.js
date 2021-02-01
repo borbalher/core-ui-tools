@@ -5,11 +5,11 @@ describe('Schema test', () =>
   before(() =>
   {
     const
-    CoreFactory = require('../../src/node/core/factory'),
+    CoreFactory = require('node/core/factory'),
     coreFactory = new CoreFactory()
 
     core        = coreFactory.create({
-      schema : require('../../src/schema/config')
+      schema : require('schema/config')
     })
   })
 

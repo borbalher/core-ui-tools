@@ -1,4 +1,4 @@
-FROM node:10.15.3-jessie
+FROM node:14.15.4-alpine
 
 ENV DEBIAN_FRONTEND noninteractive
 

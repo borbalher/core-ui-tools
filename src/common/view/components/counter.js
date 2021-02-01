@@ -2,10 +2,9 @@ const
 { useState } = require('preact/hooks'),
 { html }     = require('htm/preact')
 
-const Counter = () => {
-  const [count, setCount] = useState(0);
+const Counter = ({ initialCount }) => {
+  const [count, setCount] = useState(initialCount);
   const increment = () => setCount(count + 1);
-  // You can also pass a callback to the setter
   const decrement = () => setCount((currentCount) => currentCount - 1);
 
   return html`

@@ -9,6 +9,7 @@
     "@superhero/request": "2.1.0",
     "cookies": "0.7.3",
     "core-js": "3.8.3",
+    "css-loader": "5.0.1",
     "dateformat": "3.0.3",
     "dotenv": "8.2.0",
     "handlebars": "4.7.6",
@@ -16,18 +17,28 @@
     "js-base64": "2.5.2",
     "jwk-to-pem": "2.0.1",
     "link-module-alias": "1.2.0",
-    "lodash.isequal": "4.5.0",
     "moment": "2.24.0",
+    "npm-run-all": "4.1.5",
     "preact": "10.5.10",
     "preact-render-to-string": "5.1.12",
     "regenerator-runtime": "0.13.7",
+    "style-loader": "2.0.0",
     "text-encoder-lite": "2.0.0",
     "uuid": "3.3.2"
   },
   "description": "Core UI Tools",
   "devDependencies": {
+    "@babel/cli": "7.12.10",
+    "@babel/core": "7.12.10",
+    "@babel/plugin-transform-modules-commonjs": "7.12.1",
+    "@babel/preset-env": "7.12.11",
+    "@testing-library/preact": "2.0.1",
+    "babel-loader": "8.0.6",
     "chai": "4.2.0",
     "chai-date-string": "0.1.0",
+    "dotenv-webpack": "1.7.0",
+    "enzyme": "3.11.0",
+    "enzyme-adapter-preact-pure": "3.0.0",
     "eslint": "5.9.0",
     "eslint-config-standard": "12.0.0",
     "eslint-plugin-import": "2.14.0",
@@ -35,18 +46,17 @@
     "eslint-plugin-promise": "4.0.1",
     "eslint-plugin-standard": "4.0.0",
     "jsdoc": "3.6.3",
+    "jsdom": "16.4.0",
+    "jsdom-global": "3.0.2",
     "mocha": "8.1.1",
     "mochawesome": "5.0.0",
+    "node-sass": "5.0.0",
+    "nodemon": "2.0.7",
     "nyc": "14.1.1",
+    "sass-loader": "10.1.1",
     "tui-jsdoc-template": "1.2.2",
-    "dotenv-webpack": "1.7.0",
-    "@babel/cli": "7.12.10",
-    "@babel/core": "7.12.10",
-    "@babel/plugin-transform-modules-commonjs": "7.12.1",
-    "@babel/preset-env": "7.12.11",
     "webpack": "5.16.0",
-    "webpack-cli": "4.4.0",
-    "babel-loader": "8.0.6"
+    "webpack-cli": "4.4.0"
   },
   "homepage": "https://github.com/borbalher/core-ui-tools#readme",
   "license": "MIT",
@@ -57,7 +67,6 @@
     "url": "git+https://github.com/borbalher/core-ui-tools.git"
   },
   "scripts": {
-    "postinstall": "link-module-alias",
     "coverage": "nyc npm run test",
     "generate-doc": "npm run test && npm run-script generate-doc-coverage && npm run-script generate-doc-tests && npm run-script generate-doc-jsdoc",
     "generate-doc-coverage": "nyc report --reporter=html --report-dir=./doc/coverage",
@@ -65,9 +74,14 @@
     "generate-doc-tests": "mocha view/**/*.test.js core/**/*.test.js test/**/*.test.js --reporter mochawesome --reporter-options reportDir=doc/tests,reportFilename=index,showHooks=always",
     "linter": "eslint core/**/**.js view/**/**.js",
     "linter-and-fix": "eslint core/**/**.js view/**/**.js --fix",
-    "test": "mocha 'src/**/composer/**/*.test.js' --config .mocharc.json",
-    "webpack": "webpack --progress --profile",
-    "watchpack": "webpack --watch --progress --profile"
+    "test": "mocha -r jsdom-global/register 'src/common/view/test/component/counter.test.js' --config .mocharc.json",
+    "build": "webpack --progress --profile",
+    "watch:build": "webpack --watch --progress --profile",
+    "watch:server": "nodemon -r dotenv/config -r module-alias/register src/server/index.js",
+    "dev": "npm-run-all --parallel watch:server watch:build",
+    "start": "node -r dotenv/config src/server/index.js",
+    "postinstall": "link-module-alias",
+    "preinstall": "command -v link-module-alias && link-module-alias clean || true"
   },
   "_moduleAliases": {
     "~root": ".",
@@ -76,6 +90,12 @@
     "common": "src/common",
     "browser": "src/browser",
     "node": "src/node"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "test/*",
+      "doc/*"
+    ]
   },
   "version": "1.4.07-beta"
 }

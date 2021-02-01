@@ -6,7 +6,8 @@ Dotenv = require('dotenv-webpack')
 module.exports = {
   entry :
   {
-    'index' : path.resolve(__dirname, 'src/server/view/entrypoints/index'),
+    'polyfills' : path.resolve(__dirname, 'src/common/view/entrypoints/polyfills'),
+    'index'     : path.resolve(__dirname, 'src/common/view/entrypoints/index'),
   },
   output :
   {
@@ -27,6 +28,10 @@ module.exports = {
             ['@babel/preset-env']
           ]
         }
+      },
+      {
+        test : /\.(scss|css)$/,
+        use  : ['style-loader', 'css-loader', 'sass-loader'],
       }
     ]
   },
@@ -66,15 +71,16 @@ module.exports = {
   target  : 'web',
   plugins : [
     new Dotenv({
-      path: './browser.env',  // load this now instead of the ones in '.env'
-      safe: true,             // load '.env.example' to verify the '.env' variables are all set. Can also be a string to a different file.
-      allowEmptyValues: true, // allow empty variables (e.g. `FOO=`) (treat it as empty string, rather than missing)
-      systemvars: true,       // load all the predefined 'process.env' variables which will trump anything local per dotenv specs.
-      silent: true,           // hide any errors
-      defaults: false         // load '.env.defaults' as the default values if empty.
+      path             : './browser.env',  // load this now instead of the ones in '.env'
+      safe             : true,             // load '.env.example' to verify the '.env' variables are all set. Can also be a string to a different file.
+      allowEmptyValues : true, // allow empty variables (e.g. `FOO=`) (treat it as empty string, rather than missing)
+      systemvars       : true,       // load all the predefined 'process.env' variables which will trump anything local per dotenv specs.
+      silent           : true,           // hide any errors
+      defaults         : false         // load '.env.defaults' as the default values if empty.
     })
   ],
-  node : {
+  node :
+  {
     __dirname : true
   }
 }

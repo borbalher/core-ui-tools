@@ -1,5 +1,4 @@
-module.exports =
-{
+const config = {
   core :
   {
     locator :
@@ -8,3 +7,5 @@ module.exports =
     }
   }
 }
+
+module.exports = config

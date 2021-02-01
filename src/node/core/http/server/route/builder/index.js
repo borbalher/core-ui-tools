@@ -42,7 +42,11 @@ class HttpServerRouteBuilder
     try
     {
       if(route.input)
-        route.dto = this.composeDto(request, route)
+      {
+        const compose = typeof route.input === 'string'
+
+        route.dto = this.composeDto(request, route, compose)
+      }
 
       return route
     }
@@ -103,7 +107,7 @@ class HttpServerRouteBuilder
    * @param {Object} request
    * @param {Object} route
    */
-  composeDto(request, route)
+  composeDto(request, route, compose = false)
   {
     const dto = {}
 
@@ -113,7 +117,7 @@ class HttpServerRouteBuilder
       dtoBuilder.build(dto, route, request)
     }
 
-    return this.composer.compose(route.input, dto)
+    return compose ? this.composer.compose(route.input, dto) : dto
   }
 }
 
