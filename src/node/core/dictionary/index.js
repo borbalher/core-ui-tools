@@ -1,55 +1,273 @@
-class Dictionary
+class Internationalization
 {
-  constructor(fallbackLang, dictionaries)
+  constructor({
+    dictionaries,
+    fallbackLocale,
+    locale
+  })
   {
-    this.fallbackLang = fallbackLang
-    this.dictionaries = dictionaries
+    this.fallbackLocale = this.buildLocale(fallbackLocale)
+
+    if(locale)
+      this.locale = this.buildLocale(locale)
+
+    this.dictionaries   = dictionaries
   }
 
-  setLang(lang)
+  buildLocale = ({
+    locale,
+    options :
+    {
+      script,
+      region,
+      hourCycle,
+      calendar
+    } = {}
+  }) =>
   {
-    this.lang = lang
+    return new Intl.Locale(locale, {
+      script,
+      region,
+      hourCycle,
+      calendar
+    })
   }
 
-  getLang()
+  getLocale()
   {
-    return this.lang ? this.lang : this.fallbackLang
+    return this.locale ? this.locale.toString() : this.fallbackLocale.toString()
   }
 
-  getDictionary(lang)
+  getLocaleBaseName()
   {
-    return this.dictionaries[lang]
+    return this.locale ? this.locale.baseName : this.fallbackLocale.baseName
   }
 
-  addDictionary(name, dictionary)
+  getDictionary(locale)
   {
-    this.dictionaries[name] = dictionary
+    return this.dictionaries[locale] || {}
   }
 
-  deleteDictionary(name)
-  {
-    delete this.dictionaries[name]
-  }
+  // addDictionary(name, dictionary)
+  // {
+  //   this.dictionaries[name] = dictionary
+  // }
 
-  addWordToDictionary(lang, key, value)
-  {
-    if(!this.dictionaries[lang])
-      this.dictionaries[lang] = {}
+  // deleteDictionary(name)
+  // {
+  //   delete this.dictionaries[name]
+  // }
 
-    this.dictionaries[lang][key] = value
-  }
+  // addWordToDictionary(lang, key, value)
+  // {
+  //   if(!this.dictionaries[lang])
+  //     this.dictionaries[lang] = {}
 
-  translate(key)
+  //   this.dictionaries[lang][key] = value
+  // }
+
+  translate({
+    id,
+    plural,
+    fields,
+    fallback
+  })
   {
     const
-    lang        = this.getLang(),
-    dictionary  = this.getDictionary(lang)
+    locale      = this.getLocaleBaseName(),
+    dictionary  = this.getDictionary(locale),
+    text        = dictionary[id]
 
-    if(dictionary && dictionary[key])
-      return dictionary[key]
+    if(text)
+    {
+      if(plural)
+      {
+        if(fields && typeof text[plural] === 'function')
+          return text[plural](fields)
+        else if(typeof text[plural] === 'string')
+          return text[plural]
+      }
+      else
+      {
+        if(fields && typeof text === 'function')
+          return text(fields)
+        else if(typeof text === 'string')
+          return text
+      }
+    }
 
-    return key
+    return fallback
+  }
+
+  formatRelativeTime({
+    value,
+    unit,
+    options :
+    {
+      localeMatcher,
+      numeric,
+      style,
+      split
+    } = this.options.relativeTime
+  })
+  {
+    const rtf = new Intl.RelativeTimeFormat(this.getLocale(), {
+      localeMatcher,
+      numeric,
+      style
+    })
+
+    if(split)
+      return rtf.formatToParts(value, unit)
+
+    return rtf.format(value, unit)
+  }
+
+  formatList({
+    list,
+    options :
+    {
+      localeMatcher,
+      type,
+      style
+    } = {}
+  })
+  {
+    const lf = new Intl.ListFormat(this.getLocale(), {
+      localeMatcher,
+      type,
+      style
+    })
+
+    return lf.format(list)
+  }
+
+  formatNumber({
+    number,
+    options :
+    {
+      compactDisplay,
+      currency,
+      currencyDisplay,
+      currencySign,
+      localeMatcher,
+      notation,
+      numberingSystem,
+      signDisplay,
+      style,
+      unit,
+      unitDisplay,
+      useGrouping,
+      minimumIntegerDigits,
+      minimumFractionDigits,
+      minimumSignificantDigits,
+      maximumSignificantDigits
+    } = {}
+  })
+  {
+    const nf = new Intl.NumberFormat(this.getLocale(), {
+      compactDisplay,
+      currency,
+      currencyDisplay,
+      currencySign,
+      localeMatcher,
+      notation,
+      numberingSystem,
+      signDisplay,
+      style,
+      unit,
+      unitDisplay,
+      useGrouping,
+      minimumIntegerDigits,
+      minimumFractionDigits,
+      minimumSignificantDigits,
+      maximumSignificantDigits
+    })
+
+    return nf.format(number)
+  }
+
+  formatDate({
+    date,
+    options :
+    {
+      dateStyle,
+      timeStyle,
+      calendar,
+      dayPeriod,
+      numberingSystem,
+      localeMatcher,
+      timeZone,
+      hour12,
+      hourCycle,
+      formatMatcher,
+      weekday,
+      era,
+      year,
+      month,
+      day,
+      hour,
+      minute,
+      second,
+      fractionalSecondDigits,
+      timeZoneName,
+    } = {}
+  })
+  {
+    const dtf = new Intl.DateTimeFormat(this.getLocale(),
+    {
+      dateStyle,
+      timeStyle,
+      calendar,
+      dayPeriod,
+      numberingSystem,
+      localeMatcher,
+      timeZone,
+      hour12,
+      hourCycle,
+      formatMatcher,
+      weekday,
+      era,
+      year,
+      month,
+      day,
+      hour,
+      minute,
+      second,
+      fractionalSecondDigits,
+      timeZoneName,
+    })
+
+    return dtf.format(date)
+  }
+
+  getPluralRules({
+    number,
+    options :
+    {
+      localeMatcher,
+      type,
+      minimumIntegerDigits,
+      minimumFractionDigits,
+      maximumFractionDigits,
+      minimumSignificantDigits,
+      maximumSignificantDigits
+    }
+  })
+  {
+    const pr = new Intl.PluralRules(this.getLocale(), {
+      localeMatcher,
+      type,
+      minimumIntegerDigits,
+      minimumFractionDigits,
+      maximumFractionDigits,
+      minimumSignificantDigits,
+      maximumSignificantDigits
+    })
+
+    return pr.select(number)
   }
 }
 
-module.exports = Dictionary
+
+module.exports = Internationalization

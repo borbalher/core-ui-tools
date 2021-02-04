@@ -11,7 +11,10 @@ core        = coreFactory.create({
   'core/event/composer' : require('common/core/event/composer/config'),
   'core/listener'       : require('common/core/listener/config'),
   'core/bootstrap'      : require('common/core/bootstrap/config'),
+  'core/bootstrap'      : require('common/core/bootstrap/config'),
   'api'                 : require('server/api/config'),
+  'view/components'     : require('common/view/components/config'),
+  'view/documents'      : require('common/view/document/config')
 })
 
 core

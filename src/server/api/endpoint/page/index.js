@@ -1,6 +1,5 @@
 const
 { html }   = require('htm/preact'),
-Index      = require('common/view/components/index'),
 Dispatcher = require('node/core/http/server/dispatcher'),
 document   = require('./document')
 
@@ -12,7 +11,11 @@ class IndexPage extends Dispatcher
 {
   async dispatch()
   {
-    this.view.body  = document({
+    const
+    Index = this.locator.locate('view/component/index'),
+    Base  = this.locator.locate('view/document/base')
+
+    this.view.body  = Base.render({
       body    : html`<${Index}/>`,
       lang    : 'en',
       title   : 'Index',

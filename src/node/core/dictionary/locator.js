@@ -1,6 +1,6 @@
-const Dictionary = require('.')
+const InternationalizationFactory = require('.')
 
-class DictionaryLocator
+class InternationalizationFactoryLocator
 {
   constructor(locator)
   {
@@ -10,12 +10,20 @@ class DictionaryLocator
   locate()
   {
     const
-    configuration                      = this.locator.locate('core/configuration'),
-    options                            = configuration.find('core.dictionary'),
-    { fallBackLanguage, dictionaries } = options
+    configuration = this.locator.locate('core/configuration'),
+    options       = configuration.find('core.internationalization'),
+    {
+      dictionaries,
+      fallbackLocale,
+      locale
+    } = options
 
-    return new Dictionary(fallBackLanguage, dictionaries)
+    return new InternationalizationFactory({
+      dictionaries,
+      fallbackLocale,
+      locale
+    })
   }
 }
 
-module.exports = DictionaryLocator
+module.exports = InternationalizationFactoryLocator

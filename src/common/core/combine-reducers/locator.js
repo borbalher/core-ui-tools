@@ -1,10 +1,10 @@
-const combineReducers = require('.')
+const CombineReducers = require('.')
 
 class CombineReducersLocator
 {
   locate()
   {
-    return combineReducers
+    return new CombineReducers()
   }
 }
 

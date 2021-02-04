@@ -1,75 +1,78 @@
-const combineReducers = ({
-  reducers,
-  nested = false
-}) =>
+class CombineReducers
 {
-  const combinedReducers = {}
-
-  for(const [key, reducer] of Object.entries(reducers))
+  combine({
+    reducers,
+    nested = false
+  })
   {
-    if(reducer && typeof reducer.reduce === 'function')
-    {
-      const reducerInitialState = reducer.reduce({
-        action : { meta: { name: 'INIT_CHECK' } },
-        state  : undefined
-      })
+    const combinedReducers = {}
 
-      if(typeof reducerInitialState === 'undefined')
-        console.warning(`Reducer ${key} returns undefined`)
+    for(const [key, reducer] of Object.entries(reducers))
+    {
+      if(reducer && typeof reducer.reduce === 'function')
+      {
+        const reducerInitialState = reducer.reduce({
+          action : { meta: { name: 'INIT_CHECK' } },
+          state  : undefined
+        })
+
+        if(typeof reducerInitialState === 'undefined')
+          console.warning(`Reducer ${key} returns undefined`)
+        else
+          combinedReducers[key] = reducers[key]
+      }
       else
-        combinedReducers[key] = reducers[key]
-    }
-    else
-    {
-      console.warning(`No reducer provided for key "${key}"`)
-    }
-  }
-
-  return ({
-    action,
-    state,
-    ...args
-  }) =>
-  {
-    // TODO Add action/state validation
-
-    if(nested)
-    {
-      const nextState = {}
-
-      for(const [key, reducer] of Object.entries(reducers))
       {
-        const
-        previousStateForKey = state[key],      // Get the the previous state
-        nextStateForKey     = reducer.reduce({ // Get the next state by running the reducer
-          action,
-          state : previousStateForKey,
-          ...args
-        })
-
-        nextState[key] = nextStateForKey // Update the new state for the current reducer
+        console.warning(`No reducer provided for key "${key}"`)
       }
-
-      return nextState
     }
-    else
+
+    return ({
+      action,
+      state,
+      ...args
+    }) =>
     {
-      let currentState = state
+      // TODO Add action/state validation
 
-      for(const reducer of reducers)
+      if(nested)
       {
-        const nextState = reducer.reduce({
-          action,
-          state : currentState,
-          ...args
-        })
+        const nextState = {}
 
-        currentState = nextState // Update the new state for the current reducer
+        for(const [key, reducer] of Object.entries(reducers))
+        {
+          const
+          previousStateForKey = state[key],      // Get the the previous state
+          nextStateForKey     = reducer.reduce({ // Get the next state by running the reducer
+            action,
+            state : previousStateForKey,
+            ...args
+          })
+
+          nextState[key] = nextStateForKey // Update the new state for the current reducer
+        }
+
+        return nextState
       }
+      else
+      {
+        let currentState = state
 
-      return currentState
+        for(const reducer of reducers)
+        {
+          const nextState = reducer.reduce({
+            action,
+            state : currentState,
+            ...args
+          })
+
+          currentState = nextState // Update the new state for the current reducer
+        }
+
+        return currentState
+      }
     }
   }
 }
 
-module.exports = combineReducers
+module.exports = CombineReducers

@@ -1,15 +1,15 @@
 module.exports = {
   core :
   {
-    dictionary :
+    internationalization :
     {
-      lang             : 'en-gb',
-      fallBackLanguage : 'en-gb',
-      dictionaries     : { }
+      locale         : { locale: 'en-gb' },
+      fallbackLocale : { locale: 'en-gb' },
+      dictionaries   : { }
     },
     locator :
     {
-      'core/dictionary' : __dirname
+      'core/internationalization' : __dirname
     }
   }
 }
