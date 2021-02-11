@@ -35,9 +35,11 @@ module.exports = {
           {
             url      : '/',
             method   : 'get',
-            endpoint : 'api/endpoint/page/index',
+            endpoint : 'api/endpoint/serve-page',
             view     : 'view/preact',
-            input    : false
+            input    : false,
+            document : 'base',
+            page     : 'index'
             // input    : 'event/requested-to-login',
             // output   : 'event/user-has-logged-in'
           },

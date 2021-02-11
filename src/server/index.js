@@ -6,15 +6,16 @@ core        = coreFactory.create({
   'core/resource'       : require('node/core/resource/config'),
   'core/process'        : require('node/core/process/config'),
   'core/http/server'    : require('node/core/http/server/config'),
-  'view'                : require('server/view/config'),
+  'server/view'         : require('server/view/config'),
   'infrastructure/bus'  : require('common/infrastructure/bus/config'),
   'core/event/composer' : require('common/core/event/composer/config'),
   'core/listener'       : require('common/core/listener/config'),
   'core/bootstrap'      : require('common/core/bootstrap/config'),
-  'core/bootstrap'      : require('common/core/bootstrap/config'),
   'api'                 : require('server/api/config'),
   'view/components'     : require('common/view/components/config'),
-  'view/documents'      : require('common/view/document/config')
+  'view/documents'      : require('common/view/document/config'),
+  'view/props'          : require('common/view/props/config'),
+  'view/pages'          : require('common/view/pages/config'),
 })
 
 core
