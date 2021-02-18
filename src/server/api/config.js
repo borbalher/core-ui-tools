@@ -17,13 +17,6 @@ module.exports = {
         URI    : process.env.SERVER_URI,
         routes :
         {
-          // 'on-error-middleware' :
-          // {
-          //   middleware :
-          //   [
-          //     'api/middleware/on-error'
-          //   ]
-          // },
           resource :
           {
             url      : '/resources/.+',
@@ -35,13 +28,21 @@ module.exports = {
           {
             url      : '/',
             method   : 'get',
-            endpoint : 'api/endpoint/serve-page',
+            endpoint : 'api/endpoint/page',
             view     : 'view/preact',
-            input    : false,
             document : 'base',
-            page     : 'index'
-            // input    : 'event/requested-to-login',
-            // output   : 'event/user-has-logged-in'
+            page     : 'index',
+            input    : false
+          },
+          'to-dos' :
+          {
+            url      : '/to-dos',
+            method   : 'get',
+            endpoint : 'api/endpoint/page',
+            view     : 'view/preact',
+            document : 'base',
+            page     : 'index',
+            input    : false
           },
         }
       }

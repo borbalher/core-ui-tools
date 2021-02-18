@@ -2,17 +2,22 @@ class Hydrator
 {
   constructor({
     html,
-    hydrate
+    hydrator,
+    locator
   })
   {
-    this.html    = html
-    this.hydrate = hydrate
+    this.html     = html
+    this.hydrator = hydrator
+    this.locator  = locator
   }
 
-  hydrate({ page, props })
+  hydrate({ app, props, page })
   {
-    const Page = this.locator.locate(page)
-    this.hydrate(html`<${Page} ...${props}/>`, document.querySelector('body'))
+    const
+    App       = this.locator.locate(`view/app`),
+    Component = this.locator.locate(`view/page/${page}`)
+
+    this.hydrator(this.html`<${App} Component=${Component} props=${props}></${App}>`, app)
   }
 }
 

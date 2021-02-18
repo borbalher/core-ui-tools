@@ -12,12 +12,11 @@ class Page
   async render({
     page,
     document,
+    props,
     ...input
   })
   {
     const
-    pageProps = this.locator.locate(`view/props/${page}`),
-    props     = await pageProps.getProps({ ...input }),
     Page      = this.locator.locate(`view/page/${page}`),
     Document  = this.locator.locate(`view/document/${document}`)
 

@@ -69,22 +69,25 @@ class BrowserApplication
       this.domReady(() =>
       {
         metrics.end('dom-ready')
-        metrics.start('core-load')
-        this.core.load().then(() =>
-        {
-          metrics.end('core-load')
-          metrics.start('core-bootstrap')
+        metrics.start('core-bootstrap')
 
-          this.core.locate('core/bootstrap').bootstrap().then(() =>
+        metrics.end('core-load')
+        metrics.start('core-bootstrap')
+
+        this.core
+          .locate('core/bootstrap')
+          .bootstrap()
+          .then(() =>
           {
             metrics.end('core-bootstrap')
+
             this.eventbus = this.core.locate('infrastructure/bus').getChannel('app')
 
             const
             eventComposer       = this.core.locate('core/event/composer'),
             appInitializedEvent = eventComposer.compose('app.initialized', {
-              components      : this.core.components,
-              totalcomponents : Object.keys(this.core.components).length,
+              components      : this.core.locator.services,
+              totalcomponents : Object.keys(this.core.locator.services).length,
               metrics         :
               {
                 ...metrics.getReport()
@@ -97,7 +100,6 @@ class BrowserApplication
 
             resolve()
           })
-        })
       })
     })
   }

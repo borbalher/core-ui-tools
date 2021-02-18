@@ -17,13 +17,13 @@ EventEmitterFactory = require('common/core/event-emitter/factory')
 
 class CoreFactory
 {
-  create(components)
+  create(configurations)
   {
     const
     locator = this.createLocator(),
     core    = new Core({
       locator,
-      components
+      configurations,
     })
 
     return core

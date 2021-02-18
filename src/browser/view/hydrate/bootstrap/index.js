@@ -9,12 +9,14 @@ class HydrateBootstrap
   {
     const
     hydrate = this.locator.locate('view/hydrate'),
-    page    = document.getElementById('page').dataset.page,
-    props   = document.getElementById('props').innerText ? JSON.parse(document.getElementById('props').innerText) : {}
+    app     = document.getElementById('app'),
+    page    = app.dataset.page,
+    props   = window._PROPS_
 
     hydrate.hydrate({
-      page,
-      props
+      app,
+      props,
+      page
     })
   }
 }

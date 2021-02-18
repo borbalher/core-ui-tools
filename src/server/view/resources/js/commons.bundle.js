@@ -1,5 +1,4 @@
-/******/ (() => { // webpackBootstrap
-/******/ 	var __webpack_modules__ = ({
+(self["webpackChunkcore_ui_tools"] = self["webpackChunkcore_ui_tools"] || []).push([["commons"],{
 
 /***/ "./src/browser/core/application/error/application-not-running.js":
 /*!***********************************************************************!*\
@@ -195,6 +194,11 @@ var BrowserApplication = /*#__PURE__*/function () {
 
         _this.domReady(function () {
           metrics.end('dom-ready');
+          metrics.start('core-load');
+
+          _this.core.load();
+
+          metrics.end('core-load');
           metrics.start('core-bootstrap');
           metrics.end('core-load');
           metrics.start('core-bootstrap');
@@ -205,8 +209,8 @@ var BrowserApplication = /*#__PURE__*/function () {
 
             var eventComposer = _this.core.locate('core/event/composer'),
                 appInitializedEvent = eventComposer.compose('app.initialized', {
-              components: _this.core.locator.services,
-              totalcomponents: Object.keys(_this.core.locator.services).length,
+              components: _this.core.components,
+              totalcomponents: Object.keys(_this.core.components).length,
               metrics: _objectSpread({}, metrics.getReport())
             });
 
@@ -684,11 +688,11 @@ var CoreFactory = /*#__PURE__*/function () {
 
   _createClass(CoreFactory, [{
     key: "create",
-    value: function create(configurations) {
+    value: function create(components) {
       var locator = this.createLocator(),
           core = new Core({
         locator: locator,
-        configurations: configurations
+        components: components
       });
       return core;
     }
@@ -756,7 +760,7 @@ var HydrateBootstrap = /*#__PURE__*/function () {
       var hydrate = this.locator.locate('view/hydrate'),
           app = document.getElementById('app'),
           page = app.dataset.page,
-          props = window._PROPS_;
+          props = JSON.parse(window._PROPS_);
       hydrate.hydrate({
         app: app,
         props: props,
@@ -844,7 +848,7 @@ module.exports = {
 /***/ ((module) => {
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["<", " Component=", " props=", "></", ">"]);
+  var data = _taggedTemplateLiteral(["<", " ...", "/>"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -864,14 +868,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var Hydrator = /*#__PURE__*/function () {
   function Hydrator(_ref) {
     var html = _ref.html,
-        hydrator = _ref.hydrator,
-        locator = _ref.locator;
+        hydrate = _ref.hydrate;
 
     _classCallCheck(this, Hydrator);
 
     this.html = html;
-    this.hydrator = hydrator;
-    this.locator = locator;
+    this.hydrate = hydrate;
   }
 
   _createClass(Hydrator, [{
@@ -880,9 +882,8 @@ var Hydrator = /*#__PURE__*/function () {
       var app = _ref2.app,
           props = _ref2.props,
           page = _ref2.page;
-      var App = this.locator.locate("view/app"),
-          Component = this.locator.locate("view/page/".concat(page));
-      this.hydrator(this.html(_templateObject(), App, Component, props, App), app);
+      var Page = this.locator.locate("view/page/".concat(page));
+      this.hydrate(html(_templateObject(), Page, props), app);
     }
   }]);
 
@@ -924,8 +925,7 @@ var HydratorLocator = /*#__PURE__*/function () {
 
       return new Hydrator({
         html: html,
-        hydrator: hydrate,
-        locator: this.locator
+        hydrate: hydrate
       });
     }
   }]);
@@ -4207,7 +4207,7 @@ module.exports = ToDosComponentLocator;
 /***/ ((module) => {
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n      <head>\n      </head>\n      <body>\n        <div id=\"app\" data-page=", ">", "</div>\n        <script type=\"text/javascript\" dangerouslySetInnerHTML=", "/>\n        <script type=\"text/javascript\" src=\"/resources/js/vendors.bundle.js?", "\"></script>\n        <script type=\"text/javascript\" src=\"/resources/js/polyfills.bundle.js?", "\"></script>\n        <script type=\"text/javascript\" src=\"/resources/js/", ".bundle.js?", "\"></script>\n      </body>"]);
+  var data = _taggedTemplateLiteral(["\n      <head>\n      </head>\n      <body>\n        <div id=\"app\" page=", ">", "</div>\n        <script type=\"text/javascript\" dangerouslySetInnerHTML=", "/>\n        <script type=\"text/javascript\" src=\"/resources/js/vendors.bundle.js?", "\"></script>\n        <script type=\"text/javascript\" src=\"/resources/js/polyfills.bundle.js?", "\"></script>\n        <script type=\"text/javascript\" src=\"/resources/js/", ".bundle.js?", "\"></script>\n      </body>"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -4317,31 +4317,6 @@ module.exports = {
     }
   }
 };
-
-/***/ }),
-
-/***/ "./src/common/view/entrypoints/index.js":
-/*!**********************************************!*\
-  !*** ./src/common/view/entrypoints/index.js ***!
-  \**********************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
-
-var Application = __webpack_require__(/*! browser/core/application */ "./src/browser/core/application/index.js"),
-    app = new Application({
-  'schema': __webpack_require__(/*! schema/config */ "./src/schema/config.js"),
-  'infrastructure/bus': __webpack_require__(/*! common/infrastructure/bus/config */ "./src/common/infrastructure/bus/config.js"),
-  'core/event/composer': __webpack_require__(/*! common/core/event/composer/config */ "./src/common/core/event/composer/config.js"),
-  'core/listener': __webpack_require__(/*! common/core/listener/config */ "./src/common/core/listener/config.js"),
-  'core/bootstrap': __webpack_require__(/*! common/core/bootstrap/config */ "./src/common/core/bootstrap/config.js"),
-  'view/components': __webpack_require__(/*! common/view/components/config */ "./src/common/view/components/config.js"),
-  'view/documents': __webpack_require__(/*! common/view/document/config */ "./src/common/view/document/config.js"),
-  'view/pages': __webpack_require__(/*! common/view/pages/config */ "./src/common/view/pages/config.js"),
-  'view/app': __webpack_require__(/*! common/view/app/config */ "./src/common/view/app/config.js"),
-  'view/hooks': __webpack_require__(/*! common/view/hooks/config */ "./src/common/view/hooks/config.js"),
-  'view/hydrate': __webpack_require__(/*! browser/view/hydrate/config */ "./src/browser/view/hydrate/config.js")
-});
-
-app.run();
 
 /***/ }),
 
@@ -9453,182 +9428,5 @@ module.exports = /*#__PURE__*/function () {
 
 /***/ })
 
-/******/ 	});
-/************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		if(__webpack_module_cache__[moduleId]) {
-/******/ 			return __webpack_module_cache__[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			id: moduleId,
-/******/ 			loaded: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Flag the module as loaded
-/******/ 		module.loaded = true;
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/ 	
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = __webpack_modules__;
-/******/ 	
-/******/ 	// the startup function
-/******/ 	// It's empty as some runtime module handles the default behavior
-/******/ 	__webpack_require__.x = x => {}
-/************************************************************************/
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/global */
-/******/ 	(() => {
-/******/ 		__webpack_require__.g = (function() {
-/******/ 			if (typeof globalThis === 'object') return globalThis;
-/******/ 			try {
-/******/ 				return this || new Function('return this')();
-/******/ 			} catch (e) {
-/******/ 				if (typeof window === 'object') return window;
-/******/ 			}
-/******/ 		})();
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop)
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/node module decorator */
-/******/ 	(() => {
-/******/ 		__webpack_require__.nmd = (module) => {
-/******/ 			module.paths = [];
-/******/ 			if (!module.children) module.children = [];
-/******/ 			return module;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/jsonp chunk loading */
-/******/ 	(() => {
-/******/ 		// no baseURI
-/******/ 		
-/******/ 		// object to store loaded and loading chunks
-/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
-/******/ 		// Promise = chunk loading, 0 = chunk loaded
-/******/ 		var installedChunks = {
-/******/ 			"index": 0
-/******/ 		};
-/******/ 		
-/******/ 		var deferredModules = [
-/******/ 			["./src/common/view/entrypoints/index.js","vendors"]
-/******/ 		];
-/******/ 		// no chunk on demand loading
-/******/ 		
-/******/ 		// no prefetching
-/******/ 		
-/******/ 		// no preloaded
-/******/ 		
-/******/ 		// no HMR
-/******/ 		
-/******/ 		// no HMR manifest
-/******/ 		
-/******/ 		var checkDeferredModules = x => {};
-/******/ 		
-/******/ 		// install a JSONP callback for chunk loading
-/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
-/******/ 			var [chunkIds, moreModules, runtime, executeModules] = data;
-/******/ 			// add "moreModules" to the modules object,
-/******/ 			// then flag all "chunkIds" as loaded and fire callback
-/******/ 			var moduleId, chunkId, i = 0, resolves = [];
-/******/ 			for(;i < chunkIds.length; i++) {
-/******/ 				chunkId = chunkIds[i];
-/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
-/******/ 					resolves.push(installedChunks[chunkId][0]);
-/******/ 				}
-/******/ 				installedChunks[chunkId] = 0;
-/******/ 			}
-/******/ 			for(moduleId in moreModules) {
-/******/ 				if(__webpack_require__.o(moreModules, moduleId)) {
-/******/ 					__webpack_require__.m[moduleId] = moreModules[moduleId];
-/******/ 				}
-/******/ 			}
-/******/ 			if(runtime) runtime(__webpack_require__);
-/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
-/******/ 			while(resolves.length) {
-/******/ 				resolves.shift()();
-/******/ 			}
-/******/ 		
-/******/ 			// add entry modules from loaded chunk to deferred list
-/******/ 			if(executeModules) deferredModules.push.apply(deferredModules, executeModules);
-/******/ 		
-/******/ 			// run deferred modules when all chunks ready
-/******/ 			return checkDeferredModules();
-/******/ 		}
-/******/ 		
-/******/ 		var chunkLoadingGlobal = self["webpackChunkcore_ui_tools"] = self["webpackChunkcore_ui_tools"] || [];
-/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
-/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
-/******/ 		
-/******/ 		function checkDeferredModulesImpl() {
-/******/ 			var result;
-/******/ 			for(var i = 0; i < deferredModules.length; i++) {
-/******/ 				var deferredModule = deferredModules[i];
-/******/ 				var fulfilled = true;
-/******/ 				for(var j = 1; j < deferredModule.length; j++) {
-/******/ 					var depId = deferredModule[j];
-/******/ 					if(installedChunks[depId] !== 0) fulfilled = false;
-/******/ 				}
-/******/ 				if(fulfilled) {
-/******/ 					deferredModules.splice(i--, 1);
-/******/ 					result = __webpack_require__(__webpack_require__.s = deferredModule[0]);
-/******/ 				}
-/******/ 			}
-/******/ 			if(deferredModules.length === 0) {
-/******/ 				__webpack_require__.x();
-/******/ 				__webpack_require__.x = x => {};
-/******/ 			}
-/******/ 			return result;
-/******/ 		}
-/******/ 		var startup = __webpack_require__.x;
-/******/ 		__webpack_require__.x = () => {
-/******/ 			// reset startup function so it can be called again when more startup code is added
-/******/ 			__webpack_require__.x = startup || (x => {});
-/******/ 			return (checkDeferredModules = checkDeferredModulesImpl)();
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/************************************************************************/
-/******/ 	// run startup
-/******/ 	__webpack_require__.x();
-/******/ })()
-;
-//# sourceMappingURL=index.bundle.js.map
+}]);
+//# sourceMappingURL=commons.bundle.js.map
