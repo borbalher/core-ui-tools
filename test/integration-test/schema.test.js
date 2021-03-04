@@ -5,7 +5,7 @@ describe('Schema test', () =>
   before(() =>
   {
     const
-    CoreFactory = require('node/core/factory'),
+    CoreFactory = require('server/core/factory'),
     coreFactory = new CoreFactory()
 
     core        = coreFactory.create({

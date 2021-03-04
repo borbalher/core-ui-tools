@@ -4,7 +4,7 @@ describe('common/core/action/composer', () =>
   chai           = require('chai'),
   expect         = chai.expect,
   chaiDateString = require('chai-date-string'),
-  CoreFactory    = require(`node/core/factory`)
+  CoreFactory    = require(`server/core/factory`)
 
   chai.use(chaiDateString)
 

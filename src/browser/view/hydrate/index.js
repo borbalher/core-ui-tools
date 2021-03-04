@@ -1,12 +1,14 @@
 class Hydrator
 {
   constructor({
+    render,
     html,
     hydrator,
     locator
   })
   {
     this.html     = html
+    this.render   = render
     this.hydrator = hydrator
     this.locator  = locator
   }

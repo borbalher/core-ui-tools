@@ -2,7 +2,7 @@ describe('src/common/ui/composer/select-input', () =>
 {
   const
   expect      = require('chai').expect,
-  CoreFactory = require('node/core/factory')
+  CoreFactory = require('server/core/factory')
 
   let
   core,
@@ -14,7 +14,7 @@ describe('src/common/ui/composer/select-input', () =>
     const coreFactory = new CoreFactory()
 
     core        = coreFactory.create([
-      { name: 'node/core/dictionary' },
+      { name: 'server/core/dictionary' },
       { name: 'common/core/schema' },
       { name: 'common/ui/composer' }
     ])

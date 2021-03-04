@@ -1,11 +1,11 @@
 const
-CoreFactory = require('node/core/factory'),
+CoreFactory = require('server/core/factory'),
 coreFactory = new CoreFactory(),
 core        = coreFactory.create({
   'schema'              : require('schema/config'),
-  'core/resource'       : require('node/core/resource/config'),
-  'core/process'        : require('node/core/process/config'),
-  'core/http/server'    : require('node/core/http/server/config'),
+  'core/resource'       : require('server/core/resource/config'),
+  'core/process'        : require('server/core/process/config'),
+  'core/http/server'    : require('server/core/http/server/config'),
   'server/view'         : require('server/view/config'),
   'infrastructure/bus'  : require('common/infrastructure/bus/config'),
   'core/event/composer' : require('common/core/event/composer/config'),

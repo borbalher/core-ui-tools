@@ -1,5 +1,5 @@
 const
-Dispatcher = require('node/core/http/server/dispatcher'),
+Dispatcher = require('server/core/http/server/dispatcher'),
 { html }   = require('htm/preact')
 
 /**

@@ -2,7 +2,7 @@ describe('infrastructure/bus', () =>
 {
   const
   expect      = require('chai').expect,
-  CoreFactory = require('node/core/factory')
+  CoreFactory = require('server/core/factory')
 
   let
   core,

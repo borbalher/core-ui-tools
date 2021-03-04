@@ -22,10 +22,10 @@ describe('resource dispatcher integration tests', async () =>
       { name: 'common/core/object' },
       { name: 'common/core/string' },
       { name: 'common/core/data-structure' },
-      { name: 'node/core/process' },
+      { name: 'server/core/process' },
       { name: 'common/infrastructure/bus' },
-      { name: 'node/core/http/server' },
-      { name: 'node/core/resource', path: __dirname },
+      { name: 'server/core/http/server' },
+      { name: 'server/core/resource', path: __dirname },
       { name: 'test', path: path.resolve(__dirname, './test') }
     ])
 

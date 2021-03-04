@@ -1,17 +1,7 @@
-const Router = require('preact-router')
-
-module.exports = ({ html, Component, ToDo, Clock, Counter }) =>
+module.exports = ({ html, ToDo }) =>
 {
-  return class extends Component
+  return ({}) =>
   {
-    render({ url })
-    {
-      return html`
-        <${Router} url=${url}>
-          <${ToDo}    path="/to-dos"/>
-          <${Clock}   path="/clock" />
-          <${Counter} path="/counter" />
-        </${Router}>`
-    }
+    return html`<${ToDo}/>`
   }
 }

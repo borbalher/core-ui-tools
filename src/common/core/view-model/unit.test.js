@@ -3,7 +3,7 @@
 // {
 //   const
 //   expect      = require('chai').expect,
-//   CoreFactory = require('node/core/factory')
+//   CoreFactory = require('server/core/factory')
 
 //   let
 //   bus,
@@ -17,7 +17,7 @@
 //     core = coreFactory.create([
 //       { name: 'common/core/bootstrap' },
 //       { name: 'common/core/schema' },
-//       { name: 'node/core/schema/bootstrap' },
+//       { name: 'server/core/schema/bootstrap' },
 //       { name: 'common/core/view-model' },
 //       { name: 'common/core/listener' },
 //       { name: 'common/ui/composer/page' },

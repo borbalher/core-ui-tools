@@ -11,9 +11,9 @@ class HydratorLocator
   {
     const
     { html }    = require('htm/preact'),
-    { hydrate } = require('preact')
+    { hydrate, render } = require('preact')
 
-    return new Hydrator({ html, hydrator: hydrate, locator: this.locator })
+    return new Hydrator({ html, hydrator: hydrate, render, locator: this.locator })
   }
 }
 

@@ -1,5 +1,3 @@
-const Dynamic = require('.')
-
 class DynamicLocator
 {
   constructor(locator)
@@ -12,6 +10,7 @@ class DynamicLocator
     const
     { useRef }    = require('preact/hooks'),
     { html }      = require('htm/preact'),
+    Dynamic       = require('.'),
     useNearScreen = this.locator.locate('view/hooks/near-screen')
 
     return Dynamic({ html, useRef, useNearScreen })

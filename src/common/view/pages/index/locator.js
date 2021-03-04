@@ -1,6 +1,4 @@
-const Index = require('.')
-
-class ClockLocator
+class IndexLocator
 {
   constructor(locator)
   {
@@ -10,13 +8,12 @@ class ClockLocator
   locate()
   {
     const
-    { html, Component } = require('htm/preact'),
-    ToDo                = this.locator.locate('view/component/todos'),
-    Clock               = this.locator.locate('view/component/clock'),
-    Counter             = this.locator.locate('view/component/counter')
+    Index    = require('.'),
+    { html } = require('htm/preact'),
+    ToDo     = this.locator.locate('view/component/todos')
 
-    return Index({ html, Component, ToDo, Clock, Counter })
+    return Index({ html, ToDo })
   }
 }
 
-module.exports = ClockLocator
+module.exports = IndexLocator

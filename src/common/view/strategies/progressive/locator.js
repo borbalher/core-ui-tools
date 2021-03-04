@@ -1,5 +1,3 @@
-const Progressive = require('.')
-
 class ProgressiveLocator
 {
   constructor(locator)
@@ -10,11 +8,12 @@ class ProgressiveLocator
   locate()
   {
     const
+    Progressive               = require('.'),
     { useEffect, useRef }     = require('preact/hooks'),
     { html, render, hydrate } = require('htm/preact'),
     useNearScreen             = this.locator.locate('view/hooks/near-screen'),
     EMPTY_HTML                = { __html: '' },
-    isServer                  = typeof window === 'undefined'
+    isServer                  = process.env.PLATFORM === 'node'
 
     return Progressive({ isServer, html, useRef, useEffect, render, hydrate, useNearScreen, EMPTY_HTML })
   }

@@ -3,7 +3,7 @@ describe('core/deepfind', () =>
 {
   const
   expect      = require('chai').expect,
-  CoreFactory = require('node/core/factory')
+  CoreFactory = require('server/core/factory')
 
   let
   core,

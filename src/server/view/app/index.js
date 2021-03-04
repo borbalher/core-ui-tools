@@ -1,10 +1,12 @@
-module.exports =  ({ html, BOTS_USER_AGENTS, BotContext }) =>
+module.exports =  ({ html, BOTS_USER_AGENTS, BotContext, StaticRouter  }) =>
 {
   const App = ({ Component, isBot, props }) =>
   {
     return html`
     <${BotContext.Provider} value=${isBot}>
-      <${Component} ...${props}/>
+      <${StaticRouter}>
+        <${Component} ...${props}/>
+      </${StaticRouter}>
     </${BotContext.Provider}>`
   }
 

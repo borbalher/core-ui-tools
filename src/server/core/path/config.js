@@ -3,7 +3,7 @@ module.exports = {
   {
     locator :
     {
-      'core/node/path' : __dirname
+      'core/path' : __dirname
     }
   }
 }

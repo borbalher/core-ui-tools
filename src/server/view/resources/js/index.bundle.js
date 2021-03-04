@@ -327,7 +327,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
@@ -863,13 +863,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var Hydrator = /*#__PURE__*/function () {
   function Hydrator(_ref) {
-    var html = _ref.html,
+    var render = _ref.render,
+        html = _ref.html,
         hydrator = _ref.hydrator,
         locator = _ref.locator;
 
     _classCallCheck(this, Hydrator);
 
     this.html = html;
+    this.render = render;
     this.hydrator = hydrator;
     this.locator = locator;
   }
@@ -920,11 +922,13 @@ var HydratorLocator = /*#__PURE__*/function () {
       var _require = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
           html = _require.html,
           _require2 = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js"),
-          hydrate = _require2.hydrate;
+          hydrate = _require2.hydrate,
+          render = _require2.render;
 
       return new Hydrator({
         html: html,
         hydrator: hydrate,
+        render: render,
         locator: this.locator
       });
     }
@@ -1140,7 +1144,7 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
@@ -1172,7 +1176,7 @@ var AssociativeArray = /*#__PURE__*/function () {
   }, {
     key: "removeItem",
     value: function removeItem(key) {
-      this.items["delete"](key);
+      this.items.delete(key);
     }
   }, {
     key: "clear",
@@ -1692,7 +1696,7 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
@@ -1813,7 +1817,7 @@ module.exports = DeepFind;
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
@@ -2087,7 +2091,7 @@ var EventEmitter = /*#__PURE__*/function () {
 
     _classCallCheck(this, EventEmitter);
 
-    this[Symbol["for"]('id')] = id;
+    this[Symbol.for('id')] = id;
     this.console = console;
     this.listeners = new MultipleAssociativeArray();
     this.warnings = [];
@@ -2258,7 +2262,7 @@ var EventEmitter = /*#__PURE__*/function () {
 
                 if (listeners.length === 0 && !this.warnings.includes(name)) {
                   this.warnings.push(name);
-                  this.console.warning("event: \"".concat(name, "\" does not have a defined listener in channel ").concat(this[Symbol["for"]('id')]));
+                  this.console.warning("event: \"".concat(name, "\" does not have a defined listener in channel ").concat(this[Symbol.for('id')]));
                 }
 
                 promises = listeners.map(function (listener) {
@@ -4207,7 +4211,7 @@ module.exports = ToDosComponentLocator;
 /***/ ((module) => {
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n      <head>\n      </head>\n      <body>\n        <div id=\"app\" data-page=", ">", "</div>\n        <script type=\"text/javascript\" dangerouslySetInnerHTML=", "/>\n        <script type=\"text/javascript\" src=\"/resources/js/vendors.bundle.js?", "\"></script>\n        <script type=\"text/javascript\" src=\"/resources/js/polyfills.bundle.js?", "\"></script>\n        <script type=\"text/javascript\" src=\"/resources/js/", ".bundle.js?", "\"></script>\n      </body>"]);
+  var data = _taggedTemplateLiteral(["\n      <head>\n      </head>\n      <body>\n        <div id=\"app\" data-page=", ">", "</div>\n        <script type=\"text/javascript\" dangerouslySetInnerHTML=", "/>\n        <script type=\"text/javascript\" dangerouslySetInnerHTML=", "/>\n        <script type=\"text/javascript\" src=\"/resources/js/vendors.bundle.js?", "\"></script>\n        <script type=\"text/javascript\" src=\"/resources/js/polyfills.bundle.js?", "\"></script>\n        <script type=\"text/javascript\" src=\"/resources/js/", ".bundle.js?", "\"></script>\n      </body>"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -4243,16 +4247,27 @@ var Base = /*#__PURE__*/function () {
       };
     }
   }, {
+    key: "serializeState",
+    value: function serializeState(_ref3) {
+      var _ref3$state = _ref3.state,
+          state = _ref3$state === void 0 ? {} : _ref3$state;
+      return {
+        __html: "window._STATE_=".concat(JSON.stringify(state))
+      };
+    }
+  }, {
     key: "render",
-    value: function render(_ref3) {
-      var app = _ref3.app,
-          _ref3$props = _ref3.props,
-          props = _ref3$props === void 0 ? {} : _ref3$props,
-          page = _ref3.page,
-          _ref3$hash = _ref3.hash,
-          hash = _ref3$hash === void 0 ? process.env.HASH : _ref3$hash;
+    value: function render(_ref4) {
+      var app = _ref4.app,
+          props = _ref4.props,
+          page = _ref4.page,
+          _ref4$hash = _ref4.hash,
+          hash = _ref4$hash === void 0 ? process.env.HASH : _ref4$hash,
+          state = _ref4.state;
       return this.html(_templateObject(), page, app, this.serializeProps({
         props: props
+      }), this.serializeState({
+        state: state
       }), hash, hash, page, hash);
     }
   }]);
@@ -4324,7 +4339,12 @@ module.exports = {
 /*!**********************************************!*\
   !*** ./src/common/view/entrypoints/index.js ***!
   \**********************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _styles_buttons_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../styles/buttons.scss */ "./src/common/view/styles/buttons.scss");
+
 
 var Application = __webpack_require__(/*! browser/core/application */ "./src/browser/core/application/index.js"),
     app = new Application({
@@ -4509,12 +4529,10 @@ module.exports = {
 /*!**********************************************!*\
   !*** ./src/common/view/pages/index/index.js ***!
   \**********************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+/***/ ((module) => {
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n        <", " url=", ">\n          <", "    path=\"/to-dos\"/>\n          <", "   path=\"/clock\" />\n          <", " path=\"/counter\" />\n        </", ">"]);
+  var data = _taggedTemplateLiteral(["<", "/>"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -4525,55 +4543,16 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var Router = __webpack_require__(/*! preact-router */ "./node_modules/preact-router/dist/preact-router.es.js");
+function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
 
 module.exports = function (_ref) {
   var html = _ref.html,
-      Component = _ref.Component,
-      ToDo = _ref.ToDo,
-      Clock = _ref.Clock,
-      Counter = _ref.Counter;
-  return /*#__PURE__*/function (_Component) {
-    _inherits(_class, _Component);
+      ToDo = _ref.ToDo;
+  return function (_ref2) {
+    _objectDestructuringEmpty(_ref2);
 
-    var _super = _createSuper(_class);
-
-    function _class() {
-      _classCallCheck(this, _class);
-
-      return _super.apply(this, arguments);
-    }
-
-    _createClass(_class, [{
-      key: "render",
-      value: function render(_ref2) {
-        var url = _ref2.url;
-        return html(_templateObject(), Router, url, ToDo, Clock, Counter, Router);
-      }
-    }]);
-
-    return _class;
-  }(Component);
+    return html(_templateObject(), ToDo);
+  };
 };
 
 /***/ }),
@@ -4590,39 +4569,32 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var Index = __webpack_require__(/*! . */ "./src/common/view/pages/index/index.js");
-
-var ClockLocator = /*#__PURE__*/function () {
-  function ClockLocator(locator) {
-    _classCallCheck(this, ClockLocator);
+var IndexLocator = /*#__PURE__*/function () {
+  function IndexLocator(locator) {
+    _classCallCheck(this, IndexLocator);
 
     this.locator = locator;
   }
 
-  _createClass(ClockLocator, [{
+  _createClass(IndexLocator, [{
     key: "locate",
     value: function locate() {
-      var _require = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
+      var Index = __webpack_require__(/*! . */ "./src/common/view/pages/index/index.js"),
+          _require = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
           html = _require.html,
-          Component = _require.Component,
-          ToDo = this.locator.locate('view/component/todos'),
-          Clock = this.locator.locate('view/component/clock'),
-          Counter = this.locator.locate('view/component/counter');
+          ToDo = this.locator.locate('view/component/todos');
 
       return Index({
         html: html,
-        Component: Component,
-        ToDo: ToDo,
-        Clock: Clock,
-        Counter: Counter
+        ToDo: ToDo
       });
     }
   }]);
 
-  return ClockLocator;
+  return IndexLocator;
 }();
 
-module.exports = ClockLocator;
+module.exports = IndexLocator;
 
 /***/ }),
 
@@ -5051,7 +5023,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -5274,7 +5246,7 @@ var SchemaComposer = /*#__PURE__*/function () {
           data = _ref7.data,
           removeUndefinedProperties = _ref7.removeUndefinedProperties;
       var options = schema[_attribute];
-      if ('default' in options && data === undefined) data = options["default"]; // if optional, and undefined or null, then we don't need to filter or validate
+      if ('default' in options && data === undefined) data = options.default; // if optional, and undefined or null, then we don't need to filter or validate
 
       if (options.optional === true && data === undefined) return data;
       if (options.nullable === true && data === null) return data;
@@ -5338,7 +5310,7 @@ var SchemaComposer = /*#__PURE__*/function () {
 
       if ('@meta' in schema) {
         if ('extends' in schema['@meta'] || 'extend' in schema['@meta']) {
-          var extendList = schema['@meta']["extends"] || schema['@meta'].extend;
+          var extendList = schema['@meta'].extends || schema['@meta'].extend;
           var extendedSchema = {};
 
           var _iterator2 = _createForOfIteratorHelper(Array.isArray(extendList) ? extendList : [extendList]),
@@ -5649,7 +5621,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/component'
+    extends: 'entity/component'
   },
   text: {
     type: 'string',
@@ -5688,11 +5660,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/input-group'
+    extends: 'entity/input-group'
   },
   value: {
     type: 'boolean',
-    "default": false
+    default: false
   }
 };
 
@@ -5727,7 +5699,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/tree-node'
+    extends: 'entity/tree-node'
   },
   template: {
     type: 'string',
@@ -5739,7 +5711,7 @@ var dto = {
   },
   renderonchange: {
     type: 'boolean',
-    "default": true
+    default: true
   },
   classes: {
     optional: true,
@@ -5750,13 +5722,13 @@ var dto = {
   {
     type: 'schema',
     collection: true,
-    "default": [],
+    default: [],
     schema: 'value/binding'
   },
   listeners: {
     type: 'schema',
     collection: true,
-    "default": [],
+    default: [],
     schema: 'value/listener'
   },
   options: {
@@ -5767,7 +5739,7 @@ var dto = {
     type: 'schema',
     schema: 'value/dataset',
     collection: true,
-    "default": []
+    default: []
   }
 };
 
@@ -5802,11 +5774,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/input-group'
+    extends: 'entity/input-group'
   },
   autocomplete: {
     type: 'boolean',
-    "default": false
+    default: false
   },
   max: {
     type: 'string',
@@ -5849,7 +5821,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/component'
+    extends: 'entity/component'
   },
   code: {
     type: 'string',
@@ -5894,7 +5866,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/component'
+    extends: 'entity/component'
   },
   legend: {
     type: 'string',
@@ -5902,7 +5874,7 @@ var dto = {
   },
   disabled: {
     type: 'boolean',
-    "default": false
+    default: false
   },
   formId: {
     type: 'string',
@@ -5942,7 +5914,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/component'
+    extends: 'entity/component'
   },
   title: {
     type: 'string',
@@ -5950,15 +5922,15 @@ var dto = {
   },
   isValid: {
     type: 'boolean',
-    "default": false
+    default: false
   },
   data: {
     type: 'json',
-    "default": {}
+    default: {}
   },
   disabled: {
     type: 'boolean',
-    "default": false
+    default: false
   } // inputs :
   // {
   //   type       : 'schema',
@@ -6012,19 +5984,19 @@ var dto = {
   },
   isDirected: {
     type: 'boolean',
-    "default": false
+    default: false
   },
   nodes: {
     type: 'schema',
     schema: 'entity/node',
     collection: true,
-    "default": []
+    default: []
   },
   edges: {
     type: 'schema',
     schema: 'value/edge',
     collection: true,
-    "default": []
+    default: []
   }
 };
 
@@ -6059,7 +6031,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/input'
+    extends: 'entity/input'
   },
   label: {
     type: 'string',
@@ -6073,7 +6045,7 @@ var dto = {
   },
   big: {
     type: 'boolean',
-    "default": false
+    default: false
   }
 };
 
@@ -6108,7 +6080,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/component'
+    extends: 'entity/component'
   },
   attribute: {
     type: 'string',
@@ -6126,15 +6098,15 @@ var dto = {
   },
   required: {
     type: 'boolean',
-    "default": true
+    default: true
   },
   disabled: {
     type: 'boolean',
-    "default": false
+    default: false
   },
   readonly: {
     type: 'boolean',
-    "default": false
+    default: false
   }
 };
 
@@ -6169,11 +6141,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/node'
+    extends: 'entity/node'
   },
   submit: {
     type: 'boolean',
-    "default": false
+    default: false
   }
 };
 
@@ -6208,7 +6180,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/component'
+    extends: 'entity/component'
   },
   headerText: {
     type: 'string',
@@ -6221,13 +6193,13 @@ var dto = {
   },
   isOpen: {
     type: 'boolean',
-    "default": false
+    default: false
   },
   actions: {
     type: 'schema',
     schema: 'entity/modal-action',
     collection: true,
-    "default": []
+    default: []
   }
 };
 
@@ -6302,11 +6274,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/component'
+    extends: 'entity/component'
   },
   isBlocked: {
     type: 'boolean',
-    "default": false
+    default: false
   }
 };
 
@@ -6341,7 +6313,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/component'
+    extends: 'entity/component'
   },
   title: {
     type: 'string',
@@ -6354,12 +6326,12 @@ var dto = {
   script: {
     type: 'string',
     collection: true,
-    "default": []
+    default: []
   },
   css: {
     type: 'string',
     collection: true,
-    "default": []
+    default: []
   }
 };
 
@@ -6394,43 +6366,43 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/component'
+    extends: 'entity/component'
   },
   totalElements: {
     type: 'integer',
     min: 0,
-    "default": 0
+    default: 0
   },
   totalPages: {
     type: 'integer',
     min: 0,
-    "default": 0
+    default: 0
   },
   limit: {
     type: 'integer',
     min: 1,
-    "default": 1
+    default: 1
   },
   offset: {
     type: 'integer',
     min: 2,
-    "default": 2
+    default: 2
   },
   selectedPage: {
     type: 'integer',
     min: 1,
-    "default": 1
+    default: 1
   },
   firstPage: {
     type: 'integer',
     min: 1,
     max: 1,
-    "default": 1
+    default: 1
   },
   pages: {
     type: 'integer',
     collection: true,
-    "default": []
+    default: []
   },
   lastPage: {
     type: 'integer',
@@ -6438,11 +6410,11 @@ var dto = {
   },
   leftOverflow: {
     type: 'boolean',
-    "default": false
+    default: false
   },
   rightOverflow: {
     type: 'boolean',
-    "default": false
+    default: false
   }
 };
 
@@ -6477,7 +6449,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/input-group'
+    extends: 'entity/input-group'
   },
   value: {
     type: 'string',
@@ -6485,7 +6457,7 @@ var dto = {
   },
   autocomplete: {
     type: 'boolean',
-    "default": false
+    default: false
   },
   maxLength: {
     type: 'integer',
@@ -6532,7 +6504,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/input'
+    extends: 'entity/input'
   },
   placeholder: {
     type: 'string',
@@ -6571,7 +6543,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/input-group'
+    extends: 'entity/input-group'
   },
   value: {
     type: 'string',
@@ -6581,7 +6553,7 @@ var dto = {
     type: 'schema',
     schema: 'entity/radio-button-input',
     collection: true,
-    "default": []
+    default: []
   }
 };
 
@@ -6616,7 +6588,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/node'
+    extends: 'entity/node'
   }
 };
 
@@ -6651,13 +6623,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/component'
+    extends: 'entity/component'
   },
   fieldsets: {
     type: 'string',
     'not-empty': true,
     collection: true,
-    "default": []
+    default: []
   },
   selectedFieldset: {
     type: 'string',
@@ -6700,11 +6672,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/input-group'
+    extends: 'entity/input-group'
   },
   autocomplete: {
     type: 'boolean',
-    "default": false
+    default: false
   },
   size: {
     type: 'integer',
@@ -6713,19 +6685,19 @@ var dto = {
   },
   multiple: {
     type: 'boolean',
-    "default": false
+    default: false
   },
   items: {
     type: 'schema',
     schema: 'entity/select-input-item',
     collection: true,
-    "default": []
+    default: []
   },
   value: {
     type: 'string',
     optional: true,
     collection: true,
-    "default": []
+    default: []
   },
   placeholder: {
     type: 'string',
@@ -6764,7 +6736,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/node'
+    extends: 'entity/node'
   }
 };
 
@@ -6799,27 +6771,27 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/component'
+    extends: 'entity/component'
   },
   hasActions: {
     type: 'boolean',
-    "default": false
+    default: false
   },
   formatted: {
     type: 'boolean',
-    "default": false
+    default: false
   },
   condensed: {
     type: 'boolean',
-    "default": false
+    default: false
   },
   isExpandable: {
     type: 'boolean',
-    "default": false
+    default: false
   },
   showHeaders: {
     type: 'boolean',
-    "default": true
+    default: true
   },
   panelColspan: {
     type: 'integer',
@@ -6829,24 +6801,24 @@ var dto = {
     type: 'schema',
     schema: 'value/partial',
     collection: true,
-    "default": []
+    default: []
   },
   rows: {
     type: 'json',
     collection: true,
-    "default": []
+    default: []
   },
   actions: {
     type: 'schema',
     schema: 'value/partial',
     collection: true,
-    "default": []
+    default: []
   },
   panels: {
     type: 'schema',
     schema: 'entity/component',
     collection: true,
-    "default": []
+    default: []
   }
 };
 
@@ -6881,7 +6853,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/input-group'
+    extends: 'entity/input-group'
   },
   value: {
     type: 'string',
@@ -6889,7 +6861,7 @@ var dto = {
   },
   autocomplete: {
     type: 'boolean',
-    "default": false
+    default: false
   },
   maxLength: {
     type: 'integer',
@@ -6936,7 +6908,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/input-group'
+    extends: 'entity/input-group'
   },
   value: {
     type: 'string',
@@ -6991,19 +6963,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/component'
+    extends: 'entity/component'
   },
   showWhenToggled: {
     type: 'boolean',
-    "default": true
+    default: true
   },
   isToggled: {
     type: 'boolean',
-    "default": false
+    default: false
   },
   isVisible: {
     type: 'boolean',
-    "default": false
+    default: false
   },
   toggle: {
     type: 'schema',
@@ -7052,7 +7024,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var dto = {
   '@meta': {
-    "extends": 'entity/node'
+    extends: 'entity/node'
   },
   parentId: {
     type: 'string',
@@ -7093,12 +7065,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var dto = {
   '@meta': {
     immutable: false,
-    "extends": 'entity/graph'
+    extends: 'entity/graph'
   },
   isDirected: {
     type: 'boolean',
-    "enum": [true],
-    "default": true
+    enum: [true],
+    default: true
   },
   root: {
     type: 'string',
@@ -7129,7 +7101,7 @@ module.exports = /*#__PURE__*/function () {
   \********************************************/
 /***/ ((module) => {
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
@@ -7235,7 +7207,7 @@ module.exports = SchemaFilterBooleanLocator;
   \****************************************/
 /***/ ((module) => {
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
@@ -7342,7 +7314,7 @@ module.exports = SchemaFilterCsvLocator;
   \********************************************/
 /***/ ((module) => {
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
@@ -7444,7 +7416,7 @@ module.exports = SchemaFilterDecimalLocator;
   \********************************************/
 /***/ ((module) => {
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
@@ -7678,7 +7650,7 @@ module.exports = MissingSchemaDefinitionError;
   \*******************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
@@ -7791,7 +7763,7 @@ module.exports = SchemaFilterSchemaLocator;
   \*******************************************/
 /***/ ((module) => {
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
@@ -7900,7 +7872,7 @@ module.exports = SchemaFilterStringLocator;
   \**********************************************/
 /***/ ((module) => {
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
@@ -8224,9 +8196,9 @@ var SchemaValidatorCsv = /*#__PURE__*/function () {
       if (options['not-empty'] && !data.length) throw new InvalidCsvError("Must not be empty");
       if ('min' in options && data.length < options.min) throw new InvalidCsvError("Length of values must be minimum: \"".concat(options.min, "\" long"));
       if ('max' in options && data.length > options.max) throw new InvalidCsvError("Length of values can't be more then: \"".concat(options.max, "\" long"));
-      if (options["enum"] && !data.every(function (value) {
-        return options["enum"].includes(value);
-      })) throw new InvalidCsvError("Expected all values of the csv to be one of the enumeral values: \"".concat(options["enum"], "\""));
+      if (options.enum && !data.every(function (value) {
+        return options.enum.includes(value);
+      })) throw new InvalidCsvError("Expected all values of the csv to be one of the enumeral values: \"".concat(options.enum, "\""));
       if (options.uppercase && !data.every(function (value) {
         return value === data.toUpperCase();
       })) throw new InvalidCsvError("Upper case string expected");
@@ -8369,7 +8341,7 @@ var SchemaValidatorDecimal = /*#__PURE__*/function () {
       if ('max' in options && data > options.max) throw new InvalidDecimalError("Decimal can't be more then: \"".concat(options.max, "\""));
       if ('gt' in options && data > options.gt) throw new InvalidDecimalError("Decimal must be more then: \"".concat(options.gt, "\""));
       if ('lt' in options && data < options.lt) throw new InvalidDecimalError("Decimal must be less then: \"".concat(options.lt, "\""));
-      if (options["enum"] && !options["enum"].includes(data)) throw new InvalidDecimalError("Expected one of the enumeral values: \"".concat(options["enum"], "\""));
+      if (options.enum && !options.enum.includes(data)) throw new InvalidDecimalError("Expected one of the enumeral values: \"".concat(options.enum, "\""));
     }
   }]);
 
@@ -8507,7 +8479,7 @@ var SchemaValidatorInteger = /*#__PURE__*/function () {
       if ('max' in options && data > options.max) throw new InvalidIntegerError("Integer can't be more then: \"".concat(options.max, "\""));
       if ('gt' in options && data < options.gt) throw new InvalidIntegerError("Integer must be more then: \"".concat(options.gt, "\""));
       if ('lt' in options && data > options.lt) throw new InvalidIntegerError("Integer must be less then: \"".concat(options.lt, "\""));
-      if (options["enum"] && !options["enum"].includes(data)) throw new InvalidIntegerError("Expected one of the enumeral values: \"".concat(options["enum"], "\""));
+      if (options.enum && !options.enum.includes(data)) throw new InvalidIntegerError("Expected one of the enumeral values: \"".concat(options.enum, "\""));
     }
   }]);
 
@@ -8976,7 +8948,7 @@ var SchemaValidatorString = /*#__PURE__*/function () {
       if (options['not-empty'] && !data.length) throw new InvalidStringError("Must not be empty");
       if ('min' in options && data.length < options.min) throw new InvalidStringError("String length must be minimum: \"".concat(options.min, "\" long"));
       if ('max' in options && data.length > options.max) throw new InvalidStringError("String length can't be more then: \"".concat(options.max, "\" long"));
-      if (options["enum"] && !options["enum"].includes(data)) throw new InvalidStringError("Expected one of the enumeral values: \"".concat(options["enum"], "\""));
+      if (options.enum && !options.enum.includes(data)) throw new InvalidStringError("Expected one of the enumeral values: \"".concat(options.enum, "\""));
       if (options.uppercase && data !== data.toUpperCase()) throw new InvalidStringError("Upper case string expected");
       if (options.lowercase && data !== data.toLowerCase()) throw new InvalidStringError("Lower case string expected");
     }
@@ -9115,7 +9087,7 @@ var SchemaValidatorTimestamp = /*#__PURE__*/function () {
       if ('max' in options && date.getTime() > new Date(options.max).getTime()) throw new InvalidTimestampError("Timestamp can't be more then: \"".concat(options.max, "\""));
       if ('gt' in options && date.getTime() > new Date(options.gt).getTime()) throw new InvalidTimestampError("Timestamp must be more then: \"".concat(options.gt, "\" long"));
       if ('lt' in options && date.getTime() < new Date(options.lt).getTime()) throw new InvalidTimestampError("Timestamp must be less then: \"".concat(options.lt, "\" long"));
-      if (options["enum"] && !options["enum"].includes(data)) throw new InvalidTimestampError("Expected one of the enumeral values: \"".concat(options["enum"], "\""));
+      if (options.enum && !options.enum.includes(data)) throw new InvalidTimestampError("Expected one of the enumeral values: \"".concat(options.enum, "\""));
     }
   }]);
 
@@ -9193,7 +9165,7 @@ var dto = {
   },
   dispatch: {
     type: 'boolean',
-    "default": false
+    default: false
   },
   domEventMapper: {
     type: 'string',
@@ -9202,11 +9174,11 @@ var dto = {
   },
   preventDefault: {
     type: 'boolean',
-    "default": false
+    default: false
   },
   stopPropagation: {
     type: 'boolean',
-    "default": false
+    default: false
   }
 };
 
@@ -9392,7 +9364,7 @@ var dto = {
   },
   dispatch: {
     type: 'boolean',
-    "default": false
+    default: false
   }
 };
 
@@ -9451,6 +9423,63 @@ module.exports = /*#__PURE__*/function () {
   return _class;
 }();
 
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/common/view/styles/buttons.scss":
+/*!**************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/common/view/styles/buttons.scss ***!
+  \**************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/cssWithMappingToString.js */ "./node_modules/css-loader/dist/runtime/cssWithMappingToString.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "button {\n  -webkit-appearance: none;\n  border: 0;\n  padding: 0;\n  background: none;\n  outline: 0;\n  cursor: pointer; }\n\n.button {\n  text-decoration: none;\n  padding: .375rem 2rem;\n  margin: 0 .5rem 1rem;\n  font-weight: 800;\n  font-size: 1.125rem;\n  line-height: 1.5rem;\n  box-sizing: border-box;\n  max-width: 100%;\n  overflow-wrap: break-word;\n  white-space: normal;\n  border-radius: 1.25rem;\n  cursor: pointer;\n  border: 2px solid #000;\n  display: inline-block;\n  transition: .3s; }\n  .button--xl {\n    padding: 1.125rem 2.5rem;\n    margin: 0 1rem 1.5rem;\n    font-size: 1.5rem;\n    line-height: 1.5rem;\n    border-radius: 2rem; }\n  .button--xs {\n    padding: .25rem 1rem;\n    margin: 0 .5rem .75rem;\n    font-size: .875rem;\n    line-height: .875rem;\n    border-radius: .75rem; }\n  .button--filled {\n    color: #fff;\n    background-color: #000; }\n    .button--filled:hover {\n      color: #000;\n      background-color: #fff; }\n  .button--wired {\n    color: #000;\n    background-color: transparent; }\n    .button--wired:hover {\n      color: #fff;\n      background-color: #000; }\n    .button--wired.button--negative {\n      color: #fff;\n      background-color: transparent;\n      border-color: #fff; }\n      .button--wired.button--negative:hover {\n        color: #000;\n        background-color: #fff; }\n  .button[disabled], .button[disabled]:hover {\n    opacity: .65;\n    cursor: not-allowed; }\n  .button--round {\n    border-radius: 50%;\n    font-size: 1.25rem;\n    line-height: 1.5rem;\n    padding: .375rem .625rem .375rem .5rem;\n    width: 2.5rem; }\n    .button--round.button--xl {\n      font-size: 1.75rem;\n      line-height: 2rem;\n      width: 3rem;\n      padding: .875rem 1.875rem; }\n    .button--round.button--xs {\n      font-size: .75rem;\n      line-height: 1.25rem;\n      width: 2rem;\n      padding: .25rem .625rem .25rem .5rem; }\n  .button--in-form {\n    margin-top: .75rem; }\n\n.button--secondary {\n  color: #fc7a00;\n  margin: 0 .5rem;\n  padding: .375rem; }\n  .button--secondary:hover {\n    text-decoration: underline; }\n\nbutton > * {\n  pointer-events: none; }\n", "",{"version":3,"sources":["webpack://./src/common/view/styles/buttons.scss","webpack://./src/common/view/styles/_colors.scss"],"names":[],"mappings":"AAEA;EACE,wBAAwB;EACxB,SAAS;EACT,UAAU;EACV,gBAAgB;EAChB,UAAU;EACV,eAAe,EAAA;;AAGjB;EACE,qBAAqB;EACrB,qBAAqB;EACrB,oBAAoB;EACpB,gBAAgB;EAChB,mBAAmB;EACnB,mBAAmB;EACnB,sBAAsB;EACtB,eAAe;EACf,yBAAyB;EACzB,mBAAmB;EACnB,sBAAsB;EACtB,eAAe;EACf,sBCPU;EDQV,qBAAqB;EACrB,eAAe,EAAA;EAGf;IACE,wBAAwB;IACxB,qBAAqB;IACrB,iBAAiB;IACjB,mBAAmB;IACnB,mBAAmB,EAAA;EAGrB;IACE,oBAAoB;IACpB,sBAAsB;IACtB,kBAAkB;IAClB,oBAAoB;IACpB,qBAAqB,EAAA;EAIvB;IACE,WC7BQ;ID8BR,sBC/BQ,EAAA;ID6BT;MAKG,WClCM;MDmCN,sBClCM,EAAA;EDsCV;IACE,WCxCQ;IDyCR,6BAA6B,EAAA;IAF9B;MAIG,WC1CM;MD2CN,sBC5CM,EAAA;IDuCT;MASG,WC/CM;MDgDN,6BAA6B;MAC7B,kBCjDM,EAAA;MDsCT;QAcK,WCrDI;QDsDJ,sBCrDI,EAAA;EDPZ;IAmEI,YAAY;IACZ,mBAAmB,EAAA;EAGrB;IACE,kBAAkB;IAClB,kBAAkB;IAClB,mBAAmB;IACnB,sCAAsC;IACtC,aAAa,EAAA;IALd;MAQG,kBAAkB;MAClB,iBAAiB;MACjB,WAAW;MACX,yBAAyB,EAAA;IAX5B;MAeG,iBAAiB;MACjB,oBAAoB;MACpB,WAAW;MACX,oCAAoC,EAAA;EAKxC;IACE,kBAAkB,EAAA;;AAKtB;EACE,cC1FsB;ED2FtB,eAAe;EACf,gBAAgB,EAAA;EAHlB;IAMI,0BAA0B,EAAA;;AAI9B;EACE,oBAAoB,EAAA","sourcesContent":["@import '_colors.scss';\n\nbutton{\n  -webkit-appearance: none;\n  border: 0;\n  padding: 0;\n  background: none;\n  outline: 0;\n  cursor: pointer;\n}\n\n.button{\n  text-decoration: none;\n  padding: .375rem 2rem;\n  margin: 0 .5rem 1rem;\n  font-weight: 800;\n  font-size: 1.125rem;\n  line-height: 1.5rem;\n  box-sizing: border-box;\n  max-width: 100%;\n  overflow-wrap: break-word;\n  white-space: normal;\n  border-radius: 1.25rem;\n  cursor: pointer;\n  border: 2px solid $black;\n  display: inline-block;\n  transition: .3s;\n  \n  //button sizes\n  &--xl{\n    padding: 1.125rem 2.5rem;\n    margin: 0 1rem 1.5rem;\n    font-size: 1.5rem;\n    line-height: 1.5rem;\n    border-radius: 2rem;\n  }\n  \n  &--xs{\n    padding: .25rem 1rem;\n    margin: 0 .5rem .75rem;\n    font-size: .875rem;\n    line-height: .875rem;\n    border-radius: .75rem;\n  }\n  \n  //button styles\n  &--filled{\n    color: $white;\n    background-color: $black;\n\n    &:hover{\n      color: $black;\n      background-color: $white;\n    }\n  }\n  \n  &--wired{\n    color: $black;\n    background-color: transparent;\n    &:hover{  \n      color: $white;\n      background-color: $black;\n    }\n    \n    &.button--negative{\n      color: $white;\n      background-color: transparent;\n      border-color: $white;\n      \n      &:hover{\n        color: $black;\n        background-color: $white;\n      }\n    }\n    \n  }\n  \n  &[disabled], &[disabled]:hover{\n    opacity: .65;\n    cursor: not-allowed;\n  }\n  \n  &--round{\n    border-radius: 50%;\n    font-size: 1.25rem;\n    line-height: 1.5rem;\n    padding: .375rem .625rem .375rem .5rem;\n    width: 2.5rem;\n    \n    &.button--xl{\n      font-size: 1.75rem;\n      line-height: 2rem;\n      width: 3rem;\n      padding: .875rem 1.875rem;\n    }\n    \n    &.button--xs{\n      font-size: .75rem;\n      line-height: 1.25rem;\n      width: 2rem;\n      padding: .25rem .625rem .25rem .5rem;\n    }\n  }\n  \n  //others\n  &--in-form{\n    margin-top: .75rem;\n  }\n  \n}\n\n.button--secondary{\n  color: $primary-orange;\n  margin: 0 .5rem;\n  padding: .375rem;\n\n  &:hover{\n    text-decoration: underline;\n  }\n}\n\nbutton > *{\n  pointer-events: none;\n}","$font-body: 'Open Sans', sans-serif;\n$font-title: 'Monserrat', serif;\n\n$column-gutter: 0.75rem;\n$border-radius: 0.5rem;\n\n$palette: (\n  color-primary: #ec6907,\n  color-secondary: #3f9fca,\n  color-accent: #9775A5,\n\n  color-success: #569F69,\n  color-error: #e42328,\n\n  color-grey: #6f6f6e\n);\n\n$black: #000;\n$white: #fff;\n$grey-light: #dadada;\n$grey-dark: #495057;\n\n$primary-orange: #fc7a00;\n$primary-green: #1cb261;\n$primary-blue: #00c7ff;\n$primary-blue2: #3f9fca;\n$primary-purple: #734fd9;\n$primary-pink: #fa6199;\n$primary-yellow: #ffb500;\n\n$secondary-orange: #fc7a00;\n$secondary-green1: #2bc46e;\n$secondary-green2: #00f0b0;\n$secondary-green3: #00ffd4;\n$secondary-blue: #00e8ff;\n$secondary-purple: #6661f0;\n$secondary-pink1: #f53663;\n$secondary-pink2: #b14f83;\n\n$corporate-gradient: radial-gradient(102.6% 213.01% at -1.67% 90.17%,#1cb261 0,#1cb261 .01%,#00c7ff 32.29%,#734fd9 67.71%,#fa6199 100%);\n\n$body-copy: #333;\n$body-light: #fff;\n$secondary-bg: #e9ecef;\n$secondary-gradient: linear-gradient(90deg, rgba(0,192,255,1) 0%, rgba(10,139,228,1) 35%, rgba(163,44,223,1) 100%);\n$secondary-gradient-inverse: linear-gradient(90deg, rgba(163,44,223,1) 0%, rgba(10,139,228,1) 65%, rgba(0,192,255,1) 100%);\n\n@function delta-shades(\n  $tokens,\n  $colors: color-primary color-secondary color-accent color-success color-error color-grey,\n  $dark_shades: (D1: 25%, D2: 50%, D3: 70%, D4: 90%),\n  $light_shades: (L1: 30%, L2: 45%, L3: 60%, L4: 75%, L5: 90%)\n) {\n  $temp: ();\n\n  @each $color in $colors {\n\n    $temp: map-merge($temp, ('#{$color}': map-get($tokens, $color)));\n\n    @each $shade, $percentage in $dark_shades {\n      $temp: map-merge(\n        $temp,\n        ('#{$color}_#{$shade}': mix(black, map-get($tokens, $color), $percentage))\n      );\n    }\n\n    @each $shade, $percentage in $light_shades {\n      $temp: map-merge(\n        $temp,\n        ('#{$color}_#{$shade}': mix(white, map-get($tokens, $color), $percentage))\n      );\n    }\n  }\n\n  @return $temp;\n};\n\n$palette: delta-shades($palette);"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./src/common/view/styles/buttons.scss":
+/*!*********************************************!*\
+  !*** ./src/common/view/styles/buttons.scss ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_buttons_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js!../../../../node_modules/sass-loader/dist/cjs.js!./buttons.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/common/view/styles/buttons.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_buttons_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_buttons_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
 /***/ })
 
 /******/ 	});
@@ -9467,15 +9496,12 @@ module.exports = /*#__PURE__*/function () {
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
 /******/ 			id: moduleId,
-/******/ 			loaded: false,
+/******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Flag the module as loaded
-/******/ 		module.loaded = true;
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
@@ -9488,6 +9514,18 @@ module.exports = /*#__PURE__*/function () {
 /******/ 	// It's empty as some runtime module handles the default behavior
 /******/ 	__webpack_require__.x = x => {}
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => module['default'] :
+/******/ 				() => module;
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -9525,15 +9563,6 @@ module.exports = /*#__PURE__*/function () {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/node module decorator */
-/******/ 	(() => {
-/******/ 		__webpack_require__.nmd = (module) => {
-/******/ 			module.paths = [];
-/******/ 			if (!module.children) module.children = [];
-/******/ 			return module;
 /******/ 		};
 /******/ 	})();
 /******/ 	
