@@ -14,14 +14,14 @@ module.exports = {
     path     : path.resolve(__dirname, 'src/server/view/resources/js'),
     filename : '[name].bundle.js'
   },
-  resolve:
-  {
-    alias:
-    {
-      'react': 'preact-compat',
-      'react-dom': 'preact-compat',
-    }
-  },
+  // resolve:
+  // {
+  //   alias:
+  //   {
+  //     'react': 'preact-compat',
+  //     'react-dom': 'preact-compat',
+  //   }
+  // },
   mode    : 'development',
   devtool : 'source-map',
   module :

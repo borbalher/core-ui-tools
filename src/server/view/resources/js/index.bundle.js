@@ -3673,7 +3673,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n    <", " value=", ">\n      <", " ...", "/>\n    </", ">"]);
+  var data = _taggedTemplateLiteral(["\n    <", " value=", ">\n      <", " url=", ">\n        <", " ...", "/>\n      </", ">\n    </", ">"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -3687,13 +3687,14 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 module.exports = function (_ref) {
   var html = _ref.html,
       BOTS_USER_AGENTS = _ref.BOTS_USER_AGENTS,
-      BotContext = _ref.BotContext;
+      BotContext = _ref.BotContext,
+      Router = _ref.Router;
 
   var App = function App(_ref2) {
     var Component = _ref2.Component,
         isBot = _ref2.isBot,
         props = _ref2.props;
-    return html(_templateObject(), BotContext.Provider, isBot, Component, props, BotContext.Provider);
+    return html(_templateObject(), BotContext.Provider, isBot, Router, props.url, Component, props, Router, BotContext.Provider);
   };
 
   App.getServerSideProps = /*#__PURE__*/function () {
@@ -3759,7 +3760,8 @@ var App = __webpack_require__(/*! . */ "./src/common/view/app/index.js"),
     _require = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
     html = _require.html,
     _require2 = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js"),
-    createContext = _require2.createContext;
+    createContext = _require2.createContext,
+    Router = __webpack_require__(/*! preact-router */ "./node_modules/preact-router/dist/preact-router.es.js");
 
 var AppLocator = /*#__PURE__*/function () {
   function AppLocator(locator) {
@@ -3776,7 +3778,8 @@ var AppLocator = /*#__PURE__*/function () {
       return App({
         html: html,
         BOTS_USER_AGENTS: BOTS_USER_AGENTS,
-        BotContext: BotContext
+        BotContext: BotContext,
+        Router: Router
       });
     }
   }]);
