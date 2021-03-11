@@ -22,6 +22,7 @@
     "preact": "10.5.10",
     "preact-render-to-string": "5.1.12",
     "preact-router": "3.2.1",
+    "react-router-dom": "5.2.0",
     "regenerator-runtime": "0.13.7",
     "text-encoder-lite": "2.0.0",
     "uuid": "3.3.2"
@@ -31,6 +32,7 @@
     "@babel/cli": "7.12.10",
     "@babel/core": "7.12.10",
     "@babel/plugin-transform-modules-commonjs": "7.12.1",
+    "@babel/plugin-transform-react-jsx": "7.12.17",
     "@babel/preset-env": "7.12.11",
     "babel-loader": "8.0.6",
     "chai": "4.2.0",
@@ -48,7 +50,6 @@
     "node-sass": "5.0.0",
     "nodemon": "2.0.7",
     "nyc": "14.1.1",
-    "preact-compat": "3.19.0",
     "sass-loader": "10.1.1",
     "style-loader": "2.0.0",
     "tui-jsdoc-template": "1.2.2",
@@ -76,7 +77,7 @@
     "watch:build": "webpack --watch --progress --profile",
     "watch:server": "nodemon -r dotenv/config src/server/index.js",
     "dev": "npm-run-all --parallel watch:server watch:build",
-    "start": "node -r dotenv/config src/server/index.js",
+    "start": "babel-node -r dotenv/config src/server/index.js",
     "postinstall": "link-module-alias",
     "preinstall": "command -v link-module-alias && link-module-alias clean || true"
   },

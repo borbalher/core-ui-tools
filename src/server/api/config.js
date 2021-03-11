@@ -44,6 +44,16 @@ module.exports = {
             page     : 'index',
             input    : false
           },
+          'static-file-example' :
+          {
+            url         : '/static',
+            method      : 'get',
+            endpoint    : 'api/endpoint/static',
+            view        : 'core/http/server/view/static',
+            contentType : 'text/html',
+            file        : 'index.html',
+            input       : false
+          },
         }
       }
     }

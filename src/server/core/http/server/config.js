@@ -20,6 +20,7 @@ module.exports =
       'core/http/server/view/json'                               : require(`${__dirname}/view/json/locator`),
       'core/http/server/view/stream'                             : require(`${__dirname}/view/stream/locator`),
       'core/http/server/view/text'                               : require(`${__dirname}/view/text/locator`),
+      'core/http/server/view/static'                             : require(`${__dirname}/view/static/locator`),
       'core/http/server/view'                                    : require(`${__dirname}/view/locator`),
       'core/http/server'                                         : require(`${__dirname}/locator`),
     },

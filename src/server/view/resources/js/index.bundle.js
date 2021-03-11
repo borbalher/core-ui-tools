@@ -844,7 +844,7 @@ module.exports = {
 /***/ ((module) => {
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["<", " Component=", " props=", "></", ">"]);
+  var data = _taggedTemplateLiteral(["<", " ...", "></", ">"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -884,7 +884,7 @@ var Hydrator = /*#__PURE__*/function () {
           page = _ref2.page;
       var App = this.locator.locate("view/app"),
           Component = this.locator.locate("view/page/".concat(page));
-      this.hydrator(this.html(_templateObject(), App, Component, props, App), app);
+      this.render(this.html(_templateObject(), Component, props, Component), app, app.lastChild);
     }
   }]);
 
@@ -3673,7 +3673,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n    <", " value=", ">\n      <", " url=", ">\n        <", " ...", "/>\n      </", ">\n    </", ">"]);
+  var data = _taggedTemplateLiteral(["\n    <", " value=", ">\n      <", " ...", "/>\n    </", ">"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -3687,14 +3687,13 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 module.exports = function (_ref) {
   var html = _ref.html,
       BOTS_USER_AGENTS = _ref.BOTS_USER_AGENTS,
-      BotContext = _ref.BotContext,
-      Router = _ref.Router;
+      BotContext = _ref.BotContext;
 
   var App = function App(_ref2) {
     var Component = _ref2.Component,
         isBot = _ref2.isBot,
         props = _ref2.props;
-    return html(_templateObject(), BotContext.Provider, isBot, Router, props.url, Component, props, Router, BotContext.Provider);
+    return html(_templateObject(), BotContext.Provider, isBot, Component, props, BotContext.Provider);
   };
 
   App.getServerSideProps = /*#__PURE__*/function () {
@@ -4535,7 +4534,7 @@ module.exports = {
 /***/ ((module) => {
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["<", "/>"]);
+  var data = _taggedTemplateLiteral(["\n    <", " url=", ">\n      <", "    path=\"/to-dos\"/>\n    </", ">"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -4546,15 +4545,13 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
-
 module.exports = function (_ref) {
   var html = _ref.html,
-      ToDo = _ref.ToDo;
+      ToDo = _ref.ToDo,
+      Router = _ref.Router;
   return function (_ref2) {
-    _objectDestructuringEmpty(_ref2);
-
-    return html(_templateObject(), ToDo);
+    var url = _ref2.url;
+    return html(_templateObject(), Router, url, ToDo, Router);
   };
 };
 

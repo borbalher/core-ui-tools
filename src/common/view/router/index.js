@@ -1,10 +1,10 @@
-module.exports = ({ html, ToDo, Router}) =>
+module.exports =  ({ App, html, Router }) =>
 {
   return ({ url }) =>
   {
     return html`
     <${Router} url=${url}>
-      <${ToDo}    path="/to-dos"/>
+      <${App} path="/" />
     </${Router}>`
   }
 }

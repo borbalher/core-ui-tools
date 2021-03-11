@@ -14,8 +14,10 @@ class AppLocator
   locate()
   {
     const
-    BOTS_USER_AGENTS = this.locator.locate('core/configuration').find('view.user-agents'),
-    BotContext       = createContext()
+    BOTS_USER_AGENTS = this.locator
+      .locate('core/configuration')
+      .find('view.user-agents'),
+    BotContext = createContext()
 
     return App({ html, BOTS_USER_AGENTS, BotContext, Router })
   }
