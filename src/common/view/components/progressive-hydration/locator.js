@@ -1,6 +1,6 @@
-const Counter = require('.')
+const ProgressiveRendering = require('.')
 
-class CounterLocator
+class ProgressiveRenderingLocator
 {
   constructor(locator)
   {
@@ -10,11 +10,12 @@ class CounterLocator
   locate()
   {
     const
-    { useState } = require('preact/hooks'),
-    { html }     = require('htm/preact')
+    { useState }                 = require('preact/hooks'),
+    { html }                     = require('htm/preact'),
+    ProgressiveRenderingStrategy = this.locator.locate('view/strategies/progressive')
 
-    return Counter({ html, useState })
+    return ProgressiveRendering({ html, useState, ProgressiveRenderingStrategy })
   }
 }
 
-module.exports = CounterLocator
+module.exports = ProgressiveRenderingLocator

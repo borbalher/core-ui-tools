@@ -1,6 +1,6 @@
-const Counter = require('.')
+const StaticContent = require('.')
 
-class CounterLocator
+class StaticContentLocator
 {
   constructor(locator)
   {
@@ -10,11 +10,12 @@ class CounterLocator
   locate()
   {
     const
-    { useState } = require('preact/hooks'),
-    { html }     = require('htm/preact')
+    { useState }          = require('preact/hooks'),
+    { html }              = require('htm/preact'),
+    StaticContentStrategy = this.locator.locate('view/strategies/static')
 
-    return Counter({ html, useState })
+    return StaticContent({ html, useState, StaticContentStrategy })
   }
 }
 
-module.exports = CounterLocator
+module.exports = StaticContentLocator

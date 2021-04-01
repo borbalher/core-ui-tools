@@ -1,4 +1,4 @@
-module.exports =  ({ html, BOTS_USER_AGENTS, BotContext, Router, ToDo, DynamicRendering, Counter }) =>
+module.exports =  ({ html, BOTS_USER_AGENTS, BotContext, Router, ToDo, DynamicRendering, ProgressiveRendering, StaticContent, Counter }) =>
 {
 
   // return ({ isBot, url }) =>
@@ -17,6 +17,8 @@ module.exports =  ({ html, BOTS_USER_AGENTS, BotContext, Router, ToDo, DynamicRe
       <${Router} url=${url}>
         <${ToDo}             path="/to-dos"/>
         <${DynamicRendering} isBot=${isBot} path="/dynamic-rendering" />
+        <${ProgressiveRendering} path="/progressive-rendering" />
+        <${StaticContent} path="/static-content" />
         <${Counter}          path="/counter"/>
       </${Router}>
     </${BotContext.Provider}>`

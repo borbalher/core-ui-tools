@@ -1,17 +1,19 @@
 
-module.exports = ({ html, useState }) =>
+module.exports = ({ html, useState, StaticContentStrategy} ) =>
 {
-  return ({ initialCount }) =>
+  return ({ isBot }) =>
   {
-    const [count, setCount] = useState(initialCount);
-    const increment = () => setCount(count + 1);
-    const decrement = () => setCount((currentCount) => currentCount - 1);
+    const array = new Array(1000).fill(1);
+    for(const index in array)
+      array[index]  = Number(index) + 1
 
-    return html`
+    const [numbers, setNumbers] = useState(array);
+    return html`<h1>Static strategy</h1>
     <div>
-      <p>Count: ${count}</p>
-      <button onClick=${increment}>Increment</button>
-      <button onClick=${decrement}>Decrement</button>
+      ${numbers.map((number, index) =>
+        {
+          return html`<${StaticContentStrategy}><li>${index}</li></${StaticContentStrategy}>`
+        })}
     </div>`
   }
 }

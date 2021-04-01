@@ -3696,7 +3696,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n    <", " value=", ">\n      <", " url=", ">\n        <", "             path=\"/to-dos\"/>\n        <", " path=\"/dynamic-rendering\" />\n        <", "          path=\"/counter\"/>\n      </", ">\n    </", ">"]);
+  var data = _taggedTemplateLiteral(["\n    <", " value=", ">\n      <", " url=", ">\n        <", "             path=\"/to-dos\"/>\n        <", " isBot=", " path=\"/dynamic-rendering\" />\n        <", " path=\"/progressive-rendering\" />\n        <", "          path=\"/counter\"/>\n      </", ">\n    </", ">"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -3714,6 +3714,7 @@ module.exports = function (_ref) {
       Router = _ref.Router,
       ToDo = _ref.ToDo,
       DynamicRendering = _ref.DynamicRendering,
+      ProgressiveRendering = _ref.ProgressiveRendering,
       Counter = _ref.Counter;
 
   // return ({ isBot, url }) =>
@@ -3728,7 +3729,7 @@ module.exports = function (_ref) {
   var App = function App(_ref2) {
     var isBot = _ref2.isBot,
         url = _ref2.url;
-    return html(_templateObject(), BotContext.Provider, isBot, Router, url, ToDo, DynamicRendering, Counter, Router, BotContext.Provider);
+    return html(_templateObject(), BotContext.Provider, isBot, Router, url, ToDo, DynamicRendering, isBot, ProgressiveRendering, Counter, Router, BotContext.Provider);
   };
 
   App.getServerSideProps = /*#__PURE__*/function () {
@@ -3799,6 +3800,7 @@ var AppLocator = /*#__PURE__*/function () {
           Router = _require3.Router,
           ToDo = this.locator.locate('view/component/todos'),
           DynamicRendering = this.locator.locate('view/component/dynamic-rendering'),
+          ProgressiveRendering = this.locator.locate('view/component/progressive-hydration'),
           Counter = this.locator.locate('view/component/counter');
 
       return App({
@@ -3808,6 +3810,7 @@ var AppLocator = /*#__PURE__*/function () {
         Router: Router,
         ToDo: ToDo,
         DynamicRendering: DynamicRendering,
+        ProgressiveRendering: ProgressiveRendering,
         Counter: Counter
       });
     }
@@ -3965,7 +3968,9 @@ module.exports = ClockLocator;
 module.exports = {
   core: {
     locator: {
+      'view/component/progressive-hydration': __webpack_require__(/*! ./progressive-hydration/locator */ "./src/common/view/components/progressive-hydration/locator.js"),
       'view/component/dynamic-rendering': __webpack_require__(/*! ./dynamic-rendering/locator */ "./src/common/view/components/dynamic-rendering/locator.js"),
+      'view/component/static-content': __webpack_require__(/*! ./static-content/locator */ "./src/common/view/components/static-content/locator.js"),
       'view/component/todos': __webpack_require__(/*! ./todos/locator */ "./src/common/view/components/todos/locator.js"),
       'view/component/clock': __webpack_require__(/*! ./clock/locator */ "./src/common/view/components/clock/locator.js"),
       'view/component/counter': __webpack_require__(/*! ./counter/locator */ "./src/common/view/components/counter/locator.js")
@@ -4007,7 +4012,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 module.exports = function (_ref) {
   var html = _ref.html,
-      useState = _ref.useState;
+      useState = _ref.useState,
+      useRef = _ref.useRef;
   return function (_ref2) {
     var _ref2$initialCount = _ref2.initialCount,
         initialCount = _ref2$initialCount === void 0 ? 0 : _ref2$initialCount;
@@ -4083,7 +4089,7 @@ module.exports = CounterLocator;
 /***/ ((module) => {
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["<", ">\n            <li>", "</li>\n          </", ">"]);
+  var data = _taggedTemplateLiteral(["<", " isBot=", "><li>", "</li></", ">"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -4093,7 +4099,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n    <div>\n      ", "\n    </div>"]);
+  var data = _taggedTemplateLiteral(["<h1>Dynamic Strategy</h1>\n    <div>\n      ", "\n    </div>"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -4119,15 +4125,22 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 module.exports = function (_ref) {
   var html = _ref.html,
       useState = _ref.useState,
-      DynamicRendering = _ref.DynamicRendering;
-  return function () {
-    var _useState = useState(new Array(1000)),
+      DynamicRenderingStrategy = _ref.DynamicRenderingStrategy;
+  return function (_ref2) {
+    var isBot = _ref2.isBot;
+    var array = new Array(1000).fill(1);
+
+    for (var index in array) {
+      array[index] = Number(index) + 1;
+    }
+
+    var _useState = useState(array),
         _useState2 = _slicedToArray(_useState, 2),
         numbers = _useState2[0],
         setNumbers = _useState2[1];
 
     return html(_templateObject(), numbers.map(function (number, index) {
-      return html(_templateObject2(), DynamicRendering, index, DynamicRendering);
+      return html(_templateObject2(), DynamicRenderingStrategy, isBot, index, DynamicRenderingStrategy);
     }));
   };
 };
@@ -4148,34 +4161,254 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var DynamicRendering = __webpack_require__(/*! . */ "./src/common/view/components/dynamic-rendering/index.js");
 
-var CounterLocator = /*#__PURE__*/function () {
-  function CounterLocator(locator) {
-    _classCallCheck(this, CounterLocator);
+var DynamicRenderingLocator = /*#__PURE__*/function () {
+  function DynamicRenderingLocator(locator) {
+    _classCallCheck(this, DynamicRenderingLocator);
 
     this.locator = locator;
   }
 
-  _createClass(CounterLocator, [{
+  _createClass(DynamicRenderingLocator, [{
     key: "locate",
     value: function locate() {
       var _require = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js"),
           useState = _require.useState,
           _require2 = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
           html = _require2.html,
-          DynamicRendering = this.locator.locate('view/strategies/dynamic');
+          DynamicRenderingStrategy = this.locator.locate('view/strategies/dynamic');
 
       return DynamicRendering({
         html: html,
         useState: useState,
-        DynamicRendering: DynamicRendering
+        DynamicRenderingStrategy: DynamicRenderingStrategy
       });
     }
   }]);
 
-  return CounterLocator;
+  return DynamicRenderingLocator;
 }();
 
-module.exports = CounterLocator;
+module.exports = DynamicRenderingLocator;
+
+/***/ }),
+
+/***/ "./src/common/view/components/progressive-hydration/index.js":
+/*!*******************************************************************!*\
+  !*** ./src/common/view/components/progressive-hydration/index.js ***!
+  \*******************************************************************/
+/***/ ((module) => {
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["<", " force=", "><li>", "</li></", ">"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<h1>Progressive strategy</h1>\n    <div>\n      ", "\n    </div>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+module.exports = function (_ref) {
+  var html = _ref.html,
+      useState = _ref.useState,
+      ProgressiveRenderingStrategy = _ref.ProgressiveRenderingStrategy;
+  return function (_ref2) {
+    var isBot = _ref2.isBot;
+    var array = new Array(1000).fill(1);
+
+    for (var index in array) {
+      array[index] = Number(index) + 1;
+    }
+
+    var _useState = useState(array),
+        _useState2 = _slicedToArray(_useState, 2),
+        numbers = _useState2[0],
+        setNumbers = _useState2[1];
+
+    return html(_templateObject(), numbers.map(function (number, index) {
+      return html(_templateObject2(), ProgressiveRenderingStrategy, index <= 10, index, ProgressiveRenderingStrategy);
+    }));
+  };
+};
+
+/***/ }),
+
+/***/ "./src/common/view/components/progressive-hydration/locator.js":
+/*!*********************************************************************!*\
+  !*** ./src/common/view/components/progressive-hydration/locator.js ***!
+  \*********************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var ProgressiveRendering = __webpack_require__(/*! . */ "./src/common/view/components/progressive-hydration/index.js");
+
+var ProgressiveRenderingLocator = /*#__PURE__*/function () {
+  function ProgressiveRenderingLocator(locator) {
+    _classCallCheck(this, ProgressiveRenderingLocator);
+
+    this.locator = locator;
+  }
+
+  _createClass(ProgressiveRenderingLocator, [{
+    key: "locate",
+    value: function locate() {
+      var _require = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js"),
+          useState = _require.useState,
+          _require2 = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
+          html = _require2.html,
+          ProgressiveRenderingStrategy = this.locator.locate('view/strategies/progressive');
+
+      return ProgressiveRendering({
+        html: html,
+        useState: useState,
+        ProgressiveRenderingStrategy: ProgressiveRenderingStrategy
+      });
+    }
+  }]);
+
+  return ProgressiveRenderingLocator;
+}();
+
+module.exports = ProgressiveRenderingLocator;
+
+/***/ }),
+
+/***/ "./src/common/view/components/static-content/index.js":
+/*!************************************************************!*\
+  !*** ./src/common/view/components/static-content/index.js ***!
+  \************************************************************/
+/***/ ((module) => {
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["<", "><li>", "</li></", ">"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<h1>Static strategy</h1>\n    <div>\n      ", "\n    </div>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+module.exports = function (_ref) {
+  var html = _ref.html,
+      useState = _ref.useState,
+      StaticContentStrategy = _ref.StaticContentStrategy;
+  return function (_ref2) {
+    var isBot = _ref2.isBot;
+    var array = new Array(1000).fill(1);
+
+    for (var index in array) {
+      array[index] = Number(index) + 1;
+    }
+
+    var _useState = useState(array),
+        _useState2 = _slicedToArray(_useState, 2),
+        numbers = _useState2[0],
+        setNumbers = _useState2[1];
+
+    return html(_templateObject(), numbers.map(function (number, index) {
+      return html(_templateObject2(), StaticContentStrategy, index, StaticContentStrategy);
+    }));
+  };
+};
+
+/***/ }),
+
+/***/ "./src/common/view/components/static-content/locator.js":
+/*!**************************************************************!*\
+  !*** ./src/common/view/components/static-content/locator.js ***!
+  \**************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var ProgressiveRendering = __webpack_require__(/*! . */ "./src/common/view/components/static-content/index.js");
+
+var ProgressiveRenderingLocator = /*#__PURE__*/function () {
+  function ProgressiveRenderingLocator(locator) {
+    _classCallCheck(this, ProgressiveRenderingLocator);
+
+    this.locator = locator;
+  }
+
+  _createClass(ProgressiveRenderingLocator, [{
+    key: "locate",
+    value: function locate() {
+      var _require = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js"),
+          useState = _require.useState,
+          _require2 = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
+          html = _require2.html,
+          ProgressiveRenderingtrategy = this.locator.locate('view/strategies/progressive');
+
+      return ProgressiveRendering({
+        html: html,
+        useState: useState,
+        ProgressiveRenderingtrategy: ProgressiveRenderingtrategy
+      });
+    }
+  }]);
+
+  return ProgressiveRenderingLocator;
+}();
+
+module.exports = ProgressiveRenderingLocator;
 
 /***/ }),
 
@@ -4587,34 +4820,36 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var Counter = __webpack_require__(/*! . */ "./src/common/view/hooks/near-screen/index.js");
+var NearScreen = __webpack_require__(/*! . */ "./src/common/view/hooks/near-screen/index.js");
 
-var CounterLocator = /*#__PURE__*/function () {
-  function CounterLocator(locator) {
-    _classCallCheck(this, CounterLocator);
+var NearScreenLocator = /*#__PURE__*/function () {
+  function NearScreenLocator(locator) {
+    _classCallCheck(this, NearScreenLocator);
 
     this.locator = locator;
   }
 
-  _createClass(CounterLocator, [{
+  _createClass(NearScreenLocator, [{
     key: "locate",
     value: function locate() {
       var _require = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js"),
           useState = _require.useState,
+          useEffect = _require.useEffect,
           _require2 = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
           html = _require2.html;
 
-      return Counter({
+      return NearScreen({
         html: html,
-        useState: useState
+        useState: useState,
+        useEffect: useEffect
       });
     }
   }]);
 
-  return CounterLocator;
+  return NearScreenLocator;
 }();
 
-module.exports = CounterLocator;
+module.exports = NearScreenLocator;
 
 /***/ }),
 
@@ -4642,6 +4877,18 @@ module.exports = {
   \*****************************************************/
 /***/ ((module) => {
 
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<div ref=", "/>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
 module.exports = function (_ref) {
   var useRef = _ref.useRef,
       html = _ref.html,
@@ -4650,13 +4897,11 @@ module.exports = function (_ref) {
     var children = _ref2.children,
         isBot = _ref2.isBot,
         force = _ref2.force;
-    return children; // const
-    // ref          = useRef(null),
-    // isNearScreen = useNearScreen({ref})
-    // if(isBot || isNearScreen || force)
-    //   return children
-    // else
-    //   return html`<div ref=${ref}/>`
+    var ref = useRef(null),
+        isNearScreen = useNearScreen({
+      ref: ref
+    });
+    if (isBot || isNearScreen || force) return children;else return html(_templateObject(), ref);
   };
 };
 
@@ -4755,9 +5000,10 @@ function _templateObject() {
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 module.exports = function (_ref) {
-  var useRef = _ref.useRef,
-      useEffect = _ref.useEffect,
+  var isServer = _ref.isServer,
       html = _ref.html,
+      useRef = _ref.useRef,
+      useEffect = _ref.useEffect,
       render = _ref.render,
       hydrate = _ref.hydrate,
       useNearScreen = _ref.useNearScreen,

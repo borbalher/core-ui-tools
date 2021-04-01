@@ -1,6 +1,6 @@
-const Counter = require('.')
+const NearScreen = require('.')
 
-class CounterLocator
+class NearScreenLocator
 {
   constructor(locator)
   {
@@ -10,11 +10,11 @@ class CounterLocator
   locate()
   {
     const
-    { useState } = require('preact/hooks'),
-    { html }     = require('htm/preact')
+    { useState, useEffect } = require('preact/hooks'),
+    { html }                = require('htm/preact')
 
-    return Counter({ html, useState })
+    return NearScreen({ html, useState, useEffect })
   }
 }
 
-module.exports = CounterLocator
+module.exports = NearScreenLocator

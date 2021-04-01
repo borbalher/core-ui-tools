@@ -15,7 +15,16 @@ class ProgressiveLocator
     EMPTY_HTML                = { __html: '' },
     isServer                  = process.env.PLATFORM === 'node'
 
-    return Progressive({ isServer, html, useRef, useEffect, render, hydrate, useNearScreen, EMPTY_HTML })
+    return Progressive({
+      isServer,
+      html,
+      useRef,
+      useEffect,
+      render,
+      hydrate,
+      useNearScreen,
+      EMPTY_HTML
+    })
   }
 }
 

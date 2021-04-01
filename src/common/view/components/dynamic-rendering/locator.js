@@ -1,6 +1,6 @@
 const DynamicRendering = require('.')
 
-class CounterLocator
+class DynamicRenderingLocator
 {
   constructor(locator)
   {
@@ -10,12 +10,12 @@ class CounterLocator
   locate()
   {
     const
-    { useState }     = require('preact/hooks'),
-    { html }         = require('htm/preact'),
-    DynamicRendering = this.locator.locate('view/strategies/dynamic')
+    { useState }             = require('preact/hooks'),
+    { html }                 = require('htm/preact'),
+    DynamicRenderingStrategy = this.locator.locate('view/strategies/dynamic')
 
-    return DynamicRendering({ html, useState, DynamicRendering })
+    return DynamicRendering({ html, useState, DynamicRenderingStrategy })
   }
 }
 
-module.exports = CounterLocator
+module.exports = DynamicRenderingLocator

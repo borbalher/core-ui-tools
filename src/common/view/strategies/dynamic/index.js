@@ -2,14 +2,13 @@ module.exports = ({ useRef, html, useNearScreen }) =>
 {
   return ({ children, isBot, force }) =>
   {
-    return children
-    // const
-    // ref          = useRef(null),
-    // isNearScreen = useNearScreen({ref})
+    const
+    ref          = useRef(null),
+    isNearScreen = useNearScreen({ref})
 
-    // if(isBot || isNearScreen || force)
-    //   return children
-    // else
-    //   return html`<div ref=${ref}/>`
+    if(isBot || isNearScreen || force)
+      return children
+    else
+      return html`<div ref=${ref}/>`
   }
 }

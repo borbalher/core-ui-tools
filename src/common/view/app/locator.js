@@ -16,13 +16,15 @@ class AppLocator
     BOTS_USER_AGENTS = this.locator
       .locate('core/configuration')
       .find('view.user-agents'),
-    BotContext       = createContext(),
-    { Router }       = require('preact-router'),
-    ToDo             = this.locator.locate('view/component/todos'),
-    DynamicRendering = this.locator.locate('view/component/dynamic-rendering'),
-    Counter          = this.locator.locate('view/component/counter')
+    BotContext           = createContext(),
+    { Router }           = require('preact-router'),
+    ToDo                 = this.locator.locate('view/component/todos'),
+    DynamicRendering     = this.locator.locate('view/component/dynamic-rendering'),
+    ProgressiveRendering = this.locator.locate('view/component/progressive-hydration'),
+    StaticContent        = this.locator.locate('view/component/static-content'),
+    Counter              = this.locator.locate('view/component/counter')
 
-    return App({ html, BOTS_USER_AGENTS, BotContext, Router, ToDo, DynamicRendering, Counter })
+    return App({ html, BOTS_USER_AGENTS, BotContext, Router, ToDo, DynamicRendering, ProgressiveRendering, StaticContent, Counter })
   }
 }
 

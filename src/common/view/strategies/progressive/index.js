@@ -1,7 +1,8 @@
 module.exports = ({
+  isServer,
+  html,
   useRef,
   useEffect,
-  html,
   render,
   hydrate,
   useNearScreen,
@@ -36,7 +37,7 @@ module.exports = ({
     [children, isNearScreen])
 
     // SERVER: Just render the content as usual
-    if (isServer)
+    if(isServer)
       return html`<div ref=${ref}>${children}</div`
 
 
