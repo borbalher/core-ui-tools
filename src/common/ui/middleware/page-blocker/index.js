@@ -19,7 +19,7 @@ class PageBlockerFlow
       case 'block.page':
       case 'unblock.page':
         const
-        { ui: { isBlocked } } = store.getState(),
+        { domain: { isBlocked } } = store.getState(),
         toggleBlockerEvent    = this.eventComposer.compose('toggle.blocker', { isBlocked })
 
         this.bus.emit('ui', toggleBlockerEvent)

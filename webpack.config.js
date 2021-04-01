@@ -6,22 +6,14 @@ Dotenv = require('dotenv-webpack')
 module.exports = {
   entry :
   {
-    'polyfills' : path.resolve(__dirname, 'src/common/view/entrypoints/polyfills'),
-    'index'     : path.resolve(__dirname, 'src/common/view/entrypoints/index'),
+    'polyfills' : path.resolve(__dirname, 'src/browser/view/entrypoints/polyfills'),
+    'index'     : path.resolve(__dirname, 'src/browser/view/entrypoints/index'),
   },
   output :
   {
     path     : path.resolve(__dirname, 'src/server/view/resources/js'),
     filename : '[name].bundle.js'
   },
-  // resolve:
-  // {
-  //   alias:
-  //   {
-  //     'react': 'preact-compat',
-  //     'react-dom': 'preact-compat',
-  //   }
-  // },
   mode    : 'development',
   devtool : 'source-map',
   module :

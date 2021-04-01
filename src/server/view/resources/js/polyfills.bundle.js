@@ -2,10 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/common/view/entrypoints/polyfills.js":
-/*!**************************************************!*\
-  !*** ./src/common/view/entrypoints/polyfills.js ***!
-  \**************************************************/
+/***/ "./src/browser/view/entrypoints/polyfills.js":
+/*!***************************************************!*\
+  !*** ./src/browser/view/entrypoints/polyfills.js ***!
+  \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -114,7 +114,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 		};
 /******/ 		
 /******/ 		var deferredModules = [
-/******/ 			["./src/common/view/entrypoints/polyfills.js","vendors"]
+/******/ 			["./src/browser/view/entrypoints/polyfills.js","vendors"]
 /******/ 		];
 /******/ 		// no chunk on demand loading
 /******/ 		

@@ -1,8 +1,7 @@
 const
 App               = require('.'),
 { html }          = require('htm/preact'),
-{ createContext } = require('preact'),
-Router            = require('preact-router')
+{ createContext } = require('preact')
 
 class AppLocator
 {
@@ -19,7 +18,7 @@ class AppLocator
       .find('view.user-agents'),
     BotContext = createContext()
 
-    return App({ html, BOTS_USER_AGENTS, BotContext, Router })
+    return App({ html, BOTS_USER_AGENTS, BotContext })
   }
 }
 

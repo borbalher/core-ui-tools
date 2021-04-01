@@ -19,7 +19,7 @@ class Hydrator
     App       = this.locator.locate(`view/app`),
     Component = this.locator.locate(`view/page/${page}`)
 
-    this.render(this.html`<${Component} ...${props}></${Component}>`, app, app.lastChild)
+    this.render(this.html`<${App} Component=${Component} props=${props}></${App}>`, app, app.lastChild)
   }
 }
 

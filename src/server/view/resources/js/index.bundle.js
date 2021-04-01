@@ -729,6 +729,31 @@ module.exports = CoreFactory;
 
 /***/ }),
 
+/***/ "./src/browser/view/entrypoints/index.js":
+/*!***********************************************!*\
+  !*** ./src/browser/view/entrypoints/index.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+var Application = __webpack_require__(/*! browser/core/application */ "./src/browser/core/application/index.js"),
+    app = new Application({
+  'schema': __webpack_require__(/*! schema/config */ "./src/schema/config.js"),
+  'infrastructure/bus': __webpack_require__(/*! common/infrastructure/bus/config */ "./src/common/infrastructure/bus/config.js"),
+  'core/event/composer': __webpack_require__(/*! common/core/event/composer/config */ "./src/common/core/event/composer/config.js"),
+  'core/listener': __webpack_require__(/*! common/core/listener/config */ "./src/common/core/listener/config.js"),
+  'core/bootstrap': __webpack_require__(/*! common/core/bootstrap/config */ "./src/common/core/bootstrap/config.js"),
+  'view/components': __webpack_require__(/*! common/view/components/config */ "./src/common/view/components/config.js"),
+  'view/documents': __webpack_require__(/*! common/view/document/config */ "./src/common/view/document/config.js"),
+  'view/pages': __webpack_require__(/*! common/view/pages/config */ "./src/common/view/pages/config.js"),
+  'view/app': __webpack_require__(/*! common/view/app/config */ "./src/common/view/app/config.js"),
+  'view/hooks': __webpack_require__(/*! common/view/hooks/config */ "./src/common/view/hooks/config.js"),
+  'view/hydrate': __webpack_require__(/*! browser/view/hydrate/config */ "./src/browser/view/hydrate/config.js")
+});
+
+app.run();
+
+/***/ }),
+
 /***/ "./src/browser/view/hydrate/bootstrap/index.js":
 /*!*****************************************************!*\
   !*** ./src/browser/view/hydrate/bootstrap/index.js ***!
@@ -755,12 +780,14 @@ var HydrateBootstrap = /*#__PURE__*/function () {
     value: function bootstrap() {
       var hydrate = this.locator.locate('view/hydrate'),
           app = document.getElementById('app'),
+          body = document.querySelector('body'),
           page = app.dataset.page,
-          props = window._PROPS_;
+          props = window._PROPS_ || {};
       hydrate.hydrate({
         app: app,
-        props: props,
-        page: page
+        body: body,
+        page: page,
+        props: props
       });
     }
   }]);
@@ -844,7 +871,7 @@ module.exports = {
 /***/ ((module) => {
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["<", " ...", "></", ">"]);
+  var data = _taggedTemplateLiteral(["<", " Component=", " props=", "></", ">"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -884,7 +911,7 @@ var Hydrator = /*#__PURE__*/function () {
           page = _ref2.page;
       var App = this.locator.locate("view/app"),
           Component = this.locator.locate("view/page/".concat(page));
-      this.render(this.html(_templateObject(), Component, props, Component), app, app.lastChild);
+      this.render(this.html(_templateObject(), App, Component, props, App), app, app.lastChild);
     }
   }]);
 
@@ -3673,7 +3700,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n    <", " value=", ">\n      <", " ...", "/>\n    </", ">"]);
+  var data = _taggedTemplateLiteral(["\n    <", " value=", ">\n      <", " ...", " />\n    </", ">"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -3759,8 +3786,7 @@ var App = __webpack_require__(/*! . */ "./src/common/view/app/index.js"),
     _require = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
     html = _require.html,
     _require2 = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js"),
-    createContext = _require2.createContext,
-    Router = __webpack_require__(/*! preact-router */ "./node_modules/preact-router/dist/preact-router.es.js");
+    createContext = _require2.createContext;
 
 var AppLocator = /*#__PURE__*/function () {
   function AppLocator(locator) {
@@ -3777,8 +3803,7 @@ var AppLocator = /*#__PURE__*/function () {
       return App({
         html: html,
         BOTS_USER_AGENTS: BOTS_USER_AGENTS,
-        BotContext: BotContext,
-        Router: Router
+        BotContext: BotContext
       });
     }
   }]);
@@ -4213,7 +4238,7 @@ module.exports = ToDosComponentLocator;
 /***/ ((module) => {
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n      <head>\n      </head>\n      <body>\n        <div id=\"app\" data-page=", ">", "</div>\n        <script type=\"text/javascript\" dangerouslySetInnerHTML=", "/>\n        <script type=\"text/javascript\" dangerouslySetInnerHTML=", "/>\n        <script type=\"text/javascript\" src=\"/resources/js/vendors.bundle.js?", "\"></script>\n        <script type=\"text/javascript\" src=\"/resources/js/polyfills.bundle.js?", "\"></script>\n        <script type=\"text/javascript\" src=\"/resources/js/", ".bundle.js?", "\"></script>\n      </body>"]);
+  var data = _taggedTemplateLiteral(["\n      <head>\n        <script type=\"text/javascript\" dangerouslySetInnerHTML=", "/>\n        <script type=\"text/javascript\" dangerouslySetInnerHTML=", "/>\n        <script type=\"text/javascript\" src=\"/resources/js/vendors.bundle.js?", "\"></script>\n        <script type=\"text/javascript\" src=\"/resources/js/polyfills.bundle.js?", "\"></script>\n        <script type=\"text/javascript\" src=\"/resources/js/", ".bundle.js?", "\"></script>\n      </head>\n      <body>\n        <div id=\"app\" data-page=", ">", "</div>\n      </body>\n      "]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -4266,11 +4291,11 @@ var Base = /*#__PURE__*/function () {
           _ref4$hash = _ref4.hash,
           hash = _ref4$hash === void 0 ? process.env.HASH : _ref4$hash,
           state = _ref4.state;
-      return this.html(_templateObject(), page, app, this.serializeProps({
+      return this.html(_templateObject(), this.serializeProps({
         props: props
       }), this.serializeState({
         state: state
-      }), hash, hash, page, hash);
+      }), hash, hash, page, hash, page, app);
     }
   }]);
 
@@ -4334,36 +4359,6 @@ module.exports = {
     }
   }
 };
-
-/***/ }),
-
-/***/ "./src/common/view/entrypoints/index.js":
-/*!**********************************************!*\
-  !*** ./src/common/view/entrypoints/index.js ***!
-  \**********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _styles_buttons_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../styles/buttons.scss */ "./src/common/view/styles/buttons.scss");
-
-
-var Application = __webpack_require__(/*! browser/core/application */ "./src/browser/core/application/index.js"),
-    app = new Application({
-  'schema': __webpack_require__(/*! schema/config */ "./src/schema/config.js"),
-  'infrastructure/bus': __webpack_require__(/*! common/infrastructure/bus/config */ "./src/common/infrastructure/bus/config.js"),
-  'core/event/composer': __webpack_require__(/*! common/core/event/composer/config */ "./src/common/core/event/composer/config.js"),
-  'core/listener': __webpack_require__(/*! common/core/listener/config */ "./src/common/core/listener/config.js"),
-  'core/bootstrap': __webpack_require__(/*! common/core/bootstrap/config */ "./src/common/core/bootstrap/config.js"),
-  'view/components': __webpack_require__(/*! common/view/components/config */ "./src/common/view/components/config.js"),
-  'view/documents': __webpack_require__(/*! common/view/document/config */ "./src/common/view/document/config.js"),
-  'view/pages': __webpack_require__(/*! common/view/pages/config */ "./src/common/view/pages/config.js"),
-  'view/app': __webpack_require__(/*! common/view/app/config */ "./src/common/view/app/config.js"),
-  'view/hooks': __webpack_require__(/*! common/view/hooks/config */ "./src/common/view/hooks/config.js"),
-  'view/hydrate': __webpack_require__(/*! browser/view/hydrate/config */ "./src/browser/view/hydrate/config.js")
-});
-
-app.run();
 
 /***/ }),
 
@@ -9423,63 +9418,6 @@ module.exports = /*#__PURE__*/function () {
   return _class;
 }();
 
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/common/view/styles/buttons.scss":
-/*!**************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/common/view/styles/buttons.scss ***!
-  \**************************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/cssWithMappingToString.js */ "./node_modules/css-loader/dist/runtime/cssWithMappingToString.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
-// Imports
-
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "button {\n  -webkit-appearance: none;\n  border: 0;\n  padding: 0;\n  background: none;\n  outline: 0;\n  cursor: pointer; }\n\n.button {\n  text-decoration: none;\n  padding: .375rem 2rem;\n  margin: 0 .5rem 1rem;\n  font-weight: 800;\n  font-size: 1.125rem;\n  line-height: 1.5rem;\n  box-sizing: border-box;\n  max-width: 100%;\n  overflow-wrap: break-word;\n  white-space: normal;\n  border-radius: 1.25rem;\n  cursor: pointer;\n  border: 2px solid #000;\n  display: inline-block;\n  transition: .3s; }\n  .button--xl {\n    padding: 1.125rem 2.5rem;\n    margin: 0 1rem 1.5rem;\n    font-size: 1.5rem;\n    line-height: 1.5rem;\n    border-radius: 2rem; }\n  .button--xs {\n    padding: .25rem 1rem;\n    margin: 0 .5rem .75rem;\n    font-size: .875rem;\n    line-height: .875rem;\n    border-radius: .75rem; }\n  .button--filled {\n    color: #fff;\n    background-color: #000; }\n    .button--filled:hover {\n      color: #000;\n      background-color: #fff; }\n  .button--wired {\n    color: #000;\n    background-color: transparent; }\n    .button--wired:hover {\n      color: #fff;\n      background-color: #000; }\n    .button--wired.button--negative {\n      color: #fff;\n      background-color: transparent;\n      border-color: #fff; }\n      .button--wired.button--negative:hover {\n        color: #000;\n        background-color: #fff; }\n  .button[disabled], .button[disabled]:hover {\n    opacity: .65;\n    cursor: not-allowed; }\n  .button--round {\n    border-radius: 50%;\n    font-size: 1.25rem;\n    line-height: 1.5rem;\n    padding: .375rem .625rem .375rem .5rem;\n    width: 2.5rem; }\n    .button--round.button--xl {\n      font-size: 1.75rem;\n      line-height: 2rem;\n      width: 3rem;\n      padding: .875rem 1.875rem; }\n    .button--round.button--xs {\n      font-size: .75rem;\n      line-height: 1.25rem;\n      width: 2rem;\n      padding: .25rem .625rem .25rem .5rem; }\n  .button--in-form {\n    margin-top: .75rem; }\n\n.button--secondary {\n  color: #fc7a00;\n  margin: 0 .5rem;\n  padding: .375rem; }\n  .button--secondary:hover {\n    text-decoration: underline; }\n\nbutton > * {\n  pointer-events: none; }\n", "",{"version":3,"sources":["webpack://./src/common/view/styles/buttons.scss","webpack://./src/common/view/styles/_colors.scss"],"names":[],"mappings":"AAEA;EACE,wBAAwB;EACxB,SAAS;EACT,UAAU;EACV,gBAAgB;EAChB,UAAU;EACV,eAAe,EAAA;;AAGjB;EACE,qBAAqB;EACrB,qBAAqB;EACrB,oBAAoB;EACpB,gBAAgB;EAChB,mBAAmB;EACnB,mBAAmB;EACnB,sBAAsB;EACtB,eAAe;EACf,yBAAyB;EACzB,mBAAmB;EACnB,sBAAsB;EACtB,eAAe;EACf,sBCPU;EDQV,qBAAqB;EACrB,eAAe,EAAA;EAGf;IACE,wBAAwB;IACxB,qBAAqB;IACrB,iBAAiB;IACjB,mBAAmB;IACnB,mBAAmB,EAAA;EAGrB;IACE,oBAAoB;IACpB,sBAAsB;IACtB,kBAAkB;IAClB,oBAAoB;IACpB,qBAAqB,EAAA;EAIvB;IACE,WC7BQ;ID8BR,sBC/BQ,EAAA;ID6BT;MAKG,WClCM;MDmCN,sBClCM,EAAA;EDsCV;IACE,WCxCQ;IDyCR,6BAA6B,EAAA;IAF9B;MAIG,WC1CM;MD2CN,sBC5CM,EAAA;IDuCT;MASG,WC/CM;MDgDN,6BAA6B;MAC7B,kBCjDM,EAAA;MDsCT;QAcK,WCrDI;QDsDJ,sBCrDI,EAAA;EDPZ;IAmEI,YAAY;IACZ,mBAAmB,EAAA;EAGrB;IACE,kBAAkB;IAClB,kBAAkB;IAClB,mBAAmB;IACnB,sCAAsC;IACtC,aAAa,EAAA;IALd;MAQG,kBAAkB;MAClB,iBAAiB;MACjB,WAAW;MACX,yBAAyB,EAAA;IAX5B;MAeG,iBAAiB;MACjB,oBAAoB;MACpB,WAAW;MACX,oCAAoC,EAAA;EAKxC;IACE,kBAAkB,EAAA;;AAKtB;EACE,cC1FsB;ED2FtB,eAAe;EACf,gBAAgB,EAAA;EAHlB;IAMI,0BAA0B,EAAA;;AAI9B;EACE,oBAAoB,EAAA","sourcesContent":["@import '_colors.scss';\n\nbutton{\n  -webkit-appearance: none;\n  border: 0;\n  padding: 0;\n  background: none;\n  outline: 0;\n  cursor: pointer;\n}\n\n.button{\n  text-decoration: none;\n  padding: .375rem 2rem;\n  margin: 0 .5rem 1rem;\n  font-weight: 800;\n  font-size: 1.125rem;\n  line-height: 1.5rem;\n  box-sizing: border-box;\n  max-width: 100%;\n  overflow-wrap: break-word;\n  white-space: normal;\n  border-radius: 1.25rem;\n  cursor: pointer;\n  border: 2px solid $black;\n  display: inline-block;\n  transition: .3s;\n  \n  //button sizes\n  &--xl{\n    padding: 1.125rem 2.5rem;\n    margin: 0 1rem 1.5rem;\n    font-size: 1.5rem;\n    line-height: 1.5rem;\n    border-radius: 2rem;\n  }\n  \n  &--xs{\n    padding: .25rem 1rem;\n    margin: 0 .5rem .75rem;\n    font-size: .875rem;\n    line-height: .875rem;\n    border-radius: .75rem;\n  }\n  \n  //button styles\n  &--filled{\n    color: $white;\n    background-color: $black;\n\n    &:hover{\n      color: $black;\n      background-color: $white;\n    }\n  }\n  \n  &--wired{\n    color: $black;\n    background-color: transparent;\n    &:hover{  \n      color: $white;\n      background-color: $black;\n    }\n    \n    &.button--negative{\n      color: $white;\n      background-color: transparent;\n      border-color: $white;\n      \n      &:hover{\n        color: $black;\n        background-color: $white;\n      }\n    }\n    \n  }\n  \n  &[disabled], &[disabled]:hover{\n    opacity: .65;\n    cursor: not-allowed;\n  }\n  \n  &--round{\n    border-radius: 50%;\n    font-size: 1.25rem;\n    line-height: 1.5rem;\n    padding: .375rem .625rem .375rem .5rem;\n    width: 2.5rem;\n    \n    &.button--xl{\n      font-size: 1.75rem;\n      line-height: 2rem;\n      width: 3rem;\n      padding: .875rem 1.875rem;\n    }\n    \n    &.button--xs{\n      font-size: .75rem;\n      line-height: 1.25rem;\n      width: 2rem;\n      padding: .25rem .625rem .25rem .5rem;\n    }\n  }\n  \n  //others\n  &--in-form{\n    margin-top: .75rem;\n  }\n  \n}\n\n.button--secondary{\n  color: $primary-orange;\n  margin: 0 .5rem;\n  padding: .375rem;\n\n  &:hover{\n    text-decoration: underline;\n  }\n}\n\nbutton > *{\n  pointer-events: none;\n}","$font-body: 'Open Sans', sans-serif;\n$font-title: 'Monserrat', serif;\n\n$column-gutter: 0.75rem;\n$border-radius: 0.5rem;\n\n$palette: (\n  color-primary: #ec6907,\n  color-secondary: #3f9fca,\n  color-accent: #9775A5,\n\n  color-success: #569F69,\n  color-error: #e42328,\n\n  color-grey: #6f6f6e\n);\n\n$black: #000;\n$white: #fff;\n$grey-light: #dadada;\n$grey-dark: #495057;\n\n$primary-orange: #fc7a00;\n$primary-green: #1cb261;\n$primary-blue: #00c7ff;\n$primary-blue2: #3f9fca;\n$primary-purple: #734fd9;\n$primary-pink: #fa6199;\n$primary-yellow: #ffb500;\n\n$secondary-orange: #fc7a00;\n$secondary-green1: #2bc46e;\n$secondary-green2: #00f0b0;\n$secondary-green3: #00ffd4;\n$secondary-blue: #00e8ff;\n$secondary-purple: #6661f0;\n$secondary-pink1: #f53663;\n$secondary-pink2: #b14f83;\n\n$corporate-gradient: radial-gradient(102.6% 213.01% at -1.67% 90.17%,#1cb261 0,#1cb261 .01%,#00c7ff 32.29%,#734fd9 67.71%,#fa6199 100%);\n\n$body-copy: #333;\n$body-light: #fff;\n$secondary-bg: #e9ecef;\n$secondary-gradient: linear-gradient(90deg, rgba(0,192,255,1) 0%, rgba(10,139,228,1) 35%, rgba(163,44,223,1) 100%);\n$secondary-gradient-inverse: linear-gradient(90deg, rgba(163,44,223,1) 0%, rgba(10,139,228,1) 65%, rgba(0,192,255,1) 100%);\n\n@function delta-shades(\n  $tokens,\n  $colors: color-primary color-secondary color-accent color-success color-error color-grey,\n  $dark_shades: (D1: 25%, D2: 50%, D3: 70%, D4: 90%),\n  $light_shades: (L1: 30%, L2: 45%, L3: 60%, L4: 75%, L5: 90%)\n) {\n  $temp: ();\n\n  @each $color in $colors {\n\n    $temp: map-merge($temp, ('#{$color}': map-get($tokens, $color)));\n\n    @each $shade, $percentage in $dark_shades {\n      $temp: map-merge(\n        $temp,\n        ('#{$color}_#{$shade}': mix(black, map-get($tokens, $color), $percentage))\n      );\n    }\n\n    @each $shade, $percentage in $light_shades {\n      $temp: map-merge(\n        $temp,\n        ('#{$color}_#{$shade}': mix(white, map-get($tokens, $color), $percentage))\n      );\n    }\n  }\n\n  @return $temp;\n};\n\n$palette: delta-shades($palette);"],"sourceRoot":""}]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
-/***/ "./src/common/view/styles/buttons.scss":
-/*!*********************************************!*\
-  !*** ./src/common/view/styles/buttons.scss ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_buttons_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js!../../../../node_modules/sass-loader/dist/cjs.js!./buttons.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/common/view/styles/buttons.scss");
-
-            
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_buttons_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_node_modules_sass_loader_dist_cjs_js_buttons_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
-
 /***/ })
 
 /******/ 	});
@@ -9495,7 +9433,7 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			id: moduleId,
+/******/ 			// no module.id needed
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
@@ -9514,18 +9452,6 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	// It's empty as some runtime module handles the default behavior
 /******/ 	__webpack_require__.x = x => {}
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => module['default'] :
-/******/ 				() => module;
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -9578,7 +9504,7 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 		};
 /******/ 		
 /******/ 		var deferredModules = [
-/******/ 			["./src/common/view/entrypoints/index.js","vendors"]
+/******/ 			["./src/browser/view/entrypoints/index.js","vendors"]
 /******/ 		];
 /******/ 		// no chunk on demand loading
 /******/ 		

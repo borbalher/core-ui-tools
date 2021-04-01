@@ -25,15 +25,17 @@ class Base
   {
     return this.html`
       <head>
-      </head>
-      <body>
-        <div id="app" data-page=${page}>${app}</div>
         <script type="text/javascript" dangerouslySetInnerHTML=${this.serializeProps({ props })}/>
         <script type="text/javascript" dangerouslySetInnerHTML=${this.serializeState({ state })}/>
         <script type="text/javascript" src="/resources/js/vendors.bundle.js?${hash}"></script>
         <script type="text/javascript" src="/resources/js/polyfills.bundle.js?${hash}"></script>
         <script type="text/javascript" src="/resources/js/${page}.bundle.js?${hash}"></script>
-      </body>`
+      </head>
+      <body>
+        <div id="app" data-page=${page}>${app}</div>
+      </body>
+      `
+
 
   }
 }

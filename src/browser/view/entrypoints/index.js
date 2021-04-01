@@ -1,10 +1,11 @@
 import { h, render } from 'preact'
-import Router from './router'
+
+import Router from 'browser/view/router'
 
 const app = document.getElementById('app')
 
 render(
-  <Router />,
+	<Router />,
 	app,
 	app.lastChild
 )

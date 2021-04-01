@@ -4,7 +4,7 @@ module.exports =  ({ html, BOTS_USER_AGENTS, BotContext }) =>
   {
     return html`
     <${BotContext.Provider} value=${isBot}>
-      <${Component} ...${props}/>
+      <${Component} ...${props} />
     </${BotContext.Provider}>`
   }
 
