@@ -10,7 +10,7 @@ class BlockPageAction
 
   execute(action, state)
   {
-    return { ...state, ui: { ...state.ui, isBlocked: true } }
+    return { ...state, domain: { ...state.domain, isBlocked: true } }
   }
 }
 

@@ -62,5 +62,5 @@
     "browser": "src/browser",
     "node": "src/node"
   },
-  "version": "1.4.08-beta"
+  "version": "1.4.09-beta"
 }
