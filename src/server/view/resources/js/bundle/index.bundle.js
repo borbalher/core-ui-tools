@@ -744,10 +744,10 @@ var Application = __webpack_require__(/*! browser/core/application */ "./src/bro
   'core/bootstrap': __webpack_require__(/*! common/core/bootstrap/config */ "./src/common/core/bootstrap/config.js"),
   'view/components': __webpack_require__(/*! common/view/components/config */ "./src/common/view/components/config.js"),
   'view/documents': __webpack_require__(/*! common/view/document/config */ "./src/common/view/document/config.js"),
-  'view/pages': __webpack_require__(/*! common/view/pages/config */ "./src/common/view/pages/config.js"),
   'view/app': __webpack_require__(/*! common/view/app/config */ "./src/common/view/app/config.js"),
   'view/hooks': __webpack_require__(/*! common/view/hooks/config */ "./src/common/view/hooks/config.js"),
-  'view/hydrate': __webpack_require__(/*! browser/view/hydrate/config */ "./src/browser/view/hydrate/config.js")
+  'view/hydrate': __webpack_require__(/*! browser/view/hydrate/config */ "./src/browser/view/hydrate/config.js"),
+  'view/strategies': __webpack_require__(/*! common/view/strategies/config */ "./src/common/view/strategies/config.js")
 });
 
 app.run();
@@ -778,17 +778,8 @@ var HydrateBootstrap = /*#__PURE__*/function () {
   _createClass(HydrateBootstrap, [{
     key: "bootstrap",
     value: function bootstrap() {
-      var hydrate = this.locator.locate('view/hydrate'),
-          app = document.getElementById('app'),
-          body = document.querySelector('body'),
-          page = app.dataset.page,
-          props = window._PROPS_ || {};
-      hydrate.hydrate({
-        app: app,
-        body: body,
-        page: page,
-        props: props
-      });
+      var hydrate = this.locator.locate('view/hydrate');
+      hydrate.hydrate();
     }
   }]);
 
@@ -871,7 +862,7 @@ module.exports = {
 /***/ ((module) => {
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["<", " Component=", " props=", "></", ">"]);
+  var data = _taggedTemplateLiteral(["<", " ...", "/>"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -893,25 +884,30 @@ var Hydrator = /*#__PURE__*/function () {
     var render = _ref.render,
         html = _ref.html,
         hydrator = _ref.hydrator,
-        locator = _ref.locator;
+        App = _ref.App;
 
     _classCallCheck(this, Hydrator);
 
     this.html = html;
     this.render = render;
     this.hydrator = hydrator;
-    this.locator = locator;
+    this.App = App;
   }
 
   _createClass(Hydrator, [{
     key: "hydrate",
-    value: function hydrate(_ref2) {
-      var app = _ref2.app,
-          props = _ref2.props,
-          page = _ref2.page;
-      var App = this.locator.locate("view/app"),
-          Component = this.locator.locate("view/page/".concat(page));
-      this.render(this.html(_templateObject(), App, Component, props, App), app, app.lastChild);
+    value: function hydrate() {
+      var app = document.getElementById({"HTTP_PORT":"2431","PLATFORM":"browser","HASH":"9GZK7D1UZBCM6LP","APP_SELECTOR":"app"}.APP_SELECTOR),
+          props = window._PROPS_ || {};
+      this.hydrator(this.html(_templateObject(), this.App, props), app); // switch(process.env.HYDRATION_STRATEGY.toUpperCase())
+      // {
+      // case 'RENDER':
+      //   this.render(this.html`<${this.App} ...${props}/>`, app, app.lastChild)
+      //   return
+      // default:
+      //   this.hydrator(this.html`<${this.App} ...${props}/>`, app)
+      //   return
+      // }
     }
   }]);
 
@@ -934,7 +930,12 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var Hydrator = __webpack_require__(/*! . */ "./src/browser/view/hydrate/index.js");
+var Hydrator = __webpack_require__(/*! . */ "./src/browser/view/hydrate/index.js"),
+    _require = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
+    html = _require.html,
+    _require2 = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js"),
+    hydrate = _require2.hydrate,
+    render = _require2.render;
 
 var HydratorLocator = /*#__PURE__*/function () {
   function HydratorLocator(locator) {
@@ -946,17 +947,12 @@ var HydratorLocator = /*#__PURE__*/function () {
   _createClass(HydratorLocator, [{
     key: "locate",
     value: function locate() {
-      var _require = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
-          html = _require.html,
-          _require2 = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js"),
-          hydrate = _require2.hydrate,
-          render = _require2.render;
-
+      var App = this.locator.locate("view/app");
       return new Hydrator({
         html: html,
+        App: App,
         hydrator: hydrate,
-        render: render,
-        locator: this.locator
+        render: render
       });
     }
   }]);
@@ -3700,7 +3696,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n    <", " value=", ">\n      <", " ...", " />\n    </", ">"]);
+  var data = _taggedTemplateLiteral(["\n    <", " value=", ">\n      <", " url=", ">\n        <", "             path=\"/to-dos\"/>\n        <", " path=\"/dynamic-rendering\" />\n        <", "          path=\"/counter\"/>\n      </", ">\n    </", ">"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -3714,45 +3710,44 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 module.exports = function (_ref) {
   var html = _ref.html,
       BOTS_USER_AGENTS = _ref.BOTS_USER_AGENTS,
-      BotContext = _ref.BotContext;
+      BotContext = _ref.BotContext,
+      Router = _ref.Router,
+      ToDo = _ref.ToDo,
+      DynamicRendering = _ref.DynamicRendering,
+      Counter = _ref.Counter;
 
+  // return ({ isBot, url }) =>
+  // {
+  //   return html`
+  //   <${BotContext.Provider} value=${isBot}>
+  //     <${Router} url=${url}>
+  //       <${ToDo}    path="/to-dos"/>
+  //     </${Router}>
+  //   </${BotContext.Provider}>`
+  // }
   var App = function App(_ref2) {
-    var Component = _ref2.Component,
-        isBot = _ref2.isBot,
-        props = _ref2.props;
-    return html(_templateObject(), BotContext.Provider, isBot, Component, props, BotContext.Provider);
+    var isBot = _ref2.isBot,
+        url = _ref2.url;
+    return html(_templateObject(), BotContext.Provider, isBot, Router, url, ToDo, DynamicRendering, Counter, Router, BotContext.Provider);
   };
 
   App.getServerSideProps = /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(_ref3) {
-      var Component, ctx, request, props;
+      var ctx, request;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              Component = _ref3.Component, ctx = _ref3.ctx;
+              ctx = _ref3.ctx;
               request = ctx.request;
               userAgent = request ? request.headers['user-agent'] : navigator.userAgent, isBot = BOTS_USER_AGENTS.some(function (bot) {
                 return userAgent.toLowerCase().includes(bot);
-              });
-              props = {};
-
-              if (!(Component.getServerSideProps && typeof Component.getServerSideProps === 'function')) {
-                _context.next = 8;
-                break;
-              }
-
-              _context.next = 7;
-              return Component.getServerSideProps(ctx);
-
-            case 7:
-              props = _context.sent;
-
-            case 8:
-              props.isBot = isBot;
+              }), props = {
+                isBot: isBot
+              };
               return _context.abrupt("return", props);
 
-            case 10:
+            case 4:
             case "end":
               return _context.stop();
           }
@@ -3799,11 +3794,21 @@ var AppLocator = /*#__PURE__*/function () {
     key: "locate",
     value: function locate() {
       var BOTS_USER_AGENTS = this.locator.locate('core/configuration').find('view.user-agents'),
-          BotContext = createContext();
+          BotContext = createContext(),
+          _require3 = __webpack_require__(/*! preact-router */ "./node_modules/preact-router/dist/preact-router.es.js"),
+          Router = _require3.Router,
+          ToDo = this.locator.locate('view/component/todos'),
+          DynamicRendering = this.locator.locate('view/component/dynamic-rendering'),
+          Counter = this.locator.locate('view/component/counter');
+
       return App({
         html: html,
         BOTS_USER_AGENTS: BOTS_USER_AGENTS,
-        BotContext: BotContext
+        BotContext: BotContext,
+        Router: Router,
+        ToDo: ToDo,
+        DynamicRendering: DynamicRendering,
+        Counter: Counter
       });
     }
   }]);
@@ -3960,6 +3965,7 @@ module.exports = ClockLocator;
 module.exports = {
   core: {
     locator: {
+      'view/component/dynamic-rendering': __webpack_require__(/*! ./dynamic-rendering/locator */ "./src/common/view/components/dynamic-rendering/locator.js"),
       'view/component/todos': __webpack_require__(/*! ./todos/locator */ "./src/common/view/components/todos/locator.js"),
       'view/component/clock': __webpack_require__(/*! ./clock/locator */ "./src/common/view/components/clock/locator.js"),
       'view/component/counter': __webpack_require__(/*! ./counter/locator */ "./src/common/view/components/counter/locator.js")
@@ -4003,7 +4009,8 @@ module.exports = function (_ref) {
   var html = _ref.html,
       useState = _ref.useState;
   return function (_ref2) {
-    var initialCount = _ref2.initialCount;
+    var _ref2$initialCount = _ref2.initialCount,
+        initialCount = _ref2$initialCount === void 0 ? 0 : _ref2$initialCount;
 
     var _useState = useState(initialCount),
         _useState2 = _slicedToArray(_useState, 2),
@@ -4058,6 +4065,109 @@ var CounterLocator = /*#__PURE__*/function () {
       return Counter({
         html: html,
         useState: useState
+      });
+    }
+  }]);
+
+  return CounterLocator;
+}();
+
+module.exports = CounterLocator;
+
+/***/ }),
+
+/***/ "./src/common/view/components/dynamic-rendering/index.js":
+/*!***************************************************************!*\
+  !*** ./src/common/view/components/dynamic-rendering/index.js ***!
+  \***************************************************************/
+/***/ ((module) => {
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["<", ">\n            <li>", "</li>\n          </", ">"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n    <div>\n      ", "\n    </div>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+module.exports = function (_ref) {
+  var html = _ref.html,
+      useState = _ref.useState,
+      DynamicRendering = _ref.DynamicRendering;
+  return function () {
+    var _useState = useState(new Array(1000)),
+        _useState2 = _slicedToArray(_useState, 2),
+        numbers = _useState2[0],
+        setNumbers = _useState2[1];
+
+    return html(_templateObject(), numbers.map(function (number, index) {
+      return html(_templateObject2(), DynamicRendering, index, DynamicRendering);
+    }));
+  };
+};
+
+/***/ }),
+
+/***/ "./src/common/view/components/dynamic-rendering/locator.js":
+/*!*****************************************************************!*\
+  !*** ./src/common/view/components/dynamic-rendering/locator.js ***!
+  \*****************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var DynamicRendering = __webpack_require__(/*! . */ "./src/common/view/components/dynamic-rendering/index.js");
+
+var CounterLocator = /*#__PURE__*/function () {
+  function CounterLocator(locator) {
+    _classCallCheck(this, CounterLocator);
+
+    this.locator = locator;
+  }
+
+  _createClass(CounterLocator, [{
+    key: "locate",
+    value: function locate() {
+      var _require = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js"),
+          useState = _require.useState,
+          _require2 = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
+          html = _require2.html,
+          DynamicRendering = this.locator.locate('view/strategies/dynamic');
+
+      return DynamicRendering({
+        html: html,
+        useState: useState,
+        DynamicRendering: DynamicRendering
       });
     }
   }]);
@@ -4238,7 +4348,7 @@ module.exports = ToDosComponentLocator;
 /***/ ((module) => {
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n      <head>\n        <script type=\"text/javascript\" dangerouslySetInnerHTML=", "/>\n        <script type=\"text/javascript\" dangerouslySetInnerHTML=", "/>\n        <script type=\"text/javascript\" src=\"/resources/js/vendors.bundle.js?", "\"></script>\n        <script type=\"text/javascript\" src=\"/resources/js/polyfills.bundle.js?", "\"></script>\n        <script type=\"text/javascript\" src=\"/resources/js/", ".bundle.js?", "\"></script>\n      </head>\n      <body>\n        <div id=\"app\" data-page=", ">", "</div>\n      </body>\n      "]);
+  var data = _taggedTemplateLiteral(["\n      <head>\n      </head>\n      <body>\n        <div id=\"", "\">\n          <", " ...", "/>\n        </div>\n        <script type=\"text/javascript\" dangerouslySetInnerHTML=", "/>\n        <script type=\"text/javascript\" dangerouslySetInnerHTML=", "/>\n        <script type=\"text/javascript\" src=\"/resources/js/bundle/vendors.bundle.js?", "\"></script>\n        <script type=\"text/javascript\" src=\"/resources/js/bundle/polyfills.bundle.js?", "\"></script>\n        <script type=\"text/javascript\" src=\"/resources/js/bundle/index.bundle.js?", "\"></script>\n      </body>\n      "]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -4257,11 +4367,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var Base = /*#__PURE__*/function () {
   function Base(_ref) {
-    var html = _ref.html;
+    var html = _ref.html,
+        App = _ref.App;
 
     _classCallCheck(this, Base);
 
     this.html = html;
+    this.App = App;
   }
 
   _createClass(Base, [{
@@ -4285,17 +4397,15 @@ var Base = /*#__PURE__*/function () {
   }, {
     key: "render",
     value: function render(_ref4) {
-      var app = _ref4.app,
-          props = _ref4.props,
-          page = _ref4.page,
+      var props = _ref4.props,
           _ref4$hash = _ref4.hash,
-          hash = _ref4$hash === void 0 ? process.env.HASH : _ref4$hash,
+          hash = _ref4$hash === void 0 ? {"HTTP_PORT":"2431","PLATFORM":"browser","HASH":"9GZK7D1UZBCM6LP","APP_SELECTOR":"app"}.HASH : _ref4$hash,
           state = _ref4.state;
-      return this.html(_templateObject(), this.serializeProps({
+      return this.html(_templateObject(), {"HTTP_PORT":"2431","PLATFORM":"browser","HASH":"9GZK7D1UZBCM6LP","APP_SELECTOR":"app"}.APP_SELECTOR, this.App, props, this.serializeProps({
         props: props
       }), this.serializeState({
         state: state
-      }), hash, hash, page, hash, page, app);
+      }), hash, hash, hash);
     }
   }]);
 
@@ -4331,10 +4441,12 @@ var BaseLocator = /*#__PURE__*/function () {
     key: "locate",
     value: function locate() {
       var _require = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
-          html = _require.html;
+          html = _require.html,
+          App = this.locator.locate("view/app");
 
       return new Base({
-        html: html
+        html: html,
+        App: App
       });
     }
   }]);
@@ -4506,30 +4618,132 @@ module.exports = CounterLocator;
 
 /***/ }),
 
-/***/ "./src/common/view/pages/config.js":
-/*!*****************************************!*\
-  !*** ./src/common/view/pages/config.js ***!
-  \*****************************************/
+/***/ "./src/common/view/strategies/config.js":
+/*!**********************************************!*\
+  !*** ./src/common/view/strategies/config.js ***!
+  \**********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = {
   core: {
     locator: {
-      'view/page/index': __webpack_require__(/*! ./index/locator */ "./src/common/view/pages/index/locator.js")
+      'view/strategies/static': __webpack_require__(/*! ./static/locator */ "./src/common/view/strategies/static/locator.js"),
+      'view/strategies/dynamic': __webpack_require__(/*! ./dynamic/locator */ "./src/common/view/strategies/dynamic/locator.js"),
+      'view/strategies/progressive': __webpack_require__(/*! ./progressive/locator */ "./src/common/view/strategies/progressive/locator.js")
     }
   }
 };
 
 /***/ }),
 
-/***/ "./src/common/view/pages/index/index.js":
-/*!**********************************************!*\
-  !*** ./src/common/view/pages/index/index.js ***!
-  \**********************************************/
+/***/ "./src/common/view/strategies/dynamic/index.js":
+/*!*****************************************************!*\
+  !*** ./src/common/view/strategies/dynamic/index.js ***!
+  \*****************************************************/
 /***/ ((module) => {
 
+module.exports = function (_ref) {
+  var useRef = _ref.useRef,
+      html = _ref.html,
+      useNearScreen = _ref.useNearScreen;
+  return function (_ref2) {
+    var children = _ref2.children,
+        isBot = _ref2.isBot,
+        force = _ref2.force;
+    return children; // const
+    // ref          = useRef(null),
+    // isNearScreen = useNearScreen({ref})
+    // if(isBot || isNearScreen || force)
+    //   return children
+    // else
+    //   return html`<div ref=${ref}/>`
+  };
+};
+
+/***/ }),
+
+/***/ "./src/common/view/strategies/dynamic/locator.js":
+/*!*******************************************************!*\
+  !*** ./src/common/view/strategies/dynamic/locator.js ***!
+  \*******************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var DynamicLocator = /*#__PURE__*/function () {
+  function DynamicLocator(locator) {
+    _classCallCheck(this, DynamicLocator);
+
+    this.locator = locator;
+  }
+
+  _createClass(DynamicLocator, [{
+    key: "locate",
+    value: function locate() {
+      var _require = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js"),
+          useRef = _require.useRef,
+          _require2 = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
+          html = _require2.html,
+          Dynamic = __webpack_require__(/*! . */ "./src/common/view/strategies/dynamic/index.js"),
+          useNearScreen = this.locator.locate('view/hooks/near-screen');
+
+      return Dynamic({
+        html: html,
+        useRef: useRef,
+        useNearScreen: useNearScreen
+      });
+    }
+  }]);
+
+  return DynamicLocator;
+}();
+
+module.exports = DynamicLocator;
+
+/***/ }),
+
+/***/ "./src/common/view/strategies/progressive/index.js":
+/*!*********************************************************!*\
+  !*** ./src/common/view/strategies/progressive/index.js ***!
+  \*********************************************************/
+/***/ ((module) => {
+
+function _templateObject4() {
+  var data = _taggedTemplateLiteral(["\n      <div\n        ref=", "\n        suppressHydrationWarning\n        dangerouslySetInnerHTML=", "\n      />"]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["<div ref=", ">", "</div"]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["", ""]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n    <", " url=", ">\n      <", "    path=\"/to-dos\"/>\n    </", ">"]);
+  var data = _taggedTemplateLiteral(["", ""]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -4541,21 +4755,51 @@ function _templateObject() {
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 module.exports = function (_ref) {
-  var html = _ref.html,
-      ToDo = _ref.ToDo,
-      Router = _ref.Router;
+  var useRef = _ref.useRef,
+      useEffect = _ref.useEffect,
+      html = _ref.html,
+      render = _ref.render,
+      hydrate = _ref.hydrate,
+      useNearScreen = _ref.useNearScreen,
+      EMPTY_HTML = _ref.EMPTY_HTML;
   return function (_ref2) {
-    var url = _ref2.url;
-    return html(_templateObject(), Router, url, ToDo, Router);
+    var children = _ref2.children;
+    var ref = useRef(null),
+        isNearScreen = useNearScreen({
+      ref: ref
+    });
+    useEffect(function () {
+      var el = ref.current;
+
+      if (isNearScreen) // CLIENT: If we want to force the hydration OR the element is near screen then we hydrate the content to get the functionality ready
+        {
+          var action = el.hasChildNodes() ? 'hydrate' : 'render';
+
+          switch (action) {
+            case 'hydrate':
+              hydrate(html(_templateObject(), children), el);
+              break;
+
+            case 'render':
+              render(html(_templateObject2(), children), el);
+              break;
+          }
+        }
+    }, [children, isNearScreen]); // SERVER: Just render the content as usual
+
+    if (isServer) return html(_templateObject3(), ref, children); // CLIENT: Avoid hydration until we say so
+    // avoid re-render on the client
+
+    return html(_templateObject4(), ref, EMPTY_HTML);
   };
 };
 
 /***/ }),
 
-/***/ "./src/common/view/pages/index/locator.js":
-/*!************************************************!*\
-  !*** ./src/common/view/pages/index/locator.js ***!
-  \************************************************/
+/***/ "./src/common/view/strategies/progressive/locator.js":
+/*!***********************************************************!*\
+  !*** ./src/common/view/strategies/progressive/locator.js ***!
+  \***********************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -4564,32 +4808,167 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var IndexLocator = /*#__PURE__*/function () {
-  function IndexLocator(locator) {
-    _classCallCheck(this, IndexLocator);
+var ProgressiveLocator = /*#__PURE__*/function () {
+  function ProgressiveLocator(locator) {
+    _classCallCheck(this, ProgressiveLocator);
 
     this.locator = locator;
   }
 
-  _createClass(IndexLocator, [{
+  _createClass(ProgressiveLocator, [{
     key: "locate",
     value: function locate() {
-      var Index = __webpack_require__(/*! . */ "./src/common/view/pages/index/index.js"),
-          _require = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
-          html = _require.html,
-          ToDo = this.locator.locate('view/component/todos');
+      var Progressive = __webpack_require__(/*! . */ "./src/common/view/strategies/progressive/index.js"),
+          _require = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js"),
+          useEffect = _require.useEffect,
+          useRef = _require.useRef,
+          _require2 = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
+          html = _require2.html,
+          render = _require2.render,
+          hydrate = _require2.hydrate,
+          useNearScreen = this.locator.locate('view/hooks/near-screen'),
+          EMPTY_HTML = {
+        __html: ''
+      },
+          isServer = {"HTTP_PORT":"2431","PLATFORM":"browser","HASH":"9GZK7D1UZBCM6LP","APP_SELECTOR":"app"}.PLATFORM === 'node';
 
-      return Index({
+      return Progressive({
+        isServer: isServer,
         html: html,
-        ToDo: ToDo
+        useRef: useRef,
+        useEffect: useEffect,
+        render: render,
+        hydrate: hydrate,
+        useNearScreen: useNearScreen,
+        EMPTY_HTML: EMPTY_HTML
       });
     }
   }]);
 
-  return IndexLocator;
+  return ProgressiveLocator;
 }();
 
-module.exports = IndexLocator;
+module.exports = ProgressiveLocator;
+
+/***/ }),
+
+/***/ "./src/common/view/strategies/static/index.js":
+/*!****************************************************!*\
+  !*** ./src/common/view/strategies/static/index.js ***!
+  \****************************************************/
+/***/ ((module) => {
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n      <div\n        ref=", "\n        suppressHydrationWarning\n        dangerouslySetInnerHTML=", "\n      />"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["", ""]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+module.exports = function (_ref) {
+  var useState = _ref.useState,
+      useRef = _ref.useRef,
+      useEffect = _ref.useEffect,
+      html = _ref.html,
+      EMPTY_HTML = _ref.EMPTY_HTML;
+  return function (_ref2) {
+    var children = _ref2.children;
+
+    var ref = useRef(null),
+        _useState = useState(typeof window === 'undefined'),
+        _useState2 = _slicedToArray(_useState, 2),
+        render = _useState2[0],
+        setRender = _useState2[1];
+
+    useEffect(function () {
+      var isEmpty = ref.current.innerHTML === ''; // check if the innerHTML is empty as client side navigation need to render the component without server-side backup
+
+      if (isEmpty) setRender(true);
+    }, []);
+    if (render) return html(_templateObject(), children); // if we're in the server or a spa navigation, just render it
+    // avoid re-render on the client
+
+    return html(_templateObject2(), ref, EMPTY_HTML);
+  };
+};
+
+/***/ }),
+
+/***/ "./src/common/view/strategies/static/locator.js":
+/*!******************************************************!*\
+  !*** ./src/common/view/strategies/static/locator.js ***!
+  \******************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var StaticRenderStrategy = __webpack_require__(/*! . */ "./src/common/view/strategies/static/index.js");
+
+var StaticRenderStrategyLocator = /*#__PURE__*/function () {
+  function StaticRenderStrategyLocator(locator) {
+    _classCallCheck(this, StaticRenderStrategyLocator);
+
+    this.locator = locator;
+  }
+
+  _createClass(StaticRenderStrategyLocator, [{
+    key: "locate",
+    value: function locate() {
+      var _require = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js"),
+          useState = _require.useState,
+          useRef = _require.useRef,
+          useEffect = _require.useEffect,
+          _require2 = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
+          html = _require2.html,
+          EMPTY_HTML = {
+        __html: ''
+      };
+
+      return StaticRenderStrategy({
+        html: html,
+        useState: useState,
+        useRef: useRef,
+        useEffect: useEffect,
+        EMPTY_HTML: EMPTY_HTML
+      });
+    }
+  }]);
+
+  return StaticRenderStrategyLocator;
+}();
+
+module.exports = StaticRenderStrategyLocator;
 
 /***/ }),
 

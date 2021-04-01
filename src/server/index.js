@@ -14,9 +14,9 @@ core        = coreFactory.create({
   'api'                 : require('server/api/config'),
   'view/components'     : require('common/view/components/config'),
   'view/documents'      : require('common/view/document/config'),
-  'view/pages'          : require('common/view/pages/config'),
   'view/app'            : require('common/view/app/config'),
   'view/hooks'          : require('common/view/hooks/config'),
+  'view/strategies'     : require('common/view/strategies/config'),
 })
 
 core

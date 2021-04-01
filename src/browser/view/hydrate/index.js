@@ -4,22 +4,31 @@ class Hydrator
     render,
     html,
     hydrator,
-    locator
+    App
   })
   {
     this.html     = html
     this.render   = render
     this.hydrator = hydrator
-    this.locator  = locator
+    this.App      = App
   }
 
-  hydrate({ app, props, page })
+  hydrate()
   {
     const
-    App       = this.locator.locate(`view/app`),
-    Component = this.locator.locate(`view/page/${page}`)
+    app   = document.getElementById(process.env.APP_SELECTOR),
+    props = window._PROPS_ || {}
 
-    this.render(this.html`<${App} Component=${Component} props=${props}></${App}>`, app, app.lastChild)
+    this.hydrator(this.html`<${this.App} ...${props}/>`, app)
+    // switch(process.env.HYDRATION_STRATEGY.toUpperCase())
+    // {
+    // case 'RENDER':
+    //   this.render(this.html`<${this.App} ...${props}/>`, app, app.lastChild)
+    //   return
+    // default:
+    //   this.hydrator(this.html`<${this.App} ...${props}/>`, app)
+    //   return
+    // }
   }
 }
 

@@ -1,7 +1,7 @@
 
-module.exports = ({ html, useState, useRef }) =>
+module.exports = ({ html, useState }) =>
 {
-  return ({ initialCount = 0 }) =>
+  return ({ initialCount }) =>
   {
     const [count, setCount] = useState(initialCount);
     const increment = () => setCount(count + 1);

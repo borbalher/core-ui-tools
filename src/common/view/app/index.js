@@ -1,14 +1,28 @@
-module.exports =  ({ html, BOTS_USER_AGENTS, BotContext }) =>
+module.exports =  ({ html, BOTS_USER_AGENTS, BotContext, Router, ToDo, DynamicRendering, Counter }) =>
 {
-  const App = ({ Component, isBot, props }) =>
+
+  // return ({ isBot, url }) =>
+  // {
+  //   return html`
+  //   <${BotContext.Provider} value=${isBot}>
+  //     <${Router} url=${url}>
+  //       <${ToDo}    path="/to-dos"/>
+  //     </${Router}>
+  //   </${BotContext.Provider}>`
+  // }
+  const App = ({ isBot, url }) =>
   {
     return html`
     <${BotContext.Provider} value=${isBot}>
-      <${Component} ...${props} />
+      <${Router} url=${url}>
+        <${ToDo}             path="/to-dos"/>
+        <${DynamicRendering} isBot=${isBot} path="/dynamic-rendering" />
+        <${Counter}          path="/counter"/>
+      </${Router}>
     </${BotContext.Provider}>`
   }
 
-  App.getServerSideProps = async ({ Component, ctx }) =>
+  App.getServerSideProps = async ({ ctx }) =>
   {
     const
     { request } = ctx
@@ -16,17 +30,12 @@ module.exports =  ({ html, BOTS_USER_AGENTS, BotContext }) =>
     isBot       = BOTS_USER_AGENTS.some((bot) =>
     {
       return userAgent.toLowerCase().includes(bot)
-    })
-
-    let props = {}
-
-    if(Component.getServerSideProps && typeof Component.getServerSideProps === 'function')
-      props = await Component.getServerSideProps(ctx)
-
-    props.isBot = isBot
+    }),
+   props = { isBot }
 
     return props
   }
 
   return App
 }
+

@@ -1,7 +1,8 @@
 /*eslint-disable*/
 const
-path   = require('path'),
-Dotenv = require('dotenv-webpack')
+path    = require('path'),
+webpack = require('webpack'),
+dotenv  = require('dotenv')
 
 module.exports = {
   entry :
@@ -11,7 +12,7 @@ module.exports = {
   },
   output :
   {
-    path     : path.resolve(__dirname, 'src/server/view/resources/js'),
+    path     : path.resolve(__dirname, 'src/server/view/resources/js/bundle'),
     filename : '[name].bundle.js'
   },
   mode    : 'development',
@@ -65,14 +66,17 @@ module.exports = {
   },
   target  : 'web',
   plugins : [
-    new Dotenv({
-      path             : './browser.env',  // load this now instead of the ones in '.env'
-      safe             : true,             // load '.env.example' to verify the '.env' variables are all set. Can also be a string to a different file.
-      allowEmptyValues : true,             // allow empty variables (e.g. `FOO=`) (treat it as empty string, rather than missing)
-      systemvars       : true,             // load all the predefined 'process.env' variables which will trump anything local per dotenv specs.
-      silent           : true,             // hide any errors
-      defaults         : false             // load '.env.defaults' as the default values if empty.
-    })
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(dotenv.config({ path: './.env.browser' }).parsed) // it will automatically pick up key values from .env file
+   })
+    // new Dotenv({
+    //   path             : './.env.browser', // load this now instead of the ones in '.env'
+    //   safe             : true,             // load '.env.example' to verify the '.env' variables are all set. Can also be a string to a different file.
+    //   allowEmptyValues : true,             // allow empty variables (e.g. `FOO=`) (treat it as empty string, rather than missing)
+    //   systemvars       : true,             // load all the predefined 'process.env' variables which will trump anything local per dotenv specs.
+    //   silent           : true,             // hide any errors
+    //   defaults         : false             // load '.env.defaults' as the default values if empty.
+    // })
   ],
   node :
   {

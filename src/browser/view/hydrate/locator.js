@@ -1,4 +1,7 @@
-const Hydrator = require('.')
+const
+Hydrator            = require('.'),
+{ html }            = require('htm/preact'),
+{ hydrate, render } = require('preact')
 
 class HydratorLocator
 {
@@ -9,11 +12,9 @@ class HydratorLocator
 
   locate()
   {
-    const
-    { html }            = require('htm/preact'),
-    { hydrate, render } = require('preact')
+    const App = this.locator.locate(`view/app`)
 
-    return new Hydrator({ html, hydrator: hydrate, render, locator: this.locator })
+    return new Hydrator({ html, App, hydrator: hydrate, render })
   }
 }
 

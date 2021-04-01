@@ -9,9 +9,10 @@ class BaseLocator
 
   locate()
   {
-    const { html } = require('htm/preact')
-
-    return new Base({ html })
+    const
+    { html } = require('htm/preact'),
+    App      = this.locator.locate(`view/app`)
+    return new Base({ html, App })
   }
 }
 

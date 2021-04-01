@@ -24,26 +24,6 @@ module.exports = {
             endpoint : 'server/core/resource',
             input    : false
           },
-          'index' :
-          {
-            url      : '/',
-            method   : 'get',
-            endpoint : 'api/endpoint/page',
-            view     : 'view/preact',
-            document : 'base',
-            page     : 'index',
-            input    : false
-          },
-          'to-dos' :
-          {
-            url      : '/to-dos',
-            method   : 'get',
-            endpoint : 'api/endpoint/page',
-            view     : 'view/preact',
-            document : 'base',
-            page     : 'index',
-            input    : false
-          },
           'static-file-example' :
           {
             url         : '/static',
@@ -53,6 +33,14 @@ module.exports = {
             contentType : 'text/html',
             file        : 'index.html',
             input       : false
+          },
+          'index' :
+          {
+            method   : 'get',
+            endpoint : 'api/endpoint/page',
+            view     : 'view/preact',
+            document : 'base',
+            input    : false
           },
         }
       }
