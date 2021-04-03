@@ -14,7 +14,7 @@ class Internationalization
     this.dictionaries   = dictionaries
   }
 
-  buildLocale = ({
+  buildLocale({
     locale,
     options :
     {
@@ -23,7 +23,7 @@ class Internationalization
       hourCycle,
       calendar
     } = {}
-  }) =>
+  })
   {
     return new Intl.Locale(locale, {
       script,
@@ -96,7 +96,7 @@ class Internationalization
       }
     }
 
-    return fallback
+    return fallback ? fallback : id
   }
 
   formatRelativeTime({

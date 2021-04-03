@@ -47,15 +47,10 @@ class Store
     this.state  = state
 
     this.checkStatesLength()
-    this.updateEntitySet()
+    // this.updateEntitySet()
 
     const eventChanged = this.eventComposer.compose('state.changed', { state })
     this.channel.emit(eventChanged)
-  }
-
-  updateEntitySet()
-  {
-    this.entitySet.update(this.state.entities)
   }
 
   getState()
@@ -68,49 +63,54 @@ class Store
     return this.deepfind.find(path, this.getState())
   }
 
-  normalizeEntityContext(context, schemaName)
-  {
-    return this.normalizer.normalizer(context, schemaName)
-  }
+  // normalizeEntityContext(context, schemaName)
+  // {
+  //   return this.normalizer.normalizer(context, schemaName)
+  // }
 
-  addEntityContextToState(schemaName, context)
-  {
-    this.entitySet.addEntityContext(schemaName, context)
-    return { ...this.state, entities: this.entitySet.entities }
-  }
+  // updateEntitySet()
+  // {
+  //   this.entitySet.update(this.state.entities)
+  // }
 
-  getEntityType(schemaName)
-  {
-    return this.entitySet.getEntityType(schemaName)
-  }
+  // addEntityContextToState(schemaName, context)
+  // {
+  //   this.entitySet.addEntityContext(schemaName, context)
+  //   return { ...this.state, entities: this.entitySet.entities }
+  // }
 
-  getEntity(schemaName, id)
-  {
-    return this.entitySet.getEntity(schemaName, id)
-  }
+  // getEntityType(schemaName)
+  // {
+  //   return this.entitySet.getEntityType(schemaName)
+  // }
 
-  getEntityContext(schemaName, id)
-  {
-    return this.entitySet.getEntityContext(schemaName, id)
-  }
+  // getEntity(schemaName, id)
+  // {
+  //   return this.entitySet.getEntity(schemaName, id)
+  // }
 
-  addEntitiesToState(entities)
-  {
-    this.entitySet.addEntities(entities)
-    return { ...this.state, entities: this.entitySet.entities }
-  }
+  // getEntityContext(schemaName, id)
+  // {
+  //   return this.entitySet.getEntityContext(schemaName, id)
+  // }
 
-  addEntityToState(schemaName, id, entity)
-  {
-    this.entitySet.addEntity(schemaName, id, entity)
-    return { ...this.state, entities: this.entitySet.entities }
-  }
+  // addEntitiesToState(entities)
+  // {
+  //   this.entitySet.addEntities(entities)
+  //   return { ...this.state, entities: this.entitySet.entities }
+  // }
 
-  removeEntityFromState(schemaName, id)
-  {
-    this.entitySet.removeEntity(schemaName, id)
-    return { ...this.state, entities: this.entitySet.entities }
-  }
+  // addEntityToState(schemaName, id, entity)
+  // {
+  //   this.entitySet.addEntity(schemaName, id, entity)
+  //   return { ...this.state, entities: this.entitySet.entities }
+  // }
+
+  // removeEntityFromState(schemaName, id)
+  // {
+  //   this.entitySet.removeEntity(schemaName, id)
+  //   return { ...this.state, entities: this.entitySet.entities }
+  // }
 
   applyMiddlewares(middlewares)
   {

@@ -1,25 +1,15 @@
-module.exports =  ({ html, BOTS_USER_AGENTS, BotContext, Router, ToDo, DynamicRendering, ProgressiveRendering, StaticContent, Counter }) =>
+module.exports =  ({ html, BOTS_USER_AGENTS, BotContext, Router, ToDo, DynamicRendering, ProgressiveRendering, StaticContent, Playground }) =>
 {
-
-  // return ({ isBot, url }) =>
-  // {
-  //   return html`
-  //   <${BotContext.Provider} value=${isBot}>
-  //     <${Router} url=${url}>
-  //       <${ToDo}    path="/to-dos"/>
-  //     </${Router}>
-  //   </${BotContext.Provider}>`
-  // }
   const App = ({ isBot, url }) =>
   {
     return html`
     <${BotContext.Provider} value=${isBot}>
       <${Router} url=${url}>
-        <${ToDo}             path="/to-dos"/>
-        <${DynamicRendering} isBot=${isBot} path="/dynamic-rendering" />
+        <${ToDo}                 path="/to-dos"/>
+        <${DynamicRendering}     isBot=${isBot} path="/dynamic-rendering" />
         <${ProgressiveRendering} path="/progressive-rendering" />
-        <${StaticContent} path="/static-content" />
-        <${Counter}          path="/counter"/>
+        <${StaticContent}        path="/static-content" />
+        <${Playground}           path="/"/>
       </${Router}>
     </${BotContext.Provider}>`
   }

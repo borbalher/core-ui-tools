@@ -15,8 +15,8 @@ class InternationalizationFactory
 
   create({
     fallbackLocale = this.fallbackLocale,
-    locale  = this.locale,
-    dictionaries = {}
+    locale         = this.locale,
+    dictionaries   = {}
   })
   {
     return new Internationalization({

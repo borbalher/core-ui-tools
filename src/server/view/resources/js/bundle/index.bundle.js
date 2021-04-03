@@ -747,7 +747,8 @@ var Application = __webpack_require__(/*! browser/core/application */ "./src/bro
   'view/app': __webpack_require__(/*! common/view/app/config */ "./src/common/view/app/config.js"),
   'view/hooks': __webpack_require__(/*! common/view/hooks/config */ "./src/common/view/hooks/config.js"),
   'view/hydrate': __webpack_require__(/*! browser/view/hydrate/config */ "./src/browser/view/hydrate/config.js"),
-  'view/strategies': __webpack_require__(/*! common/view/strategies/config */ "./src/common/view/strategies/config.js")
+  'view/strategies': __webpack_require__(/*! common/view/strategies/config */ "./src/common/view/strategies/config.js"),
+  'core/internationalization': __webpack_require__(/*! common/core/internationalization/config */ "./src/common/core/internationalization/config.js")
 });
 
 app.run();
@@ -2631,6 +2632,326 @@ module.exports = Core;
 
 /***/ }),
 
+/***/ "./src/common/core/internationalization/config.js":
+/*!********************************************************!*\
+  !*** ./src/common/core/internationalization/config.js ***!
+  \********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = {
+  core: {
+    internationalization: {
+      locale: {
+        locale: 'es'
+      },
+      fallbackLocale: {
+        locale: 'es'
+      },
+      dictionaries: {}
+    },
+    locator: {
+      'core/internationalization': __webpack_require__(/*! ./src/common/core/internationalization/locator */ "./src/common/core/internationalization/locator.js")
+    }
+  }
+};
+
+/***/ }),
+
+/***/ "./src/common/core/internationalization/index.js":
+/*!*******************************************************!*\
+  !*** ./src/common/core/internationalization/index.js ***!
+  \*******************************************************/
+/***/ ((module) => {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Internationalization = /*#__PURE__*/function () {
+  function Internationalization(_ref) {
+    var dictionaries = _ref.dictionaries,
+        fallbackLocale = _ref.fallbackLocale,
+        locale = _ref.locale;
+
+    _classCallCheck(this, Internationalization);
+
+    this.fallbackLocale = this.buildLocale(fallbackLocale);
+    if (locale) this.locale = this.buildLocale(locale);
+    this.dictionaries = dictionaries;
+  }
+
+  _createClass(Internationalization, [{
+    key: "buildLocale",
+    value: function buildLocale(_ref2) {
+      var locale = _ref2.locale,
+          _ref2$options = _ref2.options;
+      _ref2$options = _ref2$options === void 0 ? {} : _ref2$options;
+      var script = _ref2$options.script,
+          region = _ref2$options.region,
+          hourCycle = _ref2$options.hourCycle,
+          calendar = _ref2$options.calendar;
+      return new Intl.Locale(locale, {
+        script: script,
+        region: region,
+        hourCycle: hourCycle,
+        calendar: calendar
+      });
+    }
+  }, {
+    key: "getLocale",
+    value: function getLocale() {
+      return this.locale ? this.locale.toString() : this.fallbackLocale.toString();
+    }
+  }, {
+    key: "getLocaleBaseName",
+    value: function getLocaleBaseName() {
+      return this.locale ? this.locale.baseName : this.fallbackLocale.baseName;
+    }
+  }, {
+    key: "getDictionary",
+    value: function getDictionary(locale) {
+      return this.dictionaries[locale] || {};
+    } // addDictionary(name, dictionary)
+    // {
+    //   this.dictionaries[name] = dictionary
+    // }
+    // deleteDictionary(name)
+    // {
+    //   delete this.dictionaries[name]
+    // }
+    // addWordToDictionary(lang, key, value)
+    // {
+    //   if(!this.dictionaries[lang])
+    //     this.dictionaries[lang] = {}
+    //   this.dictionaries[lang][key] = value
+    // }
+
+  }, {
+    key: "translate",
+    value: function translate(_ref3) {
+      var id = _ref3.id,
+          plural = _ref3.plural,
+          fields = _ref3.fields,
+          fallback = _ref3.fallback;
+      var locale = this.getLocaleBaseName(),
+          dictionary = this.getDictionary(locale),
+          text = dictionary[id];
+
+      if (text) {
+        if (plural) {
+          if (fields && typeof text[plural] === 'function') return text[plural](fields);else if (typeof text[plural] === 'string') return text[plural];
+        } else {
+          if (fields && typeof text === 'function') return text(fields);else if (typeof text === 'string') return text;
+        }
+      }
+
+      return fallback ? fallback : id;
+    }
+  }, {
+    key: "formatRelativeTime",
+    value: function formatRelativeTime(_ref4) {
+      var value = _ref4.value,
+          unit = _ref4.unit,
+          _ref4$options = _ref4.options;
+      _ref4$options = _ref4$options === void 0 ? this.options.relativeTime : _ref4$options;
+      var localeMatcher = _ref4$options.localeMatcher,
+          numeric = _ref4$options.numeric,
+          style = _ref4$options.style,
+          split = _ref4$options.split;
+      var rtf = new Intl.RelativeTimeFormat(this.getLocale(), {
+        localeMatcher: localeMatcher,
+        numeric: numeric,
+        style: style
+      });
+      if (split) return rtf.formatToParts(value, unit);
+      return rtf.format(value, unit);
+    }
+  }, {
+    key: "formatList",
+    value: function formatList(_ref5) {
+      var list = _ref5.list,
+          _ref5$options = _ref5.options;
+      _ref5$options = _ref5$options === void 0 ? {} : _ref5$options;
+      var localeMatcher = _ref5$options.localeMatcher,
+          type = _ref5$options.type,
+          style = _ref5$options.style;
+      var lf = new Intl.ListFormat(this.getLocale(), {
+        localeMatcher: localeMatcher,
+        type: type,
+        style: style
+      });
+      return lf.format(list);
+    }
+  }, {
+    key: "formatNumber",
+    value: function formatNumber(_ref6) {
+      var number = _ref6.number,
+          _ref6$options = _ref6.options;
+      _ref6$options = _ref6$options === void 0 ? {} : _ref6$options;
+      var compactDisplay = _ref6$options.compactDisplay,
+          currency = _ref6$options.currency,
+          currencyDisplay = _ref6$options.currencyDisplay,
+          currencySign = _ref6$options.currencySign,
+          localeMatcher = _ref6$options.localeMatcher,
+          notation = _ref6$options.notation,
+          numberingSystem = _ref6$options.numberingSystem,
+          signDisplay = _ref6$options.signDisplay,
+          style = _ref6$options.style,
+          unit = _ref6$options.unit,
+          unitDisplay = _ref6$options.unitDisplay,
+          useGrouping = _ref6$options.useGrouping,
+          minimumIntegerDigits = _ref6$options.minimumIntegerDigits,
+          minimumFractionDigits = _ref6$options.minimumFractionDigits,
+          minimumSignificantDigits = _ref6$options.minimumSignificantDigits,
+          maximumSignificantDigits = _ref6$options.maximumSignificantDigits;
+      var nf = new Intl.NumberFormat(this.getLocale(), {
+        compactDisplay: compactDisplay,
+        currency: currency,
+        currencyDisplay: currencyDisplay,
+        currencySign: currencySign,
+        localeMatcher: localeMatcher,
+        notation: notation,
+        numberingSystem: numberingSystem,
+        signDisplay: signDisplay,
+        style: style,
+        unit: unit,
+        unitDisplay: unitDisplay,
+        useGrouping: useGrouping,
+        minimumIntegerDigits: minimumIntegerDigits,
+        minimumFractionDigits: minimumFractionDigits,
+        minimumSignificantDigits: minimumSignificantDigits,
+        maximumSignificantDigits: maximumSignificantDigits
+      });
+      return nf.format(number);
+    }
+  }, {
+    key: "formatDate",
+    value: function formatDate(_ref7) {
+      var date = _ref7.date,
+          _ref7$options = _ref7.options;
+      _ref7$options = _ref7$options === void 0 ? {} : _ref7$options;
+      var dateStyle = _ref7$options.dateStyle,
+          timeStyle = _ref7$options.timeStyle,
+          calendar = _ref7$options.calendar,
+          dayPeriod = _ref7$options.dayPeriod,
+          numberingSystem = _ref7$options.numberingSystem,
+          localeMatcher = _ref7$options.localeMatcher,
+          timeZone = _ref7$options.timeZone,
+          hour12 = _ref7$options.hour12,
+          hourCycle = _ref7$options.hourCycle,
+          formatMatcher = _ref7$options.formatMatcher,
+          weekday = _ref7$options.weekday,
+          era = _ref7$options.era,
+          year = _ref7$options.year,
+          month = _ref7$options.month,
+          day = _ref7$options.day,
+          hour = _ref7$options.hour,
+          minute = _ref7$options.minute,
+          second = _ref7$options.second,
+          fractionalSecondDigits = _ref7$options.fractionalSecondDigits,
+          timeZoneName = _ref7$options.timeZoneName;
+      var dtf = new Intl.DateTimeFormat(this.getLocale(), {
+        dateStyle: dateStyle,
+        timeStyle: timeStyle,
+        calendar: calendar,
+        dayPeriod: dayPeriod,
+        numberingSystem: numberingSystem,
+        localeMatcher: localeMatcher,
+        timeZone: timeZone,
+        hour12: hour12,
+        hourCycle: hourCycle,
+        formatMatcher: formatMatcher,
+        weekday: weekday,
+        era: era,
+        year: year,
+        month: month,
+        day: day,
+        hour: hour,
+        minute: minute,
+        second: second,
+        fractionalSecondDigits: fractionalSecondDigits,
+        timeZoneName: timeZoneName
+      });
+      return dtf.format(date);
+    }
+  }, {
+    key: "getPluralRules",
+    value: function getPluralRules(_ref8) {
+      var number = _ref8.number,
+          _ref8$options = _ref8.options,
+          localeMatcher = _ref8$options.localeMatcher,
+          type = _ref8$options.type,
+          minimumIntegerDigits = _ref8$options.minimumIntegerDigits,
+          minimumFractionDigits = _ref8$options.minimumFractionDigits,
+          maximumFractionDigits = _ref8$options.maximumFractionDigits,
+          minimumSignificantDigits = _ref8$options.minimumSignificantDigits,
+          maximumSignificantDigits = _ref8$options.maximumSignificantDigits;
+      var pr = new Intl.PluralRules(this.getLocale(), {
+        localeMatcher: localeMatcher,
+        type: type,
+        minimumIntegerDigits: minimumIntegerDigits,
+        minimumFractionDigits: minimumFractionDigits,
+        maximumFractionDigits: maximumFractionDigits,
+        minimumSignificantDigits: minimumSignificantDigits,
+        maximumSignificantDigits: maximumSignificantDigits
+      });
+      return pr.select(number);
+    }
+  }]);
+
+  return Internationalization;
+}();
+
+module.exports = Internationalization;
+
+/***/ }),
+
+/***/ "./src/common/core/internationalization/locator.js":
+/*!*********************************************************!*\
+  !*** ./src/common/core/internationalization/locator.js ***!
+  \*********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var InternationalizationFactory = __webpack_require__(/*! . */ "./src/common/core/internationalization/index.js");
+
+var InternationalizationFactoryLocator = /*#__PURE__*/function () {
+  function InternationalizationFactoryLocator(locator) {
+    _classCallCheck(this, InternationalizationFactoryLocator);
+
+    this.locator = locator;
+  }
+
+  _createClass(InternationalizationFactoryLocator, [{
+    key: "locate",
+    value: function locate() {
+      var configuration = this.locator.locate('core/configuration'),
+          options = configuration.find('core.internationalization'),
+          dictionaries = options.dictionaries,
+          fallbackLocale = options.fallbackLocale,
+          locale = options.locale;
+      return new InternationalizationFactory({
+        dictionaries: dictionaries,
+        fallbackLocale: fallbackLocale,
+        locale: locale
+      });
+    }
+  }]);
+
+  return InternationalizationFactoryLocator;
+}();
+
+module.exports = InternationalizationFactoryLocator;
+
+/***/ }),
+
 /***/ "./src/common/core/listener/app-initialized/index.js":
 /*!***********************************************************!*\
   !*** ./src/common/core/listener/app-initialized/index.js ***!
@@ -3696,7 +4017,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n    <", " value=", ">\n      <", " url=", ">\n        <", "             path=\"/to-dos\"/>\n        <", " isBot=", " path=\"/dynamic-rendering\" />\n        <", " path=\"/progressive-rendering\" />\n        <", "          path=\"/counter\"/>\n      </", ">\n    </", ">"]);
+  var data = _taggedTemplateLiteral(["\n    <", " value=", ">\n      <", " url=", ">\n        <", "                 path=\"/to-dos\"/>\n        <", "     isBot=", " path=\"/dynamic-rendering\" />\n        <", " path=\"/progressive-rendering\" />\n        <", "        path=\"/static-content\" />\n        <", "           path=\"/\"/>\n      </", ">\n    </", ">"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -3715,21 +4036,13 @@ module.exports = function (_ref) {
       ToDo = _ref.ToDo,
       DynamicRendering = _ref.DynamicRendering,
       ProgressiveRendering = _ref.ProgressiveRendering,
-      Counter = _ref.Counter;
+      StaticContent = _ref.StaticContent,
+      Playground = _ref.Playground;
 
-  // return ({ isBot, url }) =>
-  // {
-  //   return html`
-  //   <${BotContext.Provider} value=${isBot}>
-  //     <${Router} url=${url}>
-  //       <${ToDo}    path="/to-dos"/>
-  //     </${Router}>
-  //   </${BotContext.Provider}>`
-  // }
   var App = function App(_ref2) {
     var isBot = _ref2.isBot,
         url = _ref2.url;
-    return html(_templateObject(), BotContext.Provider, isBot, Router, url, ToDo, DynamicRendering, isBot, ProgressiveRendering, Counter, Router, BotContext.Provider);
+    return html(_templateObject(), BotContext.Provider, isBot, Router, url, ToDo, DynamicRendering, isBot, ProgressiveRendering, StaticContent, Playground, Router, BotContext.Provider);
   };
 
   App.getServerSideProps = /*#__PURE__*/function () {
@@ -3801,7 +4114,9 @@ var AppLocator = /*#__PURE__*/function () {
           ToDo = this.locator.locate('view/component/todos'),
           DynamicRendering = this.locator.locate('view/component/dynamic-rendering'),
           ProgressiveRendering = this.locator.locate('view/component/progressive-hydration'),
-          Counter = this.locator.locate('view/component/counter');
+          StaticContent = this.locator.locate('view/component/static-content'),
+          Counter = this.locator.locate('view/component/counter'),
+          Playground = this.locator.locate('view/pages/playground');
 
       return App({
         html: html,
@@ -3811,7 +4126,8 @@ var AppLocator = /*#__PURE__*/function () {
         ToDo: ToDo,
         DynamicRendering: DynamicRendering,
         ProgressiveRendering: ProgressiveRendering,
-        Counter: Counter
+        StaticContent: StaticContent,
+        Playground: Playground
       });
     }
   }]);
@@ -3820,6 +4136,156 @@ var AppLocator = /*#__PURE__*/function () {
 }();
 
 module.exports = AppLocator;
+
+/***/ }),
+
+/***/ "./src/common/view/components/atoms/button/index.js":
+/*!**********************************************************!*\
+  !*** ./src/common/view/components/atoms/button/index.js ***!
+  \**********************************************************/
+/***/ ((module) => {
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<input type=\"button\" disabled=", " class=", " value=", " onClick=", "/>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var Button = function Button(_ref) {
+  var html = _ref.html;
+  return function (_ref2) {
+    var classes = _ref2.classes,
+        onClick = _ref2.onClick,
+        value = _ref2.value,
+        disabled = _ref2.disabled;
+    return html(_templateObject(), disabled, classes, value, onClick);
+  };
+};
+
+module.exports = Button;
+
+/***/ }),
+
+/***/ "./src/common/view/components/atoms/button/locator.js":
+/*!************************************************************!*\
+  !*** ./src/common/view/components/atoms/button/locator.js ***!
+  \************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Button = __webpack_require__(/*! . */ "./src/common/view/components/atoms/button/index.js");
+
+var ButtonLocator = /*#__PURE__*/function () {
+  function ButtonLocator(locator) {
+    _classCallCheck(this, ButtonLocator);
+
+    this.locator = locator;
+  }
+
+  _createClass(ButtonLocator, [{
+    key: "locate",
+    value: function locate() {
+      var _require = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
+          html = _require.html;
+
+      return Button({
+        html: html
+      });
+    }
+  }]);
+
+  return ButtonLocator;
+}();
+
+module.exports = ButtonLocator;
+
+/***/ }),
+
+/***/ "./src/common/view/components/atoms/label/index.js":
+/*!*********************************************************!*\
+  !*** ./src/common/view/components/atoms/label/index.js ***!
+  \*********************************************************/
+/***/ ((module) => {
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<label class=", " for=", ">", "</label>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var Label = function Label(_ref) {
+  var html = _ref.html,
+      internationalization = _ref.internationalization;
+  return function (_ref2) {
+    var classes = _ref2.classes,
+        labelFor = _ref2.labelFor,
+        text = _ref2.text;
+    return html(_templateObject(), classes, labelFor, internationalization.translate({
+      id: text
+    }));
+  };
+};
+
+module.exports = Label;
+
+/***/ }),
+
+/***/ "./src/common/view/components/atoms/label/locator.js":
+/*!***********************************************************!*\
+  !*** ./src/common/view/components/atoms/label/locator.js ***!
+  \***********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Label = __webpack_require__(/*! . */ "./src/common/view/components/atoms/label/index.js");
+
+var LabelLocator = /*#__PURE__*/function () {
+  function LabelLocator(locator) {
+    _classCallCheck(this, LabelLocator);
+
+    this.locator = locator;
+  }
+
+  _createClass(LabelLocator, [{
+    key: "locate",
+    value: function locate() {
+      var _require = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
+          html = _require.html,
+          internationalization = this.locator.locate('core/internationalization');
+
+      return Label({
+        html: html,
+        internationalization: internationalization
+      });
+    }
+  }]);
+
+  return LabelLocator;
+}();
+
+module.exports = LabelLocator;
 
 /***/ }),
 
@@ -3973,7 +4439,12 @@ module.exports = {
       'view/component/static-content': __webpack_require__(/*! ./static-content/locator */ "./src/common/view/components/static-content/locator.js"),
       'view/component/todos': __webpack_require__(/*! ./todos/locator */ "./src/common/view/components/todos/locator.js"),
       'view/component/clock': __webpack_require__(/*! ./clock/locator */ "./src/common/view/components/clock/locator.js"),
-      'view/component/counter': __webpack_require__(/*! ./counter/locator */ "./src/common/view/components/counter/locator.js")
+      'view/component/counter': __webpack_require__(/*! ./counter/locator */ "./src/common/view/components/counter/locator.js"),
+      'view/atoms/button': __webpack_require__(/*! ./atoms/button/locator */ "./src/common/view/components/atoms/button/locator.js"),
+      'view/atoms/label': __webpack_require__(/*! ./atoms/label/locator */ "./src/common/view/components/atoms/label/locator.js"),
+      'view/molecules/input-group': __webpack_require__(/*! ./molecules/input-group/locator */ "./src/common/view/components/molecules/input-group/locator.js"),
+      'view/molecules/text-input': __webpack_require__(/*! ./molecules/text-input/locator */ "./src/common/view/components/molecules/text-input/locator.js"),
+      'view/pages/playground': __webpack_require__(/*! ./pages/playground/locator */ "./src/common/view/components/pages/playground/locator.js")
     }
   }
 };
@@ -4192,6 +4663,377 @@ module.exports = DynamicRenderingLocator;
 
 /***/ }),
 
+/***/ "./src/common/view/components/molecules/input-group/index.js":
+/*!*******************************************************************!*\
+  !*** ./src/common/view/components/molecules/input-group/index.js ***!
+  \*******************************************************************/
+/***/ ((module) => {
+
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["<span  class='input-group__optional-label'>\n          ", "\n        </span>"]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["<", " classes=\"input-group__label\" labelFor=", " text=", "/>"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n      <div class=", ">\n\n      ", "\n\n      <div class='input-group__label-wrapper'>\n\n        ", "\n\n        ", "\n      </div>\n\n      <div class=", ">\n        ", "\n      </div>\n    </div>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var InputGroup = function InputGroup(_ref) {
+  var html = _ref.html,
+      internationalization = _ref.internationalization,
+      Label = _ref.Label;
+  return function (_ref2) {
+    var big = _ref2.big,
+        children = _ref2.children,
+        classes = _ref2.classes,
+        error = _ref2.error,
+        id = _ref2.id,
+        label = _ref2.label,
+        required = _ref2.required;
+    return html(_templateObject(), "input-group\n        ".concat(big ? 'input-group--xl' : '', "\n        ").concat(error ? '--error' : '', "\n        ").concat(classes ? classes : ''), children, label && html(_templateObject2(), Label, id, label), !required && html(_templateObject3(), internationalization.translate({
+      id: 'OPTIONAL'
+    })), "input-group__error ".concat(error ? '--visible' : '--hidden'), internationalization.translate({
+      id: error
+    }));
+  };
+};
+
+module.exports = InputGroup;
+
+/***/ }),
+
+/***/ "./src/common/view/components/molecules/input-group/locator.js":
+/*!*********************************************************************!*\
+  !*** ./src/common/view/components/molecules/input-group/locator.js ***!
+  \*********************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var InputGroup = __webpack_require__(/*! . */ "./src/common/view/components/molecules/input-group/index.js");
+
+var InputGroupLocator = /*#__PURE__*/function () {
+  function InputGroupLocator(locator) {
+    _classCallCheck(this, InputGroupLocator);
+
+    this.locator = locator;
+  }
+
+  _createClass(InputGroupLocator, [{
+    key: "locate",
+    value: function locate() {
+      var _require = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
+          html = _require.html,
+          internationalization = this.locator.locate('core/internationalization'),
+          Label = this.locator.locate('view/atoms/label');
+
+      return InputGroup({
+        html: html,
+        internationalization: internationalization,
+        Label: Label
+      });
+    }
+  }]);
+
+  return InputGroupLocator;
+}();
+
+module.exports = InputGroupLocator;
+
+/***/ }),
+
+/***/ "./src/common/view/components/molecules/text-input/index.js":
+/*!******************************************************************!*\
+  !*** ./src/common/view/components/molecules/text-input/index.js ***!
+  \******************************************************************/
+/***/ ((module) => {
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n    <", "\n      big=", "\n      class=", "\n      error=", "\n      id=", "\n      label=", "\n      required=", "\n      template=", "\n    >\n      <input\n        autoComplete=", "\n        class=", "\n        disabled=", "\n        id=", "\n        maxLength=", "\n        minLength=", "\n        name=", "\n        pattern=", "\n        placeholder=", "\n        readOnly=", "\n        required=", "\n        title=", "\n        type='text'\n        value=", "\n        onChange=", "\n      />\n    </", ">"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var TextInput = function TextInput(_ref) {
+  var html = _ref.html,
+      internationalization = _ref.internationalization,
+      useState = _ref.useState,
+      InputGroup = _ref.InputGroup,
+      useEffect = _ref.useEffect;
+
+  var getErrorMessage = function getErrorMessage(_ref2) {
+    var required = _ref2.required,
+        pattern = _ref2.pattern,
+        value = _ref2.value,
+        title = _ref2.title,
+        label = _ref2.label;
+
+    if (required && (!value || value.trim() === '')) {
+      return internationalization.translate({
+        id: 'IS_REQUIRED',
+        fields: {
+          label: label
+        }
+      });
+    } else if (value && pattern) {
+      var regexp = new RegExp(pattern),
+          match = regexp.exec(value);
+      if (!match) return title ? title : internationalization.translate({
+        id: 'INVALID_FORMAT'
+      });
+    }
+  };
+
+  return function (props) {
+    var autocomplete = props.autocomplete,
+        big = props.big,
+        classes = props.classes,
+        disabled = props.disabled,
+        id = props.id,
+        label = props.label,
+        maxlength = props.maxlength,
+        minlength = props.minlength,
+        name = props.name,
+        pattern = props.pattern,
+        placeholder = props.placeholder,
+        readonly = props.readonly,
+        required = props.required,
+        template = props.template,
+        title = props.title,
+        _props$value = props.value,
+        value = _props$value === void 0 ? '' : _props$value,
+        _props$onChange = props.onChange,
+        onChange = _props$onChange === void 0 ? function () {} : _props$onChange,
+        _useState = useState(value),
+        _useState2 = _slicedToArray(_useState, 2),
+        data = _useState2[0],
+        setData = _useState2[1],
+        _useState3 = useState(getErrorMessage({
+      required: required,
+      value: value,
+      pattern: pattern,
+      title: title,
+      label: label
+    })),
+        _useState4 = _slicedToArray(_useState3, 2),
+        error = _useState4[0],
+        setError = _useState4[1];
+
+    useEffect(function () {
+      var errorMessage = getErrorMessage({
+        required: required,
+        value: value,
+        pattern: pattern,
+        title: title,
+        label: label
+      });
+      setData(value);
+      setError(errorMessage);
+    }, [value]);
+    return html(_templateObject(), InputGroup, big, classes, error, id, label, required, template, autocomplete ? 'on' : 'off', 'input-group__input', disabled, id, maxlength, minlength, name, pattern, internationalization.translate({
+      id: placeholder
+    }), readonly, required, internationalization.translate({
+      id: title
+    }), data, onChange, InputGroup);
+  };
+};
+
+module.exports = TextInput;
+
+/***/ }),
+
+/***/ "./src/common/view/components/molecules/text-input/locator.js":
+/*!********************************************************************!*\
+  !*** ./src/common/view/components/molecules/text-input/locator.js ***!
+  \********************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var TextInput = __webpack_require__(/*! . */ "./src/common/view/components/molecules/text-input/index.js");
+
+var TextInputLocator = /*#__PURE__*/function () {
+  function TextInputLocator(locator) {
+    _classCallCheck(this, TextInputLocator);
+
+    this.locator = locator;
+  }
+
+  _createClass(TextInputLocator, [{
+    key: "locate",
+    value: function locate() {
+      var _TextInput;
+
+      var _require = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
+          html = _require.html,
+          _require2 = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js"),
+          useState = _require2.useState,
+          useEffect = _require2.useEffect,
+          internationalization = this.locator.locate('core/internationalization'),
+          InputGroup = this.locator.locate('view/molecules/input-group');
+
+      return TextInput((_TextInput = {
+        html: html,
+        internationalization: internationalization,
+        InputGroup: InputGroup
+      }, _defineProperty(_TextInput, "html", html), _defineProperty(_TextInput, "useState", useState), _defineProperty(_TextInput, "useEffect", useEffect), _TextInput));
+    }
+  }]);
+
+  return TextInputLocator;
+}();
+
+module.exports = TextInputLocator;
+
+/***/ }),
+
+/***/ "./src/common/view/components/pages/playground/index.js":
+/*!**************************************************************!*\
+  !*** ./src/common/view/components/pages/playground/index.js ***!
+  \**************************************************************/
+/***/ ((module) => {
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<", " onChange=", " required=\"true\" value=\"", "\"/>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+module.exports = function (_ref) {
+  var html = _ref.html,
+      TextInput = _ref.TextInput,
+      useState = _ref.useState;
+  return function (props) {
+    var _useState = useState(props.username),
+        _useState2 = _slicedToArray(_useState, 2),
+        username = _useState2[0],
+        setUsername = _useState2[1],
+        onChange = function onChange(_ref2) {
+      var value = _ref2.target.value;
+      console.log(value);
+      setUsername(value);
+    };
+
+    return html(_templateObject(), TextInput, onChange, username);
+  };
+};
+
+/***/ }),
+
+/***/ "./src/common/view/components/pages/playground/locator.js":
+/*!****************************************************************!*\
+  !*** ./src/common/view/components/pages/playground/locator.js ***!
+  \****************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Counter = __webpack_require__(/*! . */ "./src/common/view/components/pages/playground/index.js");
+
+var CounterLocator = /*#__PURE__*/function () {
+  function CounterLocator(locator) {
+    _classCallCheck(this, CounterLocator);
+
+    this.locator = locator;
+  }
+
+  _createClass(CounterLocator, [{
+    key: "locate",
+    value: function locate() {
+      var _require = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
+          html = _require.html,
+          TextInput = this.locator.locate('view/molecules/text-input'),
+          _require2 = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js"),
+          useState = _require2.useState;
+
+      return Counter({
+        html: html,
+        useState: useState,
+        TextInput: TextInput
+      });
+    }
+  }]);
+
+  return CounterLocator;
+}();
+
+module.exports = CounterLocator;
+
+/***/ }),
+
 /***/ "./src/common/view/components/progressive-hydration/index.js":
 /*!*******************************************************************!*\
   !*** ./src/common/view/components/progressive-hydration/index.js ***!
@@ -4379,36 +5221,36 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var ProgressiveRendering = __webpack_require__(/*! . */ "./src/common/view/components/static-content/index.js");
+var StaticContent = __webpack_require__(/*! . */ "./src/common/view/components/static-content/index.js");
 
-var ProgressiveRenderingLocator = /*#__PURE__*/function () {
-  function ProgressiveRenderingLocator(locator) {
-    _classCallCheck(this, ProgressiveRenderingLocator);
+var StaticContentLocator = /*#__PURE__*/function () {
+  function StaticContentLocator(locator) {
+    _classCallCheck(this, StaticContentLocator);
 
     this.locator = locator;
   }
 
-  _createClass(ProgressiveRenderingLocator, [{
+  _createClass(StaticContentLocator, [{
     key: "locate",
     value: function locate() {
       var _require = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js"),
           useState = _require.useState,
           _require2 = __webpack_require__(/*! htm/preact */ "./node_modules/htm/preact/index.module.js"),
           html = _require2.html,
-          ProgressiveRenderingtrategy = this.locator.locate('view/strategies/progressive');
+          StaticContentStrategy = this.locator.locate('view/strategies/static');
 
-      return ProgressiveRendering({
+      return StaticContent({
         html: html,
         useState: useState,
-        ProgressiveRenderingtrategy: ProgressiveRenderingtrategy
+        StaticContentStrategy: StaticContentStrategy
       });
     }
   }]);
 
-  return ProgressiveRenderingLocator;
+  return StaticContentLocator;
 }();
 
-module.exports = ProgressiveRenderingLocator;
+module.exports = StaticContentLocator;
 
 /***/ }),
 

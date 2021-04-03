@@ -22,9 +22,10 @@ class AppLocator
     DynamicRendering     = this.locator.locate('view/component/dynamic-rendering'),
     ProgressiveRendering = this.locator.locate('view/component/progressive-hydration'),
     StaticContent        = this.locator.locate('view/component/static-content'),
-    Counter              = this.locator.locate('view/component/counter')
+    Counter              = this.locator.locate('view/component/counter'),
+    Playground           = this.locator.locate('view/pages/playground')
 
-    return App({ html, BOTS_USER_AGENTS, BotContext, Router, ToDo, DynamicRendering, ProgressiveRendering, StaticContent, Counter })
+    return App({ html, BOTS_USER_AGENTS, BotContext, Router, ToDo, DynamicRendering, ProgressiveRendering, StaticContent, Playground })
   }
 }
 

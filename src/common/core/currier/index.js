@@ -1,5 +1,15 @@
 /**
  * For simplicity this implementation not receive an arity argument so the function passed to curry must declare all its parameters.
+ *
+ * const divisible = (mod, num) =>
+ * {
+ *   return !(num % mod)
+ * }
+ * let curriedDivisible = curry(divisible)
+ * curriedDivisible(2 , 10)                // true, still callable normally
+ * curriedDivisible(2)(10)                 // true, currying of 1st arg
+ * let divisibleBy2 = curry(divisible)(2) // allows cool stuff like this
+ * divisibleBy2(10)                       // true, currying of 1st arg
  * @param {*} f
  */
 const curry = (func) =>
@@ -20,20 +30,5 @@ const curry = (func) =>
   }
 }
 
-/*
-const divisible = (mod, num) =>
-{
-  return !(num % mod)
-}
-
-let curriedDivisible = curry(divisible)
-
-curriedDivisible(2 , 10)                // true, still callable normally
-curriedDivisible(2)(10)                 // true, currying of 1st arg
-
-let divisibleBy2 = curry(divisible)(2) // allows cool stuff like this
-divisibleBy2(10)                       // true, currying of 1st arg
-
-*/
 
 module.exports = curry
