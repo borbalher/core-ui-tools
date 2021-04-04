@@ -25,5 +25,5 @@ core
   .bootstrap()
   .then(() =>
   {
-    core.locate('core/http/server').listen({ port: 2431 })
+    core.locate('core/http/server').listen({ port: process.env.HTTP_PORT })
   })

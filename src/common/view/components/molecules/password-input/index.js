@@ -1,4 +1,4 @@
-const TextInput = ({ html, internationalization, useState, InputGroup, useEffect }) =>
+const PasswordInput = ({ html, internationalization, useState, InputGroup, useEffect }) =>
 {
   const
   getErrorMessage = ({ required, pattern, value, title, label }) =>
@@ -38,19 +38,23 @@ const TextInput = ({ html, internationalization, useState, InputGroup, useEffect
       template,
       title,
       value    = '',
+      visible  = false,
       onChange = ({ target : { value } = {} } = {}) => {
         setData(value)
         setError(getErrorMessage({ required, value, pattern, title, label }))
       }
-    }                 = props,
-    [data, setData]   = useState(value),
-    [error, setError] = useState(getErrorMessage({ required, value, pattern, title, label }))
+    }                            = props,
+    [data, setData]              = useState(value),
+    [visibility, setVisibility]  = useState(visible),
+    [error, setError]            = useState(getErrorMessage({ required, value, pattern, title, label }))
+
 
     useEffect(() =>
     {
       setData(value)
       setError(getErrorMessage({ required, value, pattern, title, label }))
     }, [value])
+
 
     return html`
     <${InputGroup}
@@ -75,13 +79,16 @@ const TextInput = ({ html, internationalization, useState, InputGroup, useEffect
         readOnly=${readonly}
         required=${required}
         title=${internationalization.translate({ id: title })}
-        type='text'
+        type=${visibility ? 'text' : 'password'}
         value=${data}
         onChange=${onChange}
       />
+      <span class="visibility" onClick=${() => { setVisibility(!visibility)}}>
+        ${visibility ? html`<i class="fas fa-eye"></i>` : html`<i class="fas fa-eye-slash"></i>`}
+      </span>
     </${InputGroup}>`
   }
 }
 
-module.exports = TextInput
+module.exports = PasswordInput
 

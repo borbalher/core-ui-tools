@@ -34,10 +34,9 @@ class Base
         <script type="text/javascript" src="/resources/js/bundle/vendors.bundle.js?${hash}"></script>
         <script type="text/javascript" src="/resources/js/bundle/polyfills.bundle.js?${hash}"></script>
         <script type="text/javascript" src="/resources/js/bundle/index.bundle.js?${hash}"></script>
+        <script type="text/javascript" src="https://kit.fontawesome.com/d7797a6589.js?${hash}" crossorigin="anonymous"></script>
       </body>
       `
-
-
   }
 }
 

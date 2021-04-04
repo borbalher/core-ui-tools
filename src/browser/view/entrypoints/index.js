@@ -1,3 +1,5 @@
+import 'common/view/styles/globals.scss'
+
 const
 Application = require('browser/core/application'),
 app         = new Application({

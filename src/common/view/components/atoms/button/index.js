@@ -3,11 +3,14 @@ const Button = ({ html }) =>
   return ({
     classes,
     onClick,
-    value,
-    disabled
+    text,
+    disabled,
+    type
   }) =>
   {
-    return html`<input type="button" disabled=${disabled} class=${classes} value=${value} onClick=${onClick}/>`
+    return html`<button type=${type} disabled=${disabled} class=${classes} onClick=${onClick}>
+      ${text}
+    </button>`
   }
 }
 

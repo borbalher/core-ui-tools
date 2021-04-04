@@ -1,0 +1,67 @@
+@import '_colors.scss';
+
+.input-group {
+  input[type="radio"]
+  {
+    position: absolute;
+    opacity:0;
+    bottom: 0;
+    left: 50%;
+    &:checked + .btn-group__button{
+      color: $white;
+      background: $black;
+    }
+  }
+  .btn-group{
+    &__buttons{
+      display: inline-block;
+      font-size: 0;
+      .btn-group__button-container{
+        display: inline-block;
+        cursor: pointer;
+        box-sizing: border-box;
+        position: relative;
+
+        &:first-child .btn-group__button{
+          border-top-left-radius: 1.5rem;
+          border-bottom-left-radius: 1.5rem;
+          border-left-style: solid;
+        }
+        &:last-child .btn-group__button{
+          border-top-right-radius: 1.5rem;
+          border-bottom-right-radius: 1.5rem;
+        }
+        .btn-group__button{
+          background: $white;
+          -webkit-appearance: none;
+          font-size: 12px;
+          font-weight: 700;
+          border: 2px solid $black;
+          border-left-style: none;
+          outline: 0;
+          cursor: pointer;
+          padding: 4px 10px;
+          display: block;
+          background: $white;
+
+          &:hover{
+            background: $grey-dark;
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+}
+
+.button-group-input-group {
+  .input-group__label{
+    font-size: 14px;
+    color: map-get($palette, color-grey);
+    display: inline-block;
+    &:after{
+      content: ':';
+      margin-right: 10px;
+    }
+  }
+}
