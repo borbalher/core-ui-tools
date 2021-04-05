@@ -11,7 +11,7 @@ class ValidateInputActionLocator
   {
     const
     store                      = this.locator.locate('core/store'),
-    passwordInputGroupComposer = this.locator.locate('ui/password-input-group/composer')
+    passwordInputGroupComposer = this.locator.locate('ui/composer/password-input-group')
 
     return new ValidateInputAction({ passwordInputGroupComposer, store })
   }

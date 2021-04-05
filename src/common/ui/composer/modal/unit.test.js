@@ -22,7 +22,7 @@ describe('src/common/ui/composer/modal', () =>
     core.load().then(() =>
     {
       composer      = core.locate('core/schema/composer')
-      modalComposer = core.locate('ui/modal/composer')
+      modalComposer = core.locate('ui/composer/modal')
       done()
     })
   })

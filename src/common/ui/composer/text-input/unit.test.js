@@ -22,7 +22,7 @@ describe('src/common/ui/composer/text-input', () =>
     core.load().then(() =>
     {
       composer          = core.locate('core/schema/composer')
-      textInputComposer = core.locate('ui/text-input/composer')
+      textInputComposer = core.locate('ui/composer/text-input')
       done()
     })
   })

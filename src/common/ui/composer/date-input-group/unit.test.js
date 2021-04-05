@@ -22,7 +22,7 @@ describe('src/common/ui/composer/date-input-group', () =>
     core.load().then(() =>
     {
       composer               = core.locate('core/schema/composer')
-      dateInputGroupComposer = core.locate('ui/date-input-group/composer')
+      dateInputGroupComposer = core.locate('ui/composer/date-input-group')
       done()
     })
   })

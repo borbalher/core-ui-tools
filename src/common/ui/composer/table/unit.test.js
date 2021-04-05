@@ -22,7 +22,7 @@ describe('src/common/ui/composer/table', () =>
     core.load().then(() =>
     {
       composer      = core.locate('core/schema/composer')
-      tableComposer = core.locate('ui/table/composer')
+      tableComposer = core.locate('ui/composer/table')
       done()
     })
   })

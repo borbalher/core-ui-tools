@@ -22,7 +22,7 @@ describe('src/common/ui/composer/password-input', () =>
     core.load().then(() =>
     {
       composer           = core.locate('core/schema/composer')
-      paginationComposer = core.locate('ui/pagination/composer')
+      paginationComposer = core.locate('ui/composer/pagination')
       done()
     })
   })

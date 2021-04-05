@@ -22,7 +22,7 @@ describe('src/common/ui/composer/checkbox-input-group', () =>
     core.load().then(() =>
     {
       composer                   = core.locate('core/schema/composer')
-      checkboxInputGroupComposer = core.locate('ui/checkbox-input-group/composer')
+      checkboxInputGroupComposer = core.locate('ui/composer/checkbox-input-group')
       done()
     })
   })

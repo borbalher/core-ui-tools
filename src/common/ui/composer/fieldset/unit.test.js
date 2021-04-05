@@ -22,7 +22,7 @@ describe('src/common/ui/composer/fieldset', () =>
     core.load().then(() =>
     {
       composer         = core.locate('core/schema/composer')
-      fieldsetComposer = core.locate('ui/fieldset/composer')
+      fieldsetComposer = core.locate('ui/composer/fieldset')
       done()
     })
   })

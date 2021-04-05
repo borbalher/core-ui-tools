@@ -30,7 +30,7 @@ class StoreLocator
   locate()
   {
     const
-    configuration      = this.locator.locate('core/configuration').find('core.store'),
+    configuration      = this.locator.locate('core/configuration').find('ui.store'),
     state              = configuration.state   || {},
     options            = configuration.options || {},
     channel            = this.createBusChannel(),

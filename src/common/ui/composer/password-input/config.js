@@ -3,7 +3,7 @@ module.exports = {
   {
     locator :
     {
-      'ui/password-input/composer' : __dirname
+      'ui/composer/password-input' : __dirname
     }
   }
 }

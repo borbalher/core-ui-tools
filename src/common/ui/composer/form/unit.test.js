@@ -22,7 +22,7 @@ describe('src/common/ui/composer/form', () =>
     core.load().then(() =>
     {
       composer     = core.locate('core/schema/composer')
-      formComposer = core.locate('ui/form/composer')
+      formComposer = core.locate('ui/composer/form')
       done()
     })
   })

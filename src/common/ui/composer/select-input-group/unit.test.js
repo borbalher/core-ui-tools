@@ -22,7 +22,7 @@ describe('src/common/ui/composer/select-input-group', () =>
     core.load().then(() =>
     {
       composer                 = core.locate('core/schema/composer')
-      selectInputGroupComposer = core.locate('ui/select-input-group/composer')
+      selectInputGroupComposer = core.locate('ui/composer/select-input-group')
       done()
     })
   })

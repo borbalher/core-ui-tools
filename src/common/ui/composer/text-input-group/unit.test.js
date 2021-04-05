@@ -22,7 +22,7 @@ describe('src/common/ui/composer/text-input-group', () =>
     core.load().then(() =>
     {
       composer               = core.locate('core/schema/composer')
-      textInputGroupComposer = core.locate('ui/text-input-group/composer')
+      textInputGroupComposer = core.locate('ui/composer/text-input-group')
       done()
     })
   })

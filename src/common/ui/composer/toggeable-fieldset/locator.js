@@ -11,7 +11,7 @@ class ToggeableFieldsetComposerLocator
   {
     const
     configuration              = this.locator.locate('core/configuration'),
-    checkboxInputGroupComposer = this.locator.locate('ui/checkbox-input-group/composer')
+    checkboxInputGroupComposer = this.locator.locate('ui/composer/checkbox-input-group')
 
     return new ToggeableFieldsetComposer(configuration, checkboxInputGroupComposer)
   }

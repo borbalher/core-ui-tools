@@ -9,7 +9,7 @@ module.exports = {
     },
     locator :
     {
-      'ui/test/composer' : `${__dirname}/composer`
+      'ui/composer/test' : `${__dirname}/composer`
     }
   }
 }

@@ -11,7 +11,7 @@ class ToggleFieldsetLocator
   {
     const
     store                 = this.locator.locate('core/store'),
-    radioFieldsetComposer = this.locator.locate('ui/radio-fieldset/composer')
+    radioFieldsetComposer = this.locator.locate('ui/composer/radio-fieldset')
 
     return new ToggleFieldset(store, radioFieldsetComposer)
   }

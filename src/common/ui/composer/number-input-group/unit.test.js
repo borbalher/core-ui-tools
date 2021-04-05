@@ -22,7 +22,7 @@ describe('src/common/ui/composer/number-input-group', () =>
     core.load().then(() =>
     {
       composer                 = core.locate('core/schema/composer')
-      numberInputGroupComposer = core.locate('ui/number-input-group/composer')
+      numberInputGroupComposer = core.locate('ui/composer/number-input-group')
       done()
     })
   })

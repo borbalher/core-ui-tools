@@ -22,7 +22,7 @@ describe('src/common/ui/composer/password-input-group', () =>
     core.load().then(() =>
     {
       composer                   = core.locate('core/schema/composer')
-      passwordInputGroupComposer = core.locate('ui/password-input-group/composer')
+      passwordInputGroupComposer = core.locate('ui/composer/password-input-group')
       done()
     })
   })

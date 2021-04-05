@@ -11,7 +11,7 @@ class PrevPageClickedLocator
   {
     const
     store              = this.locator.locate('core/store'),
-    paginationComposer = this.locator.locate('ui/pagination/composer')
+    paginationComposer = this.locator.locate('ui/composer/pagination')
 
     return new PrevPageClicked({ store, paginationComposer })
   }

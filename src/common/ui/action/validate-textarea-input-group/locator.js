@@ -11,7 +11,7 @@ class ValidateTextareaInputGroupActionLocator
   {
     const
     store                      = this.locator.locate('core/store'),
-    textareaInputGroupComposer = this.locator.locate('ui/textarea-input-group/composer')
+    textareaInputGroupComposer = this.locator.locate('ui/composer/textarea-input-group')
 
     return new ValidateTextareaInputGroupAction({ textareaInputGroupComposer, store })
   }

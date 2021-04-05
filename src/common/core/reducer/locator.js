@@ -11,7 +11,7 @@ class ReducerLocator
   {
     const
     configuration = this.locator.locate('core/configuration'),
-    actions       = configuration.find('core.reducer.actions')
+    actions       = configuration.find('ui.reducer.actions')
 
     return new Reducer(actions, this.locator)
   }

@@ -22,7 +22,7 @@ describe('src/common/ui/composer/textarea-input', () =>
     core.load().then(() =>
     {
       composer              = core.locate('core/schema/composer')
-      textareaInputComposer = core.locate('ui/textarea-input/composer')
+      textareaInputComposer = core.locate('ui/composer/textarea-input')
       done()
     })
   })

@@ -22,7 +22,7 @@ describe('src/common/ui/composer/radio-button-input-group', () =>
     core.load().then(() =>
     {
       composer                      = core.locate('core/schema/composer')
-      radioButtonInputGroupComposer = core.locate('ui/radio-button-input-group/composer')
+      radioButtonInputGroupComposer = core.locate('ui/composer/radio-button-input-group')
       done()
     })
   })

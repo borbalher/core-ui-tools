@@ -20,7 +20,7 @@ describe('src/common/ui/composer/component', () =>
 
     core.load().then(() =>
     {
-      composer = core.locate('ui/component/composer')
+      composer = core.locate('ui/composer/component')
       done()
     })
   })

@@ -22,7 +22,7 @@ describe('src/common/ui/composer/page-blocker', () =>
     core.load().then(() =>
     {
       composer            = core.locate('core/schema/composer')
-      pageBlockerComposer = core.locate('ui/page-blocker/composer')
+      pageBlockerComposer = core.locate('ui/composer/page-blocker')
       done()
     })
   })
