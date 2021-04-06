@@ -22,7 +22,7 @@ class ComponentControllerFactory
   {
     try
     {
-      return this.locator.locate(`ui/${template}/controller`)
+      return this.locator.locate(`ui/controller/${template}`)
     }
     catch(error)
     {
